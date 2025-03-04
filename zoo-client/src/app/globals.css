@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+    format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -17,5 +25,174 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Pretendard-Regular;
+}
+
+@layer components {
+  /* display */
+  .display-b-60 {
+    font-size: 3.75rem;
+    font-weight: 700;
+    line-height: 4.5em;
+    letter-spacing: 0rem;
+  }
+
+  .display-b-48 {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 3.6em;
+    letter-spacing: 0rem;
+  }
+
+  /* headline */
+  .headline-b-40 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 3em;
+    letter-spacing: 0rem;
+  }
+
+  .headline-sb-40 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 3em;
+    letter-spacing: 0rem;
+  }
+
+  .headline-sb-36 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    line-height: 2.7em;
+    letter-spacing: 0rem;
+  }
+
+  .headline-sb-32 {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 2.4em;
+    letter-spacing: 0rem;
+  }
+
+  .headline-sb-28 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 2.1em;
+    letter-spacing: 0rem;
+  }
+
+  /* title */
+  .title-sb-24 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.8em;
+    letter-spacing: 0rem;
+  }
+
+  .title-sb-20 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5em;
+    letter-spacing: 0rem;
+  }
+
+  .title-sb-18 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.35em;
+    letter-spacing: 0rem;
+  }
+
+  /* body */
+  .body-sb-16 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2em;
+    letter-spacing: 0rem;
+  }
+
+  .body-m-16-150 {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5em;
+    letter-spacing: 0rem;
+  }
+
+  .body-m-16 {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.2em;
+    letter-spacing: 0rem;
+  }
+
+  .body-m-14-150 {
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.3125em;
+    letter-spacing: 0rem;
+  }
+
+  .body-m-14 {
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.05em;
+    letter-spacing: 0rem;
+  }
+
+  .body-r-16-150 {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5em;
+    letter-spacing: 0rem;
+  }
+
+  .body-r-16 {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.2em;
+    letter-spacing: 0rem;
+  }
+
+  .body-r-14-150 {
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.3125em;
+    letter-spacing: 0rem;
+  }
+
+  .body-r-14 {
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.05em;
+    letter-spacing: 0rem;
+  }
+
+  /* caption */
+  .caption-r-12 {
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 0.9em;
+    letter-spacing: 0rem;
+  }
+
+  /* figure */
+  .figure-m-16 {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.2em;
+    letter-spacing: 0rem;
+  }
+
+  .figure-m-14 {
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.05em;
+    letter-spacing: 0rem;
+  }
+
+  .figure-m-10 {
+    font-size: 0.625rem;
+    font-weight: 500;
+    line-height: 0.75em;
+    letter-spacing: 0rem;
+  }
 }
