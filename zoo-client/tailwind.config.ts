@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import { colors } from './src/styles/tokens';
+import { colors, spacing } from './src/styles/tokens';
 
 export default {
   content: [
@@ -10,6 +10,7 @@ export default {
   theme: {
     colors,
     extend: {
+      spacing,
     },
   },
 } satisfies Config;
