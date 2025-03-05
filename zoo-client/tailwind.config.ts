@@ -9,6 +9,12 @@ export default {
   ],
   theme: {
     colors,
+    screens: {
+      website: '1440px',
+      tablet: '768px',
+      mobile: '360px',
+      lg: '1024px',
+    },
     extend: {
       spacing,
     },
