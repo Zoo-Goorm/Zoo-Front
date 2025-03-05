@@ -1,10 +1,8 @@
-import './globals.css'
-
 export default function Home() {
   return (
-    <div className="figure-m-14 grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 bg-yellow-50 p-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20">
+    <div className="display-b-60 bg-bg-secondary text-text-primary">
       Hello Zoo Client
       <div className="p-4 pt-2"></div>
     </div>
-  )
+  );
 }
