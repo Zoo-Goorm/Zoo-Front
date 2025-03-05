@@ -16,4 +16,7 @@ module.exports = {
     'plugin:storybook/recommended',
   ],
   plugins: ['@typescript-eslint'],
+  rules: {
+    semi: ['error', 'always'],
+  },
 }
