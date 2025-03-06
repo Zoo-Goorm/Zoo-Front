@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+import filterIcon from '@/public/filter-icon.svg'
 import { useState } from 'react'
 
 type TabDatesProps = {
@@ -17,6 +19,15 @@ function TabDates({ text, selected, className = '' }: TabDatesProps) {
     >
       {text}
     </span>
+  )
+}
+
+function FilterCheckbox() {
+  return (
+    <label className="flex cursor-pointer items-center gap-2">
+      <span className="text-gray-700">Filter</span>
+      <Image src={filterIcon} alt="filter-icon" width={20} height={20} />
+    </label>
   )
 }
 
@@ -61,6 +72,10 @@ export default function Tab() {
 
       <div className="hidden items-center gap-2 md:flex">
         <ToggleButton />
+        <span className="text-medium text-[#d1d1d1] sm:text-sm md:text-xl">
+          |
+        </span>
+        <FilterCheckbox />
       </div>
     </div>
   )
