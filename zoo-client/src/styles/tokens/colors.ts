@@ -110,13 +110,13 @@ const colors = {
       disabled: COLOR_TOKEN['grey-c'][200],
 
       list: '#4824ff',
-      secondary: COLOR_TOKEN.green[500],
-      thirary: COLOR_TOKEN['grey-c'][50],
-
-      'kakao-login': '#fee500',
-      active: COLOR_TOKEN['grey-n'][500],
-      inactive: COLOR_TOKEN['grey-n'][100],
     },
+    secondary: COLOR_TOKEN.green[500],
+    thirary: COLOR_TOKEN['grey-c'][50],
+
+    'kakao-login': '#fee500',
+    active: COLOR_TOKEN['grey-n'][500],
+    inactive: COLOR_TOKEN['grey-n'][100],
   },
 
   /* text */
