@@ -1,5 +1,7 @@
 'use client'
 
+import { useState } from 'react'
+
 type TabDatesProps = {
   text: string
   selected: boolean
@@ -18,6 +20,30 @@ function TabDates({ text, selected, className = '' }: TabDatesProps) {
   )
 }
 
+function ToggleButton() {
+  const [topToggleActive, setTopToggleActive] = useState(true)
+
+  return (
+    <div className="flex items-center justify-center gap-2">
+      <div className="relative">
+        <div
+          className={`flex h-[17px] w-[40px] cursor-pointer items-center rounded-full border-[1px] border-[#b6bac0] ${
+            topToggleActive ? 'bg-indigo-600' : 'bg-gray-200'
+          }`}
+          onClick={() => setTopToggleActive(!topToggleActive)}
+        >
+          <div
+            className={`h-[24px] w-[24px] transform rounded-full border-[1px] border-[#b6bac0] bg-white transition-transform duration-500 ease-in-out ${
+              topToggleActive ? 'translate-x-4' : 'translate-x-[-2px]'
+            }`}
+          />
+        </div>
+      </div>
+      <span className="font-medium text-black">마감된 세션 제외</span>
+    </div>
+  )
+}
+
 export default function Tab() {
   return (
     <div className="flex w-full min-w-[312px] items-center justify-between bg-[#F9F9F9] px-[20px] py-[16px] max-sm:h-[41px] max-sm:px-[12px] sm:py-[12px] md:h-[61px]">
@@ -33,8 +59,8 @@ export default function Tab() {
         <TabDates text="N월 N일 (Day N)" selected={false} />
       </div>
 
-      <div className="hidden max-sm:flex">
-        <span>hi</span>
+      <div className="hidden items-center gap-2 md:flex">
+        <ToggleButton />
       </div>
     </div>
   )
