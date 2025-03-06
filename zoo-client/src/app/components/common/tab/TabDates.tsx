@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-type TabDatesProps = {
-  text: string
-  selected: boolean
-  className?: string
+interface TabDatesProps {
+  text: string;
+  selected: boolean;
+  className?: string;
 }
 
 export default function TabDates({
@@ -13,11 +13,11 @@ export default function TabDates({
 }: TabDatesProps) {
   return (
     <span
-      className={`tablet:text-xl cursor-pointer text-sm font-semibold ${
+      className={`cursor-pointer text-sm font-semibold tablet:text-xl ${
         selected ? 'text-purple-500' : 'text-text-thirary'
       } ${className}`}
     >
       {text}
     </span>
-  )
+  );
 }

@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 interface RightArrowProps {
-  fill: string // fill 속성에 대한 타입 정의
+  fill: string;
 }
 
 const RightArrow: React.FC<RightArrowProps> = ({ fill }) => (
@@ -14,6 +14,6 @@ const RightArrow: React.FC<RightArrowProps> = ({ fill }) => (
   >
     <path d="M4.33351 8.5L0.333496 4.5L4.33351 0.5L5.26685 1.43333L2.20017 4.5L5.26685 7.56667L4.33351 8.5Z" />
   </svg>
-)
+);
 
-export default RightArrow
+export default RightArrow;
