@@ -1,95 +1,9 @@
 'use client'
 
-import Image from 'next/image'
-import filterIcon from '@/public/filter-icon.svg'
-import { useState } from 'react'
-
-type TabDatesProps = {
-  text: string
-  selected: boolean
-  className?: string
-}
-
-function TabDates({ text, selected, className = '' }: TabDatesProps) {
-  return (
-    <span
-      className={`cursor-pointer font-semibold sm:text-sm lg:text-xl ${
-        selected ? 'text-purple-500' : 'text-[#898989]'
-      } ${className}`}
-    >
-      {text}
-    </span>
-  )
-}
-
-function FilterCheckbox() {
-  return (
-    <label className="flex cursor-pointer items-center gap-2">
-      <span className="text-gray-700">Filter</span>
-      <Image src={filterIcon} alt="filter-icon" width={20} height={20} />
-    </label>
-  )
-}
-
-function ToggleButton() {
-  const [topToggleActive, setTopToggleActive] = useState(true)
-
-  return (
-    <div className="flex items-center justify-center gap-2">
-      <div className="relative">
-        <div
-          className={`flex h-[17px] w-[40px] cursor-pointer items-center rounded-full border-[1px] border-[#b6bac0] ${
-            topToggleActive ? 'bg-indigo-600' : 'bg-gray-200'
-          }`}
-          onClick={() => setTopToggleActive(!topToggleActive)}
-        >
-          <div
-            className={`h-[24px] w-[24px] transform rounded-full border-[1px] border-[#b6bac0] bg-white transition-transform duration-500 ease-in-out ${
-              topToggleActive ? 'translate-x-4' : 'translate-x-[-2px]'
-            }`}
-          />
-        </div>
-      </div>
-      <span className="font-medium text-black">마감된 세션 제외</span>
-    </div>
-  )
-}
-
-function ArrowBox() {
-  const [nextView, setNextView] = useState(false)
-  return (
-    <div className="flex gap-2">
-      <button onClick={() => setNextView(!nextView)} className="h-4 w-4">
-        <svg
-          width="6"
-          height="9"
-          viewBox="0 0 6 9"
-          fill="#d1d1d1"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4.33351 8.5L0.333496 4.5L4.33351 0.5L5.26685 1.43333L2.20017 4.5L5.26685 7.56667L4.33351 8.5Z"
-            fill={nextView ? '#d1d1d1' : '#6B6B6B'}
-          />
-        </svg>
-      </button>
-      <button onClick={() => setNextView(!nextView)} className="h-4 w-4">
-        <svg
-          width="6"
-          height="9"
-          viewBox="0 0 6 9"
-          fill="#6B6B6B"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M3.40018 4.5L0.333496 1.43333L1.26683 0.5L5.26685 4.5L1.26683 8.5L0.333496 7.56667L3.40018 4.5Z"
-            fill={nextView ? '#6B6B6B' : '#d1d1d1'}
-          />
-        </svg>
-      </button>
-    </div>
-  )
-}
+import ArrowBox from './ArrowBox'
+import FilterOption from './FilterOption'
+import TabDates from './TabDates'
+import ToggleButton from './ToggleButton'
 
 export default function Tab() {
   return (
@@ -113,7 +27,7 @@ export default function Tab() {
         <span className="text-medium text-[#d1d1d1] sm:text-sm md:text-xl">
           |
         </span>
-        <FilterCheckbox />
+        <FilterOption />
       </div>
     </div>
   )
