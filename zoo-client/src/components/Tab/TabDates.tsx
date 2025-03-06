@@ -13,8 +13,8 @@ export default function TabDates({
 }: TabDatesProps) {
   return (
     <span
-      className={`cursor-pointer font-semibold sm:text-sm lg:text-xl ${
-        selected ? 'text-purple-500' : 'text-[#898989]'
+      className={`tablet:text-xl cursor-pointer text-sm font-semibold ${
+        selected ? 'text-purple-500' : 'text-text-thirary'
       } ${className}`}
     >
       {text}

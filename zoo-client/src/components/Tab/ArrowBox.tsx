@@ -7,10 +7,10 @@ export default function ArrowBox() {
 
   return (
     <div className="flex gap-2">
-      <button onClick={() => setNextView(!nextView)} className="h-4 w-4">
+      <button onClick={() => setNextView(!nextView)} className="h-16 w-16">
         <LeftArrow fill={nextView ? '#6B6B6B' : '#d1d1d1'} />
       </button>
-      <button onClick={() => setNextView(!nextView)} className="h-4 w-4">
+      <button onClick={() => setNextView(!nextView)} className="h-16 w-16">
         <RightArrow fill={nextView ? '#d1d1d1' : '#6B6B6B'} />
       </button>
     </div>

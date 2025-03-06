@@ -7,26 +7,26 @@ import ToggleButton from './ToggleButton'
 
 export default function Tab() {
   return (
-    <div className="flex w-full items-center justify-between bg-[#F9F9F9] px-[12px] py-[12px] max-sm:h-[41px] max-sm:max-w-[312px] md:h-[16px] md:px-[20px] md:py-[16px]">
-      <div className="flex items-center gap-1 md:gap-4">
-        <TabDates className="hidden md:block" text="전체" selected={false} />
-        <span className="text-medium hidden text-[#d1d1d1] sm:text-sm md:block md:text-xl">
+    <div className="tablet:px-20 tablet:py-16 bg-bg-primary tablet:w-full flex w-[312px] max-w-[1240px] items-center justify-between p-12">
+      <div className="tablet:gap-16 flex items-center gap-1">
+        <TabDates
+          className="tablet:block hidden"
+          text="전체"
+          selected={false}
+        />
+        <span className="text-divider-secondary tablet:block tablet:text-xl hidden text-sm">
           |
         </span>
         <TabDates text="N월 N일 (Day N)" selected={false} />
-        <span className="text-medium text-[#d1d1d1] sm:text-sm md:text-xl">
-          |
-        </span>
+        <span className="text-divider-secondary tablet:text-xl text-sm">|</span>
         <TabDates text="N월 N일 (Day N)" selected={false} />
       </div>
-      <div className="flex md:hidden">
+      <div className="tablet:hidden flex">
         <ArrowBox />
       </div>
-      <div className="hidden items-center gap-2 md:flex">
+      <div className="tablet:flex hidden items-center gap-2">
         <ToggleButton />
-        <span className="text-medium text-[#d1d1d1] sm:text-sm md:text-xl">
-          |
-        </span>
+        <span className="text-divider-secondary tablet:text-xl text-sm">|</span>
         <FilterOption />
       </div>
     </div>
