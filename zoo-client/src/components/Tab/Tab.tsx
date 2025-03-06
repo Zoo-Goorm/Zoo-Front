@@ -55,9 +55,45 @@ function ToggleButton() {
   )
 }
 
+function ArrowBox() {
+  const [nextView, setNextView] = useState(false)
+  return (
+    <div className="flex gap-2">
+      <button onClick={() => setNextView(!nextView)} className="h-4 w-4">
+        <svg
+          width="6"
+          height="9"
+          viewBox="0 0 6 9"
+          fill="#d1d1d1"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4.33351 8.5L0.333496 4.5L4.33351 0.5L5.26685 1.43333L2.20017 4.5L5.26685 7.56667L4.33351 8.5Z"
+            fill={nextView ? '#d1d1d1' : '#6B6B6B'}
+          />
+        </svg>
+      </button>
+      <button onClick={() => setNextView(!nextView)} className="h-4 w-4">
+        <svg
+          width="6"
+          height="9"
+          viewBox="0 0 6 9"
+          fill="#6B6B6B"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3.40018 4.5L0.333496 1.43333L1.26683 0.5L5.26685 4.5L1.26683 8.5L0.333496 7.56667L3.40018 4.5Z"
+            fill={nextView ? '#6B6B6B' : '#d1d1d1'}
+          />
+        </svg>
+      </button>
+    </div>
+  )
+}
+
 export default function Tab() {
   return (
-    <div className="flex w-full min-w-[312px] items-center justify-between bg-[#F9F9F9] px-[20px] py-[16px] max-sm:h-[41px] max-sm:px-[12px] sm:py-[12px] md:h-[61px]">
+    <div className="flex w-full items-center justify-between bg-[#F9F9F9] px-[12px] py-[12px] max-sm:h-[41px] max-sm:max-w-[312px] md:h-[16px] md:px-[20px] md:py-[16px]">
       <div className="flex items-center gap-1 md:gap-4">
         <TabDates className="hidden md:block" text="전체" selected={false} />
         <span className="text-medium hidden text-[#d1d1d1] sm:text-sm md:block md:text-xl">
@@ -69,7 +105,9 @@ export default function Tab() {
         </span>
         <TabDates text="N월 N일 (Day N)" selected={false} />
       </div>
-
+      <div className="flex md:hidden">
+        <ArrowBox />
+      </div>
       <div className="hidden items-center gap-2 md:flex">
         <ToggleButton />
         <span className="text-medium text-[#d1d1d1] sm:text-sm md:text-xl">
