@@ -1,9 +1,5 @@
-import { Tab } from './components';
-
 export default function Home() {
   return (
-    <div className="flex h-screen items-center justify-center">
-      <Tab />
-    </div>
+    <div className="flex h-screen flex-col items-center justify-center"></div>
   );
 }
