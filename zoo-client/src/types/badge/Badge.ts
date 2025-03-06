@@ -10,6 +10,6 @@ export interface Badge {
   type: TBadgeType;
 }
 
-export interface IBadgeListProps {
+export interface IBadgeList {
   badgeList: Badge[];
 }
