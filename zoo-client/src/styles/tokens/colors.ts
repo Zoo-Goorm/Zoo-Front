@@ -4,7 +4,8 @@ const COLOR_TOKEN = {
     black: 'rgb(0,0,0)',
   },
   'grey-n': {
-    50: 'rgb(9, 2, 2)',
+    10: '#f9f9f9',
+    50: 'rgb(240, 240, 240)',
     100: 'rgb(209,209,209)',
     200: 'rgb(187,187,187)',
     300: 'rgb(156,156,156)',
@@ -16,6 +17,7 @@ const COLOR_TOKEN = {
     900: 'rgb(45,45,45)',
   },
   'grey-c': {
+    10: '#f1f4f7',
     50: 'rgb(239,240,241)',
     100: 'rgb(206,208,212)',
     200: 'rgb(182,186,192)',
@@ -93,7 +95,7 @@ const colors = {
   /* background */
   bg: {
     primary: COLOR_TOKEN.bw.white,
-    secondary: COLOR_TOKEN['grey-n'][100],
+    secondary: COLOR_TOKEN['grey-n'][10],
     thirary: COLOR_TOKEN['grey-n'][50],
     black: COLOR_TOKEN.bw.black,
     'badge-subject': COLOR_TOKEN.yellow[200],
