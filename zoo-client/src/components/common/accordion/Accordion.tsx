@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import arrow from '/accordion/arrow.svg';
 import { useState } from 'react';
 
 interface AccordionProps {
@@ -23,7 +22,7 @@ export default function Accordion({ children, date }: AccordionProps) {
             {date}
           </span>
           <Image
-            src={arrow}
+            src="/accordion/arrow.svg"
             alt="Toggle Accordion"
             className={`transition-transform duration-300 tablet:h-[48px] tablet:w-[48px] ${isOpen ? 'rotate-180' : 'rotate-0'}`} // 크기 지정
             width={28}

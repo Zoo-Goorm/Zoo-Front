@@ -1,21 +1,25 @@
 import Image from 'next/image';
-import Thumbnail from '/radio/thumbnail.svg';
 
 interface RadioProps {
   status: string;
   video: string;
 }
 
+const styleSize = {
+  w: 610,
+};
+
 export default function Radio({ status, video }: RadioProps) {
   return (
     <div className="relative text-center">
-      <div className="">
+      <div>
         <Image
           alt="Thumbnail"
-          src={Thumbnail}
+          src="/radio/thumbnail.svg"
           width={610}
           height={343}
-          className={`rounded ${
+          objectFit="cover"
+          className={`h-[176px] w-[317px] rounded tablet:h-[343px] tablet:w-[610px] ${
             status === 'active'
               ? 'border-[1.5px] border-stroke-primary'
               : 'brightness-50'
