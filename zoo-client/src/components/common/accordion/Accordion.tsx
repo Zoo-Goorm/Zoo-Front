@@ -13,7 +13,7 @@ export default function Accordion({ children, date }: AccordionProps) {
 
   return (
     <div className="bg-bw-white flex flex-col bg-bg-primary text-text-main tablet:gap-24">
-      <div className="p-8 pb-24">
+      <div className={`p-8 ${isOpen && 'pb-24'}`}>
         <button
           className="flex w-full items-center justify-between text-left"
           onClick={() => setIsOpen((prev) => !prev)}

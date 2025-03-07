@@ -1,4 +1,4 @@
-export const subjectList = [
+export const subjectList: string[] = [
   '주제',
   '키워드 뱃지',
   '주제 키워드',

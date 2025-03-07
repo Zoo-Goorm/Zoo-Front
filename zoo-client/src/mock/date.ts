@@ -6,15 +6,15 @@ interface infoData {
 
 export const DateInfo: infoData[] = [
   {
-    date: '3월 10일 (DAY N)',
+    date: '3월 10일 (DAY 1)',
     time: '09:00 - 10:00',
     title: 'Opening Ceremony',
   },
   { date: '3월 10일 (DAY N)', time: '10:00 - 11:00', title: 'Keynote Speech' },
   {
-    date: '3월 10일 (DAY N)',
+    date: '3월 10일 (DAY 1)',
     time: '11:00 - 12:00',
     title: 'Panel Discussion',
   },
-  { date: '3월 10일 (DAY N)', time: '12:00 - 13:00', title: 'Lunch' },
+  { date: '3월 10일 (DAY 1)', time: '12:00 - 13:00', title: 'Lunch' },
 ];

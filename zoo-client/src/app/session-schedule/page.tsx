@@ -1,10 +1,18 @@
+'use client';
+
 import {
   PurchaseButton,
   NavigationBar,
   Accordion,
   ChipList,
+  Tab,
+  Session,
 } from '@/components';
+import SessionTime from '@/components/common/session/SessionTime';
+import { badgeList } from '@/mock/badge';
 import { subjectList } from '@/mock/chip';
+import { speakerInfo } from '@/mock/speaker';
+import { useSessionStore } from '@/store/useSessionStore';
 
 const Title = () => {
   return (
@@ -22,7 +30,19 @@ const Title = () => {
   );
 };
 
+const SessionAccordion = () => {
+  return (
+    <section>
+      <Accordion date="Day 1">
+        <ChipList subjectList={subjectList} />
+      </Accordion>
+    </section>
+  );
+};
+
 export default function SessionSchedulePage() {
+  const { currentDate } = useSessionStore();
+
   return (
     <main className="bg-bg-primary">
       {/* Header */}
@@ -30,12 +50,7 @@ export default function SessionSchedulePage() {
       {/* body */}
       <div className="flex flex-col gap-40 px-[100px] py-[160px]">
         <Title />
-        {/* Accordion */}
-        <section>
-          <Accordion date="Day 1">
-            <ChipList subjectList={subjectList} />
-          </Accordion>
-        </section>
+        <SessionAccordion />
       </div>
     </main>
   );
