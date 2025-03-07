@@ -27,8 +27,12 @@ export default function OblongButton({
   };
 
   const buttonStateClasses = {
-    primary: `${$disabled} ? bg-fill-primary-disabled text-text-white pointer-events-none : bg-fill-primary text-text-white hover:bg-fill-primary-hover focus:bg-fill-primary-pressed`,
-    thirary: `${$disabled} ? bg-fill-thirary-disabled text-text-thirary pointer-events-none : bg-fill-thirary text-text-primary hover:bg-fill-thirary-hover focus:bg-fill-thirary-pressed`,
+    primary: $disabled
+      ? 'bg-fill-primary-disabled text-text-white pointer-events-none'
+      : 'bg-fill-primary text-text-white hover:bg-fill-primary-hover focus:bg-fill-primary-pressed',
+    thirary: $disabled
+      ? 'bg-fill-thirary-disabled text-text-thirary pointer-events-none'
+      : 'bg-fill-thirary text-text-primary hover:bg-fill-thirary-hover focus:bg-fill-thirary-pressed',
   };
 
   const isIconSize = type === 'primary' && (size === 'xl' || size === 'l');
