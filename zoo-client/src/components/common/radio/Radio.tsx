@@ -5,10 +5,6 @@ interface RadioProps {
   video: string;
 }
 
-const styleSize = {
-  w: 610,
-};
-
 export default function Radio({ status, video }: RadioProps) {
   return (
     <div className="relative text-center">
