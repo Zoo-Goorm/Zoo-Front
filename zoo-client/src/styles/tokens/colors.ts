@@ -167,7 +167,7 @@ const colors = {
 
   /* material */
   material: {
-    overlay: COLOR_TOKEN.bw.black,
+    overlay: 'rgba(0, 0, 0, 0.60)',
     'blur-effect': '20',
   },
 };
