@@ -22,10 +22,26 @@
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Pretendard-Regular;
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  span {
+    padding: 0;
+    margin: 0;
+  }
+
+  p {
+    white-space: pre-wrap;
+  }
+
+  body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: Pretendard-Regular;
+  }
 }
 
 @layer components {
@@ -40,7 +56,7 @@ body {
   .display-b-48 {
     font-size: 3rem;
     font-weight: 700;
-    line-height: 3.6em;
+    line-height: 120%;
     letter-spacing: 0rem;
   }
 
@@ -103,6 +119,13 @@ body {
   }
 
   /* body */
+  .body-sb-20 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 120%;
+    letter-spacing: 0rem;
+  }
+
   .body-sb-16 {
     font-size: 1rem;
     font-weight: 600;
