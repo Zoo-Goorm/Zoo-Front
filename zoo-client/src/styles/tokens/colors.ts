@@ -152,11 +152,10 @@ const colors = {
       hover: COLOR_TOKEN.purple[600],
       pressed: COLOR_TOKEN.purple[800],
       disabled: COLOR_TOKEN.purple[200],
-
-      secondary: COLOR_TOKEN.green[500],
-      thirary: COLOR_TOKEN['grey-c'][200],
-      quaternary: COLOR_TOKEN['grey-c'][800],
     },
+    secondary: COLOR_TOKEN.green[500],
+    thirary: COLOR_TOKEN['grey-c'][200],
+    quaternary: COLOR_TOKEN['grey-c'][800],
   },
 
   /* divider */
