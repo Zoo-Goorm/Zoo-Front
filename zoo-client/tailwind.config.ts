@@ -10,10 +10,8 @@ export default {
   theme: {
     colors,
     screens: {
-      website: '1440px',
-      tablet: '768px',
-      mobile: '360px',
-      lg: '1024px',
+      website: '360px',
+      mobile: '0px',
     },
     extend: {
       spacing,
