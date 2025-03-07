@@ -14,7 +14,7 @@ export default function SessionContent({
 }: ISessionContent) {
   return (
     <div className="flex w-[100%] content-between items-start px-0 py-32 website:max-w-[44.6875rem]">
-      <div className="flex flex-1 flex-col content-center items-start gap-[0.625rem]">
+      <div className="flex flex-1 flex-col justify-center items-start gap-[0.625rem]">
         <BadgeList badgeList={badgeList} />
         <h3 className="website:title-sb-24 mobile:title-sb-20 self-stretch text-text-main">
           {sessionTitle}
