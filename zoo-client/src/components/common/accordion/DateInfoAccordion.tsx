@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import DateInfoList from './DateInfoList';
 import Image from 'next/image';
-import Arrow from '@/public/accordion/dateinfo-arrow.svg';
+import Arrow from '/accordion/dateinfo-arrow.svg';
 
 export default function DateInfoAccordion({ date }: { date: string }) {
   const [isOpen, setIsOpen] = useState(false);

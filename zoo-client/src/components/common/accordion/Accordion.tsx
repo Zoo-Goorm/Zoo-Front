@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import arrow from '@/public/accordion/arrow.svg';
+import arrow from '/accordion/arrow.svg';
 import { useState } from 'react';
 
 interface AccordionProps {
