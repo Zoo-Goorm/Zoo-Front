@@ -3,7 +3,7 @@ import { ISpeakerList } from '@/types/speaker/speaker';
 
 export default function SpeakerList({ speakerList }: ISpeakerList) {
   return (
-    <div className="flex flex-col content-center">
+    <div className="flex flex-col justify-center">
       {speakerList.map((speaker, index) => (
         <Speaker
           key={index}

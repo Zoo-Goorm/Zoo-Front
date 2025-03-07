@@ -103,16 +103,22 @@ const colors = {
 
   /* fill */
   'fill-primary': COLOR_TOKEN.purple[500],
+  'fill-thirary': COLOR_TOKEN['grey-c'][50],
   fill: {
     primary: {
       hover: COLOR_TOKEN.purple[600],
       pressed: COLOR_TOKEN.purple[800],
       disabled: COLOR_TOKEN['grey-c'][200],
 
-      list: '#4824ff',
+      list: 'rgba(72, 36, 255, 80)',
     },
     secondary: COLOR_TOKEN.green[500],
-    thirary: COLOR_TOKEN['grey-c'][50],
+    thirary: {
+      hover: '#ced0d4',
+      pressed: '#818691',
+      disabled: 'f1f4f7',
+      list: 'rgba(239, 240, 241, 80)',
+    },
 
     'kakao-login': '#fee500',
     active: COLOR_TOKEN['grey-n'][500],
@@ -131,6 +137,7 @@ const colors = {
     disabled: COLOR_TOKEN['grey-c'][50],
     main: COLOR_TOKEN['grey-n'][900],
     sub: COLOR_TOKEN['grey-n'][500],
+    headline: '#2D2D2D',
     figure: COLOR_TOKEN['grey-n'][300],
     error: COLOR_TOKEN.red[500],
     success: COLOR_TOKEN.blue[500],
@@ -145,11 +152,10 @@ const colors = {
       hover: COLOR_TOKEN.purple[600],
       pressed: COLOR_TOKEN.purple[800],
       disabled: COLOR_TOKEN.purple[200],
-
-      secondary: COLOR_TOKEN.green[500],
-      thirary: COLOR_TOKEN['grey-c'][200],
-      quaternary: COLOR_TOKEN['grey-c'][800],
     },
+    secondary: COLOR_TOKEN.green[500],
+    thirary: COLOR_TOKEN['grey-c'][200],
+    quaternary: COLOR_TOKEN['grey-c'][800],
   },
 
   /* divider */
@@ -160,7 +166,7 @@ const colors = {
 
   /* material */
   material: {
-    overlay: COLOR_TOKEN.bw.black,
+    overlay: 'rgba(0, 0, 0, 0.60)',
     'blur-effect': '20',
   },
 };
