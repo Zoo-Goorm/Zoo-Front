@@ -40,6 +40,40 @@ const SessionAccordion = () => {
   );
 };
 
+const SessionComponent = () => {
+  const speakerList = speakerInfo;
+
+  return (
+    <div className="flex flex-col">
+      <div className="flex gap-20">
+        <SessionTime sessionTime={'10:00 ~ 11:00'} />
+        <Session badgeList={badgeList} speakerList={speakerList} />
+      </div>
+    </div>
+  );
+};
+
+const SessionList = ({ currentDate }: { currentDate: string }) => {
+  return (
+    <div className="flex flex-col">
+      <Tab key="curr" />
+      <span className="headline-sb-28 py-7 text-text-primary">
+        {currentDate}
+      </span>
+      <hr className="text-text-sub" />
+      <SessionComponent />
+      <hr className="text-text-sub" />
+      <SessionComponent />
+      <hr className="text-text-sub" />
+      <SessionComponent />
+      <hr className="text-text-sub" />
+      <SessionComponent />
+      <hr className="text-text-sub" />
+      <SessionComponent />
+    </div>
+  );
+};
+
 export default function SessionSchedulePage() {
   const { currentDate } = useSessionStore();
 
@@ -51,7 +85,9 @@ export default function SessionSchedulePage() {
       <div className="flex flex-col gap-40 px-[100px] py-[160px]">
         <Title />
         <SessionAccordion />
+        <SessionList currentDate={currentDate} />
       </div>
+      <div>Footer</div>
     </main>
   );
 }
