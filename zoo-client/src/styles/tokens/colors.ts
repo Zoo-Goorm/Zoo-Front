@@ -103,6 +103,7 @@ const colors = {
 
   /* fill */
   'fill-primary': COLOR_TOKEN.purple[500],
+  'fill-thirary': COLOR_TOKEN['grey-c'][50],
   fill: {
     primary: {
       hover: COLOR_TOKEN.purple[600],
@@ -112,7 +113,11 @@ const colors = {
       list: '#4824ff',
     },
     secondary: COLOR_TOKEN.green[500],
-    thirary: COLOR_TOKEN['grey-c'][50],
+    thirary: {
+      hover: '#ced0d4',
+      pressed: '#818691',
+      disabled: 'f1f4f7',
+    },
 
     'kakao-login': '#fee500',
     active: COLOR_TOKEN['grey-n'][500],
