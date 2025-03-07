@@ -1,7 +1,4 @@
-interface IBadgeProps {
-  text: string;
-  type: 'fullBooking' | 'subject' | 'default';
-}
+import { IBadgeProps } from '@/types/badge/Badge';
 
 export default function Badge({ text, type }: IBadgeProps) {
   const badgeTypeClasses = {
