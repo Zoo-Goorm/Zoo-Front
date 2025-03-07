@@ -110,13 +110,14 @@ const colors = {
       pressed: COLOR_TOKEN.purple[800],
       disabled: COLOR_TOKEN['grey-c'][200],
 
-      list: '#4824ff',
+      list: 'rgba(72, 36, 255, 80)',
     },
     secondary: COLOR_TOKEN.green[500],
     thirary: {
       hover: '#ced0d4',
       pressed: '#818691',
       disabled: 'f1f4f7',
+      list: 'rgba(239, 240, 241, 80)',
     },
 
     'kakao-login': '#fee500',
@@ -136,6 +137,7 @@ const colors = {
     disabled: COLOR_TOKEN['grey-c'][50],
     main: COLOR_TOKEN['grey-n'][900],
     sub: COLOR_TOKEN['grey-n'][500],
+    headline: '#2D2D2D',
     figure: COLOR_TOKEN['grey-n'][300],
     error: COLOR_TOKEN.red[500],
     success: COLOR_TOKEN.blue[500],
