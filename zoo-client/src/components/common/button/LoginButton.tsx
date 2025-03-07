@@ -24,7 +24,7 @@ export default function LoginButton({ type }: ILoginButtonProps) {
 
   return (
     <button
-      className={`website:title-sb-18 mobile:body-sb-16 flex items-center justify-center gap-8 rounded-[0.25rem] px-44 py-12 text-text-main mobile:w-[17.5rem] website:w-[20rem] ${ButtonTypeClasses[type]}`}
+      className={`website:title-sb-18 mobile:body-sb-16 flex items-center justify-center gap-8 rounded-[0.25rem] px-44 py-12 text-text-main mobile:w-[17.5rem] website:w-[100%] ${ButtonTypeClasses[type]}`}
     >
       {type === 'nonMember' ? undefined : (
         <LoginIcon fill={buttonIconColorClasses[type]} />

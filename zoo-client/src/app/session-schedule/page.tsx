@@ -1,7 +1,10 @@
+import { PurchaseButton, NavigationBar } from '@/components';
+
 export default function SessionSchedulePage() {
   return (
     <main className="bg-bg-primary">
       {/* Header */}
+      <NavigationBar />
       <div className="px-[100px] py-[160px]">
         {/* title */}
         <section className="flex flex-col gap-40">
@@ -14,6 +17,7 @@ export default function SessionSchedulePage() {
               <br />* 같은 시간대 세션은 중복 신청이 불가하오니 이점 확인해
               주시길 바랍니다.
             </p>
+            <PurchaseButton />
           </div>
         </section>
       </div>
