@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import DateInfoList from './DateInfoList';
 import Image from 'next/image';
-import Arrow from '@/public/accordion/dateinfo-arrow.svg';
 
 export default function DateInfoAccordion({ date }: { date: string }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +13,7 @@ export default function DateInfoAccordion({ date }: { date: string }) {
         <span className="body-m-14 tablet:leading-none">{date}</span>
         <button>
           <Image
-            src={Arrow}
+            src="/accordion/dateinfo-arrow.svg"
             alt="DateInfo Toggle Accordion"
             className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
             width={16}
