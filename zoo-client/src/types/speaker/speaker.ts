@@ -1,4 +1,4 @@
-interface Speaker {
+export interface Speaker {
   name: string;
   info: string;
 }

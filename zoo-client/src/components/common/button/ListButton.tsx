@@ -3,7 +3,7 @@ import RightArrow from './icon/RightArrow';
 
 interface IListButtonProps {
   type: 'primary' | 'thirary';
-  text: '세션 신청' | '세션 일정';
+  text: '상세 보기' | '세션 신청';
 }
 
 export default function ListButton({ type, text }: IListButtonProps) {
@@ -19,7 +19,7 @@ export default function ListButton({ type, text }: IListButtonProps) {
 
   return (
     <div
-      className={`headline-sb-40 flex items-center p-24 px-40 py-0 backdrop-blur-[10px] mobile:h-[8.75rem] mobile:w-[23.8125rem] website:h-[14.75rem] website:w-[31.9375rem] ${buttonTypeClasses[type]} justify-between`}
+      className={`headline-sb-40 flex items-center px-40 py-0 backdrop-blur-[10px] mobile:h-[8.75rem] mobile:w-[23.8125rem] website:h-[200px] website:w-[31.9375rem] ${buttonTypeClasses[type]} justify-between`}
     >
       <span>{text}</span>
       <RightArrow fill={buttonIconColorClasses[type]} />

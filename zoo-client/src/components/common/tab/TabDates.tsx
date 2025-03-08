@@ -4,10 +4,15 @@ import { useSessionStore } from '@/store/useSessionStore';
 
 interface TabDatesProps {
   date: string;
+  text: string;
   className?: string;
 }
 
-export default function TabDates({ date, className = '' }: TabDatesProps) {
+export default function TabDates({
+  date,
+  text,
+  className = '',
+}: TabDatesProps) {
   const { currentDate, setCurrentDate } = useSessionStore();
 
   return (
@@ -18,7 +23,7 @@ export default function TabDates({ date, className = '' }: TabDatesProps) {
           date == currentDate ? 'text-text-primary' : 'text-text-thirary'
         } ${className}`}
       >
-        {date}
+        {text}
       </button>
     </>
   );

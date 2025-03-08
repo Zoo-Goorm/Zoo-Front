@@ -1,38 +1,44 @@
 'use client';
 
-import { useState } from 'react';
-
-import SessionContent from './SessionContent';
-import SpeakerList from '../speaker/SpeakerList';
-import ApplyButton from './ApplyButton';
-
-import { IBadgeList } from '@/types/badge/Badge';
-import { ISpeakerList } from '@/types/speaker/speaker';
+import sessionInfo from '@/mock/session';
 import SessionTime from './SessionTime';
+import { useSessionStore } from '@/store/useSessionStore';
 
-export default function Session({
-  badgeList,
-  speakerList,
-}: ISpeakerList & IBadgeList) {
-  const [isHovered, setIsHovered] = useState(false);
+interface SessionProps {
+  currentDate: string;
+  day?: string;
+}
+
+export default function SessionDate({ currentDate, day }: SessionProps) {
+  const { sessionDate } = useSessionStore();
+
+  const sessionDateData = sessionInfo[currentDate];
+  const indexofDate = sessionDate.indexOf(currentDate);
+
+  if (!sessionDateData || !Array.isArray(sessionDateData)) {
+    return <div>세션 데이터가 없습니다.</div>;
+  }
 
   return (
-    <div className="flex gap-20">
-      <SessionTime sessionTime={'10:00 ~ 11:00'} />
-      <div
-        className="session-container flex max-w-[64.375rem] items-center gap-5"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div className="flex flex-1 items-center gap-5 self-stretch">
-          <SessionContent
-            badgeList={badgeList}
-            sessionTitle="제목은 최대한 짧게 가자 하지만 길어진다면 2줄처리가 되게 콘텐츠 팀에서 연사님이랑 협의봐주세요 제발료"
-            sessionBody="세션 상세 설명"
-          />
-          <SpeakerList speakerList={speakerList} />
+    <div className="flex size-full flex-col">
+      <span className="headline-sb-28 py-7 text-text-primary">
+        {day
+          ? `${currentDate} (Day ${day})`
+          : `${currentDate} (Day ${indexofDate})`}
+      </span>
+      <div className="w-full">
+        <div className="flex flex-col">
+          {sessionDateData.map((time, i) => (
+            <div key={i}>
+              <hr className="flex text-text-sub" />
+              <SessionTime
+                key={i}
+                time={time.timeRange}
+                sessions={time.sessions}
+              />
+            </div>
+          ))}
         </div>
-        {isHovered && <ApplyButton />}
       </div>
     </div>
   );

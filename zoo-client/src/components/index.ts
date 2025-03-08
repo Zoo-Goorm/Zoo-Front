@@ -3,6 +3,9 @@ export { default as ChipList } from './common/chip/ChipList';
 export { default as Tab } from './common/tab/Tab';
 export { default as SessionContent } from './common/session/SessionContent';
 export { default as Session } from './common/session/Session';
+export { default as SessionList } from './common/session/SessionList';
+export { default as SessionContainer } from './common/session/SessionContainer';
+
 export { default as Radio } from './common/radio/Radio';
 export { default as ProgressBar } from './common/progressbar/ProgressBar';
 
