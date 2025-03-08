@@ -8,7 +8,7 @@ import {
   Tab,
   Session,
 } from '@/components';
-import SessionTime from '@/components/common/session/SessionTime';
+
 import { badgeList } from '@/mock/badge';
 import { subjectList } from '@/mock/chip';
 import { speakerInfo } from '@/mock/speaker';
@@ -32,21 +32,17 @@ const Title = () => {
 
 const SessionAccordion = () => {
   return (
-    <section>
-      <Accordion date="Day 1">
-        <ChipList subjectList={subjectList} />
-      </Accordion>
-    </section>
+    <Accordion date="Day 1">
+      <ChipList subjectList={subjectList} />
+    </Accordion>
   );
 };
 
 const SessionComponent = () => {
   const speakerList = speakerInfo;
-
   return (
     <div className="flex flex-col">
       <div className="flex gap-20">
-        <SessionTime sessionTime={'10:00 ~ 11:00'} />
         <Session badgeList={badgeList} speakerList={speakerList} />
       </div>
     </div>
@@ -56,7 +52,7 @@ const SessionComponent = () => {
 const SessionList = ({ currentDate }: { currentDate: string }) => {
   return (
     <div className="flex flex-col">
-      <Tab key="curr" />
+      <Tab />
       <span className="headline-sb-28 py-7 text-text-primary">
         {currentDate}
       </span>
@@ -78,16 +74,15 @@ export default function SessionSchedulePage() {
   const { currentDate } = useSessionStore();
 
   return (
-    <main className="bg-bg-primary">
+    <main className="flex flex-col items-center bg-bg-primary">
       {/* Header */}
       <NavigationBar />
       {/* body */}
-      <div className="flex flex-col gap-40 px-[100px] py-[160px]">
+      <div className="m-[100px] flex w-full max-w-[1240px] flex-col gap-40">
         <Title />
         <SessionAccordion />
         <SessionList currentDate={currentDate} />
       </div>
-      <div>Footer</div>
     </main>
   );
 }
