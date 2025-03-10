@@ -17,13 +17,7 @@ export default function SessionContainer({ session }: { session: Session }) {
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="size-full items-center gap-5 self-stretch">
-          <SessionContent
-            session={session}
-            // badgeList={session.keyword}
-            // sessionTitle={session.sessionTitle}
-            // sessionBody={session.sessionBody}
-            // speakerList={session.speaker}
-          />
+          <SessionContent session={session} />
         </div>
 
         {isHovered && <ApplyButton />}

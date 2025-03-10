@@ -1,6 +1,12 @@
 'use client';
 
-import { NavigationBar, Radio, SessionList, Tab } from '@/components';
+import {
+  DateInfoAccordion,
+  NavigationBar,
+  Radio,
+  SessionList,
+  Tab,
+} from '@/components';
 import { SESSION_APPLY_MESSAGES } from '@/constants/messages';
 
 const Title = () => {
@@ -30,11 +36,13 @@ const RadioContainer = () => {
 
 const AccordionContainer = () => {
   return (
-    <div className="flex size-full gap-16">
-      <div className="flex w-[190px] flex-col content-center justify-center bg-fill-active">
-        <span className="body-m-16 px-24 py-12 text-center text-text-main">
+    <div className="flex gap-16">
+      <div className="flex w-[190px] flex-col content-center py-7">
+        <hr className="text-divider-primary" />
+        <span className="body-m-16 bg-bg-secondary px-24 py-12 text-center text-text-main">
           {SESSION_APPLY_MESSAGES.accordionTitle}
         </span>
+        <DateInfoAccordion />
       </div>
       <SessionList />
     </div>
