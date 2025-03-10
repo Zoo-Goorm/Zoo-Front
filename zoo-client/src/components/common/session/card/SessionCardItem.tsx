@@ -6,7 +6,15 @@ import ProgressBar from '../../progressbar/ProgressBar';
 import SelectSessionButton from '../../button/SelectSessionButton';
 import { badgeList } from '@/mock/badge';
 
-export default function SessionCardItem({ session }: { session: Session }) {
+export default function SessionCardItem({
+  time,
+  currentDate,
+  session,
+}: {
+  time: string;
+  currentDate: string;
+  session: Session;
+}) {
   const { activeState } = useRadioStore();
   const { id, title, percentage, description, keyword, location, speaker } =
     session;
@@ -33,7 +41,13 @@ export default function SessionCardItem({ session }: { session: Session }) {
           </div>
           <ProgressBar percentage={percentage} />
         </div>
-        <SelectSessionButton sessionId={id} isDisabled={percentage === 100} />
+        <SelectSessionButton
+          time={time}
+          currentDate={currentDate}
+          sessionId={id}
+          sessionTitle={title}
+          isDisabled={percentage === 100}
+        />
       </div>
     </div>
   );

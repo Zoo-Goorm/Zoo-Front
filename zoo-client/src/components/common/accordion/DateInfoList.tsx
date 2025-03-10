@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { SelectSession } from '@/store/useSessionStore';
 
 interface DateInfoProps {
   title: string;
-  items: string[];
+  items: SelectSession[];
 }
 export default function DateInfoList({ title, items }: DateInfoProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,8 +32,9 @@ export default function DateInfoList({ title, items }: DateInfoProps) {
           {isOpen && (
             <ul className="px-2 text-sm">
               {items.map((item, index) => (
-                <li key={index} className="py-1">
-                  {item}
+                <li key={index} className="flex flex-col gap-20 py-1">
+                  <span className="figure-m-10">{item.time}</span>
+                  <span className="body-r-14">{item.title}</span>
                 </li>
               ))}
             </ul>

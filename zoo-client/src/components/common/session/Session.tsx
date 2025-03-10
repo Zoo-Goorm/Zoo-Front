@@ -10,10 +10,10 @@ interface SessionProps {
 }
 
 export default function Session({ currentDate }: SessionProps) {
-  const { sessionDate } = useSessionStore();
+  const { sessionDates } = useSessionStore();
 
   const sessionDateData = sessionInfo[currentDate];
-  const indexofDate = sessionDate.indexOf(currentDate);
+  const indexofDate = sessionDates.indexOf(currentDate);
 
   if (!sessionDateData || !Array.isArray(sessionDateData)) {
     return <div>세션 데이터가 없습니다.</div>;
@@ -32,6 +32,7 @@ export default function Session({ currentDate }: SessionProps) {
                 key={i}
                 time={time.timeRange}
                 sessions={time.sessions}
+                currentDate={currentDate}
               />
             </div>
           ))}

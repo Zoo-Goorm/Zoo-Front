@@ -1,11 +1,23 @@
 import { Session } from '@/types/session/session';
 import SessionCardItem from './SessionCardItem';
 
-export default function SessionCard({ session }: { session: Session }) {
+export default function SessionCard({
+  session,
+  time,
+  currentDate,
+}: {
+  time: string;
+  currentDate: string;
+  session: Session;
+}) {
   return (
     <div className="flex">
       <div className="flex w-full max-w-[312px]">
-        <SessionCardItem session={session} />
+        <SessionCardItem
+          session={session}
+          time={time}
+          currentDate={currentDate}
+        />
       </div>
     </div>
   );

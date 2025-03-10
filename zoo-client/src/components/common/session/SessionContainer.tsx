@@ -5,7 +5,13 @@ import SessionContent from './SessionContent';
 import ApplyButton from './ApplyButton';
 import { Session } from '@/types/session/session';
 
-export default function SessionContainer({ session }: { session: Session }) {
+export default function SessionContainer({
+  session,
+}: {
+  session: Session;
+  time: string;
+  currentDate: string;
+}) {
   const [isHovered, setIsHovered] = useState(false);
 
   console.log(session);

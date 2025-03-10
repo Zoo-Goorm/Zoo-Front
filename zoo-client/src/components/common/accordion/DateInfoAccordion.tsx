@@ -1,26 +1,47 @@
 'use client';
-import { useSessionStore } from '@/store/useSessionStore';
+import { SelectSession, useSessionStore } from '@/store/useSessionStore';
 import DateInfoList from './DateInfoList';
-import { useEffect } from 'react';
-import sessionInfo from '@/mock/session';
+import { useEffect, useState } from 'react';
+
+interface AccordionItem {
+  date: string;
+  title: string;
+  items: SelectSession[];
+}
 
 export default function DateInfoAccordion() {
-  const { selectedSessions, sessionDate } = useSessionStore();
+  const { selectedSessions, sessionDates } = useSessionStore();
+
+  const [accordionData, setAccordionData] = useState<AccordionItem[]>([
+    {
+      date: sessionDates[1],
+      title: sessionDates[1]
+        ? `${sessionDates[1]} (Day 1)`
+        : '날짜 없음 (Day 1)',
+      items: [],
+    },
+    {
+      date: sessionDates[2],
+      title: sessionDates[2]
+        ? `${sessionDates[2]} (Day 2)`
+        : '날짜 없음 (Day 2)',
+      items: [],
+    },
+  ]);
 
   useEffect(() => {
-    console.log(sessionInfo);
-  }, [selectedSessions]);
+    if (selectedSessions.length === 0) return;
 
-  const accordionData = [
-    {
-      title: `${sessionDate[1]} (Day 1)`,
-      items: [],
-    },
-    {
-      title: `${sessionDate[2]} (Day 2)`,
-      items: [],
-    },
-  ];
+    const lastSession = selectedSessions[selectedSessions.length - 1];
+
+    setAccordionData((prevData) =>
+      prevData.map((section) =>
+        section.date === lastSession.date
+          ? { ...section, items: [...section.items, lastSession] } // ✅ 이제 `items`는 항상 `SelectSession[]` 타입
+          : section,
+      ),
+    );
+  }, [selectedSessions]);
 
   return (
     <>

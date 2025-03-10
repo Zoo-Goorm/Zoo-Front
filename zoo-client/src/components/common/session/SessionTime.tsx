@@ -6,7 +6,12 @@ import { SessionCard } from '@/components';
 export default function SessionTime({
   time,
   sessions,
-}: { time: string } & ISession) {
+  currentDate,
+}: {
+  time: string;
+  currentDate: string;
+  sessions: ISession[];
+}) {
   const pathName = usePathname();
 
   const SessionComponent = pathName.includes('session-schedule')
@@ -24,7 +29,12 @@ export default function SessionTime({
         className={`size-full ${SessionComponent == SessionCard && 'grid w-full grid-cols-3 gap-24'} `}
       >
         {sessions.map((session, index) => (
-          <SessionComponent key={`session-${index}`} session={session} />
+          <SessionComponent
+            currentDate={currentDate}
+            time={time}
+            key={`session-${index}`}
+            session={session}
+          />
         ))}
       </div>
     </div>
