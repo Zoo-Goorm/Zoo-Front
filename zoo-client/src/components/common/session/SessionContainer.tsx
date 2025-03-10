@@ -4,13 +4,7 @@ import { useState } from 'react';
 
 import SessionContent from './SessionContent';
 import ApplyButton from './ApplyButton';
-import { IBadgeList } from '@/types/badge/Badge';
-import { ISpeakerList } from '@/types/speaker/speaker';
-
-export interface ISessionContainerProps extends IBadgeList, ISpeakerList {
-  sessionTitle: string;
-  sessionBody: string;
-}
+import { ISessionContainerProps } from '@/types/session/session';
 
 export default function SessionContainer({
   badgeList,

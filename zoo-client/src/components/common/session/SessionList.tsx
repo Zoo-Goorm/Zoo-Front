@@ -9,8 +9,8 @@ export default function SessionList() {
     <div>
       {currentDate === '전체' ? (
         <div className="flex flex-col gap-60">
-          <Session currentDate={sessionDate[1]} day={'1'} />
-          <Session currentDate={sessionDate[2]} day={'2'} />
+          <Session currentDate={sessionDate[1]} />
+          <Session currentDate={sessionDate[2]} />
         </div>
       ) : (
         <Session currentDate={currentDate} />

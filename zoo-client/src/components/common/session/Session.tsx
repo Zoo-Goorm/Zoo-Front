@@ -9,7 +9,7 @@ interface SessionProps {
   day?: string;
 }
 
-export default function SessionDate({ currentDate, day }: SessionProps) {
+export default function Session({ currentDate }: SessionProps) {
   const { sessionDate } = useSessionStore();
 
   const sessionDateData = sessionInfo[currentDate];
@@ -22,15 +22,12 @@ export default function SessionDate({ currentDate, day }: SessionProps) {
   return (
     <div className="flex size-full flex-col">
       <span className="headline-sb-28 py-7 text-text-primary">
-        {day
-          ? `${currentDate} (Day ${day})`
-          : `${currentDate} (Day ${indexofDate})`}
+        {`${currentDate} (Day ${indexofDate})`}
       </span>
       <div className="w-full">
         <div className="flex flex-col">
           {sessionDateData.map((time, i) => (
             <div key={i}>
-              <hr className="flex text-text-sub" />
               <SessionTime
                 key={i}
                 time={time.timeRange}

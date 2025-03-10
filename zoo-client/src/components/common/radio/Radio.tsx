@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 interface RadioProps {
   status: string;
-  video: string;
+  video?: string;
 }
 
 export default function Radio({ status, video }: RadioProps) {
