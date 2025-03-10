@@ -16,9 +16,9 @@ export default function OblongButton({
   const buttonSizeClasses = {
     xl: 'py-16 px-24 gap-20 headline-sb-28',
     l: 'py-12 px-24 gap-20 title-sb-20',
-    m: 'py-12 px-16 w-[5.75rem] text-center body-sb-16',
-    s: 'py-12 px-16 w-[5.5rem] text-center body-m-14',
-    xs: 'py-8 px-16 w-[5.25rem] text-center body-m-14',
+    m: 'py-12 px-16 text-center body-sb-16',
+    s: 'py-12 px-16 text-center body-m-14',
+    xs: 'py-8 px-16 text-center body-m-14',
   };
 
   const iconSizeClasses = {
