@@ -25,6 +25,7 @@ export { default as TopButton } from './common/button/TopButton';
 export { default as LoginButton } from './common/button/LoginButton';
 export { default as PurchaseButton } from './common/button/PurchaseButton';
 export { default as PaymentButton } from './common/button/PaymentButton';
+export { default as RegisterPaymentButton } from './common/button/RegisterPaymentButton';
 
 export { default as NavigationBar } from './common/navigationBar/NavigationBar';
 
