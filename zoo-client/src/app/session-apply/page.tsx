@@ -12,14 +12,17 @@ const Title = () => {
 };
 
 const RadioContainer = () => {
+  const activeStates: ('active' | 'inactive')[] = ['active', 'inactive'];
+
   return (
     <div className="flex size-full flex-col">
       <span className="caption-r-12 py-8 text-right text-text-sub">
         {SESSION_APPLY_MESSAGES.radioBody}
       </span>
       <div className="flex justify-between">
-        <Radio status="active" />
-        <Radio status="inactive" />
+        {activeStates.map((status, i) => (
+          <Radio key={i} status={status} />
+        ))}
       </div>
     </div>
   );
@@ -29,14 +32,9 @@ const AccordionContainer = () => {
   return (
     <div className="flex size-full gap-16">
       <div className="flex w-[190px] flex-col content-center justify-center bg-fill-active">
-        <hr className="flex text-text-sub" />
         <span className="body-m-16 px-24 py-12 text-center text-text-main">
           관심 있는 IT 세션
         </span>
-        <hr className="flex text-text-sub" />
-        <div>DateInfo-Day1이 들어갈 자리</div>
-        <hr className="flex text-text-sub" />
-        <div>DateInfo-Day2이 들어갈 자리</div>
       </div>
       <SessionList />
     </div>
