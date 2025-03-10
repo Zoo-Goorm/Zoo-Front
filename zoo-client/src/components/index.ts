@@ -30,3 +30,5 @@ export { default as NavigationBar } from './common/navigationBar/NavigationBar';
 
 /* card */
 export { default as CardContent } from './common/card/CardContent';
+
+export { default as TextField } from './common/textField/TextField';
