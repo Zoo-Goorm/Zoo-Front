@@ -198,6 +198,13 @@
   }
 
   /* figure */
+  .figure-m-20 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.2em;
+    letter-spacing: 0rem;
+  }
+
   .figure-m-16 {
     font-size: 1rem;
     font-weight: 500;
