@@ -1,8 +1,7 @@
-import { badgeList } from '@/mock/badge';
 import SessionContainer from './SessionContainer';
 import { ISession } from '@/types/session/session';
 import { usePathname } from 'next/navigation';
-import SessionCard from './SessionCard';
+import { SessionCard } from '@/components';
 
 export default function SessionTime({
   time,
@@ -25,13 +24,7 @@ export default function SessionTime({
         className={`size-full ${SessionComponent == SessionCard && 'grid w-full grid-cols-3 gap-24'} `}
       >
         {sessions.map((session, index) => (
-          <SessionComponent
-            key={`session-${index}`}
-            badgeList={badgeList}
-            sessionTitle={session.title}
-            sessionBody={session.description}
-            speakerList={[session.speaker]}
-          />
+          <SessionComponent key={`session-${index}`} session={session} />
         ))}
       </div>
     </div>

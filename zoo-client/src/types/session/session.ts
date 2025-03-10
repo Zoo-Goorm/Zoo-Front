@@ -1,20 +1,15 @@
-import { IBadgeList } from '../badge/Badge';
-import { ISpeakerList } from '../speaker/speaker';
+import { Speaker } from '../speaker/speaker';
 
-interface Session {
+export interface Session {
+  id: number;
   title: string;
+  keyword: string[];
   description: string;
-  speaker: {
-    name: string;
-    info: string;
-  };
+  percentage: number;
+  location: string;
+  speaker: Speaker;
 }
 
 export interface ISession {
   sessions: Session[];
-}
-
-export interface ISessionContainerProps extends IBadgeList, ISpeakerList {
-  sessionTitle: string;
-  sessionBody: string;
 }

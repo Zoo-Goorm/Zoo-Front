@@ -1,19 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-
 import SessionContent from './SessionContent';
 import ApplyButton from './ApplyButton';
-import { ISessionContainerProps } from '@/types/session/session';
+import { Session } from '@/types/session/session';
 
-export default function SessionContainer({
-  badgeList,
-  sessionTitle,
-  sessionBody,
-  speakerList,
-}: ISessionContainerProps) {
+export default function SessionContainer({ session }: { session: Session }) {
   const [isHovered, setIsHovered] = useState(false);
 
+  console.log(session);
   return (
     <div className="flex w-full items-center py-32">
       <div
@@ -23,12 +18,14 @@ export default function SessionContainer({
       >
         <div className="size-full items-center gap-5 self-stretch">
           <SessionContent
-            badgeList={badgeList}
-            sessionTitle={sessionTitle}
-            sessionBody={sessionBody}
-            speakerList={speakerList}
+            session={session}
+            // badgeList={session.keyword}
+            // sessionTitle={session.sessionTitle}
+            // sessionBody={session.sessionBody}
+            // speakerList={session.speaker}
           />
         </div>
+
         {isHovered && <ApplyButton />}
       </div>
     </div>
