@@ -39,10 +39,8 @@ export default function SessionSchedulePage() {
       <div className="m-[100px] flex w-full max-w-[1240px] flex-col gap-40">
         <Title />
         <SessionAccordion />
-        <div className="flex flex-col">
-          <Tab />
-          <SessionList />
-        </div>
+        <Tab />
+        <SessionList />
       </div>
     </main>
   );

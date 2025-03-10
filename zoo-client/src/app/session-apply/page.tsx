@@ -33,7 +33,7 @@ const AccordionContainer = () => {
     <div className="flex size-full gap-16">
       <div className="flex w-[190px] flex-col content-center justify-center bg-fill-active">
         <span className="body-m-16 px-24 py-12 text-center text-text-main">
-          관심 있는 IT 세션
+          {SESSION_APPLY_MESSAGES.accordionTitle}
         </span>
       </div>
       <SessionList />
@@ -50,10 +50,8 @@ export default function SessionApply() {
           <Title />
           <RadioContainer />
         </div>
-        <div className="flex flex-col gap-60">
-          <Tab />
-          <AccordionContainer />
-        </div>
+        <Tab />
+        <AccordionContainer />
       </div>
     </main>
   );

@@ -8,9 +8,18 @@ interface RadioProps {
 }
 
 export default function Radio({ status }: RadioProps) {
-  const { setActiveState } = useRadioStore();
+  const { activeState, setActiveState } = useRadioStore();
+  const bgTypeClass = {
+    active: 'border-[1.5px] border-stroke-primary',
+    inactive: 'brightness-50',
+  };
+  const textTypeClass = {
+    active: 'text-text-primary',
+    inactive: 'text-text-sub',
+  };
+
   return (
-    <div className="cursor-pointer text-center">
+    <div className="flex cursor-pointer flex-col gap-20 text-center">
       <Image
         onClick={() => setActiveState(status)}
         alt="Thumbnail"
@@ -19,13 +28,11 @@ export default function Radio({ status }: RadioProps) {
         height={343}
         objectFit="cover"
         className={`h-[343px] w-[610px] rounded ${
-          status === 'active'
-            ? 'border-[1.5px] border-stroke-primary'
-            : 'brightness-50'
+          activeState == status && bgTypeClass[activeState]
         }`}
       />
       <span
-        className={status === 'active' ? 'text-text-primary' : 'text-text-sub'}
+        className={`title-sb-24 text-text-main ${activeState == status && textTypeClass[activeState]}`}
       >
         {status == 'active' ? '온라인' : '오프라인'}
       </span>

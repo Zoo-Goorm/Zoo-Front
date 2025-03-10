@@ -10,4 +10,5 @@ export const SESSION_SCHEDULE_MESSAGES = {
 export const SESSION_APPLY_MESSAGES = {
   title: '공간을 넘어, 연결되는 새로운 컨퍼런스 경험',
   radioBody: '*원하시는 온/오프라인을 클릭해 주세요',
+  accordionTitle: '관심 있는 IT 세션',
 };
