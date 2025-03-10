@@ -32,6 +32,7 @@ export default function SessionApply() {
           <Title />
           <RadioContainer />
         </div>
+        <Tab />
       </div>
     </main>
   );
