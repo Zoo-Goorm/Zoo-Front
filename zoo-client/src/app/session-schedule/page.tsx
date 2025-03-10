@@ -6,7 +6,7 @@ import {
   Tab,
   SessionList,
 } from '@/components';
-import { SESSION_SCHEDULE_MESSAGES } from '@/constants/session';
+import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
 
 import { subjectList } from '@/mock/chip';
 
@@ -26,7 +26,7 @@ const Title = () => {
 
 const SessionAccordion = () => {
   return (
-    <Accordion date="Day 1">
+    <Accordion text="키워드로 세션 찾기">
       <ChipList subjectList={subjectList} />
     </Accordion>
   );

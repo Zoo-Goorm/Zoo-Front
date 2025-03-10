@@ -7,7 +7,7 @@ interface RadioProps {
 
 export default function Radio({ status, video }: RadioProps) {
   return (
-    <div className="relative text-center">
+    <div className="text-center">
       <div>
         <Image
           alt="Thumbnail"
@@ -15,7 +15,7 @@ export default function Radio({ status, video }: RadioProps) {
           width={610}
           height={343}
           objectFit="cover"
-          className={`h-[176px] w-[317px] rounded tablet:h-[343px] tablet:w-[610px] ${
+          className={`h-[343px] w-[610px] rounded ${
             status === 'active'
               ? 'border-[1.5px] border-stroke-primary'
               : 'brightness-50'
@@ -26,7 +26,7 @@ export default function Radio({ status, video }: RadioProps) {
       <span
         className={status === 'active' ? 'text-text-primary' : 'text-text-sub'}
       >
-        온라인
+        {status == 'active' ? '온라인' : '오프라인'}
       </span>
     </div>
   );
