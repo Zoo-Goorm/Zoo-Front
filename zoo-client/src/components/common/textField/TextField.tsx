@@ -63,7 +63,7 @@ export default function TextField({
         )}
       </div>
       {buttonText && (
-        <OblongButton size="xs" type="primary" text={buttonText} />
+        <OblongButton size="xs" $buttonStyle="primary" text={buttonText} />
       )}
     </div>
   );

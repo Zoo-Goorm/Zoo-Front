@@ -2,14 +2,16 @@ import Image from 'next/image';
 
 interface IOblongButtonProps {
   size: 'xl' | 'l' | 'm' | 's' | 'xs';
-  type: 'primary' | 'thirary';
+  $buttonStyle: 'primary' | 'thirary';
   $disabled?: boolean;
   text: string;
+  type?: 'button' | 'submit';
 }
 
 export default function OblongButton({
   size,
-  type,
+  type = 'button',
+  $buttonStyle,
   text,
   $disabled = false,
 }: IOblongButtonProps) {
@@ -35,15 +37,17 @@ export default function OblongButton({
       : 'bg-fill-thirary text-text-primary hover:bg-fill-thirary-hover focus:bg-fill-thirary-pressed',
   };
 
-  const isIconSize = type === 'primary' && (size === 'xl' || size === 'l');
+  const isIconSize =
+    $buttonStyle === 'primary' && (size === 'xl' || size === 'l');
   const iconSize = isIconSize ? iconSizeClasses[size] : 0;
 
   return (
-    <div
-      className={`inline-flex rounded-[0.25rem] ${buttonSizeClasses[size]} ${buttonStateClasses[type]}`}
+    <button
+      type={type}
+      className={`inline-flex rounded-[0.25rem] ${buttonSizeClasses[size]} ${buttonStateClasses[$buttonStyle]}`}
     >
       {text}
-      {type === 'primary' ? (
+      {$buttonStyle === 'primary' ? (
         <Image
           src="/button/right-arrow.svg"
           alt="right-arrow-icon"
@@ -51,6 +55,6 @@ export default function OblongButton({
           height={iconSize}
         />
       ) : undefined}
-    </div>
+    </button>
   );
 }
