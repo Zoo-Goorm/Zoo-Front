@@ -1,33 +1,32 @@
 'use client';
 
-import ArrowBox from './ArrowBox';
-import FilterOption from './FilterOption';
+import { useSessionStore } from '@/store/useSessionStore';
 import TabDates from './TabDates';
-import ToggleButton from './ToggleButton';
+import sessionInfo from '@/mock/session';
+import { useEffect } from 'react';
 
 export default function Tab() {
+  const { sessionDate, addSessionsDate } = useSessionStore();
+
+  useEffect(() => {
+    Object.keys(sessionInfo).map((date) => addSessionsDate(`${date}`));
+  }, [sessionInfo]);
+
   return (
-    <div className="flex w-[312px] max-w-[1240px] items-center justify-between bg-bg-primary p-12 tablet:w-full tablet:px-20 tablet:py-16">
-      <div className="flex items-center gap-1 tablet:gap-16">
-        <TabDates
-          className="hidden tablet:block"
-          text="전체"
-          selected={false}
-        />
-        <span className="hidden text-sm text-divider-secondary tablet:block tablet:text-xl">
-          |
-        </span>
-        <TabDates text="N월 N일 (Day N)" selected={false} />
-        <span className="text-sm text-divider-secondary tablet:text-xl">|</span>
-        <TabDates text="N월 N일 (Day N)" selected={false} />
-      </div>
-      <div className="flex tablet:hidden">
-        <ArrowBox />
-      </div>
-      <div className="hidden items-center gap-2 tablet:flex">
-        <ToggleButton />
-        <span className="text-sm text-divider-secondary tablet:text-xl">|</span>
-        <FilterOption />
+    <div className="flex w-full items-center justify-between bg-bg-secondary px-20 py-16">
+      <div className="flex items-center gap-16">
+        {sessionDate.map((date, i) => (
+          <div key={i}>
+            {i === 0 ? (
+              <TabDates key={i} date={`${date}`} text={`${date}`} />
+            ) : (
+              <TabDates key={i} date={`${date}`} text={`${date} (Day ${i})`} />
+            )}
+            {i < sessionDate.length - 1 && (
+              <span className="ml-5 text-divider-secondary">|</span>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );

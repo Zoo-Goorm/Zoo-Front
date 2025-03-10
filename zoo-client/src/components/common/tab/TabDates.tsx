@@ -1,23 +1,30 @@
 'use client';
 
+import { useSessionStore } from '@/store/useSessionStore';
+
 interface TabDatesProps {
+  date: string;
   text: string;
-  selected: boolean;
   className?: string;
 }
 
 export default function TabDates({
+  date,
   text,
-  selected,
   className = '',
 }: TabDatesProps) {
+  const { currentDate, setCurrentDate } = useSessionStore();
+
   return (
-    <span
-      className={`cursor-pointer text-sm font-semibold tablet:text-xl ${
-        selected ? 'text-purple-500' : 'text-text-thirary'
-      } ${className}`}
-    >
-      {text}
-    </span>
+    <>
+      <button
+        onClick={() => setCurrentDate(date)}
+        className={`body-sb-20 cursor-pointer ${
+          date == currentDate ? 'text-text-primary' : 'text-text-thirary'
+        } ${className}`}
+      >
+        {text}
+      </button>
+    </>
   );
 }
