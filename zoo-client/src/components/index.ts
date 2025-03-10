@@ -32,3 +32,4 @@ export { default as NavigationBar } from './common/navigationBar/NavigationBar';
 export { default as CardContent } from './common/card/CardContent';
 
 export { default as TextField } from './common/textField/TextField';
+export { default as CheckBox } from './common/checkbox/CheckBox';
