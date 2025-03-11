@@ -33,7 +33,6 @@ export default function Session({ currentDate }: SessionProps) {
           {sessionDateData.map((time, i) => (
             <div key={i}>
               {hrIncludes && <hr className="text-divider-primary" />}
-
               <SessionTime
                 key={i}
                 time={time.timeRange}

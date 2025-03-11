@@ -19,7 +19,7 @@ export default function SessionContainer({ session }: { session: Session }) {
           <SessionContent session={session} />
         </div>
 
-        {isHovered && <ApplyButton />}
+        {isHovered && <ApplyButton session={session} />}
       </div>
     </div>
   );
