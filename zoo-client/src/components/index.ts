@@ -27,3 +27,6 @@ export { default as PurchaseButton } from './common/button/PurchaseButton';
 export { default as PaymentButton } from './common/button/PaymentButton';
 
 export { default as NavigationBar } from './common/navigationBar/NavigationBar';
+
+/* modal */
+export { default as SessionDetailModal } from './common/modal/SessionDetailModal';

@@ -18,7 +18,8 @@ export default function ListButton({ type, text }: IListButtonProps) {
 
   return (
     <div
-      className={`headline-sb-40 flex items-center px-40 py-0 backdrop-blur-[10px] mobile:h-[8.75rem] mobile:w-[23.8125rem] website:h-[200px] website:w-[31.9375rem] ${buttonTypeClasses[type]} justify-between`}
+      onClick={() => console.log(text)}
+      className={`headline-sb-40 flex cursor-pointer items-center px-40 py-0 backdrop-blur-[10px] mobile:h-[8.75rem] mobile:w-[23.8125rem] website:h-[200px] website:w-[31.9375rem] ${buttonTypeClasses[type]} justify-between`}
     >
       <span>{text}</span>
       <RightArrow fill={buttonIconColorClasses[type]} />
