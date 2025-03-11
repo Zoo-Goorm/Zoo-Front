@@ -27,7 +27,9 @@ export { default as PurchaseButton } from './common/button/PurchaseButton';
 export { default as PaymentButton } from './common/button/PaymentButton';
 export { default as RegisterPaymentButton } from './common/button/RegisterPaymentButton';
 
+/* header & footer */
 export { default as NavigationBar } from './common/navigationBar/NavigationBar';
+export { default as Footer } from './common/footer/Footer';
 
 /* card */
 export { default as CardContent } from './common/card/CardContent';
