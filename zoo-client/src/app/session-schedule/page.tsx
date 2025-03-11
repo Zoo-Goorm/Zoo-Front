@@ -18,7 +18,7 @@ const Title = () => {
         <p className="title-sb-24 leading-normal text-text-sub">
           {SESSION_SCHEDULE_MESSAGES.title}
         </p>
-        <PurchaseButton />
+        <PurchaseButton size={48} text={SESSION_SCHEDULE_MESSAGES.buttonText} />
       </div>
     </section>
   );

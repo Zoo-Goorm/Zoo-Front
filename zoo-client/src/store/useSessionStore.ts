@@ -10,7 +10,7 @@ export interface SelectSession {
 interface SessionState {
   currentDate: string;
   sessionDates: string[];
-  currentSession: Session | null;
+  currentSession: Session;
   selectedSessionsByDate: Record<string, SelectSession[]>;
 
   setCurrentSession: (newData: Session) => void;

@@ -29,8 +29,6 @@ function Session({ currentDate }: SessionProps) {
 
   const filteredData = useFilteredSessionData(sessionDateData, selectedChips);
 
-  console.log(selectedChips);
-
   return (
     <div className="flex size-full flex-col">
       <span className="headline-sb-28 py-7 text-text-primary">

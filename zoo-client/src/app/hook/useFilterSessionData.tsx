@@ -14,9 +14,8 @@ export default function useFilteredSessionData<T extends { keyword: string[] }>(
     if (selectedChips.size === 0) return sessionDateData;
 
     return sessionDateData.map((item) => {
-      const filteredSessions = item.sessions.filter(
-        (session) =>
-          session.keyword.some((keyword) => selectedChips.has(keyword)), // ✅ 하나라도 포함된 세션 유지
+      const filteredSessions = item.sessions.filter((session) =>
+        session.keyword.some((keyword) => selectedChips.has(keyword)),
       );
 
       return {

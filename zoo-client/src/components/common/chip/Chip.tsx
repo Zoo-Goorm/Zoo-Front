@@ -10,8 +10,6 @@ export default function Chip({ text }: IChipProps) {
   const { selectedChips, toggleChip } = useChipStore();
   const isSelected = selectedChips.has(text);
 
-  console.log(selectedChips);
-
   return (
     <div
       className={`inline-flex items-center justify-center gap-0 rounded-sm website:px-8 website:py-4 ${isSelected ? 'bg-fill-secondary' : 'bg-bg-thirary'}`}
