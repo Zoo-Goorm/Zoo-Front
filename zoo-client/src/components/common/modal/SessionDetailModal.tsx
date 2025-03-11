@@ -41,13 +41,13 @@ export default function SessionDetailModal() {
           />
         </div>
         <div className="flex flex-col gap-12 py-20">
-          <h1 className="headline-sb-28 text-text-main">{title}</h1>
-          <p className="body-m-16-150 text-text-sub">{description}</p>
           <ContentBadge
             keyword={keyword}
             percentage={percentage}
             location={location}
           />
+          <h1 className="headline-sb-28 text-text-main">{title}</h1>
+          <p className="body-m-16-150 text-text-sub">{description}</p>
         </div>
         <hr className="text-divider-secondary" />
         <div className="my-40 flex gap-16">
