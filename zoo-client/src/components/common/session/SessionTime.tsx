@@ -1,9 +1,10 @@
 // SessionTime.tsx
 import React from 'react';
 import SessionContainer from './SessionContainer';
-import { ISession } from '@/types/session/session';
+import { ISession, Session } from '@/types/session/session';
 import { usePathname } from 'next/navigation';
 import SessionCarousel from './card/SessionCarousel';
+import { useChipStore } from '@/store/useChipStore';
 
 export default function SessionTime({
   time,
@@ -12,7 +13,7 @@ export default function SessionTime({
 }: {
   time: string;
   currentDate: string;
-  sessions: ISession[];
+  sessions: Session[];
 }) {
   const pathName = usePathname();
   const isSchedulePage = pathName.includes('session-schedule');
@@ -30,12 +31,7 @@ export default function SessionTime({
           {sessions.map((session, index) => (
             <div key={index}>
               {index !== 0 && <hr className="text-divider-primary" />}
-              <SessionContainer
-                session={session}
-                currentDate={currentDate}
-                time={time}
-                key={`session-${index}`}
-              />
+              <SessionContainer session={session} key={`session-${index}`} />
             </div>
           ))}
         </div>

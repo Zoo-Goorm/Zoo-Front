@@ -30,3 +30,7 @@ export { default as NavigationBar } from './common/navigationBar/NavigationBar';
 
 /* modal */
 export { default as SessionDetailModal } from './common/modal/SessionDetailModal';
+
+/* badge */
+export { default as CardBadge } from './common/badge/CardBadge';
+export { default as ContentBadge } from './common/badge/ContentBadge';

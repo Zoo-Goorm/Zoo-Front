@@ -1,10 +1,9 @@
 import Image from 'next/image';
 import { useRadioStore } from '@/store/useRadioStore';
 import { Session } from '@/types/session/session';
-import BadgeList from '../../badge/BadgeList';
 import ProgressBar from '../../progressbar/ProgressBar';
 import SelectSessionButton from '../../button/SelectSessionButton';
-import { badgeList } from '@/mock/badge';
+import CardBadge from '../../badge/CardBadge';
 
 export default function SessionCardItem({
   time,
@@ -30,7 +29,7 @@ export default function SessionCardItem({
       />
       <div className="flex flex-col gap-12">
         <div className="flex flex-col gap-8">
-          <BadgeList badgeList={badgeList} />
+          <CardBadge keyword={keyword} />
           <div className="flex h-[100px] flex-col gap-8">
             <span className="title-sb-18 text-text-main">{title}</span>
             <span className="body-m-16-150 text-text-sub">{description}</span>

@@ -27,19 +27,6 @@ const sessionInfo: ISessionInfo = {
             info: '워싱턴 대학교 컴퓨터과학과 교수',
           },
         },
-        // {
-        //   id: 9,
-        //   title: 'AI와 데이터 보안',
-        //   keyword: ['보안', '데이터 보호', 'AI 기술'],
-        //   percentage: 85,
-        //   description:
-        //     'AI 기술을 활용한 데이터 보안 전략과 최신 보안 트렌드를 탐구한다.',
-        //   location: '207호',
-        //   speaker: {
-        //     name: 'Bruce Schneier',
-        //     info: '하버드 대학교 보안 전문가',
-        //   },
-        // },
         {
           id: 10,
           title: 'AI와 의료 혁신',
