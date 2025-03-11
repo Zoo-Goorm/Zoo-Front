@@ -5,6 +5,7 @@ import { useSessionStore } from '@/store/useSessionStore';
 
 export default function SessionList() {
   const { currentDate, sessionDates } = useSessionStore();
+
   return (
     <div>
       {currentDate === '전체' ? (

@@ -4,24 +4,32 @@ import sessionInfo from '@/mock/session';
 import SessionTime from './SessionTime';
 import { useSessionStore } from '@/store/useSessionStore';
 import { usePathname } from 'next/navigation';
+import { useChipStore } from '@/store/useChipStore';
+import useFilteredSessionData from '@/app/hook/useFilterSessionData';
 
 interface SessionProps {
   currentDate: string;
   day?: string;
 }
 
-export default function Session({ currentDate }: SessionProps) {
+function Session({ currentDate }: SessionProps) {
   const { sessionDates } = useSessionStore();
+  const { selectedChips } = useChipStore();
 
-  const sessionDateData = sessionInfo[currentDate];
   const indexofDate = sessionDates.indexOf(currentDate);
   const pathName = usePathname();
-
   const hrIncludes = pathName.includes('session-schedule');
 
-  if (!sessionDateData || !Array.isArray(sessionDateData)) {
-    return <div>세션 데이터가 없습니다.</div>;
-  }
+  const sessionDateData = (sessionInfo[currentDate] ?? []).map((item) => ({
+    ...item,
+    sessions: item.sessions.map((session) => ({
+      ...session,
+    })),
+  }));
+
+  const filteredData = useFilteredSessionData(sessionDateData, selectedChips);
+
+  console.log(selectedChips);
 
   return (
     <div className="flex size-full flex-col">
@@ -30,7 +38,7 @@ export default function Session({ currentDate }: SessionProps) {
       </span>
       <div className="w-full">
         <div className="flex flex-col">
-          {sessionDateData.map((time, i) => (
+          {filteredData.map((time, i) => (
             <div key={i}>
               {hrIncludes && <hr className="text-divider-primary" />}
               <SessionTime
@@ -46,3 +54,5 @@ export default function Session({ currentDate }: SessionProps) {
     </div>
   );
 }
+
+export default Session;

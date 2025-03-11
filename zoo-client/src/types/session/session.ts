@@ -13,3 +13,12 @@ export interface Session {
 export interface ISession {
   sessions: Session[];
 }
+
+export interface LocalSession {
+  keyword: string[];
+}
+
+export interface SessionDateItem {
+  timeRange: string;
+  sessions: Session[];
+}
