@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Session } from '@/types/session/session';
 import { SessionCard } from '@/components';
 import LeftArrow from './arrow/LightArrow';
@@ -19,6 +19,10 @@ export default function SessionCarousel({
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 3;
   const totalPages = Math.ceil(sessions.length / itemsPerPage);
+
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [time]);
 
   const paginatedSessions = sessions.slice(
     currentPage * itemsPerPage,
