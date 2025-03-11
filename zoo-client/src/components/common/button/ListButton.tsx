@@ -1,9 +1,9 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import RightArrow from './icon/RightArrow';
 import { Session } from '@/types/session/session';
 import { useSessionStore } from '@/store/useSessionStore';
+import { useModalStore } from '@/store/useModalStore';
 
 interface IListButtonProps {
   session: Session;
@@ -12,8 +12,8 @@ interface IListButtonProps {
 }
 
 export default function ListButton({ session, type, text }: IListButtonProps) {
-  const router = useRouter();
   const { setCurrentSession } = useSessionStore();
+  const { openModal } = useModalStore();
 
   const buttonTypeClasses = {
     primary: 'bg-fill-primary-list text-text-white',
@@ -26,9 +26,9 @@ export default function ListButton({ session, type, text }: IListButtonProps) {
   };
 
   const listButtonHandler = () => {
-    if (type == 'thirary') {
+    if (type === 'thirary') {
       setCurrentSession(session);
-      router.push(`/session-schedule/${session.id}`, { scroll: false });
+      openModal();
     }
   };
 

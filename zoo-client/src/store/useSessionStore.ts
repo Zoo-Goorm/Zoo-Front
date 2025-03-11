@@ -13,6 +13,7 @@ interface SessionState {
   currentSession: Session | null;
   selectedSessionsByDate: Record<string, SelectSession[]>;
 
+  setCurrentSession: (newData: Session) => void;
   setCurrentDate: (currentDate: string) => void;
   addSessionDate: (newDate: string) => void;
   addSelectedSession: (newSession: { date: string } & SelectSession) => void;

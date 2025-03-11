@@ -1,14 +1,12 @@
 'use client';
 
+import { useModalStore } from '@/store/useModalStore';
 import { useSessionStore } from '@/store/useSessionStore';
-import { useRouter } from 'next/navigation';
 
 export default function SessionDetailModal() {
+  const { closeModal } = useModalStore();
   const { currentSession } = useSessionStore();
-  const router = useRouter();
-  const closeModal = () => {
-    router.back();
-  };
+
   console.log(currentSession);
 
   return (
