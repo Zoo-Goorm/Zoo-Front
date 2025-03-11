@@ -1,29 +1,51 @@
-'use client';
-
-import { badgeList } from '@/mock/badge';
+// SessionTime.tsx
+import React from 'react';
 import SessionContainer from './SessionContainer';
 import { ISession } from '@/types/session/session';
+import { usePathname } from 'next/navigation';
+import SessionCarousel from './card/SessionCarousel';
 
 export default function SessionTime({
   time,
   sessions,
-}: { time: string } & ISession) {
+  currentDate,
+}: {
+  time: string;
+  currentDate: string;
+  sessions: ISession[];
+}) {
+  const pathName = usePathname();
+  const isSchedulePage = pathName.includes('session-schedule');
+
   return (
-    <div className="flex gap-20">
+    <div
+      className={`flex gap-20 px-8 ${isSchedulePage ? 'flex-row' : 'flex-col'}`}
+    >
       <div className="title-sb-24 flex flex-col justify-center text-bg-black">
         <span className="w-[190px]">{time}</span>
       </div>
-      <div className="size-full">
-        {sessions.map((session, index) => (
-          <SessionContainer
-            key={`session-${index}`}
-            badgeList={badgeList}
-            sessionTitle={session.title}
-            sessionBody={session.description}
-            speakerList={[session.speaker]}
-          />
-        ))}
-      </div>
+
+      {isSchedulePage ? (
+        <div className="size-full">
+          {sessions.map((session, index) => (
+            <div key={index}>
+              {index !== 0 && <hr className="text-divider-primary" />}
+              <SessionContainer
+                session={session}
+                currentDate={currentDate}
+                time={time}
+                key={`session-${index}`}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <SessionCarousel
+          sessions={sessions}
+          currentDate={currentDate}
+          time={time}
+        />
+      )}
     </div>
   );
 }
