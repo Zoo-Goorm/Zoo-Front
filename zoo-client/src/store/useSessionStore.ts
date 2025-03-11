@@ -2,7 +2,6 @@ import { create } from 'zustand';
 
 export interface SelectSession {
   id: number;
-  date: string;
   time: string;
   title: string;
 }
@@ -10,16 +9,17 @@ export interface SelectSession {
 interface SessionState {
   currentDate: string;
   sessionDates: string[];
-  selectedSessions: SelectSession[];
+  selectedSessionsByDate: Record<string, SelectSession[]>;
+
   setCurrentDate: (currentDate: string) => void;
   addSessionDate: (newDate: string) => void;
-  addSelectedSession: (newSession: SelectSession) => void;
+  addSelectedSession: (newSession: { date: string } & SelectSession) => void;
 }
 
 export const useSessionStore = create<SessionState>((set) => ({
   currentDate: '전체',
   sessionDates: ['전체'],
-  selectedSessions: [],
+  selectedSessionsByDate: {},
 
   setCurrentDate: (newDate) => set({ currentDate: newDate }),
 
@@ -32,14 +32,13 @@ export const useSessionStore = create<SessionState>((set) => ({
 
   addSelectedSession: (newSession) =>
     set((state) => {
-      const isDuplicate = state.selectedSessions.some(
-        (session) => session.id === newSession.id,
-      );
+      const { date, ...sessionData } = newSession;
 
       return {
-        selectedSessions: isDuplicate
-          ? state.selectedSessions
-          : [...state.selectedSessions, newSession],
+        selectedSessionsByDate: {
+          ...state.selectedSessionsByDate,
+          [date]: [...(state.selectedSessionsByDate[date] || []), sessionData],
+        },
       };
     }),
 }));

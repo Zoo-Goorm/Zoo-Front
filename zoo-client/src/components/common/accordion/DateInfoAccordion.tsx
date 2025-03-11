@@ -1,53 +1,18 @@
 'use client';
-import { SelectSession, useSessionStore } from '@/store/useSessionStore';
+import { useSessionStore } from '@/store/useSessionStore';
 import DateInfoList from './DateInfoList';
-import { useEffect, useState } from 'react';
 import PaymentButton from '../button/PaymentButton';
 
-interface AccordionItem {
-  date: string;
-  title: string;
-  items: SelectSession[];
-}
-
 export default function DateInfoAccordion() {
-  const { selectedSessions, sessionDates } = useSessionStore();
-  console.log(sessionDates, '잇ㄱ늗ㄷ[');
-
-  const [accordionData, setAccordionData] = useState<AccordionItem[]>([
-    {
-      date: sessionDates[1],
-      title: sessionDates[1] && `${sessionDates[1]} (Day 1)`,
-      items: [],
-    },
-    {
-      date: sessionDates[2],
-      title: sessionDates[2] && `${sessionDates[2]} (Day 2)`,
-      items: [],
-    },
-  ]);
-
-  useEffect(() => {
-    if (selectedSessions.length === 0) return;
-
-    const lastSession = selectedSessions[selectedSessions.length - 1];
-
-    setAccordionData((prevData) =>
-      prevData.map((section) =>
-        section.date === lastSession.date
-          ? { ...section, items: [...section.items, lastSession] } // ✅ 이제 `items`는 항상 `SelectSession[]` 타입
-          : section,
-      ),
-    );
-  }, [selectedSessions]);
+  const { selectedSessionsByDate, sessionDates } = useSessionStore();
 
   return (
     <div>
-      {accordionData.map((accordion, index) => (
+      {sessionDates.slice(1, 3).map((date, index) => (
         <DateInfoList
           key={index}
-          title={accordion.title}
-          items={accordion.items}
+          title={`${date} (Day ${index + 1})`}
+          items={selectedSessionsByDate[date] || []}
         />
       ))}
       <PaymentButton />

@@ -26,7 +26,6 @@ export default function Radio({ status }: RadioProps) {
         src="/radio/thumbnail.svg"
         width={610}
         height={343}
-        objectFit="cover"
         className={`h-[343px] w-[610px] rounded ${
           activeState == status && bgTypeClass[activeState]
         }`}
