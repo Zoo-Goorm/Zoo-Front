@@ -2,6 +2,7 @@
 import { SelectSession, useSessionStore } from '@/store/useSessionStore';
 import DateInfoList from './DateInfoList';
 import { useEffect, useState } from 'react';
+import PaymentButton from '../button/PaymentButton';
 
 interface AccordionItem {
   date: string;
@@ -11,20 +12,17 @@ interface AccordionItem {
 
 export default function DateInfoAccordion() {
   const { selectedSessions, sessionDates } = useSessionStore();
+  console.log(sessionDates, '잇ㄱ늗ㄷ[');
 
   const [accordionData, setAccordionData] = useState<AccordionItem[]>([
     {
       date: sessionDates[1],
-      title: sessionDates[1]
-        ? `${sessionDates[1]} (Day 1)`
-        : '날짜 없음 (Day 1)',
+      title: sessionDates[1] && `${sessionDates[1]} (Day 1)`,
       items: [],
     },
     {
       date: sessionDates[2],
-      title: sessionDates[2]
-        ? `${sessionDates[2]} (Day 2)`
-        : '날짜 없음 (Day 2)',
+      title: sessionDates[2] && `${sessionDates[2]} (Day 2)`,
       items: [],
     },
   ]);
@@ -44,7 +42,7 @@ export default function DateInfoAccordion() {
   }, [selectedSessions]);
 
   return (
-    <>
+    <div>
       {accordionData.map((accordion, index) => (
         <DateInfoList
           key={index}
@@ -52,6 +50,7 @@ export default function DateInfoAccordion() {
           items={accordion.items}
         />
       ))}
-    </>
+      <PaymentButton />
+    </div>
   );
 }

@@ -30,7 +30,7 @@ export default function DateInfoList({ title, items }: DateInfoProps) {
           </div>
 
           {isOpen && (
-            <ul className="px-2 text-sm">
+            <ul className="flex flex-col gap-20 px-2 text-sm">
               {items.map((item, index) => (
                 <li key={index} className="flex flex-col gap-20 py-1">
                   <span className="figure-m-10">{item.time}</span>

@@ -20,7 +20,7 @@ export default function SessionTime({
 
   return (
     <div
-      className={`flex gap-20 ${SessionComponent == SessionContainer ? 'flex-row' : 'flex-col'}`}
+      className={`flex gap-20 px-8 ${SessionComponent == SessionContainer ? 'flex-row' : 'flex-col'}`}
     >
       <div className="title-sb-24 flex flex-col justify-center text-bg-black">
         <span className="w-[190px]">{time}</span>
