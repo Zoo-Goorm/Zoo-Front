@@ -1,13 +1,10 @@
-import { Speaker } from '../speaker/speaker';
-
-export interface Session {
-  id: number;
+interface Session {
   title: string;
-  keyword: string[];
   description: string;
-  percentage: number;
-  location: string;
-  speaker: Speaker;
+  speaker: {
+    name: string;
+    info: string;
+  };
 }
 
 export interface ISession {

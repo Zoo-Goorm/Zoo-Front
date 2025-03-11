@@ -1,11 +1,23 @@
 'use client';
 
 import { useState } from 'react';
+
 import SessionContent from './SessionContent';
 import ApplyButton from './ApplyButton';
-import { Session } from '@/types/session/session';
+import { IBadgeList } from '@/types/badge/Badge';
+import { ISpeakerList } from '@/types/speaker/speaker';
 
-export default function SessionContainer({ session }: { session: Session }) {
+export interface ISessionContainerProps extends IBadgeList, ISpeakerList {
+  sessionTitle: string;
+  sessionBody: string;
+}
+
+export default function SessionContainer({
+  badgeList,
+  sessionTitle,
+  sessionBody,
+  speakerList,
+}: ISessionContainerProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -16,9 +28,13 @@ export default function SessionContainer({ session }: { session: Session }) {
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="size-full items-center gap-5 self-stretch">
-          <SessionContent session={session} />
+          <SessionContent
+            badgeList={badgeList}
+            sessionTitle={sessionTitle}
+            sessionBody={sessionBody}
+            speakerList={speakerList}
+          />
         </div>
-
         {isHovered && <ApplyButton />}
       </div>
     </div>

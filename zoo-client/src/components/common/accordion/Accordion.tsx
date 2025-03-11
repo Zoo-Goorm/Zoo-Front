@@ -5,10 +5,10 @@ import { useState } from 'react';
 
 interface AccordionProps {
   children: React.ReactNode;
-  text: string;
+  date: '전체' | 'Day 1' | 'Day 2';
 }
 
-export default function Accordion({ children, text }: AccordionProps) {
+export default function Accordion({ children, date }: AccordionProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -19,7 +19,7 @@ export default function Accordion({ children, text }: AccordionProps) {
           onClick={() => setIsOpen((prev) => !prev)}
         >
           <span className="headline-sb-32 leading-[1.2] tablet:leading-none">
-            {text}
+            {date}
           </span>
           <Image
             src="/accordion/arrow.svg"

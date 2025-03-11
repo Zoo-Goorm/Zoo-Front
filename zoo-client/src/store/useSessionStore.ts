@@ -1,54 +1,23 @@
 import { create } from 'zustand';
 
-export interface SelectSession {
-  id: number;
-  time: string;
-  title: string;
-}
-
 interface SessionState {
   currentDate: string;
-  sessionDates: string[];
-  selectedSessionsByDate: Record<string, SelectSession[]>;
-
+  sessionDate: string[];
   setCurrentDate: (currentDate: string) => void;
-  addSessionDate: (newDate: string) => void;
-  addSelectedSession: (newSession: { date: string } & SelectSession) => void;
+  addSessionsDate: (date: string) => void;
 }
 
 export const useSessionStore = create<SessionState>((set) => ({
   currentDate: '전체',
-  sessionDates: ['전체'],
-  selectedSessionsByDate: {},
-
-  setCurrentDate: (newDate) => set({ currentDate: newDate }),
-
-  addSessionDate: (newDate) =>
-    set((state) => ({
-      sessionDates: state.sessionDates.includes(newDate)
-        ? state.sessionDates
-        : [...state.sessionDates, newDate],
+  sessionDate: ['전체'],
+  setCurrentDate: (newDate) =>
+    set(() => ({
+      currentDate: newDate,
     })),
-
-  addSelectedSession: (newSession) =>
-    set((state) => {
-      const { date, ...sessionData } = newSession;
-
-      const currentSessions = state.selectedSessionsByDate[date] || [];
-
-      const isDuplicate = currentSessions.some(
-        (session) => session.id === sessionData.id,
-      );
-
-      if (!isDuplicate) {
-        return {
-          selectedSessionsByDate: {
-            ...state.selectedSessionsByDate,
-            [date]: [...currentSessions, sessionData],
-          },
-        };
-      }
-
-      return state;
-    }),
+  addSessionsDate: (date) =>
+    set((state) => ({
+      sessionDate: state.sessionDate.includes(date)
+        ? state.sessionDate
+        : [...state.sessionDate, date],
+    })),
 }));
