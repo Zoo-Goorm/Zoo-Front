@@ -14,6 +14,7 @@ interface ITextField {
   name: string;
   rules?: RegisterOptions;
 
+  onButtonClick?: () => void;
   register: UseFormRegister<any>;
 }
 
@@ -29,6 +30,7 @@ export default function TextField({
   name,
   rules,
   register,
+  onButtonClick,
 }: ITextField) {
   const textFieldStateClasses = {
     default:
@@ -62,8 +64,13 @@ export default function TextField({
           </label>
         )}
       </div>
-      {buttonText && (
-        <OblongButton size="xs" $buttonStyle="primary" text={buttonText} />
+      {buttonText && onButtonClick && (
+        <OblongButton
+          onClick={onButtonClick}
+          size="xs"
+          $buttonStyle="primary"
+          text={buttonText}
+        />
       )}
     </div>
   );

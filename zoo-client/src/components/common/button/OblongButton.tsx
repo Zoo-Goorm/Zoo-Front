@@ -6,6 +6,7 @@ interface IOblongButtonProps {
   $disabled?: boolean;
   text: string;
   type?: 'button' | 'submit';
+  onClick: () => void;
 }
 
 export default function OblongButton({
@@ -14,6 +15,7 @@ export default function OblongButton({
   $buttonStyle,
   text,
   $disabled = false,
+  onClick,
 }: IOblongButtonProps) {
   const buttonSizeClasses = {
     xl: 'py-16 px-24 gap-20 headline-sb-28',
@@ -43,8 +45,9 @@ export default function OblongButton({
 
   return (
     <button
+      onClick={onClick}
       type={type}
-      className={`inline-flex rounded-[0.25rem] ${buttonSizeClasses[size]} ${buttonStateClasses[$buttonStyle]}`}
+      className={`inline-flex items-center rounded-[0.25rem] ${buttonSizeClasses[size]} ${buttonStateClasses[$buttonStyle]}`}
     >
       {text}
       {$buttonStyle === 'primary' ? (
