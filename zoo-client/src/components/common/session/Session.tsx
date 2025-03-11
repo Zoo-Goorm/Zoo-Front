@@ -38,13 +38,17 @@ function Session({ currentDate }: SessionProps) {
         <div className="flex flex-col">
           {filteredData.map((time, i) => (
             <div key={i}>
-              {hrIncludes && <hr className="text-divider-primary" />}
-              <SessionTime
-                key={i}
-                time={time.timeRange}
-                sessions={time.sessions}
-                currentDate={currentDate}
-              />
+              <>
+                {hrIncludes && time.sessions.length >= 1 && (
+                  <hr className="text-divider-primary" />
+                )}
+                <SessionTime
+                  key={i}
+                  time={time.timeRange}
+                  sessions={time.sessions}
+                  currentDate={currentDate}
+                />
+              </>
             </div>
           ))}
         </div>

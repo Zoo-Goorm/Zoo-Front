@@ -1,1 +1,1 @@
-export const subjectList: string[] = ['글로벌', '미래 전망', '핵심 기술'];
+export const subjectList: string[] = ['의료', 'AI 윤리', '로봇 공학'];
