@@ -1,7 +1,9 @@
+// SessionTime.tsx
+import React from 'react';
 import SessionContainer from './SessionContainer';
 import { ISession } from '@/types/session/session';
 import { usePathname } from 'next/navigation';
-import { SessionCard } from '@/components';
+import SessionCarousel from './card/SessionCarousel';
 
 export default function SessionTime({
   time,
@@ -13,35 +15,37 @@ export default function SessionTime({
   sessions: ISession[];
 }) {
   const pathName = usePathname();
-
-  const SessionComponent = pathName.includes('session-schedule')
-    ? SessionContainer
-    : SessionCard;
+  const isSchedulePage = pathName.includes('session-schedule');
 
   return (
     <div
-      className={`flex gap-20 px-8 ${SessionComponent == SessionContainer ? 'flex-row' : 'flex-col'}`}
+      className={`flex gap-20 px-8 ${isSchedulePage ? 'flex-row' : 'flex-col'}`}
     >
       <div className="title-sb-24 flex flex-col justify-center text-bg-black">
         <span className="w-[190px]">{time}</span>
       </div>
-      <div
-        className={`size-full ${SessionComponent == SessionCard && 'grid w-full grid-cols-3 gap-24'} `}
-      >
-        {sessions.map((session, index) => (
-          <div key={index}>
-            {SessionComponent == SessionContainer && index !== 0 && (
-              <hr className="text-divider-primary" />
-            )}
-            <SessionComponent
-              currentDate={currentDate}
-              time={time}
-              key={`session-${index}`}
-              session={session}
-            />
-          </div>
-        ))}
-      </div>
+
+      {isSchedulePage ? (
+        <div className="size-full">
+          {sessions.map((session, index) => (
+            <div key={index}>
+              {index !== 0 && <hr className="text-divider-primary" />}
+              <SessionContainer
+                session={session}
+                currentDate={currentDate}
+                time={time}
+                key={`session-${index}`}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <SessionCarousel
+          sessions={sessions}
+          currentDate={currentDate}
+          time={time}
+        />
+      )}
     </div>
   );
 }

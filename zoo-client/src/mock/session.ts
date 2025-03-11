@@ -27,19 +27,19 @@ const sessionInfo: ISessionInfo = {
             info: '워싱턴 대학교 컴퓨터과학과 교수',
           },
         },
-        {
-          id: 9,
-          title: 'AI와 데이터 보안',
-          keyword: ['보안', '데이터 보호', 'AI 기술'],
-          percentage: 85,
-          description:
-            'AI 기술을 활용한 데이터 보안 전략과 최신 보안 트렌드를 탐구한다.',
-          location: '207호',
-          speaker: {
-            name: 'Bruce Schneier',
-            info: '하버드 대학교 보안 전문가',
-          },
-        },
+        // {
+        //   id: 9,
+        //   title: 'AI와 데이터 보안',
+        //   keyword: ['보안', '데이터 보호', 'AI 기술'],
+        //   percentage: 85,
+        //   description:
+        //     'AI 기술을 활용한 데이터 보안 전략과 최신 보안 트렌드를 탐구한다.',
+        //   location: '207호',
+        //   speaker: {
+        //     name: 'Bruce Schneier',
+        //     info: '하버드 대학교 보안 전문가',
+        //   },
+        // },
         {
           id: 10,
           title: 'AI와 의료 혁신',
@@ -154,19 +154,7 @@ const sessionInfo: ISessionInfo = {
             info: '토론토 대학교 명예 교수',
           },
         },
-        {
-          id: 14,
-          title: 'AI와 금융 기술',
-          keyword: ['금융', '혁신', 'AI 기술'],
-          percentage: 75,
-          description:
-            'AI가 금융 분야에서 어떻게 혁신을 이끌어내는지 살펴본다.',
-          location: '212호',
-          speaker: {
-            name: 'Cathy Wood',
-            info: 'ARK Invest CEO',
-          },
-        },
+
         {
           id: 15,
           title: 'AI와 에너지 관리',
@@ -250,6 +238,19 @@ const sessionInfo: ISessionInfo = {
           speaker: {
             name: 'Jeff Bezos',
             info: '아마존 창립자',
+          },
+        },
+        {
+          id: 6,
+          title: '자율 AI 시스템과 미래',
+          keyword: ['글로벌', '미래 전망', '핵심 기술'],
+          percentage: 100,
+          description:
+            '자율 AI 시스템의 현재 기술 수준과 미래 발전 방향을 탐색한다.',
+          location: '202호',
+          speaker: {
+            name: 'Stuart Russell',
+            info: 'UC 버클리 컴퓨터과학과 교수',
           },
         },
       ],
