@@ -34,11 +34,21 @@ export const useSessionStore = create<SessionState>((set) => ({
     set((state) => {
       const { date, ...sessionData } = newSession;
 
-      return {
-        selectedSessionsByDate: {
-          ...state.selectedSessionsByDate,
-          [date]: [...(state.selectedSessionsByDate[date] || []), sessionData],
-        },
-      };
+      const currentSessions = state.selectedSessionsByDate[date] || [];
+
+      const isDuplicate = currentSessions.some(
+        (session) => session.id === sessionData.id,
+      );
+
+      if (!isDuplicate) {
+        return {
+          selectedSessionsByDate: {
+            ...state.selectedSessionsByDate,
+            [date]: [...currentSessions, sessionData],
+          },
+        };
+      }
+
+      return state;
     }),
 }));
