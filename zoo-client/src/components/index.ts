@@ -38,3 +38,5 @@ export { default as Footer } from './common/footer/Footer';
 export { default as CardContent } from './common/card/CardContent';
 
 export { default as TextField } from './common/textField/TextField';
+/* modal */
+export { default as AlertModal } from './common/modal/AlertModal';
