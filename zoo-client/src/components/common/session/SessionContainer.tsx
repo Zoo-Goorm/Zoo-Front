@@ -14,7 +14,6 @@ export default function SessionContainer({
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
-  console.log(session);
   return (
     <div className="flex w-full items-center py-32">
       <div

@@ -29,12 +29,17 @@ export default function SessionTime({
         className={`size-full ${SessionComponent == SessionCard && 'grid w-full grid-cols-3 gap-24'} `}
       >
         {sessions.map((session, index) => (
-          <SessionComponent
-            currentDate={currentDate}
-            time={time}
-            key={`session-${index}`}
-            session={session}
-          />
+          <div key={index}>
+            {SessionComponent == SessionContainer && index !== 0 && (
+              <hr className="text-divider-primary" />
+            )}
+            <SessionComponent
+              currentDate={currentDate}
+              time={time}
+              key={`session-${index}`}
+              session={session}
+            />
+          </div>
         ))}
       </div>
     </div>
