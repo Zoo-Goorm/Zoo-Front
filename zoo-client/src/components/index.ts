@@ -2,6 +2,9 @@ export { default as Badge } from './common/badge/Badge';
 export { default as ChipList } from './common/chip/ChipList';
 export { default as Tab } from './common/tab/Tab';
 
+export { default as JobItem } from './common/jobItem/JobItem';
+
+export { default as CheckBox } from './common/checkbox/CheckBox';
 export { default as Radio } from './common/radio/Radio';
 export { default as ProgressBar } from './common/progressbar/ProgressBar';
 
@@ -35,4 +38,3 @@ export { default as Footer } from './common/footer/Footer';
 export { default as CardContent } from './common/card/CardContent';
 
 export { default as TextField } from './common/textField/TextField';
-export { default as CheckBox } from './common/checkbox/CheckBox';
