@@ -13,12 +13,4 @@ export const badgeList: Badge[] = [
     type: 'subject',
     name: '업무효율도',
   },
-  {
-    type: 'subject',
-    name: '업무효율도',
-  },
-  {
-    type: 'default',
-    name: '장소 위치',
-  },
 ];

@@ -1,32 +1,39 @@
+'use client';
+
+import { useRadioStore } from '@/store/useRadioStore';
 import Image from 'next/image';
 
 interface RadioProps {
-  status: string;
-  video: string;
+  status: 'active' | 'inactive';
 }
 
-export default function Radio({ status, video }: RadioProps) {
-  return (
-    <div className="relative text-center">
-      <div>
-        <Image
-          alt="Thumbnail"
-          src="/radio/thumbnail.svg"
-          width={610}
-          height={343}
-          objectFit="cover"
-          className={`h-[176px] w-[317px] rounded tablet:h-[343px] tablet:w-[610px] ${
-            status === 'active'
-              ? 'border-[1.5px] border-stroke-primary'
-              : 'brightness-50'
-          }`}
-        />
-      </div>
+export default function Radio({ status }: RadioProps) {
+  const { activeState, setActiveState } = useRadioStore();
+  const bgTypeClass = {
+    active: 'border-[1.5px] border-stroke-primary',
+    inactive: 'brightness-50',
+  };
+  const textTypeClass = {
+    active: 'text-text-primary',
+    inactive: 'text-text-sub',
+  };
 
+  return (
+    <div className="flex cursor-pointer flex-col gap-20 text-center">
+      <Image
+        onClick={() => setActiveState(status)}
+        alt="Thumbnail"
+        src="/radio/thumbnail.svg"
+        width={610}
+        height={343}
+        className={`h-[343px] w-[610px] rounded ${
+          activeState == status && bgTypeClass[activeState]
+        }`}
+      />
       <span
-        className={status === 'active' ? 'text-text-primary' : 'text-text-sub'}
+        className={`title-sb-24 text-text-main ${activeState == status && textTypeClass[activeState]}`}
       >
-        온라인
+        {status == 'active' ? '온라인' : '오프라인'}
       </span>
     </div>
   );

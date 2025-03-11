@@ -6,7 +6,7 @@ import {
   Tab,
   SessionList,
 } from '@/components';
-import { SESSION_SCHEDULE_MESSAGES } from '@/constants/session';
+import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
 
 import { subjectList } from '@/mock/chip';
 
@@ -26,7 +26,7 @@ const Title = () => {
 
 const SessionAccordion = () => {
   return (
-    <Accordion date="Day 1">
+    <Accordion text="키워드로 세션 찾기">
       <ChipList subjectList={subjectList} />
     </Accordion>
   );
@@ -39,10 +39,8 @@ export default function SessionSchedulePage() {
       <div className="m-[100px] flex w-full max-w-[1240px] flex-col gap-40">
         <Title />
         <SessionAccordion />
-        <div className="flex flex-col">
-          <Tab />
-          <SessionList />
-        </div>
+        <Tab />
+        <SessionList />
       </div>
     </main>
   );
