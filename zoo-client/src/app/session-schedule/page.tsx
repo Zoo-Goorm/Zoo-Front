@@ -1,3 +1,4 @@
+'use client';
 import {
   PurchaseButton,
   NavigationBar,
@@ -7,7 +8,6 @@ import {
   SessionList,
 } from '@/components';
 import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
-
 import { subjectList } from '@/mock/chip';
 
 const Title = () => {

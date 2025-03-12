@@ -14,3 +14,8 @@ export const SESSION_APPLY_MESSAGES = {
   radioBody: '*원하시는 온/오프라인을 클릭해 주세요',
   accordionTitle: '관심 있는 IT 세션',
 };
+
+export const ACCESS_MESSAGES = {
+  login: '로그인 후 이용할 수 있습니다.',
+  ticket: '컨퍼런스 참가권이 필요합니다.',
+};

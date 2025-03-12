@@ -1,7 +1,6 @@
-// SessionTime.tsx
 import React from 'react';
 import SessionContainer from './SessionContainer';
-import { ISession, Session } from '@/types/session/session';
+import { Session } from '@/types/session/session';
 import { usePathname } from 'next/navigation';
 import SessionCarousel from './card/SessionCarousel';
 

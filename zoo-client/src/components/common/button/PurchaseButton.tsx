@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 
 export default function PurchaseButton({
@@ -8,7 +9,10 @@ export default function PurchaseButton({
   text: string;
 }) {
   return (
-    <button className="flex size-full items-center justify-between rounded-md bg-fill-primary px-24 py-2">
+    <button
+      // onClick={() => handleConferenceAccess.checkAccess()}
+      className="flex size-full items-center justify-between rounded-md bg-fill-primary px-24 py-2"
+    >
       <span className="headline-sb-28 text-text-white">{text}</span>
       <Image
         alt="arrow-icon"

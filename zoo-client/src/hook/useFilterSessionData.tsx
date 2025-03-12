@@ -15,7 +15,7 @@ export default function useFilteredSessionData<T extends { keyword: string[] }>(
 
     return sessionDateData.map((item) => {
       const filteredSessions = item.sessions.filter((session) =>
-        session.keyword.some((keyword) => selectedChips.has(keyword)),
+        [...selectedChips].every((chip) => session.keyword.includes(chip)),
       );
 
       return {

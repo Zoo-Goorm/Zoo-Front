@@ -36,7 +36,7 @@ const RadioContainer = () => {
 
 const AccordionContainer = () => {
   return (
-    <div className="flex gap-16">
+    <div className="flex w-full gap-16">
       <div className="flex w-[190px] flex-col content-center py-7">
         <hr className="text-divider-primary" />
         <span className="body-m-16 bg-bg-secondary px-24 py-12 text-center text-text-main">
@@ -44,7 +44,9 @@ const AccordionContainer = () => {
         </span>
         <DateInfoAccordion />
       </div>
-      <SessionList />
+      <div className="flex-1">
+        <SessionList />
+      </div>
     </div>
   );
 };
@@ -58,8 +60,10 @@ export default function SessionApply() {
           <Title />
           <RadioContainer />
         </div>
-        <Tab />
-        <AccordionContainer />
+        <div className="flex flex-col gap-60">
+          <Tab />
+          <AccordionContainer />
+        </div>
       </div>
     </main>
   );

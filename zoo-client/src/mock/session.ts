@@ -30,7 +30,7 @@ const sessionInfo: ISessionInfo = {
         {
           id: 10,
           title: 'AI와 의료 혁신',
-          keyword: ['의료', '혁신', 'AI 기술'],
+          keyword: ['의료', '로봇 공학', 'AI 윤리'],
           percentage: 90,
           description:
             'AI가 의료 분야에서 어떻게 혁신을 이끌어내는지 살펴본다.',
@@ -61,7 +61,7 @@ const sessionInfo: ISessionInfo = {
         {
           id: 3,
           title: 'AI와 인간의 협업',
-          keyword: ['글로벌', '트렌드 전망', '윤리'],
+          keyword: ['글로벌', '의료', 'AI 윤리'],
           percentage: 24,
           description:
             'AI가 인간과 협력하는 방식을 탐구하고, 실제 사례를 통해 AI의 역할과 한계를 분석한다.',
@@ -87,7 +87,7 @@ const sessionInfo: ISessionInfo = {
         {
           id: 11,
           title: 'AI와 교육의 트렌드',
-          keyword: ['교육', '혁신', 'AI 기술'],
+          keyword: ['교육', '의료', 'AI 기술'],
           percentage: 70,
           description:
             'AI가 교육 분야에서 어떻게 혁신을 이끌어내는지 살펴본다.',
@@ -113,7 +113,7 @@ const sessionInfo: ISessionInfo = {
         {
           id: 13,
           title: 'AI와 자율 주행',
-          keyword: ['자율 주행', '혁신', 'AI 기술'],
+          keyword: ['자율 주행', '로봇 공학', 'AI 기술'],
           percentage: 80,
           description:
             'AI가 자율 주행 분야에서 어떻게 혁신을 이끌어내는지 살펴본다.',

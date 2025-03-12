@@ -3,7 +3,7 @@
 import RightArrow from './icon/RightArrow';
 import { Session } from '@/types/session/session';
 import { useSessionStore } from '@/store/useSessionStore';
-import { useModalStore } from '@/store/useModalStore';
+import { useRouter } from 'next/navigation';
 
 interface IListButtonProps {
   session: Session;
@@ -13,7 +13,7 @@ interface IListButtonProps {
 
 export default function ListButton({ session, type, text }: IListButtonProps) {
   const { setCurrentSession } = useSessionStore();
-  const { openModal } = useModalStore();
+  const router = useRouter();
 
   const buttonTypeClasses = {
     primary: 'bg-fill-primary-list text-text-white',
@@ -26,9 +26,12 @@ export default function ListButton({ session, type, text }: IListButtonProps) {
   };
 
   const listButtonHandler = () => {
-    if (type === 'thirary') {
+    if (type === 'primary') {
+    } else {
       setCurrentSession(session);
-      openModal();
+      router.push(`/session-schedule/${session.id}`, { scroll: false });
+      // fetch test
+      // router.push(`/session-schedule/9007199254740991`, { scroll: false });
     }
   };
 

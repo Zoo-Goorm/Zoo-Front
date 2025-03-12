@@ -33,9 +33,9 @@ export default function SessionCarousel({
   const inactiveColor = '#d1d1d1';
 
   return (
-    <div className="w-full">
+    <div className="relative w-full">
       {sessions.length > itemsPerPage && (
-        <div className="mb-4 flex w-full justify-end gap-2">
+        <div className="absolute top-[-40px] mb-4 flex w-full justify-end gap-2 px-5">
           <button
             onClick={() => setCurrentPage((prev) => Math.max(0, prev - 1))}
             disabled={currentPage === 0}
