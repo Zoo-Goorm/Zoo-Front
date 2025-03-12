@@ -15,8 +15,16 @@ export default function SessionCardItem({
   session: Session;
 }) {
   const { activeState } = useRadioStore();
-  const { id, title, percentage, description, keyword, location, speaker } =
-    session;
+  const {
+    id,
+    name,
+    keywords,
+    shortDescription,
+    maxCapacity,
+    participantCount,
+    location,
+    speaker,
+  } = session;
 
   return (
     <div className="flex size-full flex-col items-center justify-between gap-12">
@@ -29,23 +37,28 @@ export default function SessionCardItem({
       />
       <div className="flex flex-col gap-12">
         <div className="flex flex-col gap-8">
-          <CardBadge keyword={keyword} />
-          <div className="flex h-[100px] flex-col gap-8">
-            <span className="title-sb-18 text-text-main">{title}</span>
-            <span className="body-m-16-150 text-text-sub">{description}</span>
+          <CardBadge keyword={keywords} />
+          <div className="flex min-h-[100px] flex-col gap-8">
+            <span className="title-sb-18 text-text-main">{name}</span>
+            <span className="body-m-16-150 text-text-sub">
+              {shortDescription}
+            </span>
           </div>
           <div className="body-m-16 flex items-center justify-between text-text-main">
             <span>{speaker.name}</span>
             {activeState == 'inactive' && <span>{location}</span>}
           </div>
-          <ProgressBar percentage={percentage} />
+          <ProgressBar
+            maxCapacity={maxCapacity}
+            participantCount={participantCount}
+          />
         </div>
         <SelectSessionButton
           time={time}
           currentDate={currentDate}
           sessionId={id}
-          sessionTitle={title}
-          isDisabled={percentage === 100}
+          sessionTitle={name}
+          isDisabled={participantCount == maxCapacity}
         />
       </div>
     </div>

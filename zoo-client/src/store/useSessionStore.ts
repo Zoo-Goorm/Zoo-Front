@@ -47,18 +47,25 @@ export const useSessionStore = create<SessionState>((set) => ({
   addSelectedSession: (newSession) =>
     set((state) => {
       const { date, ...sessionData } = newSession;
-
       const currentSessions = state.selectedSessionsByDate[date] || [];
-
-      const isDuplicate = currentSessions.some(
-        (session) => session.id === sessionData.id,
+      const isChanged = currentSessions.some(
+        (session) => session.time === sessionData.time,
       );
 
-      if (!isDuplicate) {
+      if (!isChanged) {
         return {
           selectedSessionsByDate: {
             ...state.selectedSessionsByDate,
             [date]: [...currentSessions, sessionData],
+          },
+        };
+      } else {
+        return {
+          selectedSessionsByDate: {
+            ...state.selectedSessionsByDate,
+            [date]: currentSessions.map((session) =>
+              session.time === sessionData.time ? sessionData : session,
+            ),
           },
         };
       }

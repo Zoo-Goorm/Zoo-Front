@@ -1,6 +1,5 @@
 'use client';
 
-import sessionInfo from '@/mock/session';
 import SessionTime from './SessionTime';
 import { useSessionStore } from '@/store/useSessionStore';
 import { usePathname } from 'next/navigation';
@@ -8,6 +7,8 @@ import { useChipStore } from '@/store/useChipStore';
 import useFilteredSessionData from '@/hook/useFilterSessionData';
 import Image from 'next/image';
 import { useState } from 'react';
+import { TimeSlot } from '@/types/session/session';
+import { sessionsDetailed } from '@/mock/sessionsDetailed';
 
 interface SessionProps {
   currentDate: string;
@@ -26,8 +27,8 @@ export default function Session({ currentDate }: SessionProps) {
   const dayNumber = indexOfDate >= 0 ? indexOfDate : 'N';
 
   const sessionDateData =
-    currentDate && sessionInfo[currentDate]
-      ? sessionInfo[currentDate].map((item) => ({
+    currentDate && sessionsDetailed[currentDate]
+      ? sessionsDetailed[currentDate].map((item: TimeSlot) => ({
           ...item,
           sessions: item.sessions.map((session) => ({ ...session })),
         }))

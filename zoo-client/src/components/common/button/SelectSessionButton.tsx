@@ -1,7 +1,6 @@
 'use client';
 
 import { useSessionStore } from '@/store/useSessionStore';
-import { useEffect } from 'react';
 
 interface ISelectButtonProps {
   time: string;

@@ -11,14 +11,6 @@ export default function SessionCard({
   session: Session;
 }) {
   return (
-    <div className="flex">
-      <div className="flex w-full max-w-[312px]">
-        <SessionCardItem
-          session={session}
-          time={time}
-          currentDate={currentDate}
-        />
-      </div>
-    </div>
+    <SessionCardItem session={session} time={time} currentDate={currentDate} />
   );
 }

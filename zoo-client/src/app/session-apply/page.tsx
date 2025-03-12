@@ -8,6 +8,8 @@ import {
   Tab,
 } from '@/components';
 import { SESSION_APPLY_MESSAGES } from '@/constants/messages';
+import { sessionsDetailed } from '@/mock/sessionsDetailed';
+import { ISessions } from '@/types/session/session';
 
 const Title = () => {
   return (
@@ -52,6 +54,8 @@ const AccordionContainer = () => {
 };
 
 export default function SessionApply() {
+  const sessionList: ISessions = sessionsDetailed;
+
   return (
     <main className="flex flex-col items-center bg-bg-primary">
       <NavigationBar />
@@ -61,7 +65,7 @@ export default function SessionApply() {
           <RadioContainer />
         </div>
         <div className="flex flex-col gap-60">
-          <Tab />
+          <Tab sessionList={sessionList} />
           <AccordionContainer />
         </div>
       </div>

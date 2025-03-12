@@ -16,7 +16,7 @@ export default function SessionContainer({ session }: { session: Session }) {
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="size-full items-center gap-5 self-stretch">
-          <SessionContent session={session} />
+          <SessionContent {...session} />
         </div>
         {isHovered && <ApplyButton session={session} />}
       </div>

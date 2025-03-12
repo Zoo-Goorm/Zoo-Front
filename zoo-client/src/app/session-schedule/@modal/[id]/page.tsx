@@ -1,25 +1,27 @@
 'use client';
 
-import { useSessionDetail } from '@/actions/sessionAction';
-import { ContentBadge, PurchaseButton } from '@/components';
+import { PurchaseButton } from '@/components';
+// import { useSessionDetail } from '@/actions/sessionAction';
+// import { ContentBadge, PurchaseButton } from '@/components';
 import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
 // import { useSessionStore } from '@/store/useSessionStore';
 import Image from 'next/image';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+// import { useParams, useRouter } from 'next/navigation';
 
 export default function SessionModal() {
   const router = useRouter();
-  const sessionId = useParams().id as string;
+  // const sessionId = useParams().id as string;
 
   //   // 데이터 페칭 전까지 store 사용해서 불러오기
   //   const { currentSession } = useSessionStore();
 
-  const { data: session, isLoading, error } = useSessionDetail(sessionId);
+  // const { data: session, isLoading, error } = useSessionDetail(sessionId);
 
   //   if (isLoading) return <div>Loading...</div>;
   //   if (error) return <div c>Error: {error.message}</div>;
 
-  console.log(session, '완료');
+  // console.log(session, '완료');
 
   const closeModal = () => {
     router.back();
