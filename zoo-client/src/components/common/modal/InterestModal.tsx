@@ -5,24 +5,27 @@ import ModalContainer from './Layout/ModalContainer';
 import ModalButton from './Layout/ModalButton';
 import ModalHeader from './Layout/ModalHeader';
 
-import useJobItemStore from '@/store/useJobItemStore';
+import useInterestItemStore from '@/store/modal/useInterestItemStore';
 import { INTEREST_IN_IT } from '@/constants/register';
-
-interface IInterestModal {
-  onButtonClick: (selectedJobs: string[]) => void;
-}
+import { IModalProps } from '@/types/modal/modal';
 
 function ModalBody() {
-  const { selectedJobs } = useJobItemStore();
+  const { selectedInterests, toggleInterest } = useInterestItemStore();
 
   return (
     <div className="flex w-[100%] flex-col items-start justify-center gap-16">
-      <ChipList type="register" size="s" dataList={selectedJobs} />
+      <ChipList type="register" size="s" dataList={selectedInterests} />
       <div className="flex h-[13.875rem] flex-1 flex-col items-start gap-16">
         <Badge text="관심있는 IT 분야" type="default" />
         <div className="flex h-[11.3125rem] flex-col gap-1 overflow-auto scrollbar-hidden">
           {INTEREST_IN_IT.map((interest, index) => (
-            <JobItem type="interest" key={index} text={interest} />
+            <JobItem
+              type="interest"
+              key={index}
+              text={interest}
+              selectedJobs={selectedInterests}
+              toggleJob={toggleInterest}
+            />
           ))}
         </div>
       </div>
@@ -30,11 +33,11 @@ function ModalBody() {
   );
 }
 
-export default function InterestModal({ onButtonClick }: IInterestModal) {
-  const { selectedJobs } = useJobItemStore();
+export default function InterestModal({ onButtonClick }: IModalProps) {
+  const { selectedInterests } = useInterestItemStore();
 
   const handleSubmit = () => {
-    onButtonClick(selectedJobs);
+    onButtonClick(selectedInterests);
   };
 
   return (

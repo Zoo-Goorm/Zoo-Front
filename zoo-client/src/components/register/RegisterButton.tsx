@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import useModalStore from '@/store/useModalStore';
+import useModalStore from '@/store/common/useModalStore';
 import AlertModal from '../common/modal/AlertModal';
 
 export default function RegisterButton() {

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import useModalStore from '@/store/useModalStore';
+import useModalStore from '@/store/common/useModalStore';
 import { IModalHeaderProps } from '@/types/modal/modal';
 
 export default function ModalHeader({ headerText }: IModalHeaderProps) {

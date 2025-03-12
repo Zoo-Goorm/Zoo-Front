@@ -1,13 +1,18 @@
-import useJobItemStore from '@/store/useJobItemStore';
 import Image from 'next/image';
 
 interface IJobItemProps {
   type: 'interest' | 'job';
   text: string;
+  selectedJobs: string[];
+  toggleJob: (job: string) => void;
 }
 
-export default function JobItem({ text, type }: IJobItemProps) {
-  const { selectedJobs, toggleJob } = useJobItemStore();
+export default function JobItem({
+  text,
+  type,
+  selectedJobs,
+  toggleJob,
+}: IJobItemProps) {
   const isSelectedJobItem = selectedJobs.includes(text);
 
   return (
