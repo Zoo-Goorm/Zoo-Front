@@ -10,8 +10,8 @@ import {
   AlertModal,
   TextField,
   CheckBox,
-  PaymentButton,
   JobModal,
+  RegisterPaymentButton,
 } from '@/components';
 import RegisterButton from './RegisterButton';
 
@@ -234,7 +234,7 @@ export default function RegisterForm() {
               <span className="figure-m-20 text-text-primary">NN,NNN원</span>
             </div>
           </div>
-          <PaymentButton />
+          <RegisterPaymentButton />
         </div>
       </section>
       <RegisterButton />
