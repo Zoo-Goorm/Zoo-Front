@@ -37,7 +37,10 @@ export { default as Footer } from './common/footer/Footer';
 /* card */
 export { default as CardContent } from './common/card/CardContent';
 
+/* form */
 export { default as TextField } from './common/textField/TextField';
+export { default as RegisterForm } from './register/RegisterForm';
+
 /* modal */
 export { default as AlertModal } from './common/modal/AlertModal';
 export { default as InterestModal } from './common/modal/InterestModal';
