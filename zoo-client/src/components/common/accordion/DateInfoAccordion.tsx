@@ -6,7 +6,6 @@ import { useSessionStore } from '@/store/common/useSessionStore';
 export default function DateInfoAccordion() {
   const { selectedSessionsByDate, sessionDates } = useSessionStore();
 
-  console.log(selectedSessionsByDate);
   return (
     <div>
       {sessionDates.slice(1, 3).map((date, index) => (

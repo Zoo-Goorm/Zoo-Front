@@ -5,7 +5,15 @@ import SessionContent from './SessionContent';
 import ApplyButton from './ApplyButton';
 import { Session } from '@/types/session/session';
 
-export default function SessionContainer({ session }: { session: Session }) {
+export default function SessionContainer({
+  time,
+  currentDate,
+  session,
+}: {
+  time: string;
+  currentDate: string;
+  session: Session;
+}) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -18,7 +26,13 @@ export default function SessionContainer({ session }: { session: Session }) {
         <div className="size-full items-center gap-5 self-stretch">
           <SessionContent type="list" session={session} />
         </div>
-        {isHovered && <ApplyButton session={session} />}
+        {isHovered && (
+          <ApplyButton
+            time={time}
+            currentDate={currentDate}
+            session={session}
+          />
+        )}
       </div>
     </div>
   );

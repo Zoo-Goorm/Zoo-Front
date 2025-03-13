@@ -1,15 +1,15 @@
+'use client';
 import { ContentBadge, PurchaseButton } from '@/components';
 import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
+import { useApplyStore } from '@/store/common/useApplyStore';
 import { useSessionStore } from '@/store/common/useSessionStore';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-export default function SessionDetailModal({
-  openSecondModal,
-}: {
-  openSecondModal: () => void;
-}) {
+export default function SessionDetailModal() {
   const router = useRouter();
+  const { setModalType } = useApplyStore();
+
   //   const sessionId = useParams().id as string;
 
   // 데이터 페칭 전까지 store 사용해서 불러오기
@@ -18,11 +18,10 @@ export default function SessionDetailModal({
   const closeModal = () => {
     router.back();
   };
-  console.log(currentSession);
 
   return (
     <>
-      <div className="flex justify-end">
+      <div className="flex w-[600px] justify-end">
         <Image
           alt="close-modal"
           onClick={closeModal}
@@ -69,7 +68,7 @@ export default function SessionDetailModal({
       </div>
 
       <PurchaseButton
-        func={openSecondModal}
+        func={() => setModalType('primary')}
         size={48}
         text={SESSION_SCHEDULE_MESSAGES.buttonModalText}
       />

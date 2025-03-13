@@ -8,11 +8,14 @@ import {
   SessionList,
 } from '@/components';
 import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
+import useTitleAccess from '@/hook/useTitleAccess';
 import { subjectList } from '@/mock/chip';
 import { sessionsDetailed } from '@/mock/sessionsDetailed';
 import { ISessions } from '@/types/session/session';
 
 const Title = () => {
+  const { hide, handler } = useTitleAccess();
+
   return (
     <section className="flex flex-col gap-40">
       <h1 className="display-b-60 leading-none text-text-main">
@@ -22,7 +25,13 @@ const Title = () => {
         <p className="title-sb-24 leading-normal text-text-sub">
           {SESSION_SCHEDULE_MESSAGES.titleBody}
         </p>
-        <PurchaseButton size={48} text={SESSION_SCHEDULE_MESSAGES.buttonText} />
+        {!hide && (
+          <PurchaseButton
+            func={handler}
+            size={48}
+            text={SESSION_SCHEDULE_MESSAGES.buttonText}
+          />
+        )}
       </div>
     </section>
   );
@@ -31,7 +40,7 @@ const Title = () => {
 const SessionAccordion = () => {
   return (
     <Accordion text="키워드로 세션 찾기">
-      <ChipList subjectList={subjectList} />
+      <ChipList dataList={subjectList} size={'l'} type={'subject'} />
     </Accordion>
   );
 };

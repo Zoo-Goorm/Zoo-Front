@@ -1,23 +1,19 @@
 'use client';
 
-import { SessionRadioModal } from '@/components';
+import { SessionApplyModal } from '@/components';
 import SessionDetailModal from '@/components/common/modal/SessionDetailModal';
-import { useState } from 'react';
+import { useApplyStore } from '@/store/common/useApplyStore';
 
 export default function SessionModal() {
-  const [showSecondModal, setShowSecondModal] = useState(false);
-
-  const openSecondModal = () => {
-    setShowSecondModal(true);
-  };
+  const { modalType } = useApplyStore();
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg-black/40">
-      <div className="flex w-full max-w-[800px] flex-col rounded-sm bg-bg-secondary p-32 text-text-main shadow-md">
-        {!showSecondModal ? (
-          <SessionDetailModal openSecondModal={openSecondModal} />
+      <div className="flex max-w-full flex-col rounded-sm bg-bg-primary p-32 text-text-main shadow-md">
+        {modalType == 'thirary' ? (
+          <SessionDetailModal />
         ) : (
-          <SessionRadioModal />
+          <SessionApplyModal />
         )}
       </div>
     </div>

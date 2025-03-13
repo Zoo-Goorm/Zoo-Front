@@ -29,7 +29,12 @@ export default function SessionTime({
           {sessions.map((session, index) => (
             <div key={index}>
               {index !== 0 && <hr className="text-divider-primary" />}
-              <SessionContainer session={session} key={`session-${index}`} />
+              <SessionContainer
+                time={time}
+                currentDate={currentDate}
+                session={session}
+                key={`session-${index}`}
+              />
             </div>
           ))}
         </div>
