@@ -14,6 +14,7 @@ export default function SessionDetailModal() {
 
   // 데이터 페칭 전까지 store 사용해서 불러오기
   const { currentSession } = useSessionStore();
+  console.log(currentSession.keywords);
 
   const closeModal = () => {
     router.back();
@@ -31,7 +32,6 @@ export default function SessionDetailModal() {
           src="/button/close.svg"
         />
       </div>
-
       <div className="flex flex-col gap-12 py-20">
         <ContentBadge
           keywords={currentSession.keywords}
@@ -45,7 +45,6 @@ export default function SessionDetailModal() {
           {currentSession.shortDescription}
         </p>
       </div>
-
       <hr className="text-divider-secondary" />
       <div className="my-40 flex gap-16">
         <Image
@@ -60,13 +59,11 @@ export default function SessionDetailModal() {
           <span className="body-m-16-150">{currentSession.speaker.info}</span>
         </div>
       </div>
-
       <hr className="text-divider-secondary" />
       <div className="flex flex-col gap-12 py-40">
         <span className="body-sb-20">세션 이력</span>
         <span className="body-m-16-150">없으면 표기 안 함</span>
       </div>
-
       <PurchaseButton
         func={() => setModalType('primary')}
         size={48}
