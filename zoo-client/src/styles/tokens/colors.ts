@@ -99,6 +99,7 @@ const colors = {
     thirary: COLOR_TOKEN['grey-n'][50],
     black: COLOR_TOKEN.bw.black,
     'badge-subject': COLOR_TOKEN.yellow[200],
+    transparent: 'rgba(0, 0, 0, 0)',
   },
 
   /* fill */
@@ -143,6 +144,7 @@ const colors = {
     success: COLOR_TOKEN.blue[500],
     care: COLOR_TOKEN.yellow[500],
     white: COLOR_TOKEN.bw.white,
+    important: '#bf1717',
   },
 
   /* stroke */

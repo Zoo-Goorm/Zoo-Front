@@ -2,23 +2,27 @@ import Image from 'next/image';
 
 interface IOblongButtonProps {
   size: 'xl' | 'l' | 'm' | 's' | 'xs';
-  type: 'primary' | 'thirary';
+  $buttonStyle: 'primary' | 'thirary';
   $disabled?: boolean;
   text: string;
+  type?: 'button' | 'submit';
+  onClick: () => void;
 }
 
 export default function OblongButton({
   size,
-  type,
+  type = 'button',
+  $buttonStyle,
   text,
   $disabled = false,
+  onClick,
 }: IOblongButtonProps) {
   const buttonSizeClasses = {
     xl: 'py-16 px-24 gap-20 headline-sb-28',
     l: 'py-12 px-24 gap-20 title-sb-20',
-    m: 'py-12 px-16 w-[5.75rem] text-center body-sb-16',
-    s: 'py-12 px-16 w-[5.5rem] text-center body-m-14',
-    xs: 'py-8 px-16 w-[5.25rem] text-center body-m-14',
+    m: 'py-12 px-16 text-center body-sb-16',
+    s: 'py-12 px-16 text-center body-m-14',
+    xs: 'py-8 px-16 text-center body-m-14',
   };
 
   const iconSizeClasses = {
@@ -35,15 +39,18 @@ export default function OblongButton({
       : 'bg-fill-thirary text-text-primary hover:bg-fill-thirary-hover focus:bg-fill-thirary-pressed',
   };
 
-  const isIconSize = type === 'primary' && (size === 'xl' || size === 'l');
+  const isIconSize =
+    $buttonStyle === 'primary' && (size === 'xl' || size === 'l');
   const iconSize = isIconSize ? iconSizeClasses[size] : 0;
 
   return (
-    <div
-      className={`inline-flex rounded-[0.25rem] ${buttonSizeClasses[size]} ${buttonStateClasses[type]}`}
+    <button
+      onClick={onClick}
+      type={type}
+      className={`inline-flex items-center rounded-[0.25rem] ${buttonSizeClasses[size]} ${buttonStateClasses[$buttonStyle]}`}
     >
       {text}
-      {type === 'primary' ? (
+      {$buttonStyle === 'primary' ? (
         <Image
           src="/button/right-arrow.svg"
           alt="right-arrow-icon"
@@ -51,6 +58,6 @@ export default function OblongButton({
           height={iconSize}
         />
       ) : undefined}
-    </div>
+    </button>
   );
 }

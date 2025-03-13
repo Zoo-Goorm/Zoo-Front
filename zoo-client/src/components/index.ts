@@ -2,6 +2,9 @@ export { default as Badge } from './common/badge/Badge';
 export { default as ChipList } from './common/chip/ChipList';
 export { default as Tab } from './common/tab/Tab';
 
+export { default as JobItem } from './common/jobItem/JobItem';
+
+export { default as CheckBox } from './common/checkbox/CheckBox';
 export { default as Radio } from './common/radio/Radio';
 export { default as ProgressBar } from './common/progressbar/ProgressBar';
 
@@ -25,5 +28,20 @@ export { default as TopButton } from './common/button/TopButton';
 export { default as LoginButton } from './common/button/LoginButton';
 export { default as PurchaseButton } from './common/button/PurchaseButton';
 export { default as PaymentButton } from './common/button/PaymentButton';
+export { default as RegisterPaymentButton } from './common/button/RegisterPaymentButton';
 
+/* header & footer */
 export { default as NavigationBar } from './common/navigationBar/NavigationBar';
+export { default as Footer } from './common/footer/Footer';
+
+/* card */
+export { default as CardContent } from './common/card/CardContent';
+
+/* form */
+export { default as TextField } from './common/textField/TextField';
+export { default as RegisterForm } from './register/RegisterForm';
+
+/* modal */
+export { default as AlertModal } from './common/modal/AlertModal';
+export { default as InterestModal } from './common/modal/InterestModal';
+export { default as JobModal } from './common/modal/JobModal';

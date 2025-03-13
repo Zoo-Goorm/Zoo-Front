@@ -92,7 +92,7 @@
   .headline-sb-28 {
     font-size: 1.75rem;
     font-weight: 600;
-    line-height: 2.1em;
+    line-height: 120%;
     letter-spacing: 0rem;
   }
 
@@ -143,7 +143,7 @@
   .body-m-16 {
     font-size: 1rem;
     font-weight: 500;
-    line-height: 1.2em;
+    line-height: 120%;
     letter-spacing: 0rem;
   }
 
@@ -198,6 +198,13 @@
   }
 
   /* figure */
+  .figure-m-20 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.2em;
+    letter-spacing: 0rem;
+  }
+
   .figure-m-16 {
     font-size: 1rem;
     font-weight: 500;
