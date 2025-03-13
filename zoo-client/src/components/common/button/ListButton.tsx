@@ -1,8 +1,8 @@
 'use client';
 
+import { useSessionStore } from '@/store/common/useSessionStore';
 import RightArrow from './icon/RightArrow';
 import { Session } from '@/types/session/session';
-import { useSessionStore } from '@/store/useSessionStore';
 import { useRouter } from 'next/navigation';
 
 interface IListButtonProps {

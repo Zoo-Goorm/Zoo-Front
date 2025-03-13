@@ -1,15 +1,15 @@
 'use client';
 
-import { useSessionStore } from '@/store/useSessionStore';
 import TabDates from './TabDates';
 import { useEffect } from 'react';
-import { ISessions } from '@/types/session/session';
-
-export default function Tab({ sessionList }: { sessionList: ISessions }) {
+import { useSessionStore } from '@/store/common/useSessionStore';
+export default function Tab({ sessionList = {} }) {
   const { sessionDates, addSessionDate } = useSessionStore();
 
   useEffect(() => {
-    Object.keys(sessionList).map((date) => addSessionDate(`${date}`));
+    if (sessionList && typeof sessionList === 'object') {
+      Object.keys(sessionList).forEach((date) => addSessionDate(`${date}`));
+    }
   }, [addSessionDate, sessionList]);
 
   return (

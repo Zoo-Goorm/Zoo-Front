@@ -137,7 +137,7 @@ export const sessionsDetailed: ISessions = {
       sessions: [
         {
           id: 11,
-          name: 'AI 에이전트 혁명: 산업을 재편하는 지능형 시스템',
+          name: '산업을 재편하는 지능형 시스템',
           keywords: ['글로벌', '산업 활용 사례', '비즈니스'],
           shortDescription:
             'AI 에이전트가 다양한 산업을 어떻게 혁신하고 있는지 글로벌 선도 기업들의 사례를 통해 분석한다.',

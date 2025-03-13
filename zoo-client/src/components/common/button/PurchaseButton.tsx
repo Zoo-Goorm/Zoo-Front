@@ -2,15 +2,17 @@
 import Image from 'next/image';
 
 export default function PurchaseButton({
+  func,
   size,
   text,
 }: {
+  func?: () => void;
   size: number;
   text: string;
 }) {
   return (
     <button
-      // onClick={() => handleConferenceAccess.checkAccess()}
+      onClick={func}
       className="flex size-full items-center justify-between rounded-md bg-fill-primary px-24 py-2"
     >
       <span className="headline-sb-28 text-text-white">{text}</span>

@@ -3,7 +3,7 @@
 import {
   DateInfoAccordion,
   NavigationBar,
-  Radio,
+  RadioContent,
   SessionList,
   Tab,
 } from '@/components';
@@ -20,18 +20,12 @@ const Title = () => {
 };
 
 const RadioContainer = () => {
-  const activeStates: ('active' | 'inactive')[] = ['active', 'inactive'];
-
   return (
     <div className="flex size-full flex-col">
       <span className="caption-r-12 py-8 text-right text-text-sub">
         {SESSION_APPLY_MESSAGES.radioBody}
       </span>
-      <div className="flex justify-between">
-        {activeStates.map((status, i) => (
-          <Radio key={i} status={status} />
-        ))}
-      </div>
+      <RadioContent />
     </div>
   );
 };

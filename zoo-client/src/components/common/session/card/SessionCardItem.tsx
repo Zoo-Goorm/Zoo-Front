@@ -1,9 +1,10 @@
 import Image from 'next/image';
-import { useRadioStore } from '@/store/useRadioStore';
+
 import { Session } from '@/types/session/session';
 import ProgressBar from '../../progressbar/ProgressBar';
 import SelectSessionButton from '../../button/SelectSessionButton';
 import CardBadge from '../../badge/CardBadge';
+import { useRadioStore } from '@/store/common/useRadioStore';
 
 export default function SessionCardItem({
   time,
@@ -54,10 +55,14 @@ export default function SessionCardItem({
           />
         </div>
         <SelectSessionButton
-          time={time}
+          selectedSessionDate={{
+            id,
+            time,
+            name,
+            shortDescription,
+            speaker,
+          }}
           currentDate={currentDate}
-          sessionId={id}
-          sessionTitle={name}
           isDisabled={participantCount == maxCapacity}
         />
       </div>

@@ -7,6 +7,7 @@ export { default as JobItem } from './common/jobItem/JobItem';
 export { default as CheckBox } from './common/checkbox/CheckBox';
 export { default as Radio } from './common/radio/Radio';
 export { default as ProgressBar } from './common/progressbar/ProgressBar';
+export { default as RadioContent } from './common/radio/RadioContent';
 
 /* session */
 export { default as SessionList } from './common/session/SessionList';

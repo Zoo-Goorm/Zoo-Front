@@ -1,11 +1,5 @@
-import { Session } from '@/types/session/session';
+import { SelectSession, Session } from '@/types/session/session';
 import { create } from 'zustand';
-
-export interface SelectSession {
-  id: number;
-  time: string;
-  title: string;
-}
 
 interface SessionState {
   currentDate: string;
@@ -16,7 +10,9 @@ interface SessionState {
   setCurrentSession: (newData: Session) => void;
   setCurrentDate: (currentDate: string) => void;
   addSessionDate: (newDate: string) => void;
-  addSelectedSession: (newSession: { date: string } & SelectSession) => void;
+  addSelectedSession: (
+    newSession: { currentDate: string } & SelectSession,
+  ) => void;
 }
 
 export const useSessionStore = create<SessionState>((set) => ({
@@ -24,11 +20,17 @@ export const useSessionStore = create<SessionState>((set) => ({
   sessionDates: ['전체'],
   currentSession: {
     id: 0,
-    title: '',
-    keyword: [],
-    description: '',
-    percentage: 0,
+    name: '',
+    keywords: [],
+    shortDescription: '',
+    speakerImageUrl: null,
+    maxCapacity: 0,
+    participantCount: 0,
+    startTime: '',
+    endTime: '',
+    timeRange: '',
     location: '',
+    status: '',
     speaker: { name: '', info: '' },
   },
   selectedSessionsByDate: {},
@@ -46,30 +48,30 @@ export const useSessionStore = create<SessionState>((set) => ({
 
   addSelectedSession: (newSession) =>
     set((state) => {
-      const { date, ...sessionData } = newSession;
-      const currentSessions = state.selectedSessionsByDate[date] || [];
+      const { currentDate, ...sessionData } = newSession;
+      const currentSessions = state.selectedSessionsByDate[currentDate] || [];
       const isChanged = currentSessions.some(
         (session) => session.time === sessionData.time,
       );
 
       if (!isChanged) {
         return {
+          ...state,
           selectedSessionsByDate: {
             ...state.selectedSessionsByDate,
-            [date]: [...currentSessions, sessionData],
+            [currentDate]: [...currentSessions, sessionData],
           },
         };
       } else {
         return {
+          ...state,
           selectedSessionsByDate: {
             ...state.selectedSessionsByDate,
-            [date]: currentSessions.map((session) =>
+            [currentDate]: currentSessions.map((session) =>
               session.time === sessionData.time ? sessionData : session,
             ),
           },
         };
       }
-
-      return state;
     }),
 }));

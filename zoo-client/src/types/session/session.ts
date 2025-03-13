@@ -24,3 +24,10 @@ export interface TimeSlot {
 export interface ISessions {
   [date: string]: TimeSlot[];
 }
+export interface SelectSession {
+  id: number;
+  time: string;
+  name: string;
+  shortDescription: string;
+  speaker: Speaker;
+}

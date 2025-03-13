@@ -1,14 +1,14 @@
 'use client';
 
 import SessionTime from './SessionTime';
-import { useSessionStore } from '@/store/useSessionStore';
 import { usePathname } from 'next/navigation';
-import { useChipStore } from '@/store/useChipStore';
 import useFilteredSessionData from '@/hook/useFilterSessionData';
 import Image from 'next/image';
 import { useState } from 'react';
 import { TimeSlot } from '@/types/session/session';
 import { sessionsDetailed } from '@/mock/sessionsDetailed';
+import { useSessionStore } from '@/store/common/useSessionStore';
+import { useChipStore } from '@/store/common/useChipStore';
 
 interface SessionProps {
   currentDate: string;
