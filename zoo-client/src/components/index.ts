@@ -30,6 +30,8 @@ export { default as LoginButton } from './common/button/LoginButton';
 export { default as PurchaseButton } from './common/button/PurchaseButton';
 export { default as PaymentButton } from './common/button/PaymentButton';
 export { default as RegisterPaymentButton } from './common/button/RegisterPaymentButton';
+export { default as SessionDetailModal } from './common/modal/SessionDetailModal';
+export { default as SessionRadioModal } from './common/modal/SessionRadioModal';
 
 /* header & footer */
 export { default as NavigationBar } from './common/navigationBar/NavigationBar';
