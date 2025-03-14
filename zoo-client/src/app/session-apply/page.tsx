@@ -1,5 +1,6 @@
 'use client';
 
+import { useSessions } from '@/actions/session';
 import {
   DateInfoAccordion,
   NavigationBar,
@@ -8,8 +9,6 @@ import {
   Tab,
 } from '@/components';
 import { SESSION_APPLY_MESSAGES } from '@/constants/messages';
-import { sessionsDetailed } from '@/mock/sessionsDetailed';
-import { ISessions } from '@/types/session/session';
 
 const Title = () => {
   return (
@@ -48,7 +47,11 @@ const AccordionContainer = () => {
 };
 
 export default function SessionApply() {
-  const sessionList: ISessions = sessionsDetailed;
+  const { data: sessions } = useSessions();
+
+  // if (isLoading) return <div>로딩 중...</div>;
+  // if (isError) return <div>에러 발생: {error.message}</div>;
+  // console.log(sessions);
 
   return (
     <main className="flex flex-col items-center bg-bg-primary">
@@ -59,7 +62,7 @@ export default function SessionApply() {
           <RadioContainer />
         </div>
         <div className="flex flex-col gap-60">
-          <Tab sessionList={sessionList} />
+          <Tab sessionList={sessions} />
           <AccordionContainer />
         </div>
       </div>

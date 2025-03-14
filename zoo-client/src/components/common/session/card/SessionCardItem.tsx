@@ -24,7 +24,7 @@ export default function SessionCardItem({
     maxCapacity,
     participantCount,
     location,
-    speaker,
+    speakerName,
   } = session;
 
   return (
@@ -46,7 +46,7 @@ export default function SessionCardItem({
             </span>
           </div>
           <div className="body-m-16 flex items-center justify-between text-text-main">
-            <span>{speaker.name}</span>
+            <span>{speakerName}</span>
             {activeState == 'inactive' && <span>{location}</span>}
           </div>
           <ProgressBar
@@ -60,7 +60,7 @@ export default function SessionCardItem({
             time,
             name,
             shortDescription,
-            speaker,
+            speakerName,
           }}
           currentDate={currentDate}
           isDisabled={participantCount == maxCapacity}

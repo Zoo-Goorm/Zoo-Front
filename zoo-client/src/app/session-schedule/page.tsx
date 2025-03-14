@@ -1,4 +1,5 @@
 'use client';
+import { useKeywords, useSessions } from '@/actions/session';
 import {
   PurchaseButton,
   NavigationBar,
@@ -9,9 +10,6 @@ import {
 } from '@/components';
 import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
 import useTitleAccess from '@/hook/useTitleAccess';
-import { subjectList } from '@/mock/chip';
-import { sessionsDetailed } from '@/mock/sessionsDetailed';
-import { ISessions } from '@/types/session/session';
 
 const Title = () => {
   const { hide, handler } = useTitleAccess();
@@ -38,6 +36,7 @@ const Title = () => {
 };
 
 const SessionAccordion = () => {
+  const { data: subjectList = [] } = useKeywords();
   return (
     <Accordion text="키워드로 세션 찾기">
       <ChipList dataList={subjectList} size={'l'} type={'subject'} />
@@ -46,7 +45,11 @@ const SessionAccordion = () => {
 };
 
 export default function SessionSchedulePage() {
-  const sessionList: ISessions = sessionsDetailed;
+  const { data: sessions } = useSessions();
+
+  // if (isLoading) return <div>로딩 중...</div>;
+  // if (isError) return <div>에러 발생: {error.message}</div>;
+  // console.log(sessions);
 
   return (
     <main className="flex flex-col items-center bg-bg-primary">
@@ -54,7 +57,7 @@ export default function SessionSchedulePage() {
       <div className="m-[100px] flex w-full max-w-[1240px] flex-col gap-40">
         <Title />
         <SessionAccordion />
-        <Tab sessionList={sessionList} />
+        <Tab sessionList={sessions} />
         <SessionList />
       </div>
     </main>

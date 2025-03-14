@@ -26,7 +26,7 @@ export default function ListButton({
     primary: 'bg-fill-primary-list text-text-white',
     thirary: 'bg-fill-thirary-list text-text-headline',
   };
-  const { setCurrentSession } = useSessionStore();
+  const { setCurrentSessionId } = useSessionStore();
   const { setModalType } = useApplyStore();
 
   const buttonIconColorClasses = {
@@ -38,11 +38,11 @@ export default function ListButton({
     if (type === 'primary') {
       setModalType('primary');
       handleAnyTicket(currentDate, time, session.id);
-      setCurrentSession(session);
+      setCurrentSessionId(session.id);
     } else {
       setModalType('thirary');
       handleAnyTicket(currentDate, time, session.id);
-      setCurrentSession(session);
+      setCurrentSessionId(session.id);
     }
   };
 

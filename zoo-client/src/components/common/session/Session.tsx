@@ -6,9 +6,9 @@ import useFilteredSessionData from '@/hook/useFilterSessionData';
 import Image from 'next/image';
 import { useState } from 'react';
 import { TimeSlot } from '@/types/session/session';
-import { sessionsDetailed } from '@/mock/sessionsDetailed';
 import { useSessionStore } from '@/store/common/useSessionStore';
 import { useChipStore } from '@/store/common/useChipStore';
+import { useSessions } from '@/actions/session';
 
 interface SessionProps {
   currentDate: string;
@@ -19,16 +19,16 @@ export default function Session({ currentDate }: SessionProps) {
   const { sessionDates } = useSessionStore();
   const { selectedChips } = useChipStore();
   const [isOpen, setIsOpen] = useState(true);
-
   const pathname = usePathname();
   const isSchedulePath = pathname.includes('session-schedule');
 
   const indexOfDate = currentDate ? sessionDates.indexOf(currentDate) : -1;
   const dayNumber = indexOfDate >= 0 ? indexOfDate : 'N';
+  const { data: sessions } = useSessions();
 
   const sessionDateData =
-    currentDate && sessionsDetailed[currentDate]
-      ? sessionsDetailed[currentDate].map((item: TimeSlot) => ({
+    currentDate && sessions && sessions[currentDate]
+      ? sessions[currentDate].map((item: TimeSlot) => ({
           ...item,
           sessions: item.sessions.map((session) => ({ ...session })),
         }))
@@ -58,7 +58,7 @@ export default function Session({ currentDate }: SessionProps) {
               {getDateText()}
             </span>
             <Image
-              src="/accordion/dateinfo-arrow.svg"
+              src="/accordion/dateInfo-arrow.svg"
               alt="session-list-accordion"
               className={`cursor-pointer transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
               width={48}

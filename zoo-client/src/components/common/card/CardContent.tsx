@@ -11,9 +11,18 @@ export default function CardContent() {
 
   const session = {
     id: 1,
-    title: 'AI 에이전트: 현재를 넘어서 미래로',
-    description: '상세 내용 간략정보맥시멈은 2줄까지로 하자 그게 좋겠다',
-    keyword: ['글로벌', '미래 전망', '핵심 기술'],
+    name: 'AI 에이전트 혁명: 산업을 재편하는 지능형 시스템',
+    keywords: ['글로벌', '산업 활용 사례', '비즈니스'],
+    shortDescription:
+      'AI 에이전트가 다양한 산업을 어떻게 혁신하고 있는지 글로벌 선도 기업들의 사례를 통해 분석한다.',
+    maxCapacity: 203,
+    participantCount: 203,
+    startTime: '2025-04-03T13:00:00',
+    endTime: '2025-04-03T14:30:00',
+    location: '3F 오디토리움',
+    status: 'BEFORE_START',
+    speakerName: '레슬리 윌러비',
+    speakerImage: '',
   };
 
   return (

@@ -17,10 +17,8 @@ export const sessionsDetailed: ISessions = {
           endTime: '2025-04-03T14:30:00',
           location: '3F 오디토리움',
           status: 'BEFORE_START',
-          speaker: {
-            name: '레슬리 윌러비',
-            info: '정보 없음',
-          },
+          speakerName: '레슬리 윌러비',
+          speakerImage: '',
         },
 
         {
