@@ -3,11 +3,13 @@
 import {
   DateInfoAccordion,
   NavigationBar,
-  Radio,
+  RadioContent,
   SessionList,
   Tab,
 } from '@/components';
 import { SESSION_APPLY_MESSAGES } from '@/constants/messages';
+import { sessionsDetailed } from '@/mock/sessionsDetailed';
+import { ISessions } from '@/types/session/session';
 
 const Title = () => {
   return (
@@ -18,25 +20,19 @@ const Title = () => {
 };
 
 const RadioContainer = () => {
-  const activeStates: ('active' | 'inactive')[] = ['active', 'inactive'];
-
   return (
     <div className="flex size-full flex-col">
       <span className="caption-r-12 py-8 text-right text-text-sub">
         {SESSION_APPLY_MESSAGES.radioBody}
       </span>
-      <div className="flex justify-between">
-        {activeStates.map((status, i) => (
-          <Radio key={i} status={status} />
-        ))}
-      </div>
+      <RadioContent />
     </div>
   );
 };
 
 const AccordionContainer = () => {
   return (
-    <div className="flex gap-16">
+    <div className="flex w-full gap-16">
       <div className="flex w-[190px] flex-col content-center py-7">
         <hr className="text-divider-primary" />
         <span className="body-m-16 bg-bg-secondary px-24 py-12 text-center text-text-main">
@@ -44,12 +40,16 @@ const AccordionContainer = () => {
         </span>
         <DateInfoAccordion />
       </div>
-      <SessionList />
+      <div className="flex-1">
+        <SessionList />
+      </div>
     </div>
   );
 };
 
 export default function SessionApply() {
+  const sessionList: ISessions = sessionsDetailed;
+
   return (
     <main className="flex flex-col items-center bg-bg-primary">
       <NavigationBar />
@@ -58,8 +58,10 @@ export default function SessionApply() {
           <Title />
           <RadioContainer />
         </div>
-        <Tab />
-        <AccordionContainer />
+        <div className="flex flex-col gap-60">
+          <Tab sessionList={sessionList} />
+          <AccordionContainer />
+        </div>
       </div>
     </main>
   );

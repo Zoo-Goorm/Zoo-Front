@@ -2,14 +2,32 @@ import { Speaker } from '../speaker/speaker';
 
 export interface Session {
   id: number;
-  title: string;
-  keyword: string[];
-  description: string;
-  percentage: number;
+  name: string;
+  keywords: string[];
+  shortDescription: string;
+  speakerImageUrl?: string | null;
+  maxCapacity: number;
+  participantCount: number;
+  startTime: string;
+  endTime: string;
+  timeRange?: string;
   location: string;
+  status: string;
   speaker: Speaker;
 }
 
-export interface ISession {
+export interface TimeSlot {
+  timeRange: string;
   sessions: Session[];
+}
+
+export interface ISessions {
+  [date: string]: TimeSlot[];
+}
+export interface SelectSession {
+  id: number;
+  time: string;
+  name: string;
+  shortDescription: string;
+  speaker: Speaker;
 }

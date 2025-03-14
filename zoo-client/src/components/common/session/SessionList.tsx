@@ -1,10 +1,11 @@
 'use client';
 
 import { Session } from '@/components';
-import { useSessionStore } from '@/store/useSessionStore';
+import { useSessionStore } from '@/store/common/useSessionStore';
 
 export default function SessionList() {
   const { currentDate, sessionDates } = useSessionStore();
+
   return (
     <div>
       {currentDate === '전체' ? (

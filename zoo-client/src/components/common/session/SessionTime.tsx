@@ -1,7 +1,6 @@
-// SessionTime.tsx
 import React from 'react';
 import SessionContainer from './SessionContainer';
-import { ISession } from '@/types/session/session';
+import { Session } from '@/types/session/session';
 import { usePathname } from 'next/navigation';
 import SessionCarousel from './card/SessionCarousel';
 
@@ -12,14 +11,14 @@ export default function SessionTime({
 }: {
   time: string;
   currentDate: string;
-  sessions: ISession[];
+  sessions: Session[];
 }) {
   const pathName = usePathname();
   const isSchedulePage = pathName.includes('session-schedule');
 
   return (
     <div
-      className={`flex gap-20 px-8 ${isSchedulePage ? 'flex-row' : 'flex-col'}`}
+      className={`${sessions.length < 1 && 'hidden'} flex gap-20 px-8 ${isSchedulePage ? 'flex-row' : 'flex-col'}`}
     >
       <div className="title-sb-24 flex flex-col justify-center text-bg-black">
         <span className="w-[190px]">{time}</span>
@@ -31,9 +30,9 @@ export default function SessionTime({
             <div key={index}>
               {index !== 0 && <hr className="text-divider-primary" />}
               <SessionContainer
-                session={session}
-                currentDate={currentDate}
                 time={time}
+                currentDate={currentDate}
+                session={session}
                 key={`session-${index}`}
               />
             </div>

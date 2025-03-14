@@ -1,4 +1,4 @@
-type TBadgeType = 'fullBooking' | 'subject' | 'default';
+export type TBadgeType = 'fullBooking' | 'subject' | 'default';
 
 export interface IBadgeProps {
   text: string;

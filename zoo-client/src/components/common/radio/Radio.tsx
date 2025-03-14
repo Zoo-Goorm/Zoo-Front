@@ -1,6 +1,6 @@
 'use client';
 
-import { useRadioStore } from '@/store/useRadioStore';
+import { useRadioStore } from '@/store/common/useRadioStore';
 import Image from 'next/image';
 
 interface RadioProps {
@@ -26,7 +26,7 @@ export default function Radio({ status }: RadioProps) {
         src="/radio/thumbnail.svg"
         width={610}
         height={343}
-        className={`h-[343px] w-[610px] rounded ${
+        className={`rounded ${
           activeState == status && bgTypeClass[activeState]
         }`}
       />

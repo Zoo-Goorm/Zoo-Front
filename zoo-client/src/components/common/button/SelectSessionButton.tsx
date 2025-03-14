@@ -1,32 +1,21 @@
 'use client';
 
-import { useSessionStore } from '@/store/useSessionStore';
-import { useEffect } from 'react';
-
-interface ISelectButtonProps {
-  time: string;
-  currentDate: string;
-  sessionId: number;
-  sessionTitle: string;
-  isDisabled: boolean;
-}
+import { useSessionStore } from '@/store/common/useSessionStore';
+import { SelectSession } from '@/types/session/session';
 
 export default function SelectSessionButton({
-  time,
   currentDate,
-  sessionId,
-  sessionTitle,
+  selectedSessionDate,
   isDisabled,
-}: ISelectButtonProps) {
+}: {
+  currentDate: string;
+  selectedSessionDate: SelectSession;
+  isDisabled: boolean;
+}) {
   const { addSelectedSession } = useSessionStore();
 
   const changeSelectedSession = () => {
-    addSelectedSession({
-      time: time,
-      date: currentDate,
-      title: sessionTitle,
-      id: sessionId,
-    });
+    addSelectedSession({ currentDate, ...selectedSessionDate });
   };
 
   return (

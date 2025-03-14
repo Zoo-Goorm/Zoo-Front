@@ -1,13 +1,25 @@
+'use client';
 import Image from 'next/image';
 
-export default function PurchaseButton() {
+export default function PurchaseButton({
+  func,
+  size,
+  text,
+}: {
+  func?: () => void;
+  size: number;
+  text: string;
+}) {
   return (
-    <button className="flex size-full items-center justify-between bg-fill-primary px-24 py-16">
-      <span className="headline-sb-28">컨퍼런스 참가권 구매</span>
+    <button
+      onClick={func}
+      className="flex size-full items-center justify-between rounded-md bg-fill-primary px-24 py-2"
+    >
+      <span className="headline-sb-28 text-text-white">{text}</span>
       <Image
         alt="arrow-icon"
-        height={48}
-        width={48}
+        height={size}
+        width={size}
         src="/button/right-arrow.svg"
       />
     </button>

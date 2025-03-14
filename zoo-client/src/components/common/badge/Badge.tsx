@@ -9,7 +9,7 @@ export default function Badge({ text, type }: IBadgeProps) {
 
   return (
     <div
-      className={`website:body-m-16-150 mobile:body-m-14 inline-flex items-center justify-center gap-0 rounded-sm px-8 py-4 text-text-main ${badgeTypeClasses[type]}`}
+      className={`website:body-m-16-150 mobile:body-m-14 inline-flex cursor-pointer items-center justify-center gap-0 rounded-sm px-8 py-4 text-text-main ${badgeTypeClasses[type]}`}
     >
       {text}
     </div>

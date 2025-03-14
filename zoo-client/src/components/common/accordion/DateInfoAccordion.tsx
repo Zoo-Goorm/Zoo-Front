@@ -1,7 +1,7 @@
 'use client';
-import { useSessionStore } from '@/store/useSessionStore';
 import DateInfoList from './DateInfoList';
 import PaymentButton from '../button/PaymentButton';
+import { useSessionStore } from '@/store/common/useSessionStore';
 
 export default function DateInfoAccordion() {
   const { selectedSessionsByDate, sessionDates } = useSessionStore();

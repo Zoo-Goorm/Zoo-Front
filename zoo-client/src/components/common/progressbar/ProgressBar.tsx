@@ -1,9 +1,13 @@
 interface ProgressProps {
-  percentage: number;
+  maxCapacity: number;
+  participantCount: number;
 }
 
-export default function ProgressBar({ percentage }: ProgressProps) {
-  const total: number = 100;
+export default function ProgressBar({
+  maxCapacity,
+  participantCount,
+}: ProgressProps) {
+  const percentage = (participantCount / maxCapacity) * 100;
 
   return (
     <div className="flex flex-col gap-4">
@@ -14,8 +18,8 @@ export default function ProgressBar({ percentage }: ProgressProps) {
         ></div>
       </div>
       <div className="figure-m-14 w-full text-right">
-        <span className="text-text-primary">{percentage}</span>
-        <span className="text-text-sub">/{total}</span>
+        <span className="text-text-primary">{participantCount}</span>
+        <span className="text-text-sub">/{maxCapacity}</span>
       </div>
     </div>
   );

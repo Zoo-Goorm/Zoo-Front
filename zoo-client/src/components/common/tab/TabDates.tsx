@@ -1,6 +1,6 @@
 'use client';
 
-import { useSessionStore } from '@/store/useSessionStore';
+import { useSessionStore } from '@/store/common/useSessionStore';
 
 interface TabDatesProps {
   date: string;

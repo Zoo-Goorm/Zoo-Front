@@ -1,16 +1,16 @@
 'use client';
 
-import { useSessionStore } from '@/store/useSessionStore';
 import TabDates from './TabDates';
-import sessionInfo from '@/mock/session';
 import { useEffect } from 'react';
-
-export default function Tab() {
+import { useSessionStore } from '@/store/common/useSessionStore';
+export default function Tab({ sessionList = {} }) {
   const { sessionDates, addSessionDate } = useSessionStore();
 
   useEffect(() => {
-    Object.keys(sessionInfo).map((date) => addSessionDate(`${date}`));
-  }, [sessionInfo]);
+    if (sessionList && typeof sessionList === 'object') {
+      Object.keys(sessionList).forEach((date) => addSessionDate(`${date}`));
+    }
+  }, [addSessionDate, sessionList]);
 
   return (
     <div className="flex w-full items-center justify-between bg-bg-secondary px-20 py-16">
