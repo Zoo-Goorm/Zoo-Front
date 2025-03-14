@@ -3,6 +3,7 @@
 import { useSessions } from '@/actions/session';
 import {
   DateInfoAccordion,
+  Footer,
   NavigationBar,
   RadioContent,
   SessionList,
@@ -66,6 +67,7 @@ export default function SessionApply() {
           <AccordionContainer />
         </div>
       </div>
+      <Footer />
     </main>
   );
 }
