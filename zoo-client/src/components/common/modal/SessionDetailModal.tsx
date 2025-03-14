@@ -14,7 +14,6 @@ export default function SessionDetailModal() {
 
   // 데이터 페칭 전까지 store 사용해서 불러오기
   const { currentSession } = useSessionStore();
-  console.log(currentSession.keywords);
 
   const closeModal = () => {
     router.back();
