@@ -37,6 +37,7 @@ const Title = () => {
 
 const SessionAccordion = () => {
   const { data: subjectList = [] } = useKeywords();
+  console.log(subjectList);
   return (
     <Accordion text="키워드로 세션 찾기">
       <ChipList dataList={subjectList} size={'l'} type={'subject'} />

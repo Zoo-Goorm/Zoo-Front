@@ -6,10 +6,10 @@ export const userTicket: UserTicket = {
     '4월 4일': false,
   },
   registeredSessions: {
-    '4월 3일': [{ timeRange: '10:00-12:00', sessionId: [1] }],
-    // '4월 4일': [
-    //   { timeRange: '10:00-11:00', sessionId: [4] },
-    //   { timeRange: '11:00-12:00', sessionId: [2] },
-    // ],
+    '4월 3일': [{ timeRange: '10:00-12:00', sessionId: 1 }],
+    '4월 4일': [
+      { timeRange: '10:00-11:00', sessionId: 4 },
+      { timeRange: '11:00-12:00', sessionId: 2 },
+    ],
   },
 };

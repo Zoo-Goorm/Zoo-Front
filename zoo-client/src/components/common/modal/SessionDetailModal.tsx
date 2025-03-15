@@ -1,19 +1,20 @@
 'use client';
+import { useSession } from '@/actions/session';
 import { ContentBadge, PurchaseButton } from '@/components';
 import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
 import { useApplyStore } from '@/store/common/useApplyStore';
-import { useSessionStore } from '@/store/common/useSessionStore';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
+import { SessionId } from '@/types/session/session';
 
 export default function SessionDetailModal() {
   const router = useRouter();
   const { setModalType } = useApplyStore();
 
-  //   const sessionId = useParams().id as string;
+  const sessionId = useParams().id as string;
+  const { data: currentSession = {} as SessionId } = useSession(sessionId);
 
-  // 데이터 페칭 전까지 store 사용해서 불러오기
-  const { currentSession } = useSessionStore();
+  console.log(currentSession);
 
   const closeModal = () => {
     router.back();
@@ -21,7 +22,7 @@ export default function SessionDetailModal() {
 
   return (
     <>
-      <div className="flex w-[600px] justify-end">
+      <div className="flex justify-end">
         <Image
           alt="close-modal"
           onClick={closeModal}
@@ -35,27 +36,33 @@ export default function SessionDetailModal() {
         <ContentBadge
           keywords={currentSession.keywords}
           maxApply={
-            currentSession.maxCapacity - currentSession.participantCount
+            currentSession?.maxCapacity - currentSession.participantCount
           }
           location={currentSession.location}
         />
-        <h1 className="headline-sb-28 text-text-main">{currentSession.name}</h1>
+        <h1 className="headline-sb-28 text-text-main">
+          {currentSession.sessionName}
+        </h1>
         <p className="body-m-16-150 text-text-sub">
-          {currentSession.shortDescription}
+          {currentSession.longDescription}
         </p>
       </div>
       <hr className="text-divider-secondary" />
       <div className="my-40 flex gap-16">
         <Image
-          src="/mock/speaker-img.svg"
+          src={currentSession.speakerImage}
           alt="speaker-img"
-          className="rounded-md"
+          className="size-full rounded-md"
           width={312}
           height={240}
         />
         <div className="flex flex-col">
-          <span className="body-sb-20">{currentSession.speaker.name}</span>
-          <span className="body-m-16-150">{currentSession.speaker.info}</span>
+          <span className="body-sb-20">{currentSession.speakerName}</span>
+          {currentSession.careers?.map((info, index) => (
+            <span key={index} className="body-m-16-150">
+              {info}
+            </span>
+          ))}
         </div>
       </div>
       <hr className="text-divider-secondary" />

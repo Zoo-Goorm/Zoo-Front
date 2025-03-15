@@ -1,4 +1,4 @@
-import { ISessions, Session } from '@/types/session/session';
+import { ISessions, SessionId } from '@/types/session/session';
 import { fetchApi } from './api';
 
 export async function getSessions() {
@@ -17,7 +17,7 @@ export async function getKeywords() {
 
 export async function getSession(id: string) {
   const endpoint = `/api/v1/sessions/${id}`;
-  return fetchApi<Session>(endpoint, {
+  return fetchApi<SessionId>(endpoint, {
     method: 'GET',
   });
 }

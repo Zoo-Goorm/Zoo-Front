@@ -30,3 +30,15 @@ export interface SelectSession {
   shortDescription: string;
   speakerName: string;
 }
+
+export interface SessionId {
+  sessionName: string;
+  keywords: string[];
+  longDescription: string;
+  careers: string[];
+  maxCapacity: number;
+  participantCount: number;
+  location: string;
+  speakerImage: string;
+  speakerName: string;
+}

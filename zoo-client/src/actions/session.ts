@@ -1,4 +1,4 @@
-import { getKeywords, getSessions } from '@/app/services/session';
+import { getKeywords, getSession, getSessions } from '@/app/services/session';
 import { useQuery } from '@tanstack/react-query';
 
 export const sessionsQueryKey = ['sessions'];
@@ -23,13 +23,14 @@ export function useKeywords() {
     },
   });
 }
-// export function useSession(id: string) {
-//   return useQuery({
-//     queryKey: sessionQueryKey(id),
-//     queryFn: async () => {
-//       const response = await getSessions(id);
-//       return response.data;
-//     },
-//     enabled: !!id, // id가 존재할 때만 쿼리 실행
-//   });
-// }
+
+export function useSession(id: string) {
+  return useQuery({
+    queryKey: sessionQueryKey(id),
+    queryFn: async () => {
+      const res = await getSession(id);
+      return res.data;
+    },
+    enabled: !!id,
+  });
+}
