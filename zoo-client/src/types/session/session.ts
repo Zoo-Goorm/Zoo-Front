@@ -39,6 +39,6 @@ export interface SessionId {
   maxCapacity: number;
   participantCount: number;
   location: string;
-  speakerImage: string;
+  imageUrl: string;
   speakerName: string;
 }

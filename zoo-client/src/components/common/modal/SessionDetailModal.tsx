@@ -1,27 +1,25 @@
 'use client';
-import { useSession } from '@/actions/session';
 import { ContentBadge, PurchaseButton } from '@/components';
 import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
 import { useApplyStore } from '@/store/common/useApplyStore';
 import Image from 'next/image';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { SessionId } from '@/types/session/session';
 
-export default function SessionDetailModal() {
+export default function SessionDetailModal({
+  currentSession,
+}: {
+  currentSession: SessionId;
+}) {
   const router = useRouter();
   const { setModalType } = useApplyStore();
-
-  const sessionId = useParams().id as string;
-  const { data: currentSession = {} as SessionId } = useSession(sessionId);
-
-  console.log(currentSession);
 
   const closeModal = () => {
     router.back();
   };
 
   return (
-    <>
+    <div>
       <div className="flex justify-end">
         <Image
           alt="close-modal"
@@ -50,13 +48,14 @@ export default function SessionDetailModal() {
       <hr className="text-divider-secondary" />
       <div className="my-40 flex gap-16">
         <Image
-          src={currentSession.speakerImage}
+          src={currentSession.imageUrl}
           alt="speaker-img"
-          className="size-full rounded-md"
-          width={312}
-          height={240}
+          className="size-[311px] rounded-md"
+          width={311}
+          height={311}
+          blurDataURL="/default-placeholder.jpg"
         />
-        <div className="flex flex-col">
+        <div className="flex flex-1 flex-col">
           <span className="body-sb-20">{currentSession.speakerName}</span>
           {currentSession.careers?.map((info, index) => (
             <span key={index} className="body-m-16-150">
@@ -75,6 +74,6 @@ export default function SessionDetailModal() {
         size={48}
         text={SESSION_SCHEDULE_MESSAGES.buttonModalText}
       />
-    </>
+    </div>
   );
 }

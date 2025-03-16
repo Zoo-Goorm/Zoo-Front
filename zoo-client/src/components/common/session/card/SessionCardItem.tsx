@@ -25,13 +25,13 @@ export default function SessionCardItem({
     participantCount,
     location,
     speakerName,
-    // speakerImageUrl,
+    speakerImageUrl,
   } = session;
 
   return (
     <div className="flex size-full flex-col items-center justify-between gap-12">
       <Image
-        src={'/mock/speaker-img.svg'}
+        src={speakerImageUrl || '/mock/speaker-img.svg'}
         alt="speaker-img"
         className="rounded-md"
         width={312}
