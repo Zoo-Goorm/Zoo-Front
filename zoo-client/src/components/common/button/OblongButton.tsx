@@ -6,7 +6,7 @@ interface IOblongButtonProps {
   $disabled?: boolean;
   text: string;
   type?: 'button' | 'submit';
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export default function OblongButton({
@@ -47,7 +47,7 @@ export default function OblongButton({
     <button
       onClick={onClick}
       type={type}
-      className={`inline-flex items-center rounded-[0.25rem] ${buttonSizeClasses[size]} ${buttonStateClasses[$buttonStyle]}`}
+      className={`flex w-[100%] items-center justify-center rounded-[0.25rem] text-center ${buttonSizeClasses[size]} ${buttonStateClasses[$buttonStyle]}`}
     >
       {text}
       {$buttonStyle === 'primary' ? (
@@ -57,7 +57,7 @@ export default function OblongButton({
           width={iconSize}
           height={iconSize}
         />
-      ) : undefined}
+      ) : null}
     </button>
   );
 }
