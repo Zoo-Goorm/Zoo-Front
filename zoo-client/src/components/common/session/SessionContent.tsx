@@ -49,7 +49,7 @@ export default function SessionContent({
       </div>
       {type === 'list' && (
         <div className="h-full w-1/3">
-          <Speaker speakerName={speakerName} />
+          {speakerName && <Speaker speakerName={speakerName} />}
         </div>
       )}
     </div>
