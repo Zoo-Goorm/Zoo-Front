@@ -51,14 +51,3 @@ export interface SessionId {
 export interface ISessionId {
   currentSession: SessionId;
 }
-
-export interface ISessionContent {
-  sessionName: string;
-  keywords: string[];
-  shortDescription: string;
-  careers?: string[];
-  maxCapacity?: number;
-  participantCount?: number;
-  location?: string;
-  speakerName: string;
-}
