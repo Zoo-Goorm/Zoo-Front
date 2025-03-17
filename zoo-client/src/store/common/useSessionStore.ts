@@ -1,13 +1,13 @@
-import { SelectSession, Session } from '@/types/session/session';
+import { SelectSession } from '@/types/session/session';
 import { create } from 'zustand';
 
 interface SessionState {
   currentDate: string;
+  currentSessionId: number;
   sessionDates: string[];
-  currentSession: Session;
   selectedSessionsByDate: Record<string, SelectSession[]>;
 
-  setCurrentSession: (newData: Session) => void;
+  setCurrentSessionId: (newId: number) => void;
   setCurrentDate: (currentDate: string) => void;
   addSessionDate: (newDate: string) => void;
   addSelectedSession: (
@@ -18,27 +18,11 @@ interface SessionState {
 export const useSessionStore = create<SessionState>((set) => ({
   currentDate: '전체',
   sessionDates: ['전체'],
-  currentSession: {
-    id: 0,
-    name: '',
-    keywords: [],
-    shortDescription: '',
-    speakerImageUrl: null,
-    maxCapacity: 0,
-    participantCount: 0,
-    startTime: '',
-    endTime: '',
-    timeRange: '',
-    location: '',
-    status: '',
-    speaker: { name: '', info: '' },
-  },
+  currentSessionId: 0,
   selectedSessionsByDate: {},
 
+  setCurrentSessionId: (newId) => set({ currentSessionId: newId }),
   setCurrentDate: (newDate) => set({ currentDate: newDate }),
-  setCurrentSession: (newSession: Session) =>
-    set({ currentSession: newSession }),
-
   addSessionDate: (newDate) =>
     set((state) => ({
       sessionDates: state.sessionDates.includes(newDate)

@@ -3,6 +3,7 @@
 import TabDates from './TabDates';
 import { useEffect } from 'react';
 import { useSessionStore } from '@/store/common/useSessionStore';
+import ToggleButton from './ToggleButton';
 export default function Tab({ sessionList = {} }) {
   const { sessionDates, addSessionDate } = useSessionStore();
 
@@ -28,6 +29,7 @@ export default function Tab({ sessionList = {} }) {
           </div>
         ))}
       </div>
+      <ToggleButton />
     </div>
   );
 }

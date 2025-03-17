@@ -24,13 +24,14 @@ export default function SessionCardItem({
     maxCapacity,
     participantCount,
     location,
-    speaker,
+    speakerName,
+    speakerImageUrl,
   } = session;
 
   return (
     <div className="flex size-full flex-col items-center justify-between gap-12">
       <Image
-        src="/mock/speaker-img.svg"
+        src={speakerImageUrl || '/mock/speaker-img.svg'}
         alt="speaker-img"
         className="rounded-md"
         width={312}
@@ -46,7 +47,7 @@ export default function SessionCardItem({
             </span>
           </div>
           <div className="body-m-16 flex items-center justify-between text-text-main">
-            <span>{speaker.name}</span>
+            <span>{speakerName}</span>
             {activeState == 'inactive' && <span>{location}</span>}
           </div>
           <ProgressBar
@@ -60,7 +61,7 @@ export default function SessionCardItem({
             time,
             name,
             shortDescription,
-            speaker,
+            speakerName,
           }}
           currentDate={currentDate}
           isDisabled={participantCount == maxCapacity}

@@ -3,6 +3,7 @@ import SessionContainer from './SessionContainer';
 import { Session } from '@/types/session/session';
 import { usePathname } from 'next/navigation';
 import SessionCarousel from './card/SessionCarousel';
+import { useToggleStore } from '@/store/common/useToggleStore';
 
 export default function SessionTime({
   time,
@@ -15,6 +16,11 @@ export default function SessionTime({
 }) {
   const pathName = usePathname();
   const isSchedulePage = pathName.includes('session-schedule');
+  const { toggleState } = useToggleStore();
+
+  if (toggleState) {
+    sessions = sessions.filter((s) => s.maxCapacity !== s.participantCount);
+  }
 
   return (
     <div
@@ -23,7 +29,6 @@ export default function SessionTime({
       <div className="title-sb-24 flex flex-col justify-center text-bg-black">
         <span className="w-[190px]">{time}</span>
       </div>
-
       {isSchedulePage ? (
         <div className="size-full">
           {sessions.map((session, index) => (

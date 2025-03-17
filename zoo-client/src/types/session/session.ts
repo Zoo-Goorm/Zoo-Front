@@ -1,5 +1,3 @@
-import { Speaker } from '../speaker/speaker';
-
 export interface Session {
   id: number;
   name: string;
@@ -13,7 +11,8 @@ export interface Session {
   timeRange?: string;
   location: string;
   status: string;
-  speaker: Speaker;
+  speakerImage: string;
+  speakerName: string;
 }
 
 export interface TimeSlot {
@@ -29,5 +28,17 @@ export interface SelectSession {
   time: string;
   name: string;
   shortDescription: string;
-  speaker: Speaker;
+  speakerName: string;
+}
+
+export interface SessionId {
+  sessionName: string;
+  keywords: string[];
+  longDescription: string;
+  careers: string[];
+  maxCapacity: number;
+  participantCount: number;
+  location: string;
+  imageUrl: string;
+  speakerName: string;
 }
