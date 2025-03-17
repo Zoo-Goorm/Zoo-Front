@@ -4,8 +4,10 @@ import TabDates from './TabDates';
 import { useEffect } from 'react';
 import { useSessionStore } from '@/store/common/useSessionStore';
 import ToggleButton from './ToggleButton';
+import { usePathname } from 'next/navigation';
 export default function Tab({ sessionList = {} }) {
   const { sessionDates, addSessionDate } = useSessionStore();
+  const isSchedulePath = usePathname().includes('session-apply');
 
   useEffect(() => {
     if (sessionList && typeof sessionList === 'object') {
@@ -29,7 +31,8 @@ export default function Tab({ sessionList = {} }) {
           </div>
         ))}
       </div>
-      <ToggleButton />
+
+      {isSchedulePath && <ToggleButton />}
     </div>
   );
 }

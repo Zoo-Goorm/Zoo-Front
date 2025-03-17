@@ -28,7 +28,7 @@ export default function InsightDetailPage() {
         onClick={handleClose}
       >
         <div
-          className="flex max-w-[800px] flex-col rounded-sm bg-bg-primary p-32 text-text-main shadow-md"
+          className="flex max-w-[868px] flex-col gap-5 rounded-sm bg-bg-primary p-32 text-text-main shadow-md"
           onClick={(e) => e.stopPropagation()}
         >
           <InsightInfoModal />

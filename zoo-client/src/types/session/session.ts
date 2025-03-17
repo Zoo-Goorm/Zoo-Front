@@ -42,3 +42,7 @@ export interface SessionId {
   imageUrl: string;
   speakerName: string;
 }
+
+export interface ISessionId {
+  currentSession: SessionId;
+}
