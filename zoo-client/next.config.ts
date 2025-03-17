@@ -5,8 +5,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'insightnote.s3.ap-northeast-2.amazonaws.com',
-        pathname: '/speaker/**',
+        hostname: process.env.NEXT_PUBLIC_S3_HOSTNAME || 'default-hostname',
+        pathname: process.env.NEXT_PUBLIC_S3_PATHNAME,
         port: '',
       },
     ],
