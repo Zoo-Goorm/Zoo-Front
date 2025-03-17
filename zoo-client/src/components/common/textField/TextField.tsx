@@ -2,9 +2,10 @@ import OblongButton from '../button/OblongButton';
 import { UseFormRegister, RegisterOptions } from 'react-hook-form';
 
 interface ITextField {
-  type: 'default' | 'badgeField';
+  type: 'default' | 'badgeField' | 'time';
   state?: 'default' | 'disabled' | 'error';
   applyItem: string;
+  $isDisabled?: boolean;
   $isRequired: boolean;
   readOnly?: boolean;
   buttonText?: string;
@@ -26,6 +27,7 @@ export default function TextField({
   readOnly = false,
   errorMessage,
   placeholder,
+  $isDisabled,
   $isRequired,
   name,
   rules,
@@ -64,13 +66,19 @@ export default function TextField({
           </label>
         )}
       </div>
+      {type === 'time' && (
+        <span className="figure-m-16 text-text-primary">05:00</span>
+      )}
       {buttonText && onButtonClick && (
-        <OblongButton
-          onClick={onButtonClick}
-          size="xs"
-          $buttonStyle="primary"
-          text={buttonText}
-        />
+        <div className="w-[6.25rem]">
+          <OblongButton
+            $disabled={$isDisabled}
+            onClick={onButtonClick}
+            size="xs"
+            $buttonStyle="primary"
+            text={buttonText}
+          />
+        </div>
       )}
     </div>
   );
