@@ -2,15 +2,14 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useApplyStore } from '@/store/common/useApplyStore';
-import { SessionId } from '@/types/session/session';
+import { useSession } from '@/actions/session';
 
-export default function SessionRadioModal({
-  currentSession,
-}: {
-  currentSession: SessionId;
-}) {
+export default function SessionRadioModal() {
+  const { messageMain, messageSub, change, conflictId } = useApplyStore();
+  const { data: currentSession } = useSession(conflictId);
+  const title = currentSession?.sessionName;
+
   const router = useRouter();
-  const { messageMain, messageSub, change } = useApplyStore();
 
   const closeModal = () => {
     router.back();
@@ -34,11 +33,11 @@ export default function SessionRadioModal({
       <div className="flex max-w-[600px] flex-col items-center gap-2 bg-bg-secondary px-20 py-24">
         {change ? (
           <p className="body-m-16 whitespace-pre-line px-14 text-center text-text-main">
-            {`이미 같은 시간대에 [${currentSession.sessionName}] 세션이 신청되어있습니다. \n
+            {`이미 같은 시간대에 [${title}] 세션이 신청되어있습니다. \n
             신청된 세션을 취소하고 해당 세션을 신청하시고 싶으시다면 변경 신청 버튼을 눌러주세요!`}
           </p>
         ) : (
-          <p className="body-m-16 whitespace-pre-line text-center text-text-main">
+          <p className="body-m-16 whitespace-pre-line px-14 text-center text-text-main">
             {messageSub}
           </p>
         )}

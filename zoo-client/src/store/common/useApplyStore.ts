@@ -4,15 +4,15 @@ interface SessionState {
   apply: boolean;
   messageMain: string;
   messageSub: string;
-  sessionId: number | null;
   change: boolean;
+  conflictId: string;
   modalType: 'primary' | 'thirary';
+  setConflictId: (id: string) => void;
   setModalType: (modalType: 'primary' | 'thirary') => void;
   setApplyState: (
     apply: boolean,
     messageMain: string,
     messageSub: string,
-    id: number,
     change: boolean,
   ) => void;
   resetState: () => void;
@@ -22,7 +22,7 @@ export const useApplyStore = create<SessionState>((set) => ({
   apply: false,
   messageMain: '',
   messageSub: '',
-  sessionId: null,
+  conflictId: '',
   change: false,
   modalType: 'primary',
   setModalType: (modalType: 'primary' | 'thirary') => set({ modalType }),
@@ -30,22 +30,23 @@ export const useApplyStore = create<SessionState>((set) => ({
     apply: boolean,
     messageMain: string,
     messageSub: string,
-    id: number,
     change: boolean,
   ) =>
     set({
       apply,
       messageMain,
       messageSub,
-      sessionId: id,
       change,
     }),
+  setConflictId: (id) =>
+    set(() => ({
+      conflictId: id,
+    })),
   resetState: () =>
     set({
       apply: false,
       messageMain: '',
       messageSub: '',
-      sessionId: null,
       change: false,
     }),
 }));

@@ -3,8 +3,8 @@
 import useDetailAccess from '@/hook/useDetailAccess';
 import RightArrow from './icon/RightArrow';
 import { Session } from '@/types/session/session';
-import { useSessionStore } from '@/store/common/useSessionStore';
 import { useApplyStore } from '@/store/common/useApplyStore';
+import { useRouter } from 'next/navigation';
 
 interface IListButtonProps {
   time: string;
@@ -26,8 +26,9 @@ export default function ListButton({
     primary: 'bg-fill-primary-list text-text-white',
     thirary: 'bg-fill-thirary-list text-text-headline',
   };
-  const { setCurrentSessionId } = useSessionStore();
+  const { setApplyState } = useApplyStore();
   const { setModalType } = useApplyStore();
+  const router = useRouter();
 
   const buttonIconColorClasses = {
     primary: '#eee',
@@ -37,12 +38,22 @@ export default function ListButton({
   const listButtonHandler = () => {
     if (type === 'primary') {
       setModalType('primary');
-      handleAnyTicket(currentDate, time, session.id);
-      setCurrentSessionId(session.id);
     } else {
       setModalType('thirary');
+    }
+
+    if (session.maxCapacity == session.participantCount) {
+      setApplyState(
+        false,
+        '신청 마감',
+        `${session.name} 세션이 이미 신청 마감되어 실패했습니다.`,
+        // 0,
+        false,
+      );
+      router.push(`/session-schedule/${session.id}`, { scroll: false });
+    } else {
       handleAnyTicket(currentDate, time, session.id);
-      setCurrentSessionId(session.id);
+      console.log(currentDate, time, session.id);
     }
   };
 

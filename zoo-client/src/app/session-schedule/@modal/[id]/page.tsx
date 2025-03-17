@@ -20,7 +20,7 @@ export default function SessionModal() {
           {modalType == 'thirary' ? (
             <SessionDetailModal currentSession={currentSession} />
           ) : (
-            <SessionApplyModal currentSession={currentSession} />
+            <SessionApplyModal />
           )}
         </div>
       )}
