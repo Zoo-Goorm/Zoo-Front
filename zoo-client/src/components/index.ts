@@ -45,6 +45,7 @@ export { default as CardContent } from './common/card/CardContent';
 /* form */
 export { default as TextField } from './common/textField/TextField';
 export { default as RegisterForm } from './register/RegisterForm';
+export { default as NoneMemberForm } from './noneMember/NoneMemberForm';
 
 /* modal */
 export { default as AlertModal } from './common/modal/AlertModal';
