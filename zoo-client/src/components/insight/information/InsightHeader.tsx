@@ -1,17 +1,13 @@
-// export  default function InsightHeader () {
-//     return (
-//         <h1 className="headline-sb-28 text-text-main">
-//         [@@님, 인사이트 노트]
-//       </h1>
-//       <Image
-//         onClick={handleClose}
-//         alt="close-modal"
-//         width={32}
-//         height={32}
-//         className="cursor-pointer"
-//         src="/button/close.svg"
-//       />
-//     </div>
-//     )
+import { InsightHeaderProps } from '@/types/insight/insight';
 
-// }
+export default function InsightHeader({
+  title,
+  description,
+}: InsightHeaderProps) {
+  return (
+    <div className="flex flex-col gap-12">
+      <h1 className="headline-sb-28 break-all text-text-main">{title}</h1>
+      <p className="body-m-16 text-text-sub">{description}</p>
+    </div>
+  );
+}

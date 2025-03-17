@@ -3,11 +3,20 @@ export { default as ChipList } from './common/chip/ChipList';
 export { default as Tab } from './common/tab/Tab';
 
 export { default as JobItem } from './common/jobItem/JobItem';
+export { default as Profile } from './insight/information/Profile';
 
 export { default as CheckBox } from './common/checkbox/CheckBox';
 export { default as Radio } from './common/radio/Radio';
 export { default as ProgressBar } from './common/progressbar/ProgressBar';
 export { default as RadioContent } from './common/radio/RadioContent';
+
+/* insight */
+export { default as InsightHeader } from './insight/information/InsightHeader';
+export { default as InsightContent } from './insight/information/InsightContent';
+
+/* Reply */
+export { default as ReplyEdit } from './insight/information/reply/ReplyEdit';
+export { default as ReplyView } from './insight/information/reply/ReplyView';
 
 /* session */
 export { default as SessionList } from './common/session/SessionList';
