@@ -11,8 +11,12 @@ export interface Session {
   timeRange?: string;
   location: string;
   status: string;
-  speakerImage: string;
-  speakerName: string;
+  speakerImage?: string;
+  speakerName?: string;
+  speaker?: {
+    name: string;
+    info: string;
+  };
 }
 
 export interface TimeSlot {
@@ -23,6 +27,7 @@ export interface TimeSlot {
 export interface ISessions {
   [date: string]: TimeSlot[];
 }
+
 export interface SelectSession {
   id: number;
   time: string;
