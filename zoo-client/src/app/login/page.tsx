@@ -1,3 +1,4 @@
+import baseURL from '@/apis';
 import { LoginButton, NavigationBar } from '@/components';
 import { LOGIN_PAGE_MESSAGE } from '@/constants/messages';
 
@@ -15,9 +16,15 @@ export default function Login() {
           </p>
         </div>
         <div className="flex flex-col items-start gap-16 self-stretch">
-          <LoginButton type="kakao" />
-          <LoginButton type="google" />
-          <LoginButton type="nonMember" />
+          <LoginButton
+            type="kakao"
+            loginRouter={`${baseURL}/oauth2/authorization/kako`}
+          />
+          <LoginButton
+            type="google"
+            loginRouter={`${baseURL}/oauth2/authorization/google`}
+          />
+          <LoginButton loginRouter="/none-member" type="nonMember" />
         </div>
       </div>
     </div>

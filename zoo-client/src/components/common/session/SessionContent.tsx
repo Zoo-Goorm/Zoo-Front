@@ -1,6 +1,6 @@
 import { Session } from '@/types/session/session';
-import SpeakerList from '../speaker/SpeakerList';
 import ContentBadge from '../badge/ContentBadge';
+import Speaker from '../speaker/Speaker';
 
 export default function SessionContent({
   type,
@@ -16,7 +16,7 @@ export default function SessionContent({
     maxCapacity,
     participantCount,
     location,
-    speaker,
+    speakerName,
   } = session;
 
   const sessionContainerTypeClasses = {
@@ -49,7 +49,7 @@ export default function SessionContent({
       </div>
       {type === 'list' && (
         <div className="h-full w-1/3">
-          <SpeakerList speakerList={[speaker]} />
+          {speakerName && <Speaker speakerName={speakerName} />}
         </div>
       )}
     </div>

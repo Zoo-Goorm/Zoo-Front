@@ -10,7 +10,7 @@ interface RadioProps {
 export default function Radio({ status }: RadioProps) {
   const { activeState, setActiveState } = useRadioStore();
   const bgTypeClass = {
-    active: 'border-[1.5px] border-stroke-primary',
+    active: 'border-[1.5px] border-stroke-primary box-border',
     inactive: 'brightness-50',
   };
   const textTypeClass = {
@@ -26,6 +26,7 @@ export default function Radio({ status }: RadioProps) {
         src="/radio/thumbnail.svg"
         width={610}
         height={343}
+        priority
         className={`rounded ${
           activeState == status && bgTypeClass[activeState]
         }`}
