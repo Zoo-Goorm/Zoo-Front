@@ -55,17 +55,19 @@ export default function SessionCardItem({
             participantCount={participantCount}
           />
         </div>
-        <SelectSessionButton
-          selectedSessionDate={{
-            id,
-            time,
-            name,
-            shortDescription,
-            speakerName,
-          }}
-          currentDate={currentDate}
-          isDisabled={participantCount == maxCapacity}
-        />
+        {speakerName && (
+          <SelectSessionButton
+            selectedSessionDate={{
+              id,
+              time,
+              name,
+              shortDescription,
+              speakerName,
+            }}
+            currentDate={currentDate}
+            isDisabled={participantCount == maxCapacity}
+          />
+        )}
       </div>
     </div>
   );
