@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import InsightPage from '../page';
 import { useRouter } from 'next/navigation';
 import { InsightInfoModal } from '@/components';
