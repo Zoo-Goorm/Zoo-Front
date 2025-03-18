@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function ReplyEdit() {
   return (
-    <div>
+    <>
       <div className="flex items-center gap-1">
         <Image
           height={24}
@@ -19,6 +19,6 @@ export default function ReplyEdit() {
         />
         <button className="body-sm-16 text-text-primary">등록</button>
       </div>
-    </div>
+    </>
   );
 }
