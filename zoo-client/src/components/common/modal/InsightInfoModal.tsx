@@ -1,7 +1,6 @@
 'use client';
 import { insightChip } from '@/mock/insightChip';
 import ChipList from '../chip/ChipList';
-import ModalContainer from './Layout/ModalContainer';
 import ModalHeader from './Layout/ModalHeader';
 import { useRouter } from 'next/navigation';
 import Profile from '@/components/insight/information/Profile';
@@ -33,12 +32,14 @@ export default function InsightInfoModal() {
   };
 
   return (
-    <ModalContainer>
-      <ModalHeader
-        headerText={'[Name]님 인사이트 노트'}
-        closeModal={closeModal}
-      />
-      <ModalBody />
-    </ModalContainer>
+    <div className="flex w-screen flex-col items-center justify-center py-10">
+      <div className="w-[868px] bg-bg-primary p-5 py-10">
+        <ModalHeader
+          headerText={'[Name]님 인사이트 노트'}
+          closeModal={closeModal}
+        />
+        <ModalBody />
+      </div>
+    </div>
   );
 }

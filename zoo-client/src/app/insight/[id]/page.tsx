@@ -8,14 +8,6 @@ import { InsightInfoModal } from '@/components';
 export default function InsightDetailPage() {
   const router = useRouter();
 
-  useEffect(() => {
-    const originalStyle = window.getComputedStyle(document.body).overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = originalStyle;
-    };
-  }, []);
-
   const handleClose = () => {
     router.back();
   };
@@ -24,11 +16,11 @@ export default function InsightDetailPage() {
     <>
       <InsightPage />
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center bg-bg-black/40"
+        className="fixed inset-0 z-50 flex items-center justify-center bg-bg-black/60"
         onClick={handleClose}
       >
         <div
-          className="flex max-w-[868px] flex-col gap-5 rounded-sm bg-bg-primary p-32 text-text-main shadow-md"
+          className="max-h-screen w-full overflow-y-auto rounded-sm text-text-main shadow-md"
           onClick={(e) => e.stopPropagation()}
         >
           <InsightInfoModal />
