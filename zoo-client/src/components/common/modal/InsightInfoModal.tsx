@@ -16,9 +16,7 @@ const ModalBody = () => {
       <ChipList type={'subject'} dataList={insightChip} size="l" />
       <InsightHeader title={title} description={description} />
       <Profile />
-      <hr className="text-divider-primary" />
       <InsightContent content={content} />
-      <hr className="text-divider-primary" />
       <ReplyEdit />
       <ReplyView />
     </div>
@@ -33,7 +31,7 @@ export default function InsightInfoModal() {
 
   return (
     <div className="flex w-screen flex-col items-center justify-center py-10">
-      <div className="w-[868px] bg-bg-primary p-5 py-10">
+      <div className="w-[868px] bg-bg-primary px-32 py-20">
         <ModalHeader
           headerText={'[Name]님 인사이트 노트'}
           closeModal={closeModal}

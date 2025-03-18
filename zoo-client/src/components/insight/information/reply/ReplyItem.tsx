@@ -14,7 +14,7 @@ export default function ReplyItem() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-2 pl-32">
+    <div className="flex flex-col gap-2 pb-5 pl-32">
       <div className="flex gap-8">
         <Image
           src="/mock/profile.svg"

@@ -6,7 +6,7 @@ import { useState } from 'react';
 export default function ReplyView() {
   const [applyAccordion, setApplyAccordion] = useState(false);
   return (
-    <>
+    <div className="flex flex-col gap-16 pb-20">
       <div
         onClick={() => setApplyAccordion(!applyAccordion)}
         className="flex items-center gap-1"
@@ -29,6 +29,6 @@ export default function ReplyView() {
           <ReplyItem />
         </>
       )}
-    </>
+    </div>
   );
 }

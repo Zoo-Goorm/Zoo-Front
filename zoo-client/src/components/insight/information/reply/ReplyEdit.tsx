@@ -1,5 +1,11 @@
 import Image from 'next/image';
 
+async function createReply(formData: FormData) {
+  const content = formData.get('content');
+
+  console.log(content);
+}
+
 export default function ReplyEdit() {
   return (
     <>
@@ -12,13 +18,19 @@ export default function ReplyEdit() {
         />
         <span className="body-r-14 text-text-sub">답글</span>
       </div>
-      <div className="flex flex-col items-end gap-5 px-20 py-16">
+      <form
+        className="flex min-w-full flex-col items-end gap-5 px-20 py-16"
+        action={createReply}
+      >
         <textarea
-          className="h-64 min-w-full resize-none focus:outline-none"
+          name="content"
+          className="h-64 w-full resize-none focus:outline-none"
           placeholder="해당 인사이트의 답글을 남겨 보세요!"
         />
-        <button className="body-sm-16 text-text-primary">등록</button>
-      </div>
+        <button type="submit" className="body-sm-16 text-text-primary">
+          등록
+        </button>
+      </form>
     </>
   );
 }
