@@ -7,6 +7,7 @@ import {
 import ModalButton from './Layout/ModalButton';
 import ModalHeader from './Layout/ModalHeader';
 import ModalContainer from './Layout/ModalContainer';
+import useModalStore from '@/store/common/useModalStore';
 
 function ModalBody({ bodyText }: IModalBodyProps) {
   return (
@@ -22,9 +23,11 @@ export default function AlertModal({
   bodyText,
   buttonText,
 }: IModalBodyProps & IModalButtonProps & IModalHeaderProps) {
+  const { closeModal } = useModalStore();
+
   return (
     <ModalContainer>
-      <ModalHeader headerText={headerText} />
+      <ModalHeader headerText={headerText} closeModal={closeModal} />
       <ModalBody bodyText={bodyText} />
       <ModalButton buttonText={buttonText} onButtonClick={onButtonClick} />
     </ModalContainer>

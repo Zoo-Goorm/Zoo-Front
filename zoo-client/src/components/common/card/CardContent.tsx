@@ -26,7 +26,7 @@ export default function CardContent() {
   };
 
   return (
-    <div className="flex max-w-[25rem] flex-col items-center gap-0 p-0">
+    <div className="flex h-[27rem] max-w-[25rem] flex-col items-center justify-between gap-0 whitespace-break-spaces p-0">
       <div className="flex h-[3.8125rem] flex-col justify-center self-stretch bg-bg-secondary p-16">
         <h3 className="title-sb-24 text-text-primary">NN:NN ~ NN:NN</h3>
       </div>

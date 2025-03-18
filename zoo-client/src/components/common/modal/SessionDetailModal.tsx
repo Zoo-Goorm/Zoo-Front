@@ -4,32 +4,15 @@ import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
 import { useApplyStore } from '@/store/common/useApplyStore';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { SessionId } from '@/types/session/session';
+import { ISessionId } from '@/types/session/session';
+import ModalContainer from './Layout/ModalContainer';
+import ModalHeader from './Layout/ModalHeader';
 
-export default function SessionDetailModal({
-  currentSession,
-}: {
-  currentSession: SessionId;
-}) {
-  const router = useRouter();
+const ModalBody = ({ currentSession }: ISessionId) => {
   const { setModalType } = useApplyStore();
-
-  const closeModal = () => {
-    router.back();
-  };
 
   return (
     <div>
-      <div className="flex justify-end">
-        <Image
-          alt="close-modal"
-          onClick={closeModal}
-          width={32}
-          height={32}
-          className="cursor-pointer"
-          src="/button/close.svg"
-        />
-      </div>
       <div className="flex flex-col gap-12 py-20">
         <ContentBadge
           keywords={currentSession.keywords}
@@ -75,5 +58,20 @@ export default function SessionDetailModal({
         text={SESSION_SCHEDULE_MESSAGES.buttonModalText}
       />
     </div>
+  );
+};
+
+export default function SessionDetailModal({ currentSession }: ISessionId) {
+  const router = useRouter();
+
+  const closeModal = () => {
+    router.back();
+  };
+
+  return (
+    <ModalContainer>
+      <ModalHeader closeModal={closeModal} />
+      <ModalBody currentSession={currentSession} />
+    </ModalContainer>
   );
 }

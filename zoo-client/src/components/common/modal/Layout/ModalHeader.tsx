@@ -1,10 +1,10 @@
 import Image from 'next/image';
-import useModalStore from '@/store/common/useModalStore';
 import { IModalHeaderProps } from '@/types/modal/modal';
 
-export default function ModalHeader({ headerText }: IModalHeaderProps) {
-  const { closeModal } = useModalStore();
-
+export default function ModalHeader({
+  headerText,
+  closeModal,
+}: IModalHeaderProps) {
   return (
     <header className="flex w-[100%] items-center justify-between px-0 py-12">
       <h4 className="title-sb-24 text-text-main">{headerText}</h4>
