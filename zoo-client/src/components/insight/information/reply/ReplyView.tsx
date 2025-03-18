@@ -1,10 +1,12 @@
 'use client';
+import { ReplyList } from '@/mock/insight-info';
 import Image from 'next/image';
-import ReplyItem from './ReplyItem';
 import { useState } from 'react';
+import ReplyItem from './ReplyItem';
 
 export default function ReplyView() {
   const [applyAccordion, setApplyAccordion] = useState(false);
+
   return (
     <div className="flex flex-col gap-16 pb-20">
       <div
@@ -22,11 +24,9 @@ export default function ReplyView() {
       </div>
       {applyAccordion && (
         <>
-          <ReplyItem />
-          <ReplyItem />
-          <ReplyItem />
-          <ReplyItem />
-          <ReplyItem />
+          {ReplyList.map((item, index) => (
+            <ReplyItem key={index} {...item} />
+          ))}
         </>
       )}
     </div>
