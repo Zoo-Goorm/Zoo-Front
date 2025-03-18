@@ -20,7 +20,7 @@ export default function ReplyView() {
           alt="down-arrow"
           className={`transition-transform duration-300 ease-in-out ${applyAccordion ? 'rotate-180' : ''}`}
         />
-        <span className="body-r-14 text-text-sub">답글 N개</span>
+        <span className="body-r-14 text-text-sub">{`답글 ${ReplyList.length}개`}</span>
       </div>
       {applyAccordion && (
         <>
