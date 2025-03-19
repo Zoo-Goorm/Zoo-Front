@@ -15,7 +15,6 @@ export { default as InsightHeader } from './insight/information/InsightHeader';
 export { default as InsightContent } from './insight/information/InsightContent';
 
 /* Reply */
-export { default as ReplyEdit } from './insight/information/reply/ReplyEdit';
 export { default as ReplyView } from './insight/information/reply/ReplyView';
 
 /* session */
@@ -56,6 +55,7 @@ export { default as CardContent } from './common/card/CardContent';
 export { default as TextField } from './common/textField/TextField';
 export { default as RegisterForm } from './register/RegisterForm';
 export { default as NoneMemberForm } from './noneMember/NoneMemberForm';
+export { default as InsightForm } from './insight/InsightForm';
 
 /* modal */
 export { default as AlertModal } from './common/modal/AlertModal';

@@ -25,6 +25,9 @@ export interface InsightDetailedProps {
   content: string;
   profile: ProfileProps;
 }
+export interface IInsightDetailed {
+  InsightDetailed: InsightDetailedProps;
+}
 
 export interface ProfileProps {
   name: string;

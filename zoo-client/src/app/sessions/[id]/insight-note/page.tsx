@@ -1,23 +1,49 @@
 'use client';
-import { Footer, NavigationBar, SessionInfo } from '@/components';
+import { Footer, InsightForm, NavigationBar, SessionInfo } from '@/components';
 import { session } from '@/mock/session';
+import Image from 'next/image';
+
+const CardContaier = () => {
+  return (
+    <div className="h-[579px] w-[259px] bg-bg-badge-subject">
+      여기는 카드 컨테이너입니다
+    </div>
+  );
+};
 
 const ImbedView = () => {
-  return <div className="h-[160px] bg-text-primary">ddfddsfdsf</div>;
+  return <div className="h-[520px] w-full bg-text-primary"></div>;
+};
+
+const SessionInsightInfo = () => {
+  return (
+    <div className="py-32">
+      <SessionInfo session={session} />
+      <div className="flex items-center gap-2">
+        <Image
+          src="/mock/profile.svg"
+          alt="session-profile"
+          height={48}
+          width={48}
+        />
+        <span className="title-sb-20 text-text-main">연사 이름</span>
+        <span className="body-m-16-150 text-text-sub">연사 정보</span>
+      </div>
+    </div>
+  );
 };
 
 export default function SessionInsightNotes() {
   return (
     <main>
       <NavigationBar />
-      <div className="flex items-center gap-20">
-        <div className="flex max-w-[530px] flex-col items-start justify-center bg-fill-primary">
+      <div className="flex justify-center gap-20 py-20">
+        <div className="flex max-w-[900px] flex-col items-start justify-center">
           <ImbedView />
-          <SessionInfo session={session} />
+          <SessionInsightInfo />
+          <InsightForm type="insight" />
         </div>
-        <div className="h-[579px] w-[259px] bg-bg-badge-subject">
-          여기는 카드 컨테이너입니다
-        </div>
+        <CardContaier />
       </div>
       <Footer />
     </main>

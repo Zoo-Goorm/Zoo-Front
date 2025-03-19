@@ -4,14 +4,16 @@ import ModalHeader from './Layout/ModalHeader';
 import { useRouter } from 'next/navigation';
 import {
   InsightContent,
+  InsightForm,
   InsightHeader,
   Profile,
-  ReplyEdit,
   ReplyView,
 } from '@/components';
 import { InsightDetailed } from '@/mock/insightDetailed';
+import Image from 'next/image';
+import { IInsightDetailed } from '@/types/insight/insight';
 
-const ModalBody = () => {
+const ModalBody = ({ InsightDetailed }: IInsightDetailed) => {
   const { title, description, keywords, content, profile } = InsightDetailed;
 
   return (
@@ -20,7 +22,16 @@ const ModalBody = () => {
       <InsightHeader title={title} description={description} />
       <Profile profile={profile} />
       <InsightContent content={content} />
-      <ReplyEdit />
+      <div className="flex items-center gap-1">
+        <Image
+          height={24}
+          width={24}
+          src="/mock/reply-icon.svg"
+          alt="reply-icon"
+        />
+        <span className="body-r-14 text-text-sub">답글</span>
+      </div>
+      <InsightForm type="reply" />
       <ReplyView />
     </div>
   );
@@ -38,10 +49,10 @@ export default function InsightInfoModal() {
         className="w-[868px] bg-bg-primary px-32 py-20"
       >
         <ModalHeader
-          headerText={'[Name]님 인사이트 노트'}
+          headerText={`${InsightDetailed.profile.name}님 인사이트 노트`}
           closeModal={closeModal}
         />
-        <ModalBody />
+        <ModalBody InsightDetailed={InsightDetailed} />
       </div>
     </div>
   );
