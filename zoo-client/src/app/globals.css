@@ -225,4 +225,15 @@
     line-height: 0.75em;
     letter-spacing: 0rem;
   }
+
+  .text-overflow {
+    display: -webkit-box;
+    overflow: hidden;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+
+    text-overflow: ellipsis;
+    word-break: break-word;
+  }
 }
