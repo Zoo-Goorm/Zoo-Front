@@ -1,6 +1,5 @@
 export { default as Badge } from './common/badge/Badge';
 export { default as ChipList } from './common/chip/ChipList';
-export { default as Tab } from './common/tab/Tab';
 
 export { default as JobItem } from './common/jobItem/JobItem';
 export { default as Profile } from './insight/information/Profile';
@@ -63,3 +62,7 @@ export { default as JobModal } from './common/modal/JobModal';
 export { default as SessionApplyModal } from './common/modal/SessionApplyModal';
 export { default as SessionDetailModal } from './common/modal/SessionDetailModal';
 export { default as InsightInfoModal } from './common/modal/InsightInfoModal';
+
+/* tab */
+export { default as Tab } from './common/tab/Tab';
+export { default as InsightNoteTab } from './common/tab/insight/InsightNoteTab';
