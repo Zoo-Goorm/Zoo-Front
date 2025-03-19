@@ -2,7 +2,6 @@ export { default as Badge } from './common/badge/Badge';
 export { default as ChipList } from './common/chip/ChipList';
 
 export { default as JobItem } from './common/jobItem/JobItem';
-export { default as Profile } from './insight/information/Profile';
 
 export { default as CheckBox } from './common/checkbox/CheckBox';
 export { default as Radio } from './common/radio/Radio';
@@ -46,6 +45,10 @@ export { default as NavigationBar } from './common/navigationBar/NavigationBar';
 export { default as CardBadge } from './common/badge/CardBadge';
 export { default as ContentBadge } from './common/badge/ContentBadge';
 export { default as Footer } from './common/footer/Footer';
+
+/* profile */
+export { default as Profile } from './insight/information/Profile';
+export { default as CardProfile } from './common/profile/CardProfile';
 
 /* card */
 export { default as CardContent } from './common/card/CardContent';
