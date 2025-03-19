@@ -16,3 +16,30 @@ export interface IReplyItemProps {
   role: string;
   content: string;
 }
+
+export interface InsightDetailedProps {
+  id: number;
+  title: string;
+  description: string;
+  keywords: string[];
+  content: string;
+  profile: ProfileProps;
+}
+
+export interface ProfileProps {
+  name: string;
+  email: string;
+  keywords: string[];
+  social: Record<string, string>;
+}
+export interface IProfile {
+  profile: ProfileProps;
+}
+
+export interface SocialProps {
+  linkedin: string;
+  github: string;
+  instagram: string;
+  notion: string;
+  threads: string;
+}

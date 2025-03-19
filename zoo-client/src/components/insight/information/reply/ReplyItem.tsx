@@ -20,7 +20,6 @@ export default function ReplyItem({
       setIsOverflowing(textRef.current.scrollHeight > 120);
     }
   }, []);
-
   return (
     <div className="flex flex-col gap-2 pb-5 pl-32">
       <div className="flex gap-8">

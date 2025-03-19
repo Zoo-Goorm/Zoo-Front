@@ -2,7 +2,7 @@ import ChipList from '@/components/common/chip/ChipList';
 import Image from 'next/image';
 import SocialList from './SocialList';
 import LikeToggle from './LikeToggle';
-import { InfoListProps } from '@/types/insight/insight';
+import { InfoListProps, IProfile } from '@/types/insight/insight';
 
 const InfoList = ({ name, email }: InfoListProps) => {
   return (
@@ -13,8 +13,8 @@ const InfoList = ({ name, email }: InfoListProps) => {
   );
 };
 
-export default function Profile() {
-  const list = ['직군', '직업', '관심분야', '관심분야', '관심분야', '관심분야'];
+export default function Profile({ profile }: IProfile) {
+  const { name, email, keywords, social } = profile;
 
   return (
     <div className="flex items-end justify-between">
@@ -26,9 +26,9 @@ export default function Profile() {
           width={100}
         />
         <div className="flex flex-col gap-3">
-          <InfoList name={'Name'} email={'Sample@sample.com'} />
-          <ChipList type="subject" size="l" dataList={list} />
-          <SocialList />
+          <InfoList name={name} email={email} />
+          <ChipList type="subject" size="l" dataList={keywords} />
+          <SocialList social={social} />
         </div>
       </div>
       <LikeToggle />
