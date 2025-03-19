@@ -1,18 +1,20 @@
 'use client';
-import { Footer, InsightForm, NavigationBar, SessionInfo } from '@/components';
+import {
+  Footer,
+  Video,
+  InsightForm,
+  NavigationBar,
+  SessionInfo,
+} from '@/components';
 import { session } from '@/mock/session';
 import Image from 'next/image';
 
-const CardContaier = () => {
+const CardContainer = () => {
   return (
     <div className="h-[579px] w-[259px] bg-bg-badge-subject">
       여기는 카드 컨테이너입니다
     </div>
   );
-};
-
-const ImbedView = () => {
-  return <div className="h-[520px] w-full bg-text-primary"></div>;
 };
 
 const SessionInsightInfo = () => {
@@ -38,12 +40,12 @@ export default function SessionInsightNotes() {
     <main>
       <NavigationBar />
       <div className="flex justify-center gap-20 py-20">
-        <div className="flex max-w-[900px] flex-col items-start justify-center">
-          <ImbedView />
+        <div className="flex max-w-[924px] flex-col items-start justify-center">
+          <Video />
           <SessionInsightInfo />
           <InsightForm type="insight" />
         </div>
-        <CardContaier />
+        <CardContainer />
       </div>
       <Footer />
     </main>

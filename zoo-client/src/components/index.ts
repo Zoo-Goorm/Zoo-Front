@@ -13,7 +13,7 @@ export { default as RadioContent } from './common/radio/RadioContent';
 /* insight */
 export { default as InsightHeader } from './insight/information/InsightHeader';
 export { default as InsightContent } from './insight/information/InsightContent';
-
+export { default as Video } from './insight/note/Video';
 /* Reply */
 export { default as ReplyView } from './insight/information/reply/ReplyView';
 
