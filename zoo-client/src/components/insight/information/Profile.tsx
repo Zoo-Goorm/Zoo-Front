@@ -31,7 +31,7 @@ export default function Profile() {
           <SocialList />
         </div>
       </div>
-      <LikeToggle />
+      <LikeToggle count="999+" />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import InsightPage from '../page';
+import InsightPage from '../../insights/page';
 import { useRouter } from 'next/navigation';
 import { InsightInfoModal } from '@/components';
 

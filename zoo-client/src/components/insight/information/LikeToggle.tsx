@@ -1,6 +1,10 @@
 import Image from 'next/image';
 
-export default function LikeToggle() {
+interface ILikeToggle {
+  count: number | string;
+}
+
+export default function LikeToggle({ count }: ILikeToggle) {
   return (
     <div className="flex items-center gap-4">
       <Image
@@ -9,7 +13,7 @@ export default function LikeToggle() {
         height={36}
         width={36}
       />
-      <span>999+</span>
+      <span>{count}</span>
     </div>
   );
 }
