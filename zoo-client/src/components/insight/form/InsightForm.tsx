@@ -5,15 +5,20 @@ import { useInsightFormStore } from '@/store/common/insight/useInsightForm';
 type inputType = 'reply' | 'insight';
 
 export default function InsightForm({ type }: { type: inputType }) {
-  const { images, vote, setImages } = useInsightFormStore();
+  const { images, vote, resetVote, resetImages } = useInsightFormStore();
 
   const createNoteHandler = async (formData: FormData) => {
-    images?.forEach((image, index) => {
-      formData.append(`image-${index}`, image);
-    });
-    // vote?.forEach((value, index) => {
-    //   formData.append([...value]);
-    // });
+    if (images !== null) {
+      images.forEach((file) => {
+        formData.append('images', file);
+      });
+      resetImages();
+    } else {
+      vote!.forEach((value) => {
+        formData.append('vote', value);
+      });
+      resetVote();
+    }
     await createNote(formData);
   };
 

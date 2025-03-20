@@ -1,5 +1,5 @@
 export default function Video() {
-  const video = `https://www.youtube.com/embed/8GTQD1U1upY?si=FAY0SVtoP0kUVJrQ`;
+  const video = `https://www.youtube.com/embed/8GTQD1U1upY?si=FAY0SVtoP0kUVJrQ?rel=0`;
 
   return (
     <iframe

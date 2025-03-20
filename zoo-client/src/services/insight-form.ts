@@ -6,14 +6,12 @@ export async function createReply(formData: FormData) {
 
 export async function createNote(formData: FormData) {
   const content = formData.get('content');
-  const images: File[] = [];
+  const images =
+    formData?.getAll('images').length > 0 ? formData.getAll('images') : null;
+  const vote =
+    formData?.getAll('vote').length > 0 ? formData.getAll('vote') : null;
 
-  for (const [key, value] of formData.entries()) {
-    if (key.startsWith('image-') && value instanceof File) {
-      images.push(value);
-    }
-  }
-
-  console.log(content);
-  console.log(images);
+  console.log('내용:', content);
+  console.log('이미지:', images);
+  console.log('투표', vote);
 }

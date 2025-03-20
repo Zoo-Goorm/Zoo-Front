@@ -7,7 +7,7 @@ import {
   InsightForm,
   InsightHeader,
   Profile,
-  ReplyView,
+  ReplyList,
 } from '@/components';
 import { InsightDetailed } from '@/mock/insightDetailed';
 import Image from 'next/image';
@@ -32,7 +32,7 @@ const ModalBody = ({ InsightDetailed }: IInsightDetailed) => {
         <span className="body-r-14 text-text-sub">답글</span>
       </div>
       <InsightForm type="reply" />
-      <ReplyView />
+      <ReplyList />
     </div>
   );
 };

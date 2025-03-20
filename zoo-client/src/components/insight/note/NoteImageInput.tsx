@@ -1,6 +1,6 @@
 import InsightCarousel from '@/components/common/carousel/InsightCarousel';
 import { useInsightFormStore } from '@/store/common/insight/useInsightForm';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function NoteImageInput({
   fileInputRef,
@@ -8,9 +8,18 @@ export default function NoteImageInput({
   fileInputRef: React.RefObject<HTMLInputElement | null>;
 }) {
   const { images, setImages } = useInsightFormStore();
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
 
   useEffect(() => {
     console.log(images);
+    if (images && images.length > 0) {
+      const urls = images.map((file) => URL.createObjectURL(file));
+      setImageUrls(urls);
+
+      return () => urls.forEach((url) => URL.revokeObjectURL(url));
+    } else {
+      setImageUrls([]);
+    }
   }, [images]);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,8 +29,6 @@ export default function NoteImageInput({
     }
   };
 
-  // blob으로 이미지 미리보기용 URL 생성 (화면에 표시 목적)
-  const imageUrls = images?.map((file) => URL.createObjectURL(file)) || null;
   return (
     <>
       <input

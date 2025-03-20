@@ -3,7 +3,6 @@
 import InsightNotePage from '../page';
 import { useRouter } from 'next/navigation';
 import { InsightInfoModal } from '@/components';
-import { useEffect } from 'react';
 
 export default function InsightDetailPage() {
   const router = useRouter();
@@ -11,14 +10,7 @@ export default function InsightDetailPage() {
   const handleClose = () => {
     router.back();
   };
-  useEffect(() => {
-    const originalStyle = window.getComputedStyle(document.body).overflow;
-    document.body.style.overflow = 'hidden';
 
-    return () => {
-      document.body.style.overflow = originalStyle;
-    };
-  }, []);
   return (
     <>
       <InsightNotePage />
