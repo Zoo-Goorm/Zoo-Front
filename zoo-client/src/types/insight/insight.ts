@@ -1,7 +1,4 @@
-export interface InfoListProps {
-  name: string;
-  email: string;
-}
+import { ProfileProps } from './insightProfile';
 
 export interface InsightHeaderProps {
   title: string;
@@ -27,26 +24,4 @@ export interface InsightDetailedProps {
 }
 export interface IInsightDetailed {
   InsightDetailed: InsightDetailedProps;
-}
-
-export interface ProfileProps {
-  name: string;
-  email: string;
-  keywords: string[];
-  social: SocialProps;
-}
-export interface IProfile {
-  profile: ProfileProps;
-}
-
-export interface SocialProps {
-  linkedin: string;
-  github: string;
-  instagram: string;
-  notion: string;
-  threads: string;
-}
-
-export interface ISocial {
-  social: SocialProps;
 }

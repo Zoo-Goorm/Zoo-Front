@@ -1,4 +1,4 @@
-import { getKeywords, getSession, getSessions } from '@/app/services/session';
+import { getKeywords, getSession, getSessions } from '@/services/session';
 import { useQuery } from '@tanstack/react-query';
 
 export const sessionsQueryKey = ['sessions'];

@@ -1,9 +1,8 @@
 'use client';
 
-import InsightNotePage from '../page';
+import InsightPage from '../../insights/page';
 import { useRouter } from 'next/navigation';
 import { InsightInfoModal } from '@/components';
-import { useEffect } from 'react';
 
 export default function InsightDetailPage() {
   const router = useRouter();
@@ -11,22 +10,18 @@ export default function InsightDetailPage() {
   const handleClose = () => {
     router.back();
   };
-  useEffect(() => {
-    const originalStyle = window.getComputedStyle(document.body).overflow;
-    document.body.style.overflow = 'hidden';
 
-    return () => {
-      document.body.style.overflow = originalStyle;
-    };
-  }, []);
   return (
     <>
-      <InsightNotePage />
+      <InsightPage />
       <div
         className="fixed inset-0 z-50 flex items-center justify-center bg-bg-black/60"
         onClick={handleClose}
       >
-        <div className="max-h-screen w-full overflow-y-auto rounded-sm text-text-main shadow-md">
+        <div
+          className="max-h-screen w-full overflow-y-auto rounded-sm text-text-main shadow-md"
+          onClick={(e) => e.stopPropagation()}
+        >
           <InsightInfoModal />
         </div>
       </div>
