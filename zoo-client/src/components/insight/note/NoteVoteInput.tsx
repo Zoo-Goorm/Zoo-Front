@@ -24,17 +24,17 @@ export default function NoteVoteInput() {
             <button
               type="button"
               onClick={addVoteItem}
-              className="text-text-main"
+              className="text-text-primary"
             >
-              추가
+              항목 추가
             </button>
           ) : (
             <button
               type="button"
               onClick={removeVoteItem}
-              className="text-text-main"
+              className="text-text-primary"
             >
-              제거
+              항목 제거
             </button>
           )}
         </div>
