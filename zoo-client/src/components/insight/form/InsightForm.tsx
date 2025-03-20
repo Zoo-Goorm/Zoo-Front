@@ -1,55 +1,43 @@
-import { useRef } from 'react';
-import NoteImageInput from '../note/NoteImageInput';
-import ReplyFooter from './ReplyFooter';
-import NoteFooter from './NoteFooter';
-
-async function createReply(formData: FormData) {
-  const content = formData.get('content');
-
-  console.log(content);
-}
-
-async function createNote(formData: FormData) {
-  const content = formData.get('content');
-
-  console.log(content);
-}
+import { createNote, createReply } from '@/services/insight-form';
+import { NoteInput, ReplyInput } from '@/components';
+import { useInsightFormStore } from '@/store/common/insight/useInsightForm';
 
 type inputType = 'reply' | 'insight';
 
 export default function InsightForm({ type }: { type: inputType }) {
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const { images, vote, setImages } = useInsightFormStore();
 
-  const AddImageHandler = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
+  const createNoteHandler = async (formData: FormData) => {
+    images?.forEach((image, index) => {
+      formData.append(`image-${index}`, image);
+    });
+    // vote?.forEach((value, index) => {
+    //   formData.append([...value]);
+    // });
+    await createNote(formData);
   };
 
-  const typePlaceHolder = {
-    reply: '해당 인사이트의 답글을 남겨 보세요!',
-    insight: '인사이트를 작성하고 같이 세션을 들은 사람들과 의견을 공유해요!',
+  const typeComponent = {
+    reply: {
+      Component: ReplyInput,
+      text: '해당 인사이트의 답글을 남겨 보세요!',
+      action: createReply,
+    },
+    insight: {
+      Component: NoteInput,
+      text: '인사이트를 작성하고 같이 세션을 들은 사람들과 의견을 공유해요!',
+      action: createNoteHandler,
+    },
   };
+
+  const { Component } = typeComponent[type];
+
   return (
     <form
       className="body-sm-16 flex min-w-full flex-col gap-5 p-20"
-      action={type == 'reply' ? createReply : createNote}
+      action={typeComponent[type].action}
     >
-      <textarea
-        name="content"
-        className="h-64 w-full resize-none text-text-thirary focus:outline-none"
-        placeholder={typePlaceHolder[type]}
-      />
-      {type == 'insight' && <NoteImageInput fileInputRef={fileInputRef} />}
-      {type == 'reply' ? (
-        <ReplyFooter />
-      ) : (
-        <NoteFooter
-          AddImageHandler={AddImageHandler}
-          AddVoteHandler={AddImageHandler}
-          AddTimeHandler={AddImageHandler}
-        />
-      )}
+      <Component text={typeComponent[type].text} />
     </form>
   );
 }

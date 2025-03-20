@@ -17,11 +17,11 @@ export { default as LikeToggle } from './common/toggle/LikeToggle';
 export { default as InsightHeader } from './insight/information/InsightHeader';
 export { default as InsightContent } from './insight/information/InsightContent';
 export { default as Video } from './insight/Video';
-export { default as NoteFooter } from './insight/form/NoteFooter';
-export { default as ReplyFooter } from './insight/form/ReplyFooter';
+export { default as NoteInput } from './insight/form/NoteInput';
+export { default as ReplyInput } from './insight/form/ReplyInput';
 
 /* Reply */
-export { default as ReplyView } from './insight/reply/ReplyList';
+export { default as ReplyList } from './insight/reply/ReplyList';
 
 /* session */
 export { default as SessionList } from './common/session/SessionList';
