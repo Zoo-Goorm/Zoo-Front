@@ -2,7 +2,7 @@ export { default as Badge } from './common/badge/Badge';
 export { default as ChipList } from './common/chip/ChipList';
 
 export { default as JobItem } from './common/jobItem/JobItem';
-
+export { default as InsightCarousel } from './common/carousel/InsightCarousel';
 export { default as CheckBox } from './common/checkbox/CheckBox';
 export { default as Radio } from './common/radio/Radio';
 export { default as ProgressBar } from './common/progressbar/ProgressBar';
@@ -17,6 +17,8 @@ export { default as LikeToggle } from './common/toggle/LikeToggle';
 export { default as InsightHeader } from './insight/information/InsightHeader';
 export { default as InsightContent } from './insight/information/InsightContent';
 export { default as Video } from './insight/Video';
+export { default as NoteFooter } from './insight/form/NoteFooter';
+export { default as ReplyFooter } from './insight/form/ReplyFooter';
 
 /* Reply */
 export { default as ReplyView } from './insight/reply/ReplyList';
@@ -65,7 +67,7 @@ export { default as GeneralInsightCard } from './common/card/InsightCard.general
 export { default as TextField } from './common/textField/TextField';
 export { default as RegisterForm } from './register/RegisterForm';
 export { default as NoneMemberForm } from './noneMember/NoneMemberForm';
-export { default as InsightForm } from './insight/InsightForm';
+export { default as InsightForm } from './insight/form/InsightForm';
 
 /* modal */
 export { default as AlertModal } from './common/modal/AlertModal';
