@@ -1,8 +1,8 @@
 import ChipList from '@/components/common/chip/ChipList';
 import Image from 'next/image';
 import SocialList from './SocialList';
-import LikeToggle from './LikeToggle';
 import { InfoListProps, IProfile } from '@/types/insight/insight';
+import LikeToggle from '@/components/common/toggle/LikeToggle';
 
 const InfoList = ({ name, email }: InfoListProps) => {
   return (

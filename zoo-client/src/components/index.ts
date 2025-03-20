@@ -10,12 +10,18 @@ export { default as Radio } from './common/radio/Radio';
 export { default as ProgressBar } from './common/progressbar/ProgressBar';
 export { default as RadioContent } from './common/radio/RadioContent';
 
+/* toggle */
+export { default as LikeToggle } from './common/toggle/LikeToggle';
+
 /* insight */
+export { default as NoteList } from './insight/note/NoteList';
+export { default as NoteItem } from './insight/note/NoteItem';
 export { default as InsightHeader } from './insight/information/InsightHeader';
 export { default as InsightContent } from './insight/information/InsightContent';
-export { default as Video } from './insight/note/Video';
+export { default as Video } from './insight/Video';
+
 /* Reply */
-export { default as ReplyView } from './insight/information/reply/ReplyView';
+export { default as ReplyView } from './insight/reply/ReplyList';
 
 /* session */
 export { default as SessionList } from './common/session/SessionList';

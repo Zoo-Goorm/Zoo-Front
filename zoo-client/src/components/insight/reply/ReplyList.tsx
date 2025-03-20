@@ -5,7 +5,7 @@ import ReplyItem from './ReplyItem';
 import { ReplyList } from '@/mock/reply';
 
 export default function ReplyView() {
-  const [applyAccordion, setApplyAccordion] = useState(false);
+  const [applyAccordion, setApplyAccordion] = useState(true);
 
   return (
     <div className="flex flex-col gap-16 pb-20">

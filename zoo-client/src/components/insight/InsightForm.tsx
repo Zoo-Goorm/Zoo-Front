@@ -1,3 +1,4 @@
+import { ButtonList } from '@/mock/InputButtonList';
 import Image from 'next/image';
 
 async function createReply(formData: FormData) {
@@ -14,7 +15,10 @@ async function createNote(formData: FormData) {
 
 const ReplyFooter = () => {
   return (
-    <button type="submit" className="body-m-16 text-end text-text-primary">
+    <button
+      type="submit"
+      className="body-m-16 cursor-pointer text-end text-text-primary"
+    >
       등록
     </button>
   );
@@ -24,23 +28,26 @@ const InsightFooter = () => {
   return (
     <div className="flex items-center justify-between">
       <div className="flex gap-16">
-        <Image
-          width={32}
-          height={32}
-          src="/button/AddImage.svg"
-          alt="Add-Image-btn"
-        />
-        <Image width={32} height={32} src="/button/vote.svg" alt="vote-btn" />
-        <Image width={32} height={32} src="/button/time.svg" alt="time-btn" />
+        {Object.entries(ButtonList).map(([index, [src, fnc]]) => (
+          <Image
+            key={index}
+            width={32}
+            height={32}
+            src={src}
+            alt={`btn-${index}`}
+            className="cursor-pointer"
+            onClick={fnc}
+          />
+        ))}
       </div>
       <div className="body-m-16 flex gap-2">
         <button
           onClick={() => console.log('임시저장')}
-          className="text-text-sub"
+          className="cursor-pointer text-text-sub"
         >
           임시저장
         </button>
-        <button type="submit" className="text-text-primary">
+        <button type="submit" className="cursor-pointer text-text-primary">
           등록
         </button>
       </div>

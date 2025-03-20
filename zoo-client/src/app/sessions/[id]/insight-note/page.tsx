@@ -5,6 +5,7 @@ import {
   InsightForm,
   NavigationBar,
   SessionInfo,
+  ReplyView,
 } from '@/components';
 import { session } from '@/mock/session';
 import Image from 'next/image';
@@ -44,6 +45,7 @@ export default function SessionInsightNotes() {
           <Video />
           <SessionInsightInfo />
           <InsightForm type="insight" />
+          <ReplyView />
         </div>
         <CardContainer />
       </div>

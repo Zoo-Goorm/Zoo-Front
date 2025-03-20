@@ -33,7 +33,7 @@ export interface ProfileProps {
   name: string;
   email: string;
   keywords: string[];
-  social: Record<string, string>;
+  social: SocialProps;
 }
 export interface IProfile {
   profile: ProfileProps;
@@ -45,4 +45,8 @@ export interface SocialProps {
   instagram: string;
   notion: string;
   threads: string;
+}
+
+export interface ISocial {
+  social: SocialProps;
 }

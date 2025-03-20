@@ -1,7 +1,7 @@
-import { SocialProps } from '@/types/insight/insight';
+import { ISocial } from '@/types/insight/insight';
 import Image from 'next/image';
 
-export default function SocialList({ social }: { social: SocialProps }) {
+export default function SocialList({ social }: ISocial) {
   const { linkedin, github, instagram, notion, threads } = social;
   return (
     <div className="flex gap-8">

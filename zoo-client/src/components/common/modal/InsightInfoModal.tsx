@@ -49,7 +49,7 @@ export default function InsightInfoModal() {
         className="w-[868px] bg-bg-primary px-32 py-20"
       >
         <ModalHeader
-          headerText={`${InsightDetailed.profile.name}님 인사이트 노트`}
+          headerText={`[${InsightDetailed.profile.name}]님 인사이트 노트`}
           closeModal={closeModal}
         />
         <ModalBody InsightDetailed={InsightDetailed} />
