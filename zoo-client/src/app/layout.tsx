@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<IChildren>) {
   return (
     <html lang="ko">
-      <body className="h-screen">
+      <body className="h-screen bg-bg-primary">
         <Providers>{children}</Providers>
       </body>
     </html>

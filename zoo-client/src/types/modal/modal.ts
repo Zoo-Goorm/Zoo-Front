@@ -4,7 +4,8 @@ export interface IModalContainer {
 }
 
 export interface IModalHeaderProps {
-  headerText: string;
+  headerText?: string;
+  closeModal?: () => void;
 }
 
 export interface IModalBodyProps {
