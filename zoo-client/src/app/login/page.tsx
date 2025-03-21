@@ -18,13 +18,13 @@ export default function Login() {
         <div className="flex flex-col items-start gap-16 self-stretch">
           <LoginButton
             type="kakao"
-            loginRouter={`${baseURL}/oauth2/authorization/kako`}
+            loginRouter={`${baseURL}/oauth2/authorization/kakao`}
           />
           <LoginButton
             type="google"
             loginRouter={`${baseURL}/oauth2/authorization/google`}
           />
-          <LoginButton loginRouter="/none-member" type="nonMember" />
+          <LoginButton type="nonMember" loginRouter="/none-member" />
         </div>
       </div>
     </div>
