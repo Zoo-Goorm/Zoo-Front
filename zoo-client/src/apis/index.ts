@@ -1,3 +1,3 @@
-const baseURL = `${process.env.NEXT_PUBLIC_API_URL}`;
+const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
 export default baseURL;
