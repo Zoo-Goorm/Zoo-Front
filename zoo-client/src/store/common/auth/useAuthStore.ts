@@ -23,7 +23,11 @@ const useAuthStore = create<AuthState & AuthStore>((set) => ({
   },
   getAccessToken: () => {
     const accessToken = localStorage.getItem('accessToken') || null;
-    set({ userToken: accessToken });
+
+    if (accessToken) {
+      set({ isAuthenticated: true });
+      set({ userToken: accessToken });
+    }
   },
 }));
 
