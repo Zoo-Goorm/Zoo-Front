@@ -1,4 +1,4 @@
-import { getKeywords, getSession, getSessions } from '@/services/session';
+import { getSession, getSessions } from '@/services/sessionService';
 import { useQuery } from '@tanstack/react-query';
 
 export const sessionsQueryKey = ['sessions'];
@@ -9,16 +9,6 @@ export function useSessions() {
     queryKey: sessionsQueryKey,
     queryFn: async () => {
       const res = await getSessions();
-      return res.data;
-    },
-  });
-}
-
-export function useKeywords() {
-  return useQuery({
-    queryKey: ['sessions', 'keywords'],
-    queryFn: async () => {
-      const res = await getKeywords();
       return res.data;
     },
   });

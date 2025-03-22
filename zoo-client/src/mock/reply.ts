@@ -1,4 +1,4 @@
-import { IReplyItemProps } from '@/types/insight/insight';
+import { IReplyItemProps } from '@/types/insight/reply';
 
 export const ReplyList: IReplyItemProps[] = [
   {

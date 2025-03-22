@@ -1,26 +1,17 @@
-import { createNote, createReply } from '@/services/insight-form';
+'use client';
+import { createNote, createReply } from '@/actions/insight-form';
 import { NoteInput, ReplyInput } from '@/components';
-import { useInsightFormStore } from '@/store/common/insight/useInsightForm';
+// import { useGetPresignedUrls, useUploadFilesToS3 } from '@/hook/useFiles';
+// import { useInsightFormStore } from '@/store/common/insight/useInsightForm';
+import useModalStore from '@/store/common/useModalStore';
 
 type inputType = 'reply' | 'insight';
 
 export default function InsightForm({ type }: { type: inputType }) {
-  const { images, vote, resetVote, resetImages } = useInsightFormStore();
+  // const { images, vote, resetVote, resetImages } = useInsightFormStore();
+  const { isOpen, contents } = useModalStore();
 
-  const createNoteHandler = async (formData: FormData) => {
-    if (images !== null) {
-      images.forEach((file) => {
-        formData.append('images', file);
-      });
-      resetImages();
-    } else {
-      vote!.forEach((value) => {
-        formData.append('vote', value);
-      });
-      resetVote();
-    }
-    await createNote(formData);
-  };
+  // const createNoteHandler = async (formData: FormData) => {};
 
   const typeComponent = {
     reply: {
@@ -31,7 +22,7 @@ export default function InsightForm({ type }: { type: inputType }) {
     insight: {
       Component: NoteInput,
       text: '인사이트를 작성하고 같이 세션을 들은 사람들과 의견을 공유해요!',
-      action: createNoteHandler,
+      action: createNote,
     },
   };
 
@@ -39,10 +30,11 @@ export default function InsightForm({ type }: { type: inputType }) {
 
   return (
     <form
-      className="body-sm-16 flex min-w-full flex-col gap-5 p-20"
+      className="body-sm-16 flex min-w-full flex-col gap-5 self-stretch p-20"
       action={typeComponent[type].action}
     >
       <Component text={typeComponent[type].text} />
+      {isOpen && contents}
     </form>
   );
 }

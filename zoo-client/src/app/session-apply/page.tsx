@@ -1,6 +1,5 @@
 'use client';
 
-import { useSessions } from '@/actions/session';
 import {
   DateInfoAccordion,
   Footer,
@@ -10,6 +9,7 @@ import {
   Tab,
 } from '@/components';
 import { SESSION_APPLY_MESSAGES } from '@/constants/messages';
+import { useSessions } from '@/hook/session/useSession';
 
 const Title = () => {
   return (

@@ -1,49 +1,77 @@
-import { ButtonProps } from '@/types/insight/button';
-import Image from 'next/image';
-import NoteImageInput from '../note/NoteImageInput';
-import { useRef } from 'react';
-import { useInsightFormStore } from '@/store/common/insight/useInsightForm';
-import NoteVoteInput from '../note/NoteVoteInput';
+'use client';
+// import NoteImageInput from '../note/NoteImageInput';
+// import { useRef } from 'react';
+// import { useInsightFormStore } from '@/store/common/insight/useInsightForm';
+// import NoteVoteInput from '../note/NoteVoteInput';
+import useModalStore from '@/store/common/useModalStore';
+import SettingNoteModal from '@/components/common/modal/SettingNoteModal';
+import SaveInsightModal from '@/components/common/modal/SaveInsightModal';
+import { useEffect, useState } from 'react';
+import { useSaveInsight } from '@/store/common/insight/useSaveInsight';
 
 export default function NoteInput({ text }: { text: string }) {
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const { vote, images, resetVote, setVote, resetImages } =
-    useInsightFormStore();
+  // const fileInputRef = useRef<HTMLInputElement>(null);
+  // const { vote, images, resetVote, setVote, resetImages } =
+  //   useInsightFormStore();
+  const { openModal } = useModalStore();
+  const [memo, setMemo] = useState('');
+  const { content } = useSaveInsight();
 
-  const AddImageHandler = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
-    if (vote !== null) {
-      resetVote();
-    }
+  // const AddImageHandler = () => {
+  //   if (fileInputRef.current) {
+  //     fileInputRef.current.click();
+  //   }
+  //   if (vote !== null) {
+  //     resetVote();
+  //   }
+  // };
+
+  // const AddVoteHandler = () => {
+  //   setVote();
+  //   if (images !== null) {
+  //     resetImages();
+  //   }
+  // };
+
+  // const ButtonList: ButtonProps = {
+  //   addImg: ['/button/AddImage.svg', AddImageHandler],
+  //   vote: ['/button/vote.svg', AddVoteHandler],
+  //   time: ['/button/time.svg', AddImageHandler],
+  // };
+
+  const openSettingModal = () => {
+    openModal({
+      contents: <SettingNoteModal />,
+    });
   };
-
-  const AddVoteHandler = () => {
-    setVote();
-    if (images !== null) {
-      resetImages();
-    }
-  };
-
-  const ButtonList: ButtonProps = {
-    addImg: ['/button/AddImage.svg', AddImageHandler],
-    vote: ['/button/vote.svg', AddVoteHandler],
-    time: ['/button/time.svg', AddImageHandler],
+  const openSaveModal = () => {
+    openModal({
+      contents: (
+        <SaveInsightModal
+          headerText="임시저장"
+          bodyText={`해당 페이지를 벗어 날 시 임시저장을 누르지 않으면 
+인사이트에 작성한 모든 노트 정보가 사라집니다.`}
+          memo={memo}
+        />
+      ),
+    });
   };
 
   return (
     <>
       <textarea
+        required
         name="content"
+        onChange={(e) => setMemo(e.target.value)}
         className="h-64 w-full resize-none text-text-thirary focus:outline-none"
         placeholder={text}
+        defaultValue={content}
       />
-      <NoteImageInput fileInputRef={fileInputRef} />
-      <NoteVoteInput />
+      {/* <NoteImageInput fileInputRef={fileInputRef} /> */}
+      {/* <NoteVoteInput /> */}
       <div className="flex items-center justify-between">
         <div className="flex gap-16">
-          {Object.entries(ButtonList).map(([index, [src, fnc]]) => (
+          {/* {Object.entries(ButtonList).map(([index, [src, fnc]]) => (
             <Image
               key={index}
               width={32}
@@ -53,16 +81,21 @@ export default function NoteInput({ text }: { text: string }) {
               className="cursor-pointer"
               onClick={fnc}
             />
-          ))}
+          ))} */}
         </div>
         <div className="body-m-16 flex gap-2">
           <button
-            onClick={() => console.log('임시저장')}
+            type="button"
+            onClick={openSaveModal}
             className="cursor-pointer text-text-sub"
           >
             임시저장
           </button>
-          <button type="submit" className="cursor-pointer text-text-primary">
+          <button
+            type="button"
+            onClick={openSettingModal}
+            className="cursor-pointer text-text-primary"
+          >
             등록
           </button>
         </div>

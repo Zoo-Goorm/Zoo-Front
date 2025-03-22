@@ -1,5 +1,4 @@
 'use client';
-import { useKeywords, useSessions } from '@/actions/session';
 import {
   PurchaseButton,
   NavigationBar,
@@ -9,7 +8,9 @@ import {
   SessionList,
 } from '@/components';
 import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
-import useTitleAccess from '@/hook/useTitleAccess';
+import useTitleAccess from '@/hook/acceess/useTitleAccess';
+import { useKeywords } from '@/hook/session/useKeywords';
+import { useSessions } from '@/hook/session/useSession';
 
 const Title = () => {
   const { hide, handler } = useTitleAccess();

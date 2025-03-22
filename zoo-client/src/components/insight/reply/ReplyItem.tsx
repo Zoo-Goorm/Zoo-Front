@@ -1,8 +1,9 @@
 'use client';
 
-import { IReplyItemProps } from '@/types/insight/insight';
+import { IReplyItemProps } from '@/types/insight/reply';
 import Image from 'next/image';
 import { useRef, useState, useEffect } from 'react';
+import ProfileHeader from '../profileHeader';
 
 export default function ReplyItem({
   name,
@@ -20,24 +21,10 @@ export default function ReplyItem({
       setIsOverflowing(textRef.current.scrollHeight > 120);
     }
   }, []);
+
   return (
     <div className="flex flex-col gap-2 pb-5 pl-32">
-      <div className="flex gap-8">
-        <Image
-          src="/mock/profile.svg"
-          width={24}
-          height={24}
-          alt="reply-profile"
-        />
-        <div className="flex items-center gap-4">
-          <span className="body-sb-16 text-text-main">{name}</span>
-          <span className="body-r-14 text-text-sub">
-            {time}
-            {edited && '(수정됨)'}
-          </span>
-          <span className="body-m-16-150 text-text-title">{role}</span>
-        </div>
-      </div>
+      <ProfileHeader name={name} time={time} edited={edited} role={role} />
       <div className="flex flex-col gap-1">
         <p
           ref={textRef}
@@ -50,7 +37,7 @@ export default function ReplyItem({
         {isOverflowing && (
           <div
             onClick={() => setDetailedReply(!detailedReply)}
-            className="flex cursor-pointer items-center gap-2"
+            className="body-r-14 flex cursor-pointer items-center gap-1 text-text-sub"
           >
             <span>{detailedReply ? '닫기' : '자세히보기'}</span>
             <Image

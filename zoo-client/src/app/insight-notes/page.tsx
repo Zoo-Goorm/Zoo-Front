@@ -1,6 +1,5 @@
 'use client';
 
-import { useSessions } from '@/actions/session';
 import {
   CardProfile,
   Footer,
@@ -10,6 +9,7 @@ import {
   PopularInsightCard,
   Tab,
 } from '@/components';
+import { useSessions } from '@/hook/session/useSession';
 import { insightList } from '@/mock/insightList';
 import Image from 'next/image';
 

@@ -2,13 +2,13 @@
 
 import SessionTime from './SessionTime';
 import { usePathname } from 'next/navigation';
-import useFilteredSessionData from '@/hook/useFilterSessionData';
 import Image from 'next/image';
 import { useState } from 'react';
 import { TimeSlot } from '@/types/session/session';
 import { useSessionStore } from '@/store/common/useSessionStore';
 import { useChipStore } from '@/store/common/useChipStore';
-import { useSessions } from '@/actions/session';
+import { useSessions } from '@/hook/session/useSession';
+import useFilteredSessionData from '@/hook/acceess/useFilterSessionData';
 
 interface SessionProps {
   currentDate: string;

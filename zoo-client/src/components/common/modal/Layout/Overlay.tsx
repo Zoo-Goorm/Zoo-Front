@@ -1,5 +1,3 @@
 export default function Overlay() {
-  return (
-    <div className="absolute left-0 top-0 flex h-[100%] w-[100%] bg-material-overlay" />
-  );
+  return <div className="fixed inset-0 flex bg-material-overlay" />;
 }

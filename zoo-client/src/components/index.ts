@@ -2,7 +2,6 @@ export { default as Badge } from './common/badge/Badge';
 export { default as ChipList } from './common/chip/ChipList';
 
 export { default as JobItem } from './common/jobItem/JobItem';
-export { default as InsightCarousel } from './common/carousel/InsightCarousel';
 export { default as CheckBox } from './common/checkbox/CheckBox';
 export { default as Radio } from './common/radio/Radio';
 export { default as ProgressBar } from './common/progressbar/ProgressBar';
@@ -12,13 +11,14 @@ export { default as RadioContent } from './common/radio/RadioContent';
 export { default as LikeToggle } from './common/toggle/LikeToggle';
 
 /* insight */
-// export { default as NoteList } from './insight/note/NoteList';
-// export { default as NoteItem } from './insight/note/NoteItem';
+export { default as NoteList } from './insight/note/NoteList';
+export { default as NoteItem } from './insight/note/NoteItem';
 export { default as InsightHeader } from './insight/information/InsightHeader';
 export { default as InsightContent } from './insight/information/InsightContent';
 export { default as Video } from './insight/Video';
 export { default as NoteInput } from './insight/form/NoteInput';
 export { default as ReplyInput } from './insight/form/ReplyInput';
+export { default as ProfileHeader } from './insight/profileHeader';
 
 /* Reply */
 export { default as ReplyList } from './insight/reply/ReplyList';
@@ -76,6 +76,7 @@ export { default as JobModal } from './common/modal/JobModal';
 export { default as SessionApplyModal } from './common/modal/SessionApplyModal';
 export { default as SessionDetailModal } from './common/modal/SessionDetailModal';
 export { default as InsightInfoModal } from './common/modal/InsightInfoModal';
+export { default as SaveInsightModal } from './common/modal/SaveInsightModal';
 
 /* tab */
 export { default as Tab } from './common/tab/Tab';
