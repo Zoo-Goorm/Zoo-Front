@@ -1,11 +1,13 @@
 import { ProfileHeader } from '@/components';
+import { InsightDetailed } from '@/mock/insightDetailed';
 
 export default function AnotherInsightCard() {
+  const { profile } = InsightDetailed;
   return (
     <article>
       <div className="flex max-w-[263px] flex-col justify-center gap-20 px-16 py-20">
         <ProfileHeader
-          name={'이름'}
+          name={profile.name}
           time={'1분전'}
           edited={true}
           role={'참가자'}

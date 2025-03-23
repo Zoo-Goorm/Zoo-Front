@@ -11,8 +11,6 @@ import {
   InsightSideNavigationBar,
 } from '@/components';
 import { useSession } from '@/hook/session/useSession';
-// import { useSessionInsight } from '@/hook/session/useSessionInsights';
-import { notes } from '@/mock/NoteList';
 import { ISessionId } from '@/types/session/session';
 import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
@@ -48,12 +46,8 @@ function InsightSection() {
         <h3 className="title-sb-20 text-text-main">인사이트 노트 NN개</h3>
         <InsightNoteTab />
       </div>
-      {/* <div className="mobile:grid-1 grid flex-wrap gap-x-24 gap-y-[1.5rem] website:grid-cols-3">
-        {Object.keys(insightList).map((key) => {
-          const insight = insightList[Number(key)];
-          return <GeneralInsightCard key={key} insights={insight} />;
-        })}
-      </div> */}
+      <InsightForm type="insight" />
+      <NoteList />
     </section>
   );
 }
@@ -82,7 +76,7 @@ const SessionInsightInfo = ({ currentSession }: ISessionId) => {
 
 export default function SessionInsightNotes() {
   const id = useParams().id as string;
-  const { data: session } = useSession(id);
+  const { data: currentSession } = useSession(id);
 
   return (
     <main>
@@ -91,10 +85,10 @@ export default function SessionInsightNotes() {
       <div className="my-14 flex w-full justify-center gap-20">
         <div className="flex max-w-[924px] flex-col items-start justify-center">
           <Video />
-          {session && <SessionInsightInfo currentSession={session} />}
+          {currentSession && (
+            <SessionInsightInfo currentSession={currentSession} />
+          )}
           <InsightSection />
-          <InsightForm type="insight" />
-          <NoteList noteList={notes} />
         </div>
         <AnotherInsightSection />
       </div>

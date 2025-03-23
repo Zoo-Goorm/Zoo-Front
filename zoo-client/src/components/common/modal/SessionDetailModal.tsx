@@ -13,7 +13,7 @@ const ModalBody = ({ currentSession }: ISessionId) => {
 
   return (
     <div>
-      <SessionInfo session={currentSession} />
+      <SessionInfo currentSession={currentSession} />
       <hr className="text-divider-secondary" />
       <div className="my-40 flex gap-16">
         <Image

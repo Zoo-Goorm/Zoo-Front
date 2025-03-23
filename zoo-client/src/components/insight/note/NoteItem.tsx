@@ -1,3 +1,4 @@
+'use client';
 import LikeToggle from '@/components/common/toggle/LikeToggle';
 import { IChildren } from '@/types/children';
 import { INote } from '@/types/insight/Note';

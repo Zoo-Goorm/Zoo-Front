@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -28,7 +29,7 @@ export default function InsightSideNavigationBar() {
       {!onList ? (
         <div
           onClick={() => setOnList(!onList)}
-          className="fixed z-50 flex h-[892px] w-[32px] cursor-pointer items-center rounded-r-md bg-bg-secondary"
+          className="fixed flex h-[892px] w-[32px] cursor-pointer items-center rounded-r-md bg-bg-secondary"
         >
           <Image
             src="/button/right-arrow-side.svg"
@@ -38,7 +39,7 @@ export default function InsightSideNavigationBar() {
           />
         </div>
       ) : (
-        <div className="fixed z-50 flex h-[892px] w-[302px] flex-col rounded-r-md bg-bg-secondary">
+        <div className="fixed flex h-[892px] w-[302px] flex-col rounded-r-md bg-bg-secondary">
           <div className="body-sb-16 flex w-full justify-end px-20 py-16 text-text-main">
             <Image
               onClick={() => setOnList(!onList)}

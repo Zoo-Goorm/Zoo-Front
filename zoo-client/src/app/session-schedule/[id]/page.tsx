@@ -1,3 +1,4 @@
+'use client';
 import { SessionApplyModal } from '@/components';
 import SessionDetailModal from '@/components/common/modal/SessionDetailModal';
 import { useApplyStore } from '@/store/common/useApplyStore';
