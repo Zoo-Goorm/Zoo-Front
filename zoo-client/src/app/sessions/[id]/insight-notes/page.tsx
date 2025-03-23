@@ -17,7 +17,7 @@ import { ISessionId } from '@/types/session/session';
 import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 
-function PopularInsightSection() {
+function AnotherInsightSection() {
   const router = useRouter();
 
   return (
@@ -41,7 +41,7 @@ function PopularInsightSection() {
   );
 }
 
-function GeneralInsightSection() {
+function InsightSection() {
   return (
     <section className="flex w-[100%] flex-col items-center justify-center gap-40 p-0">
       <div className="flex w-[100%] items-center justify-between bg-bg-secondary px-20 py-16">
@@ -92,11 +92,11 @@ export default function SessionInsightNotes() {
         <div className="flex max-w-[924px] flex-col items-start justify-center">
           <Video />
           {session && <SessionInsightInfo currentSession={session} />}
-          <GeneralInsightSection />
+          <InsightSection />
           <InsightForm type="insight" />
           <NoteList noteList={notes} />
         </div>
-        <PopularInsightSection />
+        <AnotherInsightSection />
       </div>
       <Footer />
     </main>
