@@ -1,4 +1,4 @@
-import { ISocial } from '@/types/insight/insight';
+import { ISocial } from '@/types/insight/insightProfile';
 import Image from 'next/image';
 
 export default function SocialList({ social }: ISocial) {

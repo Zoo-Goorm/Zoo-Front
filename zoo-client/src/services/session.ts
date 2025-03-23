@@ -1,4 +1,5 @@
 import baseURL from '@/apis';
+import { ISessions } from '@/types/session/session';
 
 export async function getSession(id: string) {
   const endpoint = `${baseURL}/api/v1/sessions/${id}`;
@@ -35,7 +36,7 @@ export async function getSessions() {
       console.log(response.statusText);
     }
 
-    return await response.json();
+    return (await response.json()) as ISessions;
   } catch (error) {
     console.error(error);
   }

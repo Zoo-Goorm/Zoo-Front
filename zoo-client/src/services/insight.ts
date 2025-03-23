@@ -9,7 +9,6 @@ export async function getSessionInsights(
 ) {
   const endpoint = `${baseURL}/api/v1/sessions/${id}/insight-notes?sort=${sort}&page=${page}&size=${size}`;
 
-  console.log(endpoint);
   try {
     const response = await fetch(endpoint, {
       method: 'GET',
