@@ -62,6 +62,7 @@ export { default as CardProfile } from './common/profile/CardProfile';
 export { default as CardContent } from './common/card/CardContent';
 export { default as PopularInsightCard } from './common/card/InsightCard.popular';
 export { default as GeneralInsightCard } from './common/card/InsightCard.general';
+export { default as AnotherInsightCard } from './common/card/InsightCard.another';
 
 /* form */
 export { default as TextField } from './common/textField/TextField';

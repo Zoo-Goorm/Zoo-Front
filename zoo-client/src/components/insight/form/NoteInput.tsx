@@ -6,7 +6,7 @@
 import useModalStore from '@/store/common/useModalStore';
 import SettingNoteModal from '@/components/common/modal/SettingNoteModal';
 import SaveInsightModal from '@/components/common/modal/SaveInsightModal';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSaveInsight } from '@/store/common/insight/useSaveInsight';
 
 export default function NoteInput({ text }: { text: string }) {

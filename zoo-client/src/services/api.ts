@@ -1,4 +1,6 @@
 export type ApiResponse<T> = {
+  pageNumber: number;
+  totalPages: number;
   data: T;
   status: number;
 };
@@ -34,6 +36,8 @@ export async function fetchApi<T>(
   }
 
   return {
+    pageNumber: data.pageNumber || 1,
+    totalPages: data.totalPages || 1,
     data,
     status: response.status,
   };

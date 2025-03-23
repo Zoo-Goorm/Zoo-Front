@@ -14,14 +14,14 @@ export default function ProfileHeader({
   role,
 }: ProfileHeaderProps) {
   return (
-    <div className="flex gap-8">
+    <div className="flex content-center gap-8">
       <Image
         src="/mock/profile.svg"
         width={24}
         height={24}
         alt="reply-profile"
       />
-      <div className="flex items-center gap-4">
+      <div className="flex items-center justify-center gap-4">
         <span className="body-sb-16 text-text-main">{name}</span>
         <span className="body-r-14 text-text-sub">
           {time}

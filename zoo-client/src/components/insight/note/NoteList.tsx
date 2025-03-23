@@ -9,6 +9,7 @@ export default function NoteList({ noteList }: INoteList) {
           <ReplyList />
         </NoteItem>
       ))}
+      <div>Loading...</div>
     </>
   );
 }

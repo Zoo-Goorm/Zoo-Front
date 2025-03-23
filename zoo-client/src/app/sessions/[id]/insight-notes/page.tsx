@@ -5,35 +5,62 @@ import {
   InsightForm,
   NavigationBar,
   SessionInfo,
-  Tab,
-  PopularInsightCard,
   NoteList,
+  InsightNoteTab,
+  AnotherInsightCard,
 } from '@/components';
-import { useSessions } from '@/hook/session/useSession';
+import { useSession } from '@/hook/session/useSession';
+// import { useSessionInsight } from '@/hook/session/useSessionInsights';
 import { notes } from '@/mock/NoteList';
-import { session } from '@/mock/session';
+import { ISessionId } from '@/types/session/session';
 import Image from 'next/image';
+import { useParams, useRouter } from 'next/navigation';
 
 function PopularInsightSection() {
+  const router = useRouter();
+
   return (
-    <section className="flex">
-      <div className="flex max-w-[35.8125rem] flex-col gap-40">
-        <h3 className="headline-sb-28 px-16 py-0 text-text-main">
+    <section className="flex gap-3">
+      <div className="flex max-w-[35.8125rem] flex-col">
+        <h3 className="title-sb-20 px-16 text-text-main">
           타 세션 인사이트 노트
         </h3>
         <div className="flex flex-col items-center justify-center gap-16">
-          <PopularInsightCard $direction="vertical" />
-          <PopularInsightCard $direction="vertical" />
+          <AnotherInsightCard />
+          <AnotherInsightCard />
         </div>
+        <button
+          onClick={() => router.push('/insight-notes')}
+          className="body-sb-16 rounded-md bg-bg-thirary px-16 py-12 text-text-primary"
+        >
+          더 구경하러 가기
+        </button>
       </div>
     </section>
   );
 }
 
-const SessionInsightInfo = () => {
+function GeneralInsightSection() {
+  return (
+    <section className="flex w-[100%] flex-col items-center justify-center gap-40 p-0">
+      <div className="flex w-[100%] items-center justify-between bg-bg-secondary px-20 py-16">
+        <h3 className="title-sb-20 text-text-main">인사이트 노트 NN개</h3>
+        <InsightNoteTab />
+      </div>
+      {/* <div className="mobile:grid-1 grid flex-wrap gap-x-24 gap-y-[1.5rem] website:grid-cols-3">
+        {Object.keys(insightList).map((key) => {
+          const insight = insightList[Number(key)];
+          return <GeneralInsightCard key={key} insights={insight} />;
+        })}
+      </div> */}
+    </section>
+  );
+}
+
+const SessionInsightInfo = ({ currentSession }: ISessionId) => {
   return (
     <div className="py-32">
-      <SessionInfo session={session} />
+      <SessionInfo currentSession={currentSession} />
       <div className="flex items-center gap-2">
         <Image
           src="/mock/profile.svg"
@@ -41,24 +68,29 @@ const SessionInsightInfo = () => {
           height={48}
           width={48}
         />
-        <span className="title-sb-20 text-text-main">연사 이름</span>
-        <span className="body-m-16-150 text-text-sub">연사 정보</span>
+        <span className="title-sb-20 text-text-main">
+          {currentSession.speakerName}
+        </span>
+        <span className="body-m-16-150 text-text-sub">
+          {currentSession.careers[0]}
+        </span>
       </div>
     </div>
   );
 };
 
 export default function SessionInsightNotes() {
-  const { data: sessions } = useSessions();
+  const id = useParams().id as string;
+  const { data: session } = useSession(id);
 
   return (
     <main>
       <NavigationBar />
-      <div className="flex justify-center gap-20 py-20">
+      <div className="my-14 flex justify-center gap-20">
         <div className="flex max-w-[924px] flex-col items-start justify-center">
           <Video />
-          <SessionInsightInfo />
-          <Tab sessionList={sessions} />
+          {session && <SessionInsightInfo currentSession={session} />}
+          <GeneralInsightSection />
           <InsightForm type="insight" />
           <NoteList noteList={notes} />
         </div>
