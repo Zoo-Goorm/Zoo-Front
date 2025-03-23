@@ -48,6 +48,7 @@ export { default as RegisterPaymentButton } from './common/button/RegisterPaymen
 
 /* header & footer */
 export { default as NavigationBar } from './common/navigationBar/NavigationBar';
+export { default as InsightSideNavigationBar } from './common/navigationBar/InsightSideNavigationBar';
 
 /* badge */
 export { default as CardBadge } from './common/badge/CardBadge';

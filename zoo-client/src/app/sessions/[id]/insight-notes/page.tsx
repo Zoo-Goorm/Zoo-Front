@@ -8,6 +8,7 @@ import {
   NoteList,
   InsightNoteTab,
   AnotherInsightCard,
+  InsightSideNavigationBar,
 } from '@/components';
 import { useSession } from '@/hook/session/useSession';
 // import { useSessionInsight } from '@/hook/session/useSessionInsights';
@@ -86,7 +87,8 @@ export default function SessionInsightNotes() {
   return (
     <main>
       <NavigationBar />
-      <div className="my-14 flex justify-center gap-20">
+      <InsightSideNavigationBar />
+      <div className="my-14 flex w-full justify-center gap-20">
         <div className="flex max-w-[924px] flex-col items-start justify-center">
           <Video />
           {session && <SessionInsightInfo currentSession={session} />}
