@@ -1,74 +1,95 @@
 'use client';
 
 import {
-  CardProfile,
   Footer,
-  GeneralInsightCard,
   InsightNoteTab,
   NavigationBar,
-  PopularInsightCard,
+  InsightCard,
   Tab,
+  TopButton,
 } from '@/components';
 import { useSessions } from '@/hook/session/useSession';
-import { insightList } from '@/mock/insightList';
-import Image from 'next/image';
+
+function TitleSection() {
+  return (
+    <div className="flex w-[100%] flex-col justify-center gap-12">
+      <h3 className="headline-b-40 text-text-main">인사이트 노트</h3>
+      <span className="body-m-16-150 text-text-sub">
+        세션에서 얻은 인사이트를 정리하고, 새로운 아이디어를 실현할 준비가
+        되었나요?
+      </span>
+    </div>
+  );
+}
 
 function PopularInsightSection() {
   return (
-    <section className="flex items-center justify-center gap-32">
-      <article className="flex flex-1 flex-col items-start">
-        <CardProfile contentId={1} imageUrl="" time="1" name="이름" />
-        <div className="relative flex h-[22.26913rem] w-[39.68751rem] items-center justify-center gap-0 rounded-[0.25rem] p-0">
-          <Image
-            src="/radio/thumbnail.svg"
-            alt="임시 이미지"
-            fill
-            style={{ objectFit: 'contain' }}
-          />
-        </div>
-      </article>
-      <div className="flex max-w-[35.8125rem] flex-col gap-40">
-        <h3 className="headline-sb-28 px-16 py-0 text-text-main">
-          인기있는 인사이트 노트
-        </h3>
-        <div className="flex flex-col items-center justify-center gap-16">
-          <PopularInsightCard $direction="horizontal" />
-          <PopularInsightCard $direction="horizontal" />
-        </div>
+    <section className="flex flex-col items-start gap-32">
+      <h3 className="headline-sb-28 text-text-main">인기 있는 인사이트 노트</h3>
+      <div className="flex items-center justify-center gap-36">
+        <InsightCard time="NN분 전" isEdited />
+        <InsightCard time="NN분 전" />
+        <InsightCard time="NN분 전" />
       </div>
     </section>
+  );
+}
+
+function TopSection() {
+  return (
+    <div className="flex flex-col items-center gap-60">
+      <TitleSection />
+      <div className="flex flex-col justify-center gap-80">
+        <PopularInsightSection />
+      </div>
+    </div>
   );
 }
 
 function GeneralInsightSection() {
+  const { data: sessions } = useSessions();
+
   return (
-    <section className="flex w-[100%] flex-col items-center justify-center gap-40 p-0">
-      <div className="flex w-[100%] items-center justify-between bg-bg-secondary px-20 py-16">
-        <h3 className="headline-sb-28 text-text-main">
-          세션의 제목을 작성해 주세요
-        </h3>
-        <InsightNoteTab />
+    <div className="flex w-[100%] flex-col items-center gap-40">
+      <Tab sessionList={sessions} />
+      <div className="flex w-[100%] flex-col items-center justify-center gap-40">
+        <div className="flex w-[100%] flex-col content-center items-center gap-8">
+          <div className="flex w-[100%] items-center justify-between px-0 py-12">
+            <h3 className="headline-sb-28 text-text-main">
+              세션의 제목을 작성해 주세요
+            </h3>
+            <InsightNoteTab />
+          </div>
+          <div className="flex w-[100%] items-center justify-end">
+            <span className="body-sb-16 text-text-main">총 N건</span>
+          </div>
+        </div>
+        <div className="flex flex-col gap-36">
+          <div className="flex gap-24 px-0 py-4">
+            <InsightCard $size="m" time="NN분 전" isEdited />
+            <InsightCard $size="m" time="NN분 전" />
+            <InsightCard $size="m" time="NN분 전" />
+          </div>
+          <div className="flex flex-col gap-[1.75rem]">
+            <InsightCard $size="xl" time="NN분 전" isEdited />
+            <InsightCard $size="xl" time="NN분 전" />
+            <InsightCard $size="xl" time="NN분 전" isEdited />
+            <InsightCard $size="xl" time="NN분 전" />
+          </div>
+        </div>
       </div>
-      <div className="mobile:grid-1 grid flex-wrap gap-x-24 gap-y-[1.5rem] website:grid-cols-3">
-        {Object.keys(insightList).map((key) => {
-          const insight = insightList[Number(key)];
-          return <GeneralInsightCard key={key} insights={insight} />;
-        })}
-      </div>
-    </section>
+    </div>
   );
 }
 
 export default function Insights() {
-  const { data: sessions } = useSessions();
-
   return (
-    <div className="m-auto flex flex-col items-center bg-bg-primary">
+    <div className="m-auto flex flex-col items-center gap-60 bg-bg-primary">
       <NavigationBar />
-      <div className="flex w-[100%] max-w-[90rem] flex-col items-center justify-center gap-80 p-[6.25rem]">
-        <Tab sessionList={sessions} />
-        <PopularInsightSection />
+      <div className="flex w-[77.625rem] flex-col items-end justify-center gap-80">
+        <TopSection />
         <GeneralInsightSection />
+        <TopButton />
       </div>
       <Footer />
     </div>
