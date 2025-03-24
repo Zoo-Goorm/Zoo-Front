@@ -2,6 +2,7 @@ export interface IProfile {
   name: string;
   imageUrl: string;
   interest: string[];
+  job: string;
 }
 
 export interface IContent {

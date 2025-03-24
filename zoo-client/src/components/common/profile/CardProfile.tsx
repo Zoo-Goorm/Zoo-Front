@@ -1,28 +1,47 @@
 'use client';
 
 import Image from 'next/image';
-import OblongButton from '../button/OblongButton';
 import { useRouter } from 'next/navigation';
 import { IProfile } from '@/types/insight/insightCard';
+import InterestBadge from '../badge/InterestBadge';
 
-type TProfile = Pick<IProfile, 'imageUrl' | 'name'>;
-
-interface IProfileProps {
+interface IDetailButtonProps {
   contentId: number;
-  time: string;
 }
 
-export default function CardProfile({
-  contentId,
-  imageUrl,
-  name,
-  time,
-}: IProfileProps & TProfile) {
+type TProfile = Pick<IProfile, 'imageUrl' | 'name' | 'job'> &
+  IDetailButtonProps;
+
+interface IProfileProps {
+  contentId: IDetailButtonProps['contentId'];
+  interest: IProfile['interest'];
+}
+
+function DetailButton({ contentId }: IDetailButtonProps) {
   const router = useRouter();
 
   return (
-    <div className="flex w-[100%] items-center justify-between px-0 py-8">
-      <div className="flex flex-1 items-center gap-12 p-0">
+    <button
+      onClick={() =>
+        router.push(`/insight-notes/${contentId}`, { scroll: false })
+      }
+      className="flex items-center justify-center rounded-[0.25rem] border-none p-8"
+    >
+      <span className="body-m-16-150 text-text-main">자세히 보기</span>
+      <Image
+        src="/button/arrow-up-right.svg"
+        alt="자세히 보기"
+        width={24}
+        height={24}
+      />
+    </button>
+  );
+}
+
+function UserProfileSection({ imageUrl, name, job, contentId }: TProfile) {
+  return (
+    <div className="flex w-[100%] items-center justify-between px-0 py-4">
+      <div className="flex gap-[0.75rem]">
         <div className="relative flex h-[3.125rem] w-[3.125rem] items-center justify-center">
           <Image
             className="rounded-[100%]"
@@ -32,20 +51,33 @@ export default function CardProfile({
             style={{ objectFit: 'contain' }}
           />
         </div>
-        <div className="flex flex-col items-center justify-center gap-8">
+        <div className="flex flex-1 flex-col items-center justify-center gap-4">
           <span className="body-m-16 text-text-main">{name}</span>
-          <span className="figure-m-14 text-text-thirary">{time}분 전</span>
+          <span className="body-m-16 text-text-sub">{job}</span>
         </div>
       </div>
-      <div className="w-[6.8125rem]">
-        <OblongButton
-          onClick={() =>
-            router.push(`/insights/${contentId}`, { scroll: false })
-          }
-          size="xs"
-          $buttonStyle="primary"
-          text="인사이트 보기"
-        />
+      <DetailButton contentId={contentId} />
+    </div>
+  );
+}
+
+export default function CardProfile({
+  contentId,
+  imageUrl,
+  name,
+  job,
+  interest,
+}: IProfileProps & TProfile) {
+  return (
+    <div className="flex w-[100%] flex-col items-center justify-center gap-16">
+      <UserProfileSection
+        imageUrl={imageUrl}
+        name={name}
+        job={job}
+        contentId={contentId}
+      />
+      <div className="w-[100%] whitespace-nowrap">
+        <InterestBadge interest={interest} />
       </div>
     </div>
   );

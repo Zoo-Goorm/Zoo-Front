@@ -4,6 +4,7 @@ export const insightList: IInsightList = {
   0: {
     profile: {
       name: '이름1',
+      job: '직업',
       imageUrl:
         'https://i.pinimg.com/736x/78/97/b1/7897b13a852c3a09092007b670dc5be8.jpg',
       interest: [
@@ -26,6 +27,7 @@ export const insightList: IInsightList = {
   1: {
     profile: {
       name: '이름2',
+      job: '직업',
       imageUrl: '',
       interest: [
         '관심분야1',
@@ -46,6 +48,7 @@ export const insightList: IInsightList = {
   2: {
     profile: {
       name: '이름3',
+      job: '직업',
       imageUrl:
         'https://i.pinimg.com/736x/78/97/b1/7897b13a852c3a09092007b670dc5be8.jpg',
       interest: [
@@ -67,6 +70,7 @@ export const insightList: IInsightList = {
   3: {
     profile: {
       name: '이름4',
+      job: '직업',
       imageUrl:
         'https://i.pinimg.com/736x/78/97/b1/7897b13a852c3a09092007b670dc5be8.jpg',
       interest: [
