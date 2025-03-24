@@ -1,23 +1,24 @@
 export interface IProfile {
   name: string;
-  imageUrl: string;
+  imageUrl: string | null;
   interest: string[];
   job: string;
 }
 
-export interface IContent {
+export interface IInsightContent {
   id: number;
-  createdTime: string;
   memo: string;
-  like: number;
-  imageUrl: string;
-}
+  isPublic: boolean;
+  isAnonymous: boolean;
 
-export interface IInsight {
-  profile: IProfile;
-  content: IContent;
-}
+  createdAt: string;
+  updatedAt: string;
 
-export interface IInsightList {
-  [key: number]: IInsight;
+  likeCount: number;
+  commentCount: number;
+
+  displayName: IProfile['name'];
+  job: IProfile['job'];
+  imageUrl: IProfile['imageUrl'];
+  interestCategory: IProfile['interest'];
 }
