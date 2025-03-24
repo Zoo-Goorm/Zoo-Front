@@ -1,10 +1,10 @@
 'use client';
 
-import useDetailAccess from '@/hook/useDetailAccess';
 import RightArrow from './icon/RightArrow';
 import { Session } from '@/types/session/session';
 import { useApplyStore } from '@/store/common/useApplyStore';
 import { useRouter } from 'next/navigation';
+import useDetailAccess from '@/hook/acceess/useDetailAccess';
 
 interface IListButtonProps {
   time: string;

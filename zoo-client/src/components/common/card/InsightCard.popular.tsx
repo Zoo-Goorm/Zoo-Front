@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { CardProfile } from '@/components';
 
 interface IInsightCard {
@@ -17,12 +16,12 @@ export default function PopularInsightCard({ $direction }: IInsightCard) {
       className={`flex max-w-[35.625rem] items-center rounded-[0.5rem] bg-bg-primary ${cardDirectionClasses[$direction]}`}
     >
       <div className="relative flex h-[9.22325rem] w-[100%] flex-1 items-center justify-center gap-0 rounded-[0.25rem] p-0">
-        <Image
+        {/* <Image
           src="/radio/thumbnail.svg"
           alt="카드 임시 이미지"
           fill
           style={{ objectFit: 'cover' }}
-        />
+        /> */}
       </div>
       <div className="flex flex-1 flex-col items-center justify-center gap-20">
         <CardProfile contentId={1} name="이름" time="1" imageUrl="" />

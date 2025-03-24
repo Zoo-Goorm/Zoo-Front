@@ -1,6 +1,6 @@
 'use client';
 
-import InsightPage from '../../insights/page';
+import InsightNotePage from '../page';
 import { useRouter } from 'next/navigation';
 import { InsightInfoModal } from '@/components';
 
@@ -13,15 +13,12 @@ export default function InsightDetailPage() {
 
   return (
     <>
-      <InsightPage />
+      <InsightNotePage />
       <div
         className="fixed inset-0 z-50 flex items-center justify-center bg-bg-black/60"
         onClick={handleClose}
       >
-        <div
-          className="max-h-screen w-full overflow-y-auto rounded-sm text-text-main shadow-md"
-          onClick={(e) => e.stopPropagation()}
-        >
+        <div className="max-h-screen w-full overflow-y-auto rounded-sm text-text-main shadow-md">
           <InsightInfoModal />
         </div>
       </div>

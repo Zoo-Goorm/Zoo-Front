@@ -19,6 +19,10 @@ export interface Session {
   };
 }
 
+export interface ISessionTime {
+  time: TimeSlot;
+  currentDate: string;
+}
 export interface TimeSlot {
   timeRange: string;
   sessions: Session[];

@@ -1,42 +1,58 @@
 'use client';
-import { insightChip } from '@/mock/insightChip';
 import ChipList from '../chip/ChipList';
 import ModalHeader from './Layout/ModalHeader';
 import { useRouter } from 'next/navigation';
-import Profile from '@/components/insight/information/Profile';
-import InsightContent from '@/components/insight/information/InsightContent';
-import ReplyEdit from '@/components/insight/information/reply/ReplyEdit';
-import ReplyView from '@/components/insight/information/reply/ReplyView';
-import InsightHeader from '@/components/insight/information/InsightHeader';
-import { content, title, description } from '@/mock/insight-info';
+import {
+  InsightContent,
+  InsightForm,
+  InsightHeader,
+  Profile,
+  ReplyList,
+} from '@/components';
+import { InsightDetailed } from '@/mock/insightDetailed';
+import Image from 'next/image';
+import { IInsightDetailed } from '@/types/insight/insight';
 
-const ModalBody = () => {
+const ModalBody = ({ InsightDetailed }: IInsightDetailed) => {
+  const { title, description, keywords, content, profile } = InsightDetailed;
+
   return (
     <div className="flex size-full flex-col gap-16">
-      <ChipList type={'subject'} dataList={insightChip} size="l" />
+      <ChipList type={'subject'} dataList={keywords} size="l" />
       <InsightHeader title={title} description={description} />
-      <Profile />
+      <Profile profile={profile} />
       <InsightContent content={content} />
-      <ReplyEdit />
-      <ReplyView />
+      <div className="flex items-center gap-1">
+        <Image
+          height={24}
+          width={24}
+          src="/mock/reply-icon.svg"
+          alt="reply-icon"
+        />
+        <span className="body-r-14 text-text-sub">답글</span>
+      </div>
+      <InsightForm type="reply" />
+      <ReplyList />
     </div>
   );
 };
 export default function InsightInfoModal() {
   const router = useRouter();
-
   const closeModal = () => {
     router.back();
   };
 
   return (
     <div className="flex w-screen flex-col items-center justify-center py-10">
-      <div className="w-[868px] bg-bg-primary px-32 py-20">
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="w-[868px] bg-bg-primary px-32 py-20"
+      >
         <ModalHeader
-          headerText={'[Name]님 인사이트 노트'}
+          headerText={`[${InsightDetailed.profile.name}]님 인사이트 노트`}
           closeModal={closeModal}
         />
-        <ModalBody />
+        <ModalBody InsightDetailed={InsightDetailed} />
       </div>
     </div>
   );

@@ -1,13 +1,11 @@
 'use client';
-
-import { useEffect } from 'react';
-import { useSession } from '@/actions/session';
 import { SessionApplyModal } from '@/components';
 import SessionDetailModal from '@/components/common/modal/SessionDetailModal';
 import { useApplyStore } from '@/store/common/useApplyStore';
 import { SessionId } from '@/types/session/session';
 import { useParams, useRouter } from 'next/navigation';
 import SessionSchedulePage from '../page';
+import { useSession } from '@/hook/session/useSession';
 
 export default function SessionDetailPage() {
   const router = useRouter();
@@ -15,15 +13,6 @@ export default function SessionDetailPage() {
   const sessionId = useParams().id as string;
   const { data: currentSession = {} as SessionId, isLoading } =
     useSession(sessionId);
-
-  useEffect(() => {
-    const originalStyle = window.getComputedStyle(document.body).overflow;
-    document.body.style.overflow = 'hidden';
-
-    return () => {
-      document.body.style.overflow = originalStyle;
-    };
-  }, []);
 
   const handleClose = () => {
     router.back();
