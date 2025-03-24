@@ -3,7 +3,6 @@ import { ISessions } from '@/types/session/session';
 
 export async function getSession(id: string) {
   const endpoint = `${baseURL}/api/v1/sessions/${id}`;
-
   try {
     const response = await fetch(endpoint, {
       method: 'GET',

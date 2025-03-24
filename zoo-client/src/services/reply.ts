@@ -1,12 +1,8 @@
 import baseURL from '@/apis';
-import { InsightNoteListProps } from '@/types/insight/Note';
+import { IReplyItemProps } from '@/types/insight/reply';
 
-export async function getSessionInsights(
-  id: string,
-  page: number,
-  sort: string,
-) {
-  const endpoint = `${baseURL}/api/v1/sessions/${id}/insight-notes?sort=${sort}&page=${page}`;
+export async function getReplyList(id: number) {
+  const endpoint = `${baseURL}/api/v1/insights/comments/${id}`;
 
   try {
     const response = await fetch(endpoint, {
@@ -21,7 +17,7 @@ export async function getSessionInsights(
       console.log(response.statusText);
     }
 
-    return (await response.json()) as InsightNoteListProps;
+    return (await response.json()) as IReplyItemProps[];
   } catch (error) {
     console.error(error);
   }

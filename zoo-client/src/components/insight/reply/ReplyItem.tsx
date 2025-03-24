@@ -7,10 +7,10 @@ import ProfileHeader from '../profileHeader';
 
 export default function ReplyItem({
   name,
-  time,
   edited,
   role,
   content,
+  id,
 }: IReplyItemProps) {
   const [detailedReply, setDetailedReply] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
@@ -24,7 +24,7 @@ export default function ReplyItem({
 
   return (
     <div className="flex flex-col gap-2 pb-5 pl-32">
-      <ProfileHeader name={name} time={time} edited={edited} role={role} />
+      <ProfileHeader name={name} time={''} edited={edited} job={role} />
       <div className="flex flex-col gap-1">
         <p
           ref={textRef}

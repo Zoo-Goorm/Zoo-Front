@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import InsightForm from '../form/InsightForm';
 import ProfileHeader from '../profileHeader';
+import getTimeDifference from '@/hook/useEditedTime';
 
 export default function NoteItem({ children, note }: IChildren & INote) {
   const [replyOn, setReplyOn] = useState(false);
@@ -13,7 +14,20 @@ export default function NoteItem({ children, note }: IChildren & INote) {
   const [isOverflowing, setIsOverflowing] = useState(false);
   const textRef = useRef<HTMLParagraphElement>(null);
 
-  const { name, time, edited, memo, role } = note;
+  const {
+    // id,
+    displayName,
+    createdAt,
+    updatedAt,
+    // isAnonymous,
+    // isPublic,
+    // commentCount,
+    job,
+    memo,
+  } = note;
+
+  const edited = createdAt == updatedAt ? false : true;
+  const time = edited ? String(getTimeDifference(createdAt, updatedAt)) : '';
 
   useEffect(() => {
     if (textRef.current) {
@@ -24,7 +38,12 @@ export default function NoteItem({ children, note }: IChildren & INote) {
   return (
     <div className="flex flex-col gap-7">
       <div className="flex flex-col gap-2 text-text-sub">
-        <ProfileHeader name={name} time={time} edited={edited} role={role} />
+        <ProfileHeader
+          name={displayName}
+          time={time}
+          edited={edited}
+          job={job}
+        />
         <div className="flex flex-col gap-1">
           <p
             ref={textRef}
