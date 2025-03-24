@@ -1,5 +1,14 @@
-'use server';
 import baseURL from '@/apis';
+import { fetchApi } from './api';
+import { IInsightContent } from '@/types/insight/insightCard';
+
+export async function fetchTopInsights() {
+  const endpoint = '/api/v1/insights/top';
+
+  return fetchApi<IInsightContent[]>(endpoint, {
+    method: 'GET',
+  });
+}
 
 export async function getSessionInsights(
   id: string,

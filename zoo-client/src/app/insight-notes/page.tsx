@@ -1,5 +1,6 @@
 'use client';
 
+import { getTopInsightQuery } from '@/hook/insights/insight';
 import {
   Footer,
   InsightNoteTab,
@@ -23,13 +24,31 @@ function TitleSection() {
 }
 
 function PopularInsightSection() {
+  const { data: topInsights } = getTopInsightQuery();
+
+  const getTime = (updatedAt: string) => {
+    const currentTime = new Date();
+    const updatedTime = new Date(updatedAt);
+
+    const differenceTime = updatedTime.getTime() - currentTime.getTime();
+    const writedTime = Math.floor(differenceTime / (1000 * 60));
+
+    return `${writedTime}분 전`;
+  };
+
   return (
     <section className="flex flex-col items-start gap-32">
       <h3 className="headline-sb-28 text-text-main">인기 있는 인사이트 노트</h3>
       <div className="flex items-center justify-center gap-36">
-        <InsightCard time="NN분 전" isEdited />
-        <InsightCard time="NN분 전" />
-        <InsightCard time="NN분 전" />
+        {topInsights &&
+          topInsights?.map((topInsight, index) => (
+            <InsightCard
+              key={index}
+              content={topInsight}
+              time={getTime(topInsight.updatedAt)}
+              isEdited={topInsight.createdAt !== topInsight.updatedAt}
+            />
+          ))}
       </div>
     </section>
   );
@@ -66,15 +85,15 @@ function GeneralInsightSection() {
         </div>
         <div className="flex flex-col gap-36">
           <div className="flex gap-24 px-0 py-4">
-            <InsightCard $size="m" time="NN분 전" isEdited />
+            {/* <InsightCard $size="m" time="NN분 전" isEdited />
             <InsightCard $size="m" time="NN분 전" />
-            <InsightCard $size="m" time="NN분 전" />
+            <InsightCard $size="m" time="NN분 전" /> */}
           </div>
           <div className="flex flex-col gap-[1.75rem]">
-            <InsightCard $size="xl" time="NN분 전" isEdited />
+            {/* <InsightCard $size="xl" time="NN분 전" isEdited />
             <InsightCard $size="xl" time="NN분 전" />
             <InsightCard $size="xl" time="NN분 전" isEdited />
-            <InsightCard $size="xl" time="NN분 전" />
+            <InsightCard $size="xl" time="NN분 전" /> */}
           </div>
         </div>
       </div>
