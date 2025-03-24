@@ -1,0 +1,10 @@
+<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="&#226;&#148;&#151; Icon Variant &#225;&#160;&#142;">
+<mask id="mask0_3044_17853" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="28" height="28">
+<rect id="Bounding box" width="28.0001" height="28" fill="#4824FF"/>
+</mask>
+<g mask="url(#mask0_3044_17853)">
+<path id="keyboard_arrow_right" d="M14.6999 14L9.33325 8.63333L10.9666 7L17.9666 14L10.9666 21L9.33325 19.3667L14.6999 14Z" fill="#4824FF"/>
+</g>
+</g>
+</svg>

@@ -39,7 +39,9 @@ export default function CardProfile({
       </div>
       <div className="w-[6.8125rem]">
         <OblongButton
-          onClick={() => router.push(`/insights/${contentId}`)}
+          onClick={() =>
+            router.push(`/insights/${contentId}`, { scroll: false })
+          }
           size="xs"
           $buttonStyle="primary"
           text="인사이트 보기"

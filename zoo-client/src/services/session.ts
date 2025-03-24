@@ -1,23 +1,43 @@
-import { ISessions, SessionId } from '@/types/session/session';
-import { fetchApi } from './api';
-
-export async function getSessions() {
-  const endpoint = '/api/v1/sessions/detailed';
-  return fetchApi<ISessions>(endpoint, {
-    method: 'GET',
-  });
-}
-
-export async function getKeywords() {
-  const endpoint = '/api/v1/keywords';
-  return fetchApi<string[]>(endpoint, {
-    method: 'GET',
-  });
-}
+import baseURL from '@/apis';
+import { ISessions } from '@/types/session/session';
 
 export async function getSession(id: string) {
-  const endpoint = `/api/v1/sessions/${id}`;
-  return fetchApi<SessionId>(endpoint, {
-    method: 'GET',
-  });
+  const endpoint = `${baseURL}/api/v1/sessions/${id}`;
+
+  try {
+    const response = await fetch(endpoint, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      console.log(response.statusText);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getSessions() {
+  const endpoint = `${baseURL}/api/v1/sessions/detailed`;
+  try {
+    const response = await fetch(endpoint, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      console.log(response.statusText);
+    }
+
+    return (await response.json()) as ISessions;
+  } catch (error) {
+    console.error(error);
+  }
 }

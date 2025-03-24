@@ -1,5 +1,5 @@
 'use client';
-import { ContentBadge, PurchaseButton } from '@/components';
+import { PurchaseButton, SessionInfo } from '@/components';
 import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
 import { useApplyStore } from '@/store/common/useApplyStore';
 import Image from 'next/image';
@@ -13,21 +13,7 @@ const ModalBody = ({ currentSession }: ISessionId) => {
 
   return (
     <div>
-      <div className="flex flex-col gap-12 py-20">
-        <ContentBadge
-          keywords={currentSession.keywords}
-          maxApply={
-            currentSession?.maxCapacity - currentSession.participantCount
-          }
-          location={currentSession.location}
-        />
-        <h1 className="headline-sb-28 text-text-main">
-          {currentSession.sessionName}
-        </h1>
-        <p className="body-m-16-150 text-text-sub">
-          {currentSession.longDescription}
-        </p>
-      </div>
+      <SessionInfo currentSession={currentSession} />
       <hr className="text-divider-secondary" />
       <div className="my-40 flex gap-16">
         <Image

@@ -1,10 +1,10 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useApplyStore } from '@/store/common/useApplyStore';
-import { useSession } from '@/actions/session';
 import ModalHeader from './Layout/ModalHeader';
 import ModalContainer from './Layout/ModalContainer';
 import { IModalBodyProps } from '@/types/modal/modal';
+import { useSession } from '@/hook/session/useSession';
 
 const ModalButton = ({ closeModal }: { closeModal: () => void }) => {
   return (
