@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 interface ICommentCount {
-  count: string;
+  count: number;
 }
 
 export default function CommentCount({ count }: ICommentCount) {
