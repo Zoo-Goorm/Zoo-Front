@@ -1,8 +1,8 @@
-import ChipList from '@/components/common/chip/ChipList';
 import Image from 'next/image';
 import SocialList from './SocialList';
 import LikeToggle from '@/components/common/toggle/LikeToggle';
 import { InfoListProps, IProfile } from '@/types/insight/insightProfile';
+import CardBadge from '@/components/common/badge/CardBadge';
 
 const InfoList = ({ name, email }: InfoListProps) => {
   return (
@@ -27,7 +27,8 @@ export default function Profile({ profile }: IProfile) {
         />
         <div className="flex flex-col gap-3">
           <InfoList name={name} email={email} />
-          <ChipList type="subject" size="l" dataList={keywords} />
+          <CardBadge keyword={keywords} />
+
           <SocialList social={social} />
         </div>
       </div>

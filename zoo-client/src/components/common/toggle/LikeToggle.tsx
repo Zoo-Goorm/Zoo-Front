@@ -16,8 +16,8 @@ interface LikeToggleProps {
 
 export default function LikeToggle({ size }: LikeToggleProps) {
   const sizeMap: SizeMap = {
-    m: 36,
-    l: 24,
+    l: 36,
+    m: 24,
   };
 
   const spanClassMap: SpanClassMap = {

@@ -1,13 +1,7 @@
-'use server';
 import baseURL from '@/apis';
 
-export async function getSessionInsights(
-  id: string,
-  page: number,
-  sort: string,
-  size: number,
-) {
-  const endpoint = `${baseURL}/api/v1/sessions/${id}/insight-notes?sort=${sort}&page=${page}&size=${size}`;
+export async function getSessionInsights(id: string) {
+  const endpoint = `${baseURL}/api/v1/sessions/${id}/insight-notes`;
 
   try {
     const response = await fetch(endpoint, {
@@ -15,6 +9,7 @@ export async function getSessionInsights(
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'include',
     });
 
     if (!response.ok) {

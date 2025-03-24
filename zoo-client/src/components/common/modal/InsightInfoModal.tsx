@@ -1,8 +1,8 @@
 'use client';
-import ChipList from '../chip/ChipList';
 import ModalHeader from './Layout/ModalHeader';
 import { useRouter } from 'next/navigation';
 import {
+  CardBadge,
   InsightContent,
   InsightForm,
   InsightHeader,
@@ -18,7 +18,7 @@ const ModalBody = ({ InsightDetailed }: IInsightDetailed) => {
 
   return (
     <div className="flex size-full flex-col gap-16">
-      <ChipList type={'subject'} dataList={keywords} size="l" />
+      <CardBadge keyword={keywords} />
       <InsightHeader title={title} description={description} />
       <Profile profile={profile} />
       <InsightContent content={content} />

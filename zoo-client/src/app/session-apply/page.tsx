@@ -22,9 +22,9 @@ const Title = () => {
 const RadioContainer = () => {
   return (
     <div className="flex size-full flex-col">
-      <span className="caption-r-12 py-8 text-right text-text-sub">
+      <p className="caption-r-12 py-8 text-right text-text-sub">
         {SESSION_APPLY_MESSAGES.radioBody}
-      </span>
+      </p>
       <RadioContent />
     </div>
   );

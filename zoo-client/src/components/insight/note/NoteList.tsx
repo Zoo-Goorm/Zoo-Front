@@ -1,22 +1,35 @@
 import { NoteItem, ReplyList } from '@/components';
 import { notes } from '@/mock/NoteList';
-// import { getSessionInsights } from '@/services/insight';
+import { getSessionInsights } from '@/services/insight';
 // import useInsightNoteTabStore from '@/store/common/insight/useInsightNoteTabStore';
-// import { useParams } from 'next/navigation';
-// import { useEffect } from 'react';
+import { useParams } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function NoteList() {
-  // const id = useParams().id as string;
+  const id = useParams().id as string;
   // const { selectedTab } = useInsightNoteTabStore();
   const noteList = notes;
 
   // useEffect(() => {
-  //   const sort = selectedTab == '최신순' ? 'latest' : 'like';
-  //   const data = getSessionInsights(id, 0, sort, 5);
+  //   // const sort = selectedTab == '최신순' ? 'latest' : 'like';
+  //   // const data = getSessionInsights(id, 0, sort, 5);
+  //   const data = getSessionInsights(id);
 
   //   console.log(data);
-  // }, [selectedTab]);
+  // }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getSessionInsights(id);
+        console.log(data);
+      } catch (error) {
+        console.error('데이터 가져오기 실패:', error);
+      }
+    };
+
+    fetchData();
+  }, [id]);
   return (
     <>
       {noteList.map((list, index) => (
