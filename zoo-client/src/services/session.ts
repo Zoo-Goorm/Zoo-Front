@@ -1,7 +1,7 @@
 import baseURL from '@/apis';
 import { ISessions } from '@/types/session/session';
 
-export async function getSession(id: string) {
+export async function getSession(id: number) {
   const endpoint = `${baseURL}/api/v1/sessions/${id}`;
   try {
     const response = await fetch(endpoint, {

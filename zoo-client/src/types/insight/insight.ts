@@ -7,12 +7,17 @@ export interface InsightHeaderProps {
 
 export interface InsightDetailedProps {
   id: number;
-  title: string;
-  description: string;
+  name: string;
+  shortDescription: string;
   keywords: string[];
-  content: string;
+  memo: string;
   profile: ProfileProps;
+  likeCount: number;
 }
 export interface IInsightDetailed {
   InsightDetailed: InsightDetailedProps;
+}
+
+export interface ILikeCount {
+  likeCount: number;
 }

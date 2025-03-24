@@ -2,9 +2,9 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import ReplyItem from './ReplyItem';
-import useGetReply from '@/hook/session/useReply';
+import useGetReply from '@/hook/insights/useReply';
 
-export default function ReplyView({ id }: { id: number }) {
+export default function ReplyList({ id }: { id: number }) {
   const [applyAccordion, setApplyAccordion] = useState(true);
 
   const { data: ReplyList } = useGetReply(id);

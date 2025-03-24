@@ -9,7 +9,7 @@ import SaveInsightModal from '@/components/common/modal/SaveInsightModal';
 import { useState } from 'react';
 import { useSaveInsight } from '@/store/common/insight/useSaveInsight';
 
-export default function NoteInput({ text }: { text: string }) {
+export default function NoteInput({ text, id }: { text: string; id: number }) {
   // const fileInputRef = useRef<HTMLInputElement>(null);
   // const { vote, images, resetVote, setVote, resetImages } =
   //   useInsightFormStore();
@@ -59,6 +59,7 @@ export default function NoteInput({ text }: { text: string }) {
 
   return (
     <>
+      <input hidden name="id" defaultValue={id} />
       <textarea
         required
         name="content"

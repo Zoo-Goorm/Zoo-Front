@@ -1,7 +1,7 @@
 'use client';
 import LikeToggle from '@/components/common/toggle/LikeToggle';
 import { IChildren } from '@/types/children';
-import { INote } from '@/types/insight/Note';
+import { INote } from '@/types/insight/note';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import InsightForm from '../form/InsightForm';
@@ -15,16 +15,19 @@ export default function NoteItem({ children, note }: IChildren & INote) {
   const textRef = useRef<HTMLParagraphElement>(null);
 
   const {
-    // id,
+    id,
     displayName,
     createdAt,
     updatedAt,
+    likeCount,
     // isAnonymous,
     // isPublic,
     // commentCount,
     job,
     memo,
   } = note;
+
+  console.log(id, displayName, memo);
 
   const edited = createdAt == updatedAt ? false : true;
   const time = edited ? String(getTimeDifference(createdAt, updatedAt)) : '';
@@ -70,7 +73,7 @@ export default function NoteItem({ children, note }: IChildren & INote) {
           )}
         </div>
         <div className="flex gap-16">
-          <LikeToggle size={'m'} />
+          <LikeToggle size={'m'} likeCount={likeCount} />
           <div
             onClick={() => setReplyOn(!replyOn)}
             className="flex items-center gap-1"
@@ -84,7 +87,7 @@ export default function NoteItem({ children, note }: IChildren & INote) {
             <span className="body-r-14 text-text-sub">답글</span>
           </div>
         </div>
-        {replyOn && <InsightForm type="reply" />}
+        {replyOn && <InsightForm type="reply" id={id} />}
       </div>
       {children}
     </div>

@@ -12,9 +12,10 @@ interface SpanClassMap {
 
 interface LikeToggleProps {
   size: keyof SizeMap;
+  likeCount: number;
 }
 
-export default function LikeToggle({ size }: LikeToggleProps) {
+export default function LikeToggle({ size, likeCount }: LikeToggleProps) {
   const sizeMap: SizeMap = {
     l: 36,
     m: 24,
@@ -33,7 +34,7 @@ export default function LikeToggle({ size }: LikeToggleProps) {
         height={sizeMap[size]}
         width={sizeMap[size]}
       />
-      <span className={spanClassMap[size]}>999+</span>
+      <span className={spanClassMap[size]}>{likeCount}</span>
     </div>
   );
 }

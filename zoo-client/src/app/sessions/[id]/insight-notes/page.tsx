@@ -39,14 +39,14 @@ function AnotherInsightSection() {
   );
 }
 
-function InsightSection() {
+function InsightSection({ id }: { id: number }) {
   return (
     <section className="flex w-[100%] flex-col items-center justify-center gap-40 p-0">
       <div className="flex w-[100%] items-center justify-between bg-bg-secondary px-20 py-16">
         <h3 className="title-sb-20 text-text-main">인사이트 노트 NN개</h3>
         <InsightNoteTab />
       </div>
-      <InsightForm type="insight" />
+      <InsightForm type="insight" id={id} />
       <NoteList />
     </section>
   );
@@ -75,8 +75,8 @@ const SessionInsightInfo = ({ currentSession }: ISessionId) => {
 };
 
 export default function SessionInsightNotes() {
-  const id = useParams().id as string;
-  const { data: currentSession } = useSession(id);
+  const { id } = useParams();
+  const { data: currentSession } = useSession(Number(id));
 
   return (
     <main>
@@ -88,7 +88,7 @@ export default function SessionInsightNotes() {
           {currentSession && (
             <SessionInsightInfo currentSession={currentSession} />
           )}
-          <InsightSection />
+          <InsightSection id={Number(id)} />
         </div>
         <AnotherInsightSection />
       </div>

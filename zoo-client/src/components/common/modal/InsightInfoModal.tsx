@@ -1,6 +1,6 @@
 'use client';
 import ModalHeader from './Layout/ModalHeader';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import {
   CardBadge,
   InsightContent,
@@ -9,19 +9,20 @@ import {
   Profile,
   ReplyList,
 } from '@/components';
-import { InsightDetailed } from '@/mock/insightDetailed';
 import Image from 'next/image';
 import { IInsightDetailed } from '@/types/insight/insight';
+import { useInsightsDetailed } from '@/hook/insights/useInsights';
 
 const ModalBody = ({ InsightDetailed }: IInsightDetailed) => {
-  const { title, description, keywords, content, profile } = InsightDetailed;
+  const { id, name, shortDescription, keywords, memo, profile, likeCount } =
+    InsightDetailed;
 
   return (
     <div className="flex size-full flex-col gap-16">
       <CardBadge keyword={keywords} />
-      <InsightHeader title={title} description={description} />
-      <Profile profile={profile} />
-      <InsightContent content={content} />
+      <InsightHeader title={name} description={shortDescription} />
+      <Profile profile={profile} likeCount={likeCount} />
+      <InsightContent memo={memo} />
       <div className="flex items-center gap-1">
         <Image
           height={24}
@@ -31,16 +32,18 @@ const ModalBody = ({ InsightDetailed }: IInsightDetailed) => {
         />
         <span className="body-r-14 text-text-sub">답글</span>
       </div>
-      <InsightForm type="reply" />
-      <ReplyList />
+      <InsightForm type="reply" id={id} />
+      <ReplyList id={id} />
     </div>
   );
 };
 export default function InsightInfoModal() {
+  const id = useParams().id;
   const router = useRouter();
   const closeModal = () => {
     router.back();
   };
+  const { data: InsightDetailed } = useInsightsDetailed(Number(id));
 
   return (
     <div className="flex w-screen flex-col items-center justify-center py-10">
@@ -49,10 +52,10 @@ export default function InsightInfoModal() {
         className="w-[868px] bg-bg-primary px-32 py-20"
       >
         <ModalHeader
-          headerText={`[${InsightDetailed.profile.name}]님 인사이트 노트`}
+          headerText={`[${InsightDetailed?.profile.name}]님 인사이트 노트`}
           closeModal={closeModal}
         />
-        <ModalBody InsightDetailed={InsightDetailed} />
+        {InsightDetailed && <ModalBody InsightDetailed={InsightDetailed} />}
       </div>
     </div>
   );

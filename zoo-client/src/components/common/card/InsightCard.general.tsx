@@ -1,8 +1,7 @@
 import Image from 'next/image';
-import { CardProfile } from '@/components';
+import { CardProfile, LikeToggle } from '@/components';
 import InterestBadge from '../badge/InterestBadge';
 import { IInsight } from '@/types/insight/insightCard';
-import LikeToggle from '@/components/insight/information/LikeToggle';
 
 interface IGeneralInsightCardProps {
   insights: IInsight;
@@ -40,7 +39,7 @@ export default function GeneralInsightCard({
           </span>
         </div>
         <div className="w-[100%]">
-          <LikeToggle count={content.like} />
+          <LikeToggle size="m" likeCount={content.like} />
         </div>
       </div>
     </article>

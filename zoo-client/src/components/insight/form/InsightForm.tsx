@@ -7,11 +7,20 @@ import useModalStore from '@/store/common/useModalStore';
 
 type inputType = 'reply' | 'insight';
 
-export default function InsightForm({ type }: { type: inputType }) {
+export default function InsightForm({
+  type,
+  id,
+}: {
+  type: inputType;
+  id: number;
+}) {
   // const { images, vote, resetVote, resetImages } = useInsightFormStore();
   const { isOpen, contents } = useModalStore();
 
-  // const createNoteHandler = async (formData: FormData) => {};
+  // const createNoteHandler = async (formData: FormData) => {
+  //   await createNote(formData);
+  //   closeModal();
+  // };
 
   const typeComponent = {
     reply: {
@@ -33,7 +42,7 @@ export default function InsightForm({ type }: { type: inputType }) {
       className="body-sm-16 flex min-w-full flex-col gap-5 self-stretch p-20"
       action={typeComponent[type].action}
     >
-      <Component text={typeComponent[type].text} />
+      <Component text={typeComponent[type].text} id={id} />
       {isOpen && contents}
     </form>
   );
