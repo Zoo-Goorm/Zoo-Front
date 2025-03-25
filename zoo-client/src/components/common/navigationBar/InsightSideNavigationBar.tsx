@@ -32,7 +32,6 @@ export default function InsightSideNavigationBar() {
     date.flatMap((timeList) => timeList.sessions),
   );
 
-  console.log(sessions);
   return (
     <>
       {!onList ? (

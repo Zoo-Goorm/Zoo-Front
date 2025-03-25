@@ -6,13 +6,14 @@
 import useModalStore from '@/store/common/useModalStore';
 import SettingNoteModal from '@/components/common/modal/SettingNoteModal';
 import SaveInsightModal from '@/components/common/modal/SaveInsightModal';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useSaveInsight } from '@/store/common/insight/useSaveInsight';
 
 export default function NoteInput({ text, id }: { text: string; id: number }) {
   const { openModal } = useModalStore();
   const [memo, setMemo] = useState('');
   const { content } = useSaveInsight();
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const openSettingModal = () => {
     openModal({
@@ -31,15 +32,24 @@ export default function NoteInput({ text, id }: { text: string; id: number }) {
       ),
     });
   };
+  const handleResizeHeight = () => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  };
 
   return (
     <>
       <input hidden name="sessionId" defaultValue={Number(id)} />
       <textarea
         required
+        ref={textareaRef}
+        onInput={handleResizeHeight}
         name="memo"
+        rows={1}
         onChange={(e) => setMemo(e.target.value)}
-        className="h-64 w-full resize-none text-text-thirary focus:outline-none"
+        className="max-h-[290px] w-full resize-none text-text-thirary scrollbar-hidden focus:outline-none"
         placeholder={text}
         defaultValue={content}
       />

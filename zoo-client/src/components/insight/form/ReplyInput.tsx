@@ -10,7 +10,7 @@ export default function ReplyFooter({
       <input hidden name="id" defaultValue={id} />
       <textarea
         name="content"
-        className="h-64 w-full resize-none text-text-thirary focus:outline-none"
+        className="h-64 w-full resize-none text-text-thirary scrollbar-hidden focus:outline-none"
         placeholder={text}
       />
       <button
