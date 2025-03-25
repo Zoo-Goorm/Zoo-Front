@@ -10,7 +10,7 @@ interface ProfileHeaderProps {
 export default function ProfileHeader({
   name,
   time,
-  edited,
+  edited = false,
   job,
 }: ProfileHeaderProps) {
   return (

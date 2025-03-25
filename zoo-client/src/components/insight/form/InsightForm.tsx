@@ -1,7 +1,7 @@
 'use client';
-import { createNote, createReply } from '@/actions/insight-form';
 import { NoteInput, ReplyInput } from '@/components';
 import { useMutationNoteForm } from '@/hooks/insights/useInsights';
+import { useMutationReplyForm } from '@/hooks/insights/useReply';
 // import { useGetPresignedUrls, useUploadFilesToS3 } from '@/hook/useFiles';
 // import { useInsightFormStore } from '@/store/common/insight/useInsightForm';
 import useModalStore from '@/store/common/useModalStore';
@@ -16,17 +16,21 @@ export default function InsightForm({
   id: number;
 }) {
   const { isOpen, contents } = useModalStore();
-  const { mutate } = useMutationNoteForm(id);
+  const { mutate: mutateNote } = useMutationNoteForm(id);
+  const { mutate: mutateReply } = useMutationReplyForm(id);
 
   async function submitNoteForm(formData: FormData) {
-    mutate(formData);
+    mutateNote(formData);
+  }
+  async function submitReplyForm(formData: FormData) {
+    mutateReply(formData);
   }
 
   const typeComponent = {
     reply: {
       Component: ReplyInput,
       text: '해당 인사이트의 답글을 남겨 보세요!',
-      action: createReply,
+      action: submitReplyForm,
     },
     insight: {
       Component: NoteInput,

@@ -6,13 +6,14 @@ export async function createReply(formData: FormData) {
   const endpoint = `${baseURL}/api/v1/insights/${id}/comments`;
 
   try {
-    // await Delay(2000);
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(content),
+      body: JSON.stringify({
+        content: content,
+      }),
 
       credentials: 'include',
     });
@@ -20,7 +21,9 @@ export async function createReply(formData: FormData) {
       console.log(response.statusText);
     }
     console.log('REPLY POST 완료');
-    // revalidatePath(`/sessions/${id}/insight-notes`);
+
+    const responseData = await response.json();
+    return responseData;
   } catch (error) {
     console.error(error);
   }
@@ -55,9 +58,7 @@ export async function createNote(formData: FormData) {
     if (!response.ok) {
       console.log(response.statusText);
     }
-    console.log('REPLY POST 완료');
     const responseData = await response.json();
-    console.log('✅ NOTE POST 완료:', responseData);
     return responseData;
   } catch (error) {
     console.error(error);
