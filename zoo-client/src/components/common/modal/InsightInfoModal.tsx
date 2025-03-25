@@ -2,6 +2,7 @@
 import ModalHeader from './Layout/ModalHeader';
 import { useParams, useRouter } from 'next/navigation';
 import {
+  Badge,
   CardBadge,
   InsightContent,
   InsightForm,
@@ -19,7 +20,11 @@ const ModalBody = ({ InsightDetailed }: IInsightDetailed) => {
 
   return (
     <div className="flex size-full flex-col gap-16">
-      <CardBadge keyword={keywords} />
+      <div className="flex w-[100%] flex-wrap items-center gap-x-12 gap-y-[0.75rem]">
+        {keywords?.map((badge, index) => (
+          <Badge key={index} type={'subject'} text={badge} />
+        ))}
+      </div>
       <InsightHeader title={name} description={shortDescription} />
       <Profile profile={profile} likeCount={likeCount} />
       <InsightContent memo={memo} />
@@ -49,7 +54,7 @@ export default function InsightInfoModal() {
     <div className="flex w-screen flex-col items-center justify-center py-10">
       <div
         onClick={(e) => e.stopPropagation()}
-        className="w-[868px] bg-bg-primary px-32 py-20"
+        className="min-h-[1100px] w-[868px] bg-bg-primary px-32 py-20"
       >
         <ModalHeader
           headerText={`[${InsightDetailed?.profile.name}]님 인사이트 노트`}

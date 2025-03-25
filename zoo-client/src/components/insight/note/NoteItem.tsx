@@ -39,7 +39,7 @@ export default function NoteItem({ children, note }: IChildren & INote) {
   }, []);
 
   return (
-    <div className="flex flex-col gap-7">
+    <div className="flex w-full flex-col gap-7">
       <div className="flex flex-col gap-2 text-text-sub">
         <ProfileHeader
           name={displayName}

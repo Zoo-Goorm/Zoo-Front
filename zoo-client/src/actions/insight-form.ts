@@ -8,16 +8,15 @@ export async function createReply(formData: FormData) {
   const id = formData.get('id');
   const endpoint = `${baseURL}/api/v1/insights/${id}/comments`;
 
-  console.log(endpoint);
-
-  console.log(id);
   try {
+    // await Delay(2000);
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        body: JSON.stringify({ content }),
       },
+      body: JSON.stringify(content),
+
       credentials: 'include',
     });
     if (!response.ok) {
@@ -43,19 +42,21 @@ export async function createNote(formData: FormData) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        body: JSON.stringify({
-          sessionId,
-          memo,
-          isPublic,
-          isAnonymous,
-          isDraft,
-        }),
       },
+      body: JSON.stringify({
+        sessionId,
+        memo,
+        isPublic,
+        isAnonymous,
+        isDraft,
+      }),
       credentials: 'include',
     });
     if (!response.ok) {
       console.log(response.statusText);
     }
+    console.log('POST 완료');
+    revalidatePath(`/sessions/${sessionId}/insight-notes`);
   } catch (error) {
     console.error(error);
   }
