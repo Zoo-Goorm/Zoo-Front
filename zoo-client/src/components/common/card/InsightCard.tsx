@@ -12,12 +12,12 @@ export default function InsightCard({
   content,
   isEdited = false,
   time,
-  $size = 'l',
+  $size = 'xl',
 }: IInsightCard) {
   const insightCardSizeClasses = {
     xl: 'w-[100%]',
-    l: 'w-[24.375rem]',
-    m: 'w-[24.8125rem]',
+    l: 'w-[24.8125rem]',
+    m: 'w-[24.375rem]',
   };
 
   return (
