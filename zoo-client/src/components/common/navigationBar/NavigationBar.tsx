@@ -1,15 +1,21 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 import useAuthStore from '@/store/common/auth/useAuthStore';
 import useTokenStore from '@/store/common/auth/useTokenStore';
 import { OblongButton } from '@/components';
+import LogoIcon from './logo/LogoIcon';
 
-export default function NavigationBar() {
+interface INavigationBarProps {
+  $type?: 'default' | 'main';
+}
+
+export default function NavigationBar({
+  $type = 'default',
+}: INavigationBarProps) {
   const router = useRouter();
   const { accessToken } = useTokenStore();
   const checkAuth = useAuthStore((state) => state.checkAuth);
@@ -22,25 +28,25 @@ export default function NavigationBar() {
     authenticate();
   }, [checkAuth]);
 
+  const logoColorClasses = { default: '#4824FF', main: '#fff' };
+  const labelColorClasses = { default: 'color: #000', main: 'color: #fff' };
+
   return (
     <header className="bg-[rgba(255, 255, 255, 0.30)] flex w-[100%] items-center justify-between px-[6.25rem] py-24">
       <Link href="/">
-        <Image
-          src="/logo/logo.svg"
-          alt="SynapseX 로고"
-          width={140}
-          height={25}
-        />
+        <LogoIcon fill={`${logoColorClasses[$type]}`} />
       </Link>
       <ul className="flex items-center gap-32">
         <Link href="/session-schedule">
-          <li className="body-sb-16 text-text-main">세션</li>
+          <li className={`body-sb-16 ${labelColorClasses[$type]}`}>세션</li>
         </Link>
         <Link href="/insight-notes">
-          <li className="body-sb-16 text-text-main">인사이트 노트</li>
+          <li className={`body-sb-16 ${labelColorClasses[$type]}`}>
+            인사이트 노트
+          </li>
         </Link>
         <Link href="/mypage">
-          <li className="body-sb-16 text-text-main">MY</li>
+          <li className={`body-sb-16 ${labelColorClasses[$type]}`}>MY</li>
         </Link>
         <div className="w-[5.25rem]">
           <OblongButton
