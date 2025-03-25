@@ -1,5 +1,11 @@
+import { createNote } from '@/actions/insight-form';
 import { getInsightDetailed, getInsightNote } from '@/services/insight';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+  useInfiniteQuery,
+} from '@tanstack/react-query';
 
 export const insightsQueryKey = (id: number, sort: string) => [
   'session',
@@ -8,7 +14,7 @@ export const insightsQueryKey = (id: number, sort: string) => [
   sort,
 ];
 
-export const insightDetailed = (id: number) => ['insights', id];
+export const insightDetailedQueryKey = (id: number) => ['insights', id];
 
 export const useGetInsightNote = (id: number, sort: string, size?: number) => {
   return useInfiniteQuery({
@@ -29,7 +35,7 @@ export const useGetInsightNote = (id: number, sort: string, size?: number) => {
 
 export function useInsightsDetailed(id: number) {
   return useQuery({
-    queryKey: insightDetailed(id),
+    queryKey: insightDetailedQueryKey(id),
     queryFn: async () => {
       const res = await getInsightDetailed(id);
       return res.data;
@@ -44,6 +50,22 @@ export function useGetAnotherInsight() {
     queryFn: async () => {
       const res = await getInsightNote(1, 1, 'like', 2);
       return res.data;
+    },
+  });
+}
+
+export function useMutationNoteForm(id: number) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: createNote,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: insightsQueryKey(id, 'latest'),
+      });
+    },
+    onError: (error) => {
+      console.error('메모 저장 실패:', error);
     },
   });
 }

@@ -14,7 +14,7 @@ function ModalBody({ closeModal }: { closeModal: () => void }) {
               <input
                 defaultChecked
                 type="radio"
-                name="anon"
+                name="isAnonymous"
                 value="실명"
                 className="accent-fill-primary"
               />
@@ -23,7 +23,7 @@ function ModalBody({ closeModal }: { closeModal: () => void }) {
             <label className="flex items-center gap-2">
               <input
                 type="radio"
-                name="anon"
+                name="isAnonymous"
                 value="익명"
                 className="accent-fill-primary"
               />
@@ -38,7 +38,7 @@ function ModalBody({ closeModal }: { closeModal: () => void }) {
               <input
                 defaultChecked
                 type="radio"
-                name="public"
+                name="isPublic"
                 value="공개"
                 className="accent-fill-primary"
               />
@@ -47,7 +47,7 @@ function ModalBody({ closeModal }: { closeModal: () => void }) {
             <label className="flex items-center gap-2">
               <input
                 type="radio"
-                name="public"
+                name="isPublic"
                 value="비공개"
                 className="accent-fill-primary"
               />

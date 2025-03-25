@@ -10,34 +10,9 @@ import { useState } from 'react';
 import { useSaveInsight } from '@/store/common/insight/useSaveInsight';
 
 export default function NoteInput({ text, id }: { text: string; id: number }) {
-  // const fileInputRef = useRef<HTMLInputElement>(null);
-  // const { vote, images, resetVote, setVote, resetImages } =
-  //   useInsightFormStore();
   const { openModal } = useModalStore();
   const [memo, setMemo] = useState('');
   const { content } = useSaveInsight();
-
-  // const AddImageHandler = () => {
-  //   if (fileInputRef.current) {
-  //     fileInputRef.current.click();
-  //   }
-  //   if (vote !== null) {
-  //     resetVote();
-  //   }
-  // };
-
-  // const AddVoteHandler = () => {
-  //   setVote();
-  //   if (images !== null) {
-  //     resetImages();
-  //   }
-  // };
-
-  // const ButtonList: ButtonProps = {
-  //   addImg: ['/button/AddImage.svg', AddImageHandler],
-  //   vote: ['/button/vote.svg', AddVoteHandler],
-  //   time: ['/button/time.svg', AddImageHandler],
-  // };
 
   const openSettingModal = () => {
     openModal({
@@ -59,10 +34,10 @@ export default function NoteInput({ text, id }: { text: string; id: number }) {
 
   return (
     <>
-      <input hidden name="id" defaultValue={id} />
+      <input hidden name="sessionId" defaultValue={Number(id)} />
       <textarea
         required
-        name="content"
+        name="memo"
         onChange={(e) => setMemo(e.target.value)}
         className="h-64 w-full resize-none text-text-thirary focus:outline-none"
         placeholder={text}

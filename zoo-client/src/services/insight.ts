@@ -45,7 +45,6 @@ export async function getInsightNote(
   size: number,
 ) {
   const endpoint = `/api/v1/sessions/${id}/insight-notes?sort=${sort}&page=${page}&size=${size}`;
-  console.log('실행', endpoint);
   return fetchApi<InsightNoteListProps>(endpoint, {
     method: 'GET',
     credentials: 'include',
