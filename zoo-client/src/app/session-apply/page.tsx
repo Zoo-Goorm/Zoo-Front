@@ -9,7 +9,7 @@ import {
   Tab,
 } from '@/components';
 import { SESSION_APPLY_MESSAGES } from '@/constants/messages';
-import { useSessions } from '@/hook/session/useSession';
+import { useSessions } from '@/hooks/session/useSession';
 
 const Title = () => {
   return (

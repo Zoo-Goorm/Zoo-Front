@@ -2,7 +2,7 @@ export interface ProfileProps {
   name: string;
   email: string;
   interestCategory: string[];
-  linkUrls: ISocial;
+  linkUrls: string[];
 }
 export interface InfoListProps {
   name: string;

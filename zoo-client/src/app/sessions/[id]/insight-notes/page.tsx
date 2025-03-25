@@ -10,7 +10,7 @@ import {
   AnotherInsightCard,
   InsightSideNavigationBar,
 } from '@/components';
-import { useSession } from '@/hook/session/useSession';
+import { useSession } from '@/hooks/session/useSession';
 import { ISessionId } from '@/types/session/session';
 import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';

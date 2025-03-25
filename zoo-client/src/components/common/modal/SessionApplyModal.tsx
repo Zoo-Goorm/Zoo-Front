@@ -4,7 +4,7 @@ import { useApplyStore } from '@/store/common/useApplyStore';
 import ModalHeader from './Layout/ModalHeader';
 import ModalContainer from './Layout/ModalContainer';
 import { IModalBodyProps } from '@/types/modal/modal';
-import { useSession } from '@/hook/session/useSession';
+import { useSession } from '@/hooks/session/useSession';
 
 const ModalButton = ({ closeModal }: { closeModal: () => void }) => {
   return (
@@ -32,7 +32,7 @@ const ModalBody = ({ bodyText }: IModalBodyProps) => {
 
 export default function SessionRadioModal() {
   const { messageMain, messageSub, change, conflictId } = useApplyStore();
-  const { data: currentSession } = useSession(conflictId);
+  const { data: currentSession } = useSession(Number(conflictId));
   const title = currentSession?.sessionName;
 
   const bodyText = change

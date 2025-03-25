@@ -7,8 +7,8 @@ import { useState } from 'react';
 import { TimeSlot } from '@/types/session/session';
 import { useSessionStore } from '@/store/common/useSessionStore';
 import { useChipStore } from '@/store/common/useChipStore';
-import { useSessions } from '@/hook/session/useSession';
-import useFilteredSessionData from '@/hook/acceess/useFilterSessionData';
+import { useSessions } from '@/hooks/session/useSession';
+import useFilteredSessionData from '@/hooks/access/useFilterSessionData';
 
 interface SessionProps {
   currentDate: string;

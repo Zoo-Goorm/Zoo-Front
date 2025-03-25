@@ -1,18 +1,28 @@
 'use client';
 import { NoteItem, ReplyList } from '@/components';
-import { useGetInsights } from '@/hook/insights/useInsights';
+import useObserver from '@/hooks/common/useObserver';
+import { useGetInsights } from '@/hooks/insights/useInsights';
 import useInsightNoteTabStore from '@/store/common/insight/useInsightNoteTabStore';
 import { useParams } from 'next/navigation';
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 
 export default function NoteList() {
   const id = useParams().id;
   const { selectedTab } = useInsightNoteTabStore();
+  const lastElementRef = useRef<HTMLDivElement | null>(null);
   const sort = useMemo(
     () => (selectedTab === '최신순' ? 'latest' : 'like'),
     [selectedTab],
   );
-  const { data, isLoading } = useGetInsights(Number(id), sort);
+
+  const { data, fetchNextPage, hasNextPage } = useGetInsights(Number(id), sort);
+
+  useObserver({
+    target: lastElementRef,
+    onIntersect: ([entry]) => {
+      if (entry.isIntersecting && hasNextPage) fetchNextPage();
+    },
+  });
 
   return (
     <>
@@ -23,7 +33,11 @@ export default function NoteList() {
           </NoteItem>
         ));
       })}
-      {isLoading && <div>Loading...</div>}
+      {hasNextPage && (
+        <div className="text-text-main" ref={lastElementRef}>
+          🔄 로딩 중
+        </div>
+      )}
     </>
   );
 }

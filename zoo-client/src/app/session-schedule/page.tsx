@@ -8,9 +8,9 @@ import {
   SessionList,
 } from '@/components';
 import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
-import useTitleAccess from '@/hook/acceess/useTitleAccess';
-import { useKeywords } from '@/hook/session/useKeywords';
-import { useSessions } from '@/hook/session/useSession';
+import useTitleAccess from '@/hooks/access/useTitleAccess';
+import { useKeywords } from '@/hooks/session/useKeywords';
+import { useSessions } from '@/hooks/session/useSession';
 
 const Title = () => {
   const { hide, handler } = useTitleAccess();

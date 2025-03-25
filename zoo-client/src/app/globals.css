@@ -64,7 +64,7 @@
   .headline-b-40 {
     font-size: 2.5rem;
     font-weight: 700;
-    line-height: 3em;
+    line-height: 120%;
     letter-spacing: 0rem;
   }
 
@@ -231,7 +231,7 @@
     overflow: hidden;
 
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 6;
 
     text-overflow: ellipsis;
     word-break: break-word;

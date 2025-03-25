@@ -1,12 +1,12 @@
 'use client';
 import LikeToggle from '@/components/common/toggle/LikeToggle';
 import { IChildren } from '@/types/children';
-import { INote } from '@/types/insight/note';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import InsightForm from '../form/InsightForm';
 import ProfileHeader from '../profileHeader';
-import getTimeDifference from '@/hook/useEditedTime';
+import { INote } from '@/types/insight/Note';
+import { getHasCreateTime } from '@/utils/insightDate';
 
 export default function NoteItem({ children, note }: IChildren & INote) {
   const [replyOn, setReplyOn] = useState(false);
@@ -27,10 +27,8 @@ export default function NoteItem({ children, note }: IChildren & INote) {
     memo,
   } = note;
 
-  console.log(id, displayName, memo);
-
   const edited = createdAt == updatedAt ? false : true;
-  const time = edited ? String(getTimeDifference(createdAt, updatedAt)) : '';
+  const time = getHasCreateTime(createdAt, updatedAt);
 
   useEffect(() => {
     if (textRef.current) {
@@ -39,7 +37,7 @@ export default function NoteItem({ children, note }: IChildren & INote) {
   }, []);
 
   return (
-    <div className="flex w-full flex-col gap-7">
+    <div className="flex w-full flex-col gap-6">
       <div className="flex flex-col gap-2 text-text-sub">
         <ProfileHeader
           name={displayName}

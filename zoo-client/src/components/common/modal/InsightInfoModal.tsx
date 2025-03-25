@@ -3,7 +3,6 @@ import ModalHeader from './Layout/ModalHeader';
 import { useParams, useRouter } from 'next/navigation';
 import {
   Badge,
-  CardBadge,
   InsightContent,
   InsightForm,
   InsightHeader,
@@ -12,7 +11,7 @@ import {
 } from '@/components';
 import Image from 'next/image';
 import { IInsightDetailed } from '@/types/insight/insight';
-import { useInsightsDetailed } from '@/hook/insights/useInsights';
+import { useInsightsDetailed } from '@/hooks/insights/useInsights';
 
 const ModalBody = ({ InsightDetailed }: IInsightDetailed) => {
   const { id, name, shortDescription, keywords, memo, profile, likeCount } =

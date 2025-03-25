@@ -4,7 +4,7 @@ import RightArrow from './icon/RightArrow';
 import { Session } from '@/types/session/session';
 import { useApplyStore } from '@/store/common/useApplyStore';
 import { useRouter } from 'next/navigation';
-import useDetailAccess from '@/hook/acceess/useDetailAccess';
+import useDetailAccess from '@/hooks/access/useDetailAccess';
 
 interface IListButtonProps {
   time: string;

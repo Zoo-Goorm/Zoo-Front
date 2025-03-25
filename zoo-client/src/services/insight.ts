@@ -1,47 +1,56 @@
-import baseURL from '@/apis';
+import { fetchApi } from './api';
+import { IInsightContent, TInsights } from '@/types/insight/insightCard';
 import { InsightDetailedProps } from '@/types/insight/insight';
-import { InsightNoteListProps } from '@/types/insight/note';
+import { InsightNoteListProps } from '@/types/insight/Note';
+
+export async function fetchTopInsights() {
+  const endpoint = '/api/v1/insights/top';
+
+  return fetchApi<IInsightContent[]>(endpoint, {
+    method: 'GET',
+  });
+}
+
+interface ApiResponse<T> {
+  data: T;
+}
+
+export async function fetchInsights(
+  sort: string,
+  page: number,
+  eventDay?: string,
+  sessionId?: number,
+): Promise<TInsights> {
+  let endpoint = `/api/v1/insights/list?&sort=${sort}&page=${page}`;
+
+  if (eventDay && sessionId) {
+    endpoint = `/api/v1/insights/list?&sort=${sort}&page=${page}&eventDay=${eventDay}&sessionId=${sessionId}`;
+  } else if (eventDay) {
+    endpoint = `/api/v1/insights/list?&sort=${sort}&page=${page}&eventDay=${eventDay}`;
+  } else if (sessionId) {
+    endpoint = `/api/v1/insights/list?&sort=${sort}&page=${page}&sessionId=${sessionId}`;
+  }
+
+  const response: ApiResponse<TInsights> = await fetchApi(endpoint, {
+    method: 'GET',
+  });
+
+  return response.data;
+}
 
 export async function getInsights(id: number, page: number, sort: string) {
-  const endpoint = `${baseURL}/api/v1/sessions/${id}/insight-notes?sort=${sort}&page=${page}`;
-
-  try {
-    const response = await fetch(endpoint, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-    });
-
-    if (!response.ok) {
-      console.log(response.statusText);
-    }
-
-    return (await response.json()) as InsightNoteListProps;
-  } catch (error) {
-    console.error(error);
-  }
+  const endpoint = `/api/v1/sessions/${id}/insight-notes?sort=${sort}&page=${page}&size=4`;
+  console.log('실행', endpoint);
+  return fetchApi<InsightNoteListProps>(endpoint, {
+    method: 'GET',
+    credentials: 'include',
+  });
 }
 
 export async function getInsightDetailed(id: number) {
-  const endpoint = `${baseURL}/api/v1/insights/${id}`;
-
-  try {
-    const response = await fetch(endpoint, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-    });
-
-    if (!response.ok) {
-      console.log(response.statusText);
-    }
-
-    return (await response.json()) as InsightDetailedProps;
-  } catch (error) {
-    console.error(error);
-  }
+  const endpoint = `/api/v1/insights/${id}`;
+  return fetchApi<InsightDetailedProps>(endpoint, {
+    method: 'GET',
+    credentials: 'include',
+  });
 }

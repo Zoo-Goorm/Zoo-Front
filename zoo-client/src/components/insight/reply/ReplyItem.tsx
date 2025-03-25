@@ -10,7 +10,6 @@ export default function ReplyItem({
   edited,
   role,
   content,
-  id,
 }: IReplyItemProps) {
   const [detailedReply, setDetailedReply] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
