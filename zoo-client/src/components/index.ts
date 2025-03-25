@@ -7,8 +7,9 @@ export { default as Radio } from './common/radio/Radio';
 export { default as ProgressBar } from './common/progressbar/ProgressBar';
 export { default as RadioContent } from './common/radio/RadioContent';
 
-/* toggle */
+/* toggle/comment count */
 export { default as LikeToggle } from './common/toggle/LikeToggle';
+export { default as CommentCount } from './common/comment/CommentCount';
 
 /* insight */
 export { default as NoteList } from './insight/note/NoteList';
@@ -61,8 +62,7 @@ export { default as CardProfile } from './common/profile/CardProfile';
 
 /* card */
 export { default as CardContent } from './common/card/CardContent';
-export { default as PopularInsightCard } from './common/card/InsightCard.popular';
-export { default as GeneralInsightCard } from './common/card/InsightCard.general';
+export { default as InsightCard } from './common/card/InsightCard';
 export { default as AnotherInsightCard } from './common/card/InsightCard.another';
 
 /* form */

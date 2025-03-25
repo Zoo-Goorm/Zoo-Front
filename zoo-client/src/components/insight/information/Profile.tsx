@@ -31,7 +31,7 @@ export default function Profile({ profile }: IProfile) {
           <SocialList social={social} />
         </div>
       </div>
-      <LikeToggle size="l" />
+      <LikeToggle size="l" count={1} />
     </div>
   );
 }

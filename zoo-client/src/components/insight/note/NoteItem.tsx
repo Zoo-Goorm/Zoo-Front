@@ -51,7 +51,7 @@ export default function NoteItem({ children, note }: IChildren & INote) {
           )}
         </div>
         <div className="flex gap-16">
-          <LikeToggle size={'m'} />
+          <LikeToggle size="m" count={1} />
           <div
             onClick={() => setReplyOn(!replyOn)}
             className="flex items-center gap-1"

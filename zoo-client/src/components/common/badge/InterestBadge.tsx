@@ -6,7 +6,7 @@ interface IInterestBadge {
 
 export default function InterestBadge({ interest }: IInterestBadge) {
   return (
-    <div className="flex flex-wrap items-center gap-4 p-0">
+    <div className="flex w-[100%] items-center gap-8 p-0 scrollbar-hidden">
       {interest.map((badge, index) => (
         <Badge key={index} text={badge} type="default" />
       ))}
