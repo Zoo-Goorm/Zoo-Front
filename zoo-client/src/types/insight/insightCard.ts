@@ -17,8 +17,22 @@ export interface IInsightContent {
   likeCount: number;
   commentCount: number;
 
+  sessionId: number;
+  sessionName: string;
+
   displayName: IProfile['name'];
   job: IProfile['job'];
   imageUrl: IProfile['imageUrl'];
   interestCategory: IProfile['interest'];
 }
+
+export interface ICommonPageData<T> {
+  hasNext: boolean;
+  totalElements: number;
+  pageNumber: number;
+  totalPages: number;
+  pageSize: number;
+  content: T[];
+}
+
+export type TInsights = ICommonPageData<IInsightContent>;
