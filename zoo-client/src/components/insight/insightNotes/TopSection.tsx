@@ -3,9 +3,9 @@ import TitleSection from './TitleSection';
 
 export default function TopSection() {
   return (
-    <div className="flex flex-col items-center gap-60">
+    <div className="flex w-[100%] flex-col gap-60">
       <TitleSection />
-      <div className="flex flex-col justify-center gap-80">
+      <div className="flex flex-col gap-80">
         <PopularInsightSection />
       </div>
     </div>
