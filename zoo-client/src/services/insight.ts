@@ -38,8 +38,13 @@ export async function fetchInsights(
   return response.data;
 }
 
-export async function getInsights(id: number, page: number, sort: string) {
-  const endpoint = `/api/v1/sessions/${id}/insight-notes?sort=${sort}&page=${page}&size=4`;
+export async function getInsightNote(
+  id: number,
+  page: number,
+  sort: string,
+  size: number,
+) {
+  const endpoint = `/api/v1/sessions/${id}/insight-notes?sort=${sort}&page=${page}&size=${size}`;
   console.log('실행', endpoint);
   return fetchApi<InsightNoteListProps>(endpoint, {
     method: 'GET',

@@ -10,6 +10,10 @@ import {
   AnotherInsightCard,
   InsightSideNavigationBar,
 } from '@/components';
+import {
+  useGetAnotherInsight,
+  useGetInsightNote,
+} from '@/hooks/insights/useInsights';
 import { useSession } from '@/hooks/session/useSession';
 import { ISessionId } from '@/types/session/session';
 import Image from 'next/image';
@@ -17,6 +21,8 @@ import { useParams, useRouter } from 'next/navigation';
 
 function AnotherInsightSection() {
   const router = useRouter();
+  const { data } = useGetAnotherInsight();
+  const contents = data?.content;
 
   return (
     <section className="flex gap-3">
@@ -25,8 +31,9 @@ function AnotherInsightSection() {
           타 세션 인사이트 노트
         </h3>
         <div className="flex flex-col items-center justify-center gap-16">
-          <AnotherInsightCard />
-          <AnotherInsightCard />
+          {contents?.map((note, index) => (
+            <AnotherInsightCard key={index} note={note} />
+          ))}
         </div>
         <button
           onClick={() => router.push('/insight-notes')}
@@ -39,11 +46,11 @@ function AnotherInsightSection() {
   );
 }
 
-function InsightSection({ id }: { id: number }) {
+function InsightSection({ id, count }: { id: number; count: number }) {
   return (
     <section className="flex w-[100%] flex-col items-center justify-center gap-40 p-0">
       <div className="flex w-[100%] items-center justify-between bg-bg-secondary px-20 py-16">
-        <h3 className="title-sb-20 text-text-main">인사이트 노트 NN개</h3>
+        <h3 className="title-sb-20 text-text-main">인사이트 노트 {count}개</h3>
         <InsightNoteTab />
       </div>
       <InsightForm type="insight" id={id} />
@@ -77,6 +84,8 @@ const SessionInsightInfo = ({ currentSession }: ISessionId) => {
 export default function SessionInsightNotes() {
   const { id } = useParams();
   const { data: currentSession } = useSession(Number(id));
+  const { data } = useGetInsightNote(Number(id), 'latest');
+  const count = data?.pages[0].totalElements;
 
   return (
     <main>
@@ -88,7 +97,7 @@ export default function SessionInsightNotes() {
           {currentSession && (
             <SessionInsightInfo currentSession={currentSession} />
           )}
-          <InsightSection id={Number(id)} />
+          <InsightSection id={Number(id)} count={Number(count)} />
         </div>
         <AnotherInsightSection />
       </div>

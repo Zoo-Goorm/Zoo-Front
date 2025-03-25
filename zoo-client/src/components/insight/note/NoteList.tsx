@@ -1,7 +1,7 @@
 'use client';
 import { NoteItem, ReplyList } from '@/components';
 import useObserver from '@/hooks/common/useObserver';
-import { useGetInsights } from '@/hooks/insights/useInsights';
+import { useGetInsightNote } from '@/hooks/insights/useInsights';
 import useInsightNoteTabStore from '@/store/common/insight/useInsightNoteTabStore';
 import { useParams } from 'next/navigation';
 import { useMemo, useRef } from 'react';
@@ -15,7 +15,10 @@ export default function NoteList() {
     [selectedTab],
   );
 
-  const { data, fetchNextPage, hasNextPage } = useGetInsights(Number(id), sort);
+  const { data, fetchNextPage, hasNextPage } = useGetInsightNote(
+    Number(id),
+    sort,
+  );
 
   useObserver({
     target: lastElementRef,

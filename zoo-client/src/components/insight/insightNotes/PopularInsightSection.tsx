@@ -1,9 +1,9 @@
-import { getTopInsightQuery } from '@/hooks/insights/insight';
+import { useGetTopInsightQuery } from '@/hooks/insights/insight';
 import InsightCard from '@/components/common/card/InsightCard';
 import { getTime } from '@/utils/insightDate';
 
 export default function PopularInsightSection() {
-  const { data: topInsights } = getTopInsightQuery();
+  const { data: topInsights } = useGetTopInsightQuery();
 
   return (
     <section className="flex flex-col items-start gap-32">
