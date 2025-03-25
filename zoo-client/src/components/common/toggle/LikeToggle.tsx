@@ -1,3 +1,4 @@
+import { useToggleStore } from '@/store/common/useToggleStore';
 import Image from 'next/image';
 
 interface SizeMap {
@@ -16,6 +17,8 @@ interface LikeToggleProps {
 }
 
 export default function LikeToggle({ size, likeCount }: LikeToggleProps) {
+  const { toggleState, setToggleState } = useToggleStore();
+
   const sizeMap: SizeMap = {
     l: 36,
     m: 24,
@@ -28,13 +31,18 @@ export default function LikeToggle({ size, likeCount }: LikeToggleProps) {
 
   return (
     <div className="flex items-center gap-4">
-      <Image
-        src="/button/heart-fill.svg"
-        alt="heart-btn"
-        height={sizeMap[size]}
-        width={sizeMap[size]}
-      />
-      <span className={spanClassMap[size]}>{likeCount}</span>
+      <button onClick={() => setToggleState(!toggleState)}>
+        <Image
+          src={
+            toggleState ? '/button/heart-fill.svg' : '/button/heart-stroke.svg'
+          }
+          alt="heart-btn"
+          height={sizeMap[size]}
+          width={sizeMap[size]}
+        />
+      </button>
+
+      <span className={`${spanClassMap[size]} `}>{likeCount}</span>
     </div>
   );
 }

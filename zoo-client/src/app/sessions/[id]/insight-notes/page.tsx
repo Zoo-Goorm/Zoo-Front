@@ -11,10 +11,7 @@ import {
   InsightSideNavigationBar,
 } from '@/components';
 import { useGetTopInsightQuery } from '@/hooks/insights/insight';
-import {
-  useGetAnotherInsight,
-  useGetInsightNote,
-} from '@/hooks/insights/useInsights';
+import { useGetInsightNote } from '@/hooks/insights/useInsights';
 import { useSession } from '@/hooks/session/useSession';
 import { ISessionId } from '@/types/session/session';
 import Image from 'next/image';
@@ -22,18 +19,13 @@ import { useParams, useRouter } from 'next/navigation';
 
 function AnotherInsightSection() {
   const router = useRouter();
-  // const { data } = useGetAnotherInsight();
-  // const contents = data?.content;
-  const { data: topInsights } = useGetTopInsightQuery();
+  const { data: topInsights, isLoading } = useGetTopInsightQuery();
 
   return (
     <section className="flex gap-3">
-      <div className="flex max-w-[35.8125rem] flex-col">
+      <div className="flex w-[263px] max-w-[35.8125rem] flex-col">
         <h3 className="title-sb-20 text-text-main">타 세션 인사이트 노트</h3>
         <div className="flex flex-col items-center justify-center gap-16">
-          {/* {contents?.map((note, index) => (
-            <AnotherInsightCard key={index} note={note} />
-          ))} */}
           {topInsights &&
             topInsights?.map(
               (topInsight, index) =>
@@ -41,6 +33,9 @@ function AnotherInsightSection() {
                   <AnotherInsightCard key={index} content={topInsight} />
                 ),
             )}
+          {isLoading && (
+            <div className="h-[500px] w-[263px] bg-bg-primary"></div>
+          )}
         </div>
         <button
           onClick={() => router.push('/insight-notes')}

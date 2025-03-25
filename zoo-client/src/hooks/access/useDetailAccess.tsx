@@ -1,14 +1,18 @@
 'use client';
-import { useState } from 'react';
-import { userTicket } from '@/mock/ticket';
 import { useRouter } from 'next/navigation';
 import { useApplyStore } from '@/store/common/useApplyStore';
+import { useTicket } from '../session/useTicket';
+import { UserTicket } from '@/types/ticket/ticket';
 
 export default function useDetailAccess() {
   const token = true;
   const router = useRouter();
-  const [tickets] = useState(userTicket.tickets);
-  const [registeredSessions] = useState(userTicket.registeredSessions);
+  const { data } = useTicket();
+  const userTicket: UserTicket = data ?? {
+    tickets: {},
+    registeredSessions: {},
+  };
+
   const { setApplyState, setConflictId } = useApplyStore();
 
   function hasAnyTicket(): boolean {
@@ -47,6 +51,8 @@ export default function useDetailAccess() {
     sessionTimeRange: string,
     sessionId: number,
   ) => {
+    console.log('?', data);
+
     if (!token) {
       router.push('/login');
       return;
@@ -102,8 +108,6 @@ export default function useDetailAccess() {
   };
 
   return {
-    tickets,
-    registeredSessions,
     hasAnyTicket,
     hasAllTicket,
     handleAnyTicket,

@@ -53,14 +53,13 @@ export default function ListButton({
       router.push(`/session-schedule/${session.id}`, { scroll: false });
     } else {
       handleAnyTicket(currentDate, time, session.id);
-      console.log(currentDate, time, session.id);
     }
   };
 
   return (
     <div
       onClick={listButtonHandler}
-      className={`headline-sb-40 flex cursor-pointer items-center px-40 py-0 backdrop-blur-[10px] mobile:h-[8.75rem] mobile:w-[23.8125rem] website:h-[200px] website:w-[31.9375rem] ${buttonTypeClasses[type]} justify-between`}
+      className={`headline-sb-40 flex cursor-pointer items-center px-40 py-0 backdrop-blur-[10px] mobile:h-[8.75rem] mobile:w-[23.8125rem] website:h-[196px] website:w-[31.9375rem] ${buttonTypeClasses[type]} justify-between`}
     >
       <span>{text}</span>
       <RightArrow fill={buttonIconColorClasses[type]} />

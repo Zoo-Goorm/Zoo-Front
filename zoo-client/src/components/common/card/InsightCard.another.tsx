@@ -1,6 +1,4 @@
-import { ProfileHeader } from '@/components';
 import { IInsightContent } from '@/types/insight/insightCard';
-import { getHasCreateTime } from '@/utils/insightDate';
 import InterestBadge from '../badge/InterestBadge';
 import Image from 'next/image';
 
@@ -9,18 +7,8 @@ export default function AnotherInsightCard({
 }: {
   content: IInsightContent;
 }) {
-  const {
-    interestCategory,
-    displayName,
-    createdAt,
-    updatedAt,
-    job,
-    memo,
-    imageUrl,
-  } = content;
-  const time = getHasCreateTime(createdAt, updatedAt);
+  const { interestCategory, displayName, job, memo, imageUrl } = content;
 
-  console.log(content);
   return (
     <article>
       <div className="flex max-w-[263px] flex-col justify-center gap-20 px-16 py-20">

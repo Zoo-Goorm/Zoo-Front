@@ -20,8 +20,6 @@ export async function createReply(formData: FormData) {
     if (!response.ok) {
       console.log(response.statusText);
     }
-    console.log('REPLY POST 완료');
-
     const responseData = await response.json();
     return responseData;
   } catch (error) {
@@ -36,6 +34,7 @@ export async function createNote(formData: FormData) {
   const isPublic = formData.get('isPublic') === '공개';
   const isDraft = false;
   const endpoint = `${baseURL}/api/v1/insights`;
+
   const payload = {
     sessionId: sessionId,
     memo: memo,
@@ -43,7 +42,6 @@ export async function createNote(formData: FormData) {
     isAnonymous: isAnonymous,
     isDraft: isDraft,
   };
-  console.log('✅ NOTE:', payload);
 
   try {
     const response = await fetch(endpoint, {

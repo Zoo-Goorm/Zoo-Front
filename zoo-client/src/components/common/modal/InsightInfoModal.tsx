@@ -53,7 +53,7 @@ export default function InsightInfoModal() {
     <div className="flex w-screen flex-col items-center justify-center py-10">
       <div
         onClick={(e) => e.stopPropagation()}
-        className="min-h-[1100px] w-[868px] bg-bg-primary px-32 py-20"
+        className="flex min-h-[1000px] w-[868px] flex-col gap-5 bg-bg-primary px-32 py-20"
       >
         <ModalHeader
           headerText={`[${InsightDetailed?.profile.name}]님 인사이트 노트`}

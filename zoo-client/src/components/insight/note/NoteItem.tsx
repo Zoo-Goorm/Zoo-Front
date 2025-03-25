@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import InsightForm from '../form/InsightForm';
 import ProfileHeader from '../profileHeader';
 import { INote } from '@/types/insight/Note';
-import { getHasCreateTime } from '@/utils/insightDate';
+import { getTime } from '@/utils/insightDate';
 
 export default function NoteItem({ children, note }: IChildren & INote) {
   const [replyOn, setReplyOn] = useState(false);
@@ -27,8 +27,7 @@ export default function NoteItem({ children, note }: IChildren & INote) {
     memo,
   } = note;
 
-  const edited = createdAt == updatedAt ? false : true;
-  const time = getHasCreateTime(createdAt, updatedAt);
+  const time = getTime(createdAt);
 
   useEffect(() => {
     if (textRef.current) {
@@ -42,7 +41,7 @@ export default function NoteItem({ children, note }: IChildren & INote) {
         <ProfileHeader
           name={displayName}
           time={time}
-          edited={edited}
+          edited={createdAt == updatedAt ? false : true}
           job={job}
         />
         <div className="flex flex-col gap-1">
