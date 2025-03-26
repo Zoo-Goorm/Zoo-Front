@@ -36,7 +36,12 @@ export default function FourthSection() {
         <Slider {...settings}>
           {onboardingInsights.map((content) => (
             <div>
-              <InsightCard $size="l" key={content.id} content={content} />
+              <InsightCard
+                type="onboarding"
+                $size="l"
+                key={content.id}
+                content={content}
+              />
             </div>
           ))}
         </Slider>

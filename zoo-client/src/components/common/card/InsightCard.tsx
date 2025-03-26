@@ -3,12 +3,14 @@ import {
   IInsightContent,
   IOnboardingInsights,
 } from '@/types/insight/insightCard';
+import { IProfileType } from '../profile/CardProfile';
 
 interface IInsightCard {
   time?: string;
   isEdited?: boolean;
   $size?: 'xl' | 'l' | 'm';
   content: IInsightContent | IOnboardingInsights;
+  type?: IProfileType['type'];
 }
 
 export default function InsightCard({
@@ -16,6 +18,7 @@ export default function InsightCard({
   isEdited = false,
   $size = 'xl',
   time,
+  type = 'default',
 }: IInsightCard) {
   const insightCardSizeClasses = {
     xl: 'w-[100%]',
@@ -29,6 +32,7 @@ export default function InsightCard({
     >
       <div className="flex w-[100%] flex-1 flex-col items-center gap-16 justify-self-center">
         <CardProfile
+          type={type}
           interest={content.interestCategory}
           contentId={content.id}
           name={content.displayName}
