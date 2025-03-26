@@ -29,10 +29,13 @@ export default function NavigationBar({
   }, [checkAuth]);
 
   const logoColorClasses = { default: '#4824FF', main: '#fff' };
-  const labelColorClasses = { default: 'color: #000', main: 'color: #fff' };
+  const labelColorClasses = {
+    default: 'text-text-main',
+    main: 'text-text-white',
+  };
 
   return (
-    <header className="bg-[rgba(255, 255, 255, 0.30)] flex w-[100%] items-center justify-between px-[6.25rem] py-24">
+    <header className="bg-[rgba(255, 255, 255, 0.30)] z-50 flex w-[100%] items-center justify-between px-[6.25rem] py-24">
       <Link href="/">
         <LogoIcon width="142" height="26" fill={`${logoColorClasses[$type]}`} />
       </Link>

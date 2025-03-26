@@ -60,7 +60,7 @@ function UserProfileSection({ imageUrl, name, job, contentId }: TProfile) {
           <span className="body-m-16 text-text-sub">{job}</span>
         </div>
       </div>
-      <DetailButton contentId={contentId} />
+      {imageUrl && <DetailButton contentId={contentId} />}
     </div>
   );
 }
