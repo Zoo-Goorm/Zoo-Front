@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import useAuthStore from '@/store/common/auth/useAuthStore';
 import useTokenStore from '@/store/common/auth/useTokenStore';
 import { OblongButton } from '@/components';
-import LogoIcon from './logo/LogoIcon';
+import LogoIcon from '../logo/LogoIcon';
 
 interface INavigationBarProps {
   $type?: 'default' | 'main';
@@ -34,7 +34,7 @@ export default function NavigationBar({
   return (
     <header className="bg-[rgba(255, 255, 255, 0.30)] flex w-[100%] items-center justify-between px-[6.25rem] py-24">
       <Link href="/">
-        <LogoIcon fill={`${logoColorClasses[$type]}`} />
+        <LogoIcon width="142" height="26" fill={`${logoColorClasses[$type]}`} />
       </Link>
       <ul className="flex items-center gap-32">
         <Link href="/session-schedule">
