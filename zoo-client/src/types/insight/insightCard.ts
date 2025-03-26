@@ -36,3 +36,14 @@ export interface ICommonPageData<T> {
 }
 
 export type TInsights = ICommonPageData<IInsightContent>;
+
+export type IOnboardingInsights = Omit<
+  IInsightContent,
+  | 'isPublic'
+  | 'isAnonymous'
+  | 'createdAt'
+  | 'updatedAt'
+  | 'sessionId'
+  | 'sessionName'
+  | 'isLiked'
+>;
