@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useTicket } from '../session/useTicket';
 import { UserTicket } from '@/types/ticket/ticket';
+import { useGetTicket } from '../session/useReservation';
 
 export default function useTitleAccess() {
   const token = true;
   const router = useRouter();
-  const { data } = useTicket();
+  const { data } = useGetTicket();
 
   const userTicket: UserTicket = data ?? {
     tickets: {},

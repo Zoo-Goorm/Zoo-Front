@@ -35,11 +35,10 @@ export default function InsightSideNavigationBar() {
   return (
     <>
       {!onList ? (
-        <div
-          onClick={() => setOnList(!onList)}
-          className="fixed flex h-[892px] w-[32px] cursor-pointer items-center rounded-r-md bg-bg-secondary"
-        >
+        <div className="fixed flex h-[892px] w-[32px] cursor-pointer items-center rounded-r-md bg-bg-secondary">
           <Image
+            onClick={() => setOnList(!onList)}
+            className="cursor-pointer"
             src="/button/right-arrow-side.svg"
             width={28}
             height={28}

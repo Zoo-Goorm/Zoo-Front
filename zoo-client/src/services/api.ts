@@ -25,7 +25,12 @@ export async function fetchApi<T>(
     },
   });
 
-  const data = await response.json();
+  let data;
+  try {
+    data = await response.json();
+  } catch (error) {
+    data = null;
+  }
 
   if (!response.ok) {
     throw {

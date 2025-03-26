@@ -1,13 +1,13 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useApplyStore } from '@/store/common/useApplyStore';
-import { useTicket } from '../session/useTicket';
 import { UserTicket } from '@/types/ticket/ticket';
+import { useGetTicket } from '../session/useReservation';
 
 export default function useDetailAccess() {
   const token = true;
   const router = useRouter();
-  const { data } = useTicket();
+  const { data } = useGetTicket();
   const userTicket: UserTicket = data ?? {
     tickets: {},
     registeredSessions: {},
@@ -51,8 +51,6 @@ export default function useDetailAccess() {
     sessionTimeRange: string,
     sessionId: number,
   ) => {
-    console.log('?', data);
-
     if (!token) {
       router.push('/login');
       return;
@@ -89,6 +87,9 @@ export default function useDetailAccess() {
             }
             router.push(`/session-schedule/${sessionId}`, { scroll: false });
           } else {
+            // 이벤트 진행
+            console.log(data, '현재 보고 있는 세션의 ID', sessionId);
+
             setApplyState(
               true,
               '신청 완료',

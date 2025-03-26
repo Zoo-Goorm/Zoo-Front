@@ -1,12 +1,30 @@
 'use client';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useApplyStore } from '@/store/common/useApplyStore';
 import ModalHeader from './Layout/ModalHeader';
 import ModalContainer from './Layout/ModalContainer';
 import { IModalBodyProps } from '@/types/modal/modal';
 import { useSession } from '@/hooks/session/useSession';
+import {
+  useGetTicket,
+  useMutationReApply,
+} from '@/hooks/session/useReservation';
 
-const ModalButton = ({ closeModal }: { closeModal: () => void }) => {
+const ModalButton = ({
+  closeModal,
+  cancelId,
+}: {
+  closeModal: () => void;
+  cancelId: number;
+}) => {
+  const sessionId = Number(useParams().id);
+  const { mutate } = useMutationReApply();
+
+  const changeSession = () => {
+    mutate({ cancelId: cancelId, addId: sessionId });
+    closeModal();
+  };
+
   return (
     <div className="title-sb-20 flex w-full items-center gap-16">
       <button
@@ -15,7 +33,10 @@ const ModalButton = ({ closeModal }: { closeModal: () => void }) => {
       >
         유지
       </button>
-      <button className="flex-1 rounded-md bg-fill-primary py-16 text-text-white">
+      <button
+        onClick={changeSession}
+        className="flex-1 rounded-md bg-fill-primary py-16 text-text-white"
+      >
         변경 신청
       </button>
     </div>
@@ -23,6 +44,8 @@ const ModalButton = ({ closeModal }: { closeModal: () => void }) => {
 };
 
 const ModalBody = ({ bodyText }: IModalBodyProps) => {
+  const { data } = useGetTicket();
+  console.log(data);
   return (
     <div className="flex w-[100%] items-center justify-center bg-bg-secondary px-20 py-24">
       <p className="body-m-16 text-text-main">{bodyText}</p>
@@ -45,13 +68,13 @@ export default function SessionRadioModal() {
     router.back();
   };
 
-  // apply 또는 change에서 신청을 위한 fetch 로직 구현 필요
-
   return (
     <ModalContainer>
       <ModalHeader headerText={messageMain} closeModal={closeModal} />
       <ModalBody bodyText={bodyText} />
-      {change && <ModalButton closeModal={closeModal} />}
+      {change && (
+        <ModalButton closeModal={closeModal} cancelId={Number(conflictId)} />
+      )}
     </ModalContainer>
   );
 }

@@ -9,3 +9,13 @@ export async function getTicket() {
     credentials: 'include',
   });
 }
+
+export async function ReApply(cancelId: number, addId: number) {
+  const endpoint = `/api/v1/reservation/${cancelId}/${addId}`;
+
+  const res = await fetchApi(endpoint, {
+    method: 'POST',
+    credentials: 'include',
+  });
+  console.log('확인', res);
+}
