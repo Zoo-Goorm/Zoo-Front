@@ -5,4 +5,5 @@ export interface IReplyItemProps {
   edited: boolean;
   role: string;
   content: string;
+  speaker: boolean;
 }

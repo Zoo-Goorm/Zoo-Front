@@ -51,7 +51,11 @@ const ModalBody = ({ bodyText }: IModalBodyProps) => {
   );
 };
 
-export default function SessionRadioModal() {
+export default function SessionRadioModal({
+  closeModal,
+}: {
+  closeModal: () => void;
+}) {
   const { messageMain, messageSub, change, conflictId } = useApplyStore();
   const { data: currentSession } = useSession(Number(conflictId));
   const title = currentSession?.sessionName;
@@ -60,11 +64,6 @@ export default function SessionRadioModal() {
     ? `이미 같은 시간대에 [${title}] 세션이 신청되어있습니다.
      신청된 세션을 취소하고 해당 세션을 신청하시고 싶으시다면 변경 신청 버튼을 눌러주세요!`
     : messageSub;
-  const router = useRouter();
-
-  const closeModal = () => {
-    router.back();
-  };
 
   return (
     <ModalContainer>

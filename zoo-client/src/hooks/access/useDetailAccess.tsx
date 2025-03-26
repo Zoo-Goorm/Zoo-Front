@@ -107,6 +107,7 @@ export default function useDetailAccess() {
   };
 
   return {
+    hasConflictingSessionWithId,
     hasAnyTicket,
     hasAllTicket,
     handleAnyTicket,

@@ -47,7 +47,6 @@ export default function ListButton({
         false,
         '신청 마감',
         `${session.name} 세션이 이미 신청 마감되어 실패했습니다.`,
-        // 0,
         false,
       );
       router.push(`/session-schedule/${session.id}`, { scroll: false });

@@ -4,14 +4,14 @@ interface ProfileHeaderProps {
   name: string;
   time?: string;
   edited: boolean;
-  job: string;
+  speaker?: boolean;
 }
 
 export default function ProfileHeader({
   name,
   time,
   edited,
-  job,
+  speaker,
 }: ProfileHeaderProps) {
   return (
     <div className="flex content-center gap-8">
@@ -26,7 +26,7 @@ export default function ProfileHeader({
         <span className="body-r-14 text-text-sub">
           {time} {time !== '' && edited && `(수정됨)`}
         </span>
-        {job == '강연자' && (
+        {speaker && (
           <span className="body-m-16-150 rounded-md bg-bg-secondary px-2 py-1 text-text-main">
             강연자
           </span>

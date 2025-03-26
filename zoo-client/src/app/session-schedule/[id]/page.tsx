@@ -34,7 +34,7 @@ export default function SessionDetailPage() {
             {modalType == 'thirary' ? (
               <SessionDetailModal currentSession={currentSession} />
             ) : (
-              <SessionApplyModal />
+              <SessionApplyModal closeModal={handleClose} />
             )}
           </div>
         )}

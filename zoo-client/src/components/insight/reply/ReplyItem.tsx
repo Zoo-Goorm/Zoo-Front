@@ -8,8 +8,8 @@ import { IReplyItemProps } from '@/types/insight/insightReply';
 export default function ReplyItem({
   name,
   edited,
-  role,
   content,
+  speaker,
 }: IReplyItemProps) {
   const [detailedReply, setDetailedReply] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
@@ -23,7 +23,7 @@ export default function ReplyItem({
 
   return (
     <div className="flex flex-col gap-2 pb-5 pl-32">
-      <ProfileHeader name={name} time={''} edited={edited} job={role} />
+      <ProfileHeader name={name} time={''} edited={edited} speaker={speaker} />
       <div className="flex flex-col gap-1">
         <p
           ref={textRef}

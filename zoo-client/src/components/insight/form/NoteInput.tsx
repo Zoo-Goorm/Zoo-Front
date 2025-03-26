@@ -1,8 +1,4 @@
 'use client';
-// import NoteImageInput from '../note/NoteImageInput';
-// import { useRef } from 'react';
-// import { useInsightFormStore } from '@/store/common/insight/useInsightForm';
-// import NoteVoteInput from '../note/NoteVoteInput';
 import useModalStore from '@/store/common/useModalStore';
 import SettingNoteModal from '@/components/common/modal/SettingNoteModal';
 import SaveInsightModal from '@/components/common/modal/SaveInsightModal';
@@ -53,22 +49,8 @@ export default function NoteInput({ text, id }: { text: string; id: number }) {
         placeholder={text}
         defaultValue={content}
       />
-      {/* <NoteImageInput fileInputRef={fileInputRef} /> */}
-      {/* <NoteVoteInput /> */}
       <div className="flex items-center justify-between">
-        <div className="flex gap-16">
-          {/* {Object.entries(ButtonList).map(([index, [src, fnc]]) => (
-            <Image
-              key={index}
-              width={32}
-              height={32}
-              src={src}
-              alt={`btn-${index}`}
-              className="cursor-pointer"
-              onClick={fnc}
-            />
-          ))} */}
-        </div>
+        <div className="flex gap-16"></div>
         <div className="body-m-16 flex gap-2">
           <button
             type="button"
