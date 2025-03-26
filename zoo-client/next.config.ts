@@ -1,22 +1,9 @@
 import type { NextConfig } from 'next';
+const withVideos = require('next-videos');
 
 const nextConfig: NextConfig = {
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/login',
-        permanent: true,
-      },
-    ];
-  },
-  // experimental: {
-  //   serverActions: {
-  //     bodySizeLimit: '10mb',
-  //   },
-  // },
   images: {
-    domains: ['i.pinimg.com', `${process.env.NEXT_PUBLIC_S3_HOSTNAME}`], // 임시 외부 이미지를 사용하기 위한 설정입니다. 추후 삭제가 필요합니다.
+    domains: ['i.pinimg.com', `${process.env.NEXT_PUBLIC_S3_HOSTNAME}`],
     remotePatterns: [
       {
         protocol: 'https',
@@ -31,4 +18,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withVideos(nextConfig);

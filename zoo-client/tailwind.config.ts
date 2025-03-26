@@ -16,6 +16,9 @@ export default {
     },
     extend: {
       spacing,
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(145deg, #000127 0%, #000235 100%)',
+      },
     },
   },
   plugins: [

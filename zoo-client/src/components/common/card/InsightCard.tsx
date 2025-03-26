@@ -1,18 +1,24 @@
 import { CardProfile, CommentCount, LikeToggle } from '@/components';
-import { IInsightContent } from '@/types/insight/insightCard';
+import {
+  IInsightContent,
+  IOnboardingInsights,
+} from '@/types/insight/insightCard';
+import { IProfileType } from '../profile/CardProfile';
 
 interface IInsightCard {
-  time: string;
+  time?: string;
   isEdited?: boolean;
   $size?: 'xl' | 'l' | 'm';
-  content: IInsightContent;
+  content: IInsightContent | IOnboardingInsights;
+  type?: IProfileType['type'];
 }
 
 export default function InsightCard({
   content,
   isEdited = false,
-  time,
   $size = 'xl',
+  time,
+  type = 'default',
 }: IInsightCard) {
   const insightCardSizeClasses = {
     xl: 'w-[100%]',
@@ -26,6 +32,7 @@ export default function InsightCard({
     >
       <div className="flex w-[100%] flex-1 flex-col items-center gap-16 justify-self-center">
         <CardProfile
+          type={type}
           interest={content.interestCategory}
           contentId={content.id}
           name={content.displayName}
@@ -41,10 +48,12 @@ export default function InsightCard({
           <LikeToggle size="l" count={content.likeCount} />
           <CommentCount count={content.commentCount} />
         </div>
-        <div className="flex items-center">
-          <span>{time}</span>
-          {isEdited && <span>(수정됨)</span>}
-        </div>
+        {time && (
+          <div className="flex items-center">
+            <span>{time}</span>
+            {isEdited && <span>(수정됨)</span>}
+          </div>
+        )}
       </div>
     </article>
   );
