@@ -7,6 +7,7 @@ export function useMutationIsLike(id: number) {
   return useMutation({
     mutationFn: ({ id }: { id: number }) => updateIsLike(id),
     onSuccess: () => {
+      console.log('성공');
       queryClient.invalidateQueries({
         queryKey: ['insights', id],
       });

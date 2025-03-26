@@ -1,9 +1,9 @@
 'use client';
 
-import { IReplyItemProps } from '@/types/insight/reply';
 import Image from 'next/image';
 import { useRef, useState, useEffect } from 'react';
 import ProfileHeader from '../profileHeader';
+import { IReplyItemProps } from '@/types/insight/insightReply';
 
 export default function ReplyItem({
   name,

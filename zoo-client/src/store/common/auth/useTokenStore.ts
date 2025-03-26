@@ -1,12 +1,12 @@
-// import { create } from 'zustand';
-// import { getCookie } from 'cookies-next';
+import { create } from 'zustand';
+import { getCookie } from 'cookies-next';
 
-// interface TokenState {
-//   accessToken: string | null;
-// }
+interface TokenState {
+  accessToken: string | null;
+}
 
-// const useTokenStore = create<TokenState>(() => ({
-//   accessToken: getCookie('Authorization') as string | null,
-// }));
+const useTokenStore = create<TokenState>(() => ({
+  accessToken: getCookie('Authorization') as string | null,
+}));
 
-// export default useTokenStore;
+export default useTokenStore;

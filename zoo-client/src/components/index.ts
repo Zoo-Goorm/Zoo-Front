@@ -50,11 +50,11 @@ export { default as RegisterPaymentButton } from './common/button/RegisterPaymen
 /* header & footer */
 export { default as NavigationBar } from './common/navigationBar/NavigationBar';
 export { default as InsightSideNavigationBar } from './common/navigationBar/InsightSideNavigationBar';
+export { default as Footer } from './common/footer/Footer';
 
 /* badge */
 export { default as CardBadge } from './common/badge/CardBadge';
 export { default as ContentBadge } from './common/badge/ContentBadge';
-export { default as Footer } from './common/footer/Footer';
 
 /* profile */
 export { default as Profile } from './insight/information/Profile';

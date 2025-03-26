@@ -6,11 +6,16 @@ import { IProfile } from '@/types/insight/insightCard';
 import InterestBadge from '../badge/InterestBadge';
 
 interface IDetailButtonProps {
-  contentId: number;
+  contentId?: number;
+}
+
+export interface IProfileType {
+  type?: 'onboarding' | 'default';
 }
 
 type TProfile = Pick<IProfile, 'imageUrl' | 'name' | 'job'> &
-  IDetailButtonProps;
+  IDetailButtonProps &
+  IProfileType;
 
 interface IProfileProps {
   contentId: IDetailButtonProps['contentId'];
@@ -39,7 +44,13 @@ function DetailButton({ contentId }: IDetailButtonProps) {
   );
 }
 
-function UserProfileSection({ imageUrl, name, job, contentId }: TProfile) {
+function UserProfileSection({
+  imageUrl,
+  name,
+  job,
+  contentId,
+  type = 'default',
+}: TProfile) {
   return (
     <div className="flex w-[100%] items-center justify-between px-0 py-4">
       <div className="flex gap-[0.75rem]">
@@ -60,7 +71,7 @@ function UserProfileSection({ imageUrl, name, job, contentId }: TProfile) {
           <span className="body-m-16 text-text-sub">{job}</span>
         </div>
       </div>
-      <DetailButton contentId={contentId} />
+      {type === 'default' && <DetailButton contentId={contentId} />}
     </div>
   );
 }
@@ -71,10 +82,12 @@ export default function CardProfile({
   name,
   job,
   interest,
+  type = 'default',
 }: IProfileProps & TProfile) {
   return (
     <div className="flex w-[100%] flex-col items-center justify-center gap-16">
       <UserProfileSection
+        type={type}
         imageUrl={imageUrl}
         name={name}
         job={job}

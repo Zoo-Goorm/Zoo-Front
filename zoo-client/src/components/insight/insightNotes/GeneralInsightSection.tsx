@@ -75,6 +75,8 @@ export default function GeneralInsightSection() {
             {horizontalInsights &&
               horizontalInsights.map((insight, index) => (
                 <InsightCard
+                  id={insight.id}
+                  isLiked={insight.isLiked}
                   $size="l"
                   key={index}
                   content={insight}
@@ -86,6 +88,8 @@ export default function GeneralInsightSection() {
             {verticalInsights?.pages.map((page) =>
               page.content.map((insight, index) => (
                 <InsightCard
+                  id={insight.id}
+                  isLiked={insight.isLiked}
                   key={index}
                   content={insight}
                   time={getTime(insight.updatedAt)}

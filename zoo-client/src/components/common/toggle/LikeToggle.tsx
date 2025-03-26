@@ -15,7 +15,7 @@ interface LikeToggleProps {
   id: number;
   size: keyof SizeMap;
   likeCount: number;
-  isLiked: boolean;
+  isLiked?: boolean;
 }
 
 export default function LikeToggle({
@@ -37,7 +37,6 @@ export default function LikeToggle({
   };
 
   const isLikeHandler = () => {
-    console.log(id, '인사이트의', !isLiked, '의 상태로 변경');
     mutate({ id: id });
   };
   return (
