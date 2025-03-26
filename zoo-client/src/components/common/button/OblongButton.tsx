@@ -7,6 +7,7 @@ interface IOblongButtonProps {
   text: string;
   type?: 'button' | 'submit';
   onClick?: () => void;
+  iconVisible?: boolean;
 }
 
 export default function OblongButton({
@@ -16,6 +17,7 @@ export default function OblongButton({
   text,
   $disabled = false,
   onClick,
+  iconVisible = true,
 }: IOblongButtonProps) {
   const buttonSizeClasses = {
     xl: 'py-16 px-24 gap-20 headline-sb-28',
@@ -50,7 +52,7 @@ export default function OblongButton({
       className={`flex w-[100%] items-center justify-center rounded-[0.25rem] text-center ${buttonSizeClasses[size]} ${buttonStateClasses[$buttonStyle]}`}
     >
       {text}
-      {$buttonStyle === 'primary' ? (
+      {$buttonStyle === 'primary' && iconVisible ? (
         <Image
           src="/button/right-arrow.svg"
           alt="right-arrow-icon"
