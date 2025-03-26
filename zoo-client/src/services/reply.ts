@@ -1,4 +1,4 @@
-import { IReplyItemProps } from '@/types/insight/reply';
+import { IReplyItemProps } from '@/types/insight/insightReply';
 import { fetchApi } from './api';
 
 export async function getReplyList(id: number) {

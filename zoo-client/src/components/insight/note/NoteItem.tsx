@@ -5,8 +5,8 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import InsightForm from '../form/InsightForm';
 import ProfileHeader from '../profileHeader';
-import { INote } from '@/types/insight/Note';
 import { getTime } from '@/utils/insightDate';
+import { INote } from '@/types/insight/insightNote';
 
 export default function NoteItem({ children, note }: IChildren & INote) {
   const [replyOn, setReplyOn] = useState(false);
@@ -20,6 +20,7 @@ export default function NoteItem({ children, note }: IChildren & INote) {
     createdAt,
     updatedAt,
     likeCount,
+    isLiked,
     // isAnonymous,
     // isPublic,
     // commentCount,
@@ -70,7 +71,12 @@ export default function NoteItem({ children, note }: IChildren & INote) {
           )}
         </div>
         <div className="flex gap-16">
-          <LikeToggle size={'m'} likeCount={likeCount} />
+          <LikeToggle
+            id={id}
+            size={'m'}
+            likeCount={likeCount}
+            isLiked={isLiked}
+          />
           <div
             onClick={() => setReplyOn(!replyOn)}
             className="flex items-center gap-1"

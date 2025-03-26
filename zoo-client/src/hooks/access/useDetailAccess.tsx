@@ -2,12 +2,14 @@
 import { useRouter } from 'next/navigation';
 import { useApplyStore } from '@/store/common/useApplyStore';
 import { UserTicket } from '@/types/ticket/ticket';
-import { useGetTicket } from '../session/useReservation';
+import { useGetTicket, useMutationApply } from '../session/useReservation';
 
 export default function useDetailAccess() {
   const token = true;
   const router = useRouter();
   const { data } = useGetTicket();
+  const { mutate: ApplyMutate } = useMutationApply();
+
   const userTicket: UserTicket = data ?? {
     tickets: {},
     registeredSessions: {},
@@ -67,7 +69,6 @@ export default function useDetailAccess() {
             false,
             '중복 신청',
             '[중복 신청] 이미 신청한 세션입니다',
-            // sessionId,
             false,
           );
           router.push(`/session-schedule/${sessionId}`, { scroll: false });
@@ -87,14 +88,11 @@ export default function useDetailAccess() {
             }
             router.push(`/session-schedule/${sessionId}`, { scroll: false });
           } else {
-            // 이벤트 진행
-            console.log(data, '현재 보고 있는 세션의 ID', sessionId);
-
+            ApplyMutate({ id: sessionId });
             setApplyState(
               true,
               '신청 완료',
               '세션이 신청 완료되었습니다.',
-              // sessionId,
               false,
             );
             router.push(`/session-schedule/${sessionId}`, { scroll: false });

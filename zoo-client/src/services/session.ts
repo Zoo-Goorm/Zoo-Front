@@ -14,3 +14,10 @@ export async function getSession(id: number) {
     method: 'GET',
   });
 }
+
+export async function SessionApply(id: number) {
+  const endpoint = `/api/v1/reservation/${id}`;
+  return fetchApi(endpoint, {
+    method: 'POST',
+  });
+}

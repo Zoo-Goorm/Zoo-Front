@@ -14,6 +14,7 @@ export default function PopularInsightSection() {
             <InsightCard
               key={index}
               $size="m"
+              id={topInsight.id}
               content={topInsight}
               time={getTime(topInsight.updatedAt)}
               isEdited={topInsight.createdAt !== topInsight.updatedAt}

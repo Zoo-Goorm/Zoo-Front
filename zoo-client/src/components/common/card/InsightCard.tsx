@@ -2,6 +2,7 @@ import { CardProfile, CommentCount, LikeToggle } from '@/components';
 import { IInsightContent } from '@/types/insight/insightCard';
 
 interface IInsightCard {
+  id: number;
   time: string;
   isEdited?: boolean;
   $size?: 'xl' | 'l' | 'm';
@@ -9,6 +10,7 @@ interface IInsightCard {
 }
 
 export default function InsightCard({
+  id,
   content,
   isEdited = false,
   time,
@@ -38,7 +40,12 @@ export default function InsightCard({
       </div>
       <div className="flex w-[100%] items-center justify-between">
         <div className="flex items-center gap-20">
-          <LikeToggle size="l" likeCount={content.likeCount} />
+          <LikeToggle
+            id={id}
+            size="l"
+            likeCount={content.likeCount}
+            isLiked={content.isLiked}
+          />
           <CommentCount count={content.commentCount} />
         </div>
         <div className="flex items-center">

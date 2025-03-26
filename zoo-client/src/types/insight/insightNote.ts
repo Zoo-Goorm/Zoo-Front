@@ -3,6 +3,7 @@ export interface NoteListProps {
   memo: string;
   displayName: string;
   job: string;
+  isLiked: boolean;
   likeCount: number;
   commentCount: number;
   isPublic: boolean;
@@ -30,6 +31,7 @@ export interface InsightNoteProps {
   commentCount: number;
   displayName: string;
   job: string;
+  isLiked: boolean;
 }
 
 export interface InsightNoteListProps {

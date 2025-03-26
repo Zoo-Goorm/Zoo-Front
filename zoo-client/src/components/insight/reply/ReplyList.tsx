@@ -7,7 +7,9 @@ import useGetReply from '@/hooks/insights/useReply';
 export default function ReplyList({ id }: { id: number }) {
   const [applyAccordion, setApplyAccordion] = useState(false);
 
-  const { data: ReplyList = [] } = useGetReply(id);
+  const { data = [] } = useGetReply(id);
+
+  const ReplyList = [...data].reverse();
 
   return (
     <>

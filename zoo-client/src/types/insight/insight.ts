@@ -4,6 +4,10 @@ export interface InsightHeaderProps {
   title: string;
   description: string;
 }
+export interface ILike {
+  likeCount: number;
+  isLiked: boolean;
+}
 
 export interface InsightDetailedProps {
   id: number;
@@ -13,11 +17,8 @@ export interface InsightDetailedProps {
   memo: string;
   profile: ProfileProps;
   likeCount: number;
+  isLiked: boolean;
 }
 export interface IInsightDetailed {
   InsightDetailed: InsightDetailedProps;
-}
-
-export interface ILikeCount {
-  likeCount: number;
 }

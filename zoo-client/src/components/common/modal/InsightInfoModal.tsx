@@ -14,8 +14,16 @@ import { IInsightDetailed } from '@/types/insight/insight';
 import { useInsightsDetailed } from '@/hooks/insights/useInsights';
 
 const ModalBody = ({ InsightDetailed }: IInsightDetailed) => {
-  const { id, name, shortDescription, keywords, memo, profile, likeCount } =
-    InsightDetailed;
+  const {
+    id,
+    name,
+    shortDescription,
+    keywords,
+    memo,
+    profile,
+    likeCount,
+    isLiked,
+  } = InsightDetailed;
 
   return (
     <div className="flex size-full flex-col gap-16">
@@ -25,7 +33,12 @@ const ModalBody = ({ InsightDetailed }: IInsightDetailed) => {
         ))}
       </div>
       <InsightHeader title={name} description={shortDescription} />
-      <Profile profile={profile} likeCount={likeCount} />
+      <Profile
+        id={id}
+        profile={profile}
+        likeCount={likeCount}
+        isLiked={isLiked}
+      />
       <InsightContent memo={memo} />
       <div className="flex items-center gap-1">
         <Image

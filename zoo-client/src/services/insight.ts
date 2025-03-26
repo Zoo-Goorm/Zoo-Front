@@ -1,7 +1,7 @@
 import { fetchApi } from './api';
 import { IInsightContent, TInsights } from '@/types/insight/insightCard';
 import { InsightDetailedProps } from '@/types/insight/insight';
-import { InsightNoteListProps } from '@/types/insight/Note';
+import { InsightNoteListProps } from '@/types/insight/insightNote';
 
 export async function fetchTopInsights() {
   const endpoint = '/api/v1/insights/top';
@@ -47,7 +47,6 @@ export async function getInsightNote(
   const endpoint = `/api/v1/sessions/${id}/insight-notes?sort=${sort}&page=${page}&size=${size}`;
   return fetchApi<InsightNoteListProps>(endpoint, {
     method: 'GET',
-    credentials: 'include',
   });
 }
 
@@ -55,6 +54,5 @@ export async function getInsightDetailed(id: number) {
   const endpoint = `/api/v1/insights/${id}`;
   return fetchApi<InsightDetailedProps>(endpoint, {
     method: 'GET',
-    credentials: 'include',
   });
 }

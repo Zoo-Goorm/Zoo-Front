@@ -50,10 +50,6 @@ const AccordionContainer = () => {
 export default function SessionApply() {
   const { data: sessions } = useSessions();
 
-  // if (isLoading) return <div>로딩 중...</div>;
-  // if (isError) return <div>에러 발생: {error.message}</div>;
-  // console.log(sessions);
-
   return (
     <main className="flex flex-col items-center bg-bg-primary">
       <NavigationBar />

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import SocialList from './SocialList';
 import { InfoListProps, IProfile } from '@/types/insight/insightProfile';
 import CardBadge from '@/components/common/badge/CardBadge';
-import { ILikeCount } from '@/types/insight/insight';
+import { ILike } from '@/types/insight/insight';
 import LikeToggle from '@/components/common/toggle/LikeToggle';
 
 const InfoList = ({ name, email }: InfoListProps) => {
@@ -14,7 +14,12 @@ const InfoList = ({ name, email }: InfoListProps) => {
   );
 };
 
-export default function Profile({ profile, likeCount }: IProfile & ILikeCount) {
+export default function Profile({
+  id,
+  profile,
+  likeCount,
+  isLiked,
+}: { id: number } & IProfile & ILike) {
   const { name, email, interestCategory, linkUrls } = profile;
 
   return (
@@ -36,7 +41,7 @@ export default function Profile({ profile, likeCount }: IProfile & ILikeCount) {
       </div>
 
       <div className="flex flex-col justify-end">
-        <LikeToggle size="l" likeCount={likeCount} />
+        <LikeToggle id={id} size="l" likeCount={likeCount} isLiked={isLiked} />
       </div>
     </div>
   );
