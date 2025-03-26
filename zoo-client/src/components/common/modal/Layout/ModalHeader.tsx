@@ -6,7 +6,7 @@ export default function ModalHeader({
   closeModal,
 }: IModalHeaderProps) {
   return (
-    <header className="flex w-[100%] items-center justify-between px-0 py-12">
+    <header className="flex w-[100%] items-center justify-between">
       <h4 className="title-sb-24 text-text-main">{headerText}</h4>
       <Image
         onClick={closeModal}

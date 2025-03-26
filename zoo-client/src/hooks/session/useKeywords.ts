@@ -4,6 +4,9 @@ import { useQuery } from '@tanstack/react-query';
 export function useKeywords() {
   return useQuery({
     queryKey: ['sessions', 'keywords'],
-    queryFn: getKeywords,
+    queryFn: async () => {
+      const res = await getKeywords();
+      return res.data;
+    },
   });
 }

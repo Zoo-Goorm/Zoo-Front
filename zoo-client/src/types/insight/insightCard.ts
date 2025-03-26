@@ -16,7 +16,7 @@ export interface IInsightContent {
 
   likeCount: number;
   commentCount: number;
-
+  isLiked: boolean;
   sessionId: number;
   sessionName: string;
 

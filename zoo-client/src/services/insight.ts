@@ -1,6 +1,7 @@
-import baseURL from '@/apis';
 import { fetchApi } from './api';
 import { IInsightContent, TInsights } from '@/types/insight/insightCard';
+import { InsightDetailedProps } from '@/types/insight/insight';
+import { InsightNoteListProps } from '@/types/insight/insightNote';
 
 export async function fetchTopInsights() {
   const endpoint = '/api/v1/insights/top';
@@ -37,29 +38,21 @@ export async function fetchInsights(
   return response.data;
 }
 
-export async function getSessionInsights(
-  id: string,
+export async function getInsightNote(
+  id: number,
   page: number,
   sort: string,
   size: number,
 ) {
-  const endpoint = `${baseURL}/api/v1/sessions/${id}/insight-notes?sort=${sort}&page=${page}&size=${size}`;
+  const endpoint = `/api/v1/sessions/${id}/insight-notes?sort=${sort}&page=${page}&size=${size}`;
+  return fetchApi<InsightNoteListProps>(endpoint, {
+    method: 'GET',
+  });
+}
 
-  try {
-    const response = await fetch(endpoint, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
-      console.log(response.statusText);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
+export async function getInsightDetailed(id: number) {
+  const endpoint = `/api/v1/insights/${id}`;
+  return fetchApi<InsightDetailedProps>(endpoint, {
+    method: 'GET',
+  });
 }

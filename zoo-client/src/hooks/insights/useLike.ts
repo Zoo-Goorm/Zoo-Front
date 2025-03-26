@@ -1,0 +1,19 @@
+import { updateIsLike } from '@/services/like';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+export function useMutationIsLike(id: number) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ id }: { id: number }) => updateIsLike(id),
+    onSuccess: () => {
+      console.log('성공');
+      queryClient.invalidateQueries({
+        queryKey: ['insights', id],
+      });
+    },
+    onError: (error) => {
+      console.error('Like 업데이트 실패', error);
+    },
+  });
+}

@@ -1,11 +1,12 @@
 'use client';
 import LikeToggle from '@/components/common/toggle/LikeToggle';
 import { IChildren } from '@/types/children';
-import { INote } from '@/types/insight/Note';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import InsightForm from '../form/InsightForm';
 import ProfileHeader from '../profileHeader';
+import { getTime } from '@/utils/insightDate';
+import { INote } from '@/types/insight/insightNote';
 
 export default function NoteItem({ children, note }: IChildren & INote) {
   const [replyOn, setReplyOn] = useState(false);
@@ -13,7 +14,21 @@ export default function NoteItem({ children, note }: IChildren & INote) {
   const [isOverflowing, setIsOverflowing] = useState(false);
   const textRef = useRef<HTMLParagraphElement>(null);
 
-  const { name, time, edited, memo, role } = note;
+  const {
+    id,
+    displayName,
+    createdAt,
+    updatedAt,
+    likeCount,
+    isLiked,
+    // isAnonymous,
+    // isPublic,
+    // commentCount,
+    job,
+    memo,
+  } = note;
+
+  const time = getTime(createdAt);
 
   useEffect(() => {
     if (textRef.current) {
@@ -22,9 +37,14 @@ export default function NoteItem({ children, note }: IChildren & INote) {
   }, []);
 
   return (
-    <div className="flex flex-col gap-7">
+    <div className="flex w-full flex-col gap-6">
       <div className="flex flex-col gap-2 text-text-sub">
-        <ProfileHeader name={name} time={time} edited={edited} role={role} />
+        <ProfileHeader
+          name={displayName}
+          time={time}
+          edited={createdAt == updatedAt ? false : true}
+          job={job}
+        />
         <div className="flex flex-col gap-1">
           <p
             ref={textRef}
@@ -51,7 +71,12 @@ export default function NoteItem({ children, note }: IChildren & INote) {
           )}
         </div>
         <div className="flex gap-16">
-          <LikeToggle size="m" count={1} />
+          <LikeToggle
+            id={id}
+            size={'m'}
+            likeCount={likeCount}
+            isLiked={isLiked}
+          />
           <div
             onClick={() => setReplyOn(!replyOn)}
             className="flex items-center gap-1"
@@ -65,7 +90,7 @@ export default function NoteItem({ children, note }: IChildren & INote) {
             <span className="body-r-14 text-text-sub">답글</span>
           </div>
         </div>
-        {replyOn && <InsightForm type="reply" />}
+        {replyOn && <InsightForm type="reply" id={id} />}
       </div>
       {children}
     </div>

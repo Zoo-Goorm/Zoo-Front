@@ -29,32 +29,30 @@ export default function SessionCardItem({
   } = session;
 
   return (
-    <div className="flex size-full flex-col items-center justify-between gap-12">
-      <Image
-        src={speakerImageUrl || '/mock/speaker-img.svg'}
-        alt="speaker-img"
-        className="rounded-md"
-        width={312}
-        height={240}
-      />
-      <div className="flex flex-col gap-12">
-        <div className="flex flex-col gap-8">
-          <CardBadge keyword={keywords} />
-          <div className="flex min-h-[100px] flex-col gap-8">
-            <span className="title-sb-18 text-text-main">{name}</span>
-            <span className="body-m-16-150 text-text-sub">
-              {shortDescription}
-            </span>
-          </div>
-          <div className="body-m-16 flex items-center justify-between text-text-main">
-            <span>{speakerName}</span>
-            {activeState == 'inactive' && <span>{location}</span>}
-          </div>
-          <ProgressBar
-            maxCapacity={maxCapacity}
-            participantCount={participantCount}
+    <div className="flex size-full flex-col items-center justify-between gap-3">
+      <div className="flex flex-col gap-3">
+        <div className="relative h-[240px] w-[312px]">
+          <Image
+            src={speakerImageUrl || '/mock/speaker-img.svg'}
+            alt="speaker-img"
+            className="rounded-xl"
+            layout="fill"
+            objectFit="cover"
           />
         </div>
+        <CardBadge keyword={keywords} />
+        <span className="title-sb-18 text-text-main">{name}</span>
+        <span className="body-m-16-150 text-text-sub">{shortDescription}</span>
+      </div>
+      <div className="flex w-full flex-col gap-3">
+        <div className="body-m-16 flex justify-between text-text-main">
+          <span>{speakerName}</span>
+          {activeState == 'inactive' && <span>{location}</span>}
+        </div>
+        <ProgressBar
+          maxCapacity={maxCapacity}
+          participantCount={participantCount}
+        />
         {speakerName && (
           <SelectSessionButton
             selectedSessionDate={{

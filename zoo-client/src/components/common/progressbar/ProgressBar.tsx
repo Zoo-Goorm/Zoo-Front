@@ -10,7 +10,7 @@ export default function ProgressBar({
   const percentage = (participantCount / maxCapacity) * 100;
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       <div className="h-[10px] w-full rounded-lg bg-bg-secondary">
         <div
           className={`h-full rounded-lg bg-text-primary`}

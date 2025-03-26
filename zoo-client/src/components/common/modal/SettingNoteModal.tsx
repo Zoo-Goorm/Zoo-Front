@@ -3,7 +3,7 @@ import ModalHeader from './Layout/ModalHeader';
 import ModalContainer from './Layout/ModalContainer';
 import useModalStore from '@/store/common/useModalStore';
 
-function ModalBody() {
+function ModalBody({ closeModal }: { closeModal: () => void }) {
   return (
     <>
       <div className="flex w-full justify-evenly text-text-main">
@@ -14,7 +14,7 @@ function ModalBody() {
               <input
                 defaultChecked
                 type="radio"
-                name="anon"
+                name="isAnonymous"
                 value="실명"
                 className="accent-fill-primary"
               />
@@ -23,7 +23,7 @@ function ModalBody() {
             <label className="flex items-center gap-2">
               <input
                 type="radio"
-                name="anon"
+                name="isAnonymous"
                 value="익명"
                 className="accent-fill-primary"
               />
@@ -38,7 +38,7 @@ function ModalBody() {
               <input
                 defaultChecked
                 type="radio"
-                name="public"
+                name="isPublic"
                 value="공개"
                 className="accent-fill-primary"
               />
@@ -47,7 +47,7 @@ function ModalBody() {
             <label className="flex items-center gap-2">
               <input
                 type="radio"
-                name="public"
+                name="isPublic"
                 value="비공개"
                 className="accent-fill-primary"
               />
@@ -58,6 +58,7 @@ function ModalBody() {
       </div>
       <button
         type="submit"
+        onClick={() => setTimeout(() => closeModal(), 0)}
         className="body-sb-16 flex w-full items-center justify-center rounded-md bg-fill-primary px-6 py-3 text-text-white"
       >
         등록하기
@@ -72,7 +73,7 @@ export default function SettingNoteModal() {
   return (
     <ModalContainer>
       <ModalHeader headerText="인사이트 노트 설정" closeModal={closeModal} />
-      <ModalBody />
+      <ModalBody closeModal={closeModal} />
     </ModalContainer>
   );
 }

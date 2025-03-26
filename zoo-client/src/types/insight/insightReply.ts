@@ -1,7 +1,7 @@
 export interface IReplyItemProps {
-  id: string;
+  id: number;
   name: string;
-  time: string;
+  createdAt: boolean;
   edited: boolean;
   role: string;
   content: string;
