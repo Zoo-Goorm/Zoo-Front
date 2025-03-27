@@ -4,7 +4,8 @@ import RightArrow from './icon/RightArrow';
 import { Session } from '@/types/session/session';
 import { useApplyStore } from '@/store/common/useApplyStore';
 import { useRouter } from 'next/navigation';
-import useDetailAccess from '@/hooks/access/useDetailAccess';
+import useApplyValidation from '@/hooks/access/useApplyValidation';
+import useAuthStore from '@/store/common/auth/useAuthStore';
 
 interface IListButtonProps {
   time: string;
@@ -21,7 +22,9 @@ export default function ListButton({
   type,
   text,
 }: IListButtonProps) {
-  const { handleAnyTicket } = useDetailAccess();
+  const { sessionValidation } = useApplyValidation();
+  const { isAuthenticated } = useAuthStore();
+
   const buttonTypeClasses = {
     primary: 'bg-fill-primary-list text-text-white',
     thirary: 'bg-fill-thirary-list text-text-headline',
@@ -36,10 +39,10 @@ export default function ListButton({
   };
 
   const listButtonHandler = () => {
-    if (type === 'primary') {
-      setModalType('primary');
-    } else {
-      setModalType('thirary');
+    setModalType(type);
+
+    if (!isAuthenticated) {
+      return router.push('/login');
     }
 
     if (session.maxCapacity == session.participantCount) {
@@ -51,7 +54,7 @@ export default function ListButton({
       );
       router.push(`/session-schedule/${session.id}`, { scroll: false });
     } else {
-      handleAnyTicket(currentDate, time, session.id);
+      sessionValidation(currentDate, time, session.id);
     }
   };
 

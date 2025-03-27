@@ -8,12 +8,12 @@ import {
   SessionList,
 } from '@/components';
 import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
-import useTitleAccess from '@/hooks/access/useTitleAccess';
+import useButtonAccess from '@/hooks/access/useButtonAccess';
 import { useKeywords } from '@/hooks/session/useKeywords';
 import { useSessions } from '@/hooks/session/useSession';
 
 const Title = () => {
-  const { hide, handler } = useTitleAccess();
+  const { hide, handler } = useButtonAccess();
 
   return (
     <section className="flex flex-col gap-40">

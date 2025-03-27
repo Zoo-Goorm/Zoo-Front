@@ -10,6 +10,7 @@ interface IPrivatedRouterProps {
 const PrivatedRouter = ({ children }: IPrivatedRouterProps) => {
   const { isAuthenticated } = useAuthStore();
   const router = useRouter();
+  console.log(isAuthenticated);
 
   useEffect(() => {
     if (!isAuthenticated) router.push('/none-member');

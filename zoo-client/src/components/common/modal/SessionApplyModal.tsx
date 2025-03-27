@@ -17,11 +17,9 @@ const ModalButton = ({
   const sessionId = Number(useParams().id);
   const { mutate } = useMutationReApply();
   const router = useRouter();
-  const { setApplyState } = useApplyStore();
 
   const changeSession = () => {
     mutate({ cancelId: cancelId, addId: sessionId });
-    setApplyState(true, '세션 변경 완료', '세션 변경이 완료되었습니다.', false);
     router.push(`/session-schedule/${sessionId}`, { scroll: false });
   };
 

@@ -8,7 +8,7 @@ import { TimeSlot } from '@/types/session/session';
 import { useSessionStore } from '@/store/common/useSessionStore';
 import { useChipStore } from '@/store/common/useChipStore';
 import { useSessions } from '@/hooks/session/useSession';
-import useFilteredSessionData from '@/hooks/access/useFilterSessionData';
+import useFilterKeyword from '@/hooks/access/useFilterKeyword';
 
 interface SessionProps {
   currentDate: string;
@@ -34,7 +34,7 @@ export default function Session({ currentDate }: SessionProps) {
         }))
       : [];
 
-  const filteredData = useFilteredSessionData(sessionDateData, selectedChips);
+  const filteredData = useFilterKeyword(sessionDateData, selectedChips);
 
   const toggleAccordion = () => setIsOpen((prev) => !prev);
 

@@ -1,11 +1,11 @@
 'use client';
 
-import useDetailAccess from '@/hooks/access/useDetailAccess';
 import { useSessionStore } from '@/store/common/useSessionStore';
 import { SelectSession } from '@/types/session/session';
 import { SessionApplyModal } from '@/components';
 import { useState } from 'react';
 import { useApplyStore } from '@/store/common/useApplyStore';
+import useApplyValidation from '@/hooks/access/useApplyValidation';
 
 export default function SelectSessionButton({
   currentDate,
@@ -17,22 +17,24 @@ export default function SelectSessionButton({
   isDisabled: boolean;
 }) {
   const { addSelectedSession } = useSessionStore();
-  const { hasConflictingSessionWithId } = useDetailAccess();
+  const { findConflictingSession } = useApplyValidation();
   const [isOpen, setIsOpen] = useState(false);
   const { setApplyState, setConflictId } = useApplyStore();
 
   const changeSelectedSession = () => {
-    const { conflict, sessionId: conflictingSessionId } =
-      hasConflictingSessionWithId(currentDate, selectedSessionDate.time);
-    if (conflict) {
+    const session = findConflictingSession(
+      currentDate,
+      selectedSessionDate.time,
+    );
+    if (session) {
       setApplyState(
         false,
         '중복 신청',
         `이미 같은 시간대에 세션이 신청되어 있습니다.`,
         true,
       );
-      if (conflictingSessionId !== undefined) {
-        setConflictId(conflictingSessionId as unknown as string);
+      if (session) {
+        setConflictId(session.sessionId);
       }
       setIsOpen(true);
     } else {
