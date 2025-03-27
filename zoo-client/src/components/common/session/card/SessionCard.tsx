@@ -35,9 +35,9 @@ export default function SessionCard({
           <Image
             src={speakerImageUrl || '/mock/speaker-img.svg'}
             alt="speaker-img"
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="rounded-xl object-cover"
+            className="rounded-xl"
+            layout="fill"
+            objectFit="cover"
           />
         </div>
         <CardBadge keyword={keywords} />

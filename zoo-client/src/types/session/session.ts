@@ -12,7 +12,7 @@ export interface Session {
   location: string;
   status: string;
   speakerImage?: string;
-  speakerName?: string;
+  speakerName: string;
   speaker?: {
     name: string;
     info: string;
