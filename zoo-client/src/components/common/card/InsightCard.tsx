@@ -29,7 +29,6 @@ export default function InsightCard({
     l: 'w-[24.8125rem]',
     m: 'w-[24.375rem]',
   };
-  console.log(content);
 
   return (
     <article

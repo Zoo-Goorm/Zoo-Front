@@ -6,6 +6,7 @@ import {
   ITicket,
   UserTicket,
 } from '@/types/ticket/ticket';
+import { useRouter } from 'next/navigation';
 
 function AccessTicketSection({ tickets }: ITicket) {
   return (
@@ -28,6 +29,7 @@ function AccessTicketSection({ tickets }: ITicket) {
 }
 
 function HasTicketList({ registeredSessions }: IRegisteredSessions) {
+  const router = useRouter();
   return (
     <div>
       {registeredSessions &&
@@ -44,7 +46,10 @@ function HasTicketList({ registeredSessions }: IRegisteredSessions) {
                     <label>세션</label>
                   </div>
                   {session.map(
-                    ({ timeRange, sessionName, speakerName }, index) => (
+                    (
+                      { sessionId, timeRange, sessionName, speakerName },
+                      index,
+                    ) => (
                       <ul
                         key={index}
                         className="grid w-full grid-cols-[1fr_2fr_2fr_1fr] items-center justify-between py-16"
@@ -53,7 +58,14 @@ function HasTicketList({ registeredSessions }: IRegisteredSessions) {
                         <li key={`${sessionName}-${index}`}>{sessionName}</li>
                         <li key={`${speakerName}-${index}`}>{speakerName}</li>
                         <div className="flex justify-end">
-                          <button className="bg-bg-secondary px-16 py-3 text-text-primary">
+                          <button
+                            onClick={() =>
+                              router.push(
+                                `/sessions/${sessionId}/insight-notes`,
+                              )
+                            }
+                            className="bg-bg-secondary px-16 py-3 text-text-primary"
+                          >
                             상세 보기
                           </button>
                         </div>
