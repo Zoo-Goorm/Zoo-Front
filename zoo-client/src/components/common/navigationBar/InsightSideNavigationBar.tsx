@@ -1,17 +1,20 @@
 'use client';
+import { useSessions } from '@/hooks/session/useSession';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-const SessionListItems = () => {
+interface SessionSNBProps {
+  name: string;
+  id: number;
+}
+const SessionListItems = ({ name, id }: SessionSNBProps) => {
   const router = useRouter();
   return (
     <li className="flex items-center justify-between px-20 py-16">
-      <span className="h-[20px] w-[209px] overflow-hidden">
-        세션 1로 이동하기입니다 버튼의 텍스트가 넘어가면 히든 처리
-      </span>
+      <span className="h-[20px] w-[209px] overflow-hidden">{name}</span>
       <Image
-        onClick={() => router.push('/sessions/1/insight-notes')}
+        onClick={() => router.push(`/sessions/${id}/insight-notes`)}
         src="/button/right-arrow-side-in.svg"
         alt="right-arrow-side-in-btn"
         className="cursor-pointer"
@@ -24,14 +27,18 @@ const SessionListItems = () => {
 
 export default function InsightSideNavigationBar() {
   const [onList, setOnList] = useState(false);
+  const { data = [] } = useSessions();
+  const sessions = Object.values(data).flatMap((date) =>
+    date.flatMap((timeList) => timeList.sessions),
+  );
+
   return (
     <>
       {!onList ? (
-        <div
-          onClick={() => setOnList(!onList)}
-          className="fixed flex h-[892px] w-[32px] cursor-pointer items-center rounded-r-md bg-bg-secondary"
-        >
+        <div className="fixed flex h-[892px] w-[32px] cursor-pointer items-center rounded-r-md bg-bg-secondary">
           <Image
+            onClick={() => setOnList(!onList)}
+            className="cursor-pointer"
             src="/button/right-arrow-side.svg"
             width={28}
             height={28}
@@ -50,12 +57,10 @@ export default function InsightSideNavigationBar() {
               className="cursor-pointer"
             />
           </div>
-          <ul className="body-sb-16 w-full text-text-main">
-            <SessionListItems />
-            <SessionListItems />
-            <SessionListItems />
-            <SessionListItems />
-            <SessionListItems />
+          <ul className="body-sb-16 w-full overflow-scroll text-text-main scrollbar-hidden">
+            {sessions.map((session, index) => (
+              <SessionListItems key={index} {...session} />
+            ))}
           </ul>
         </div>
       )}

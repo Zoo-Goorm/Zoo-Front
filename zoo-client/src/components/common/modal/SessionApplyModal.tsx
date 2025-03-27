@@ -1,12 +1,30 @@
 'use client';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useApplyStore } from '@/store/common/useApplyStore';
 import ModalHeader from './Layout/ModalHeader';
 import ModalContainer from './Layout/ModalContainer';
 import { IModalBodyProps } from '@/types/modal/modal';
-import { useSession } from '@/hook/session/useSession';
+import { useSession } from '@/hooks/session/useSession';
+import { useMutationReApply } from '@/hooks/session/useReservation';
 
-const ModalButton = ({ closeModal }: { closeModal: () => void }) => {
+const ModalButton = ({
+  closeModal,
+  cancelId,
+}: {
+  closeModal: () => void;
+  cancelId: number;
+}) => {
+  const sessionId = Number(useParams().id);
+  const { mutate } = useMutationReApply();
+  const router = useRouter();
+  const { setApplyState } = useApplyStore();
+
+  const changeSession = () => {
+    mutate({ cancelId: cancelId, addId: sessionId });
+    setApplyState(true, '세션 변경 완료', '세션 변경이 완료되었습니다.', false);
+    router.push(`/session-schedule/${sessionId}`, { scroll: false });
+  };
+
   return (
     <div className="title-sb-20 flex w-full items-center gap-16">
       <button
@@ -15,7 +33,10 @@ const ModalButton = ({ closeModal }: { closeModal: () => void }) => {
       >
         유지
       </button>
-      <button className="flex-1 rounded-md bg-fill-primary py-16 text-text-white">
+      <button
+        onClick={changeSession}
+        className="flex-1 rounded-md bg-fill-primary py-16 text-text-white"
+      >
         변경 신청
       </button>
     </div>
@@ -24,20 +45,20 @@ const ModalButton = ({ closeModal }: { closeModal: () => void }) => {
 
 const ModalBody = ({ bodyText }: IModalBodyProps) => {
   return (
-    <div className="flex w-[100%] items-center justify-center bg-bg-secondary px-20 py-24">
-      <p className="body-m-16 text-text-main">{bodyText}</p>
+    <div className="flex w-full justify-center bg-bg-secondary py-24 text-center">
+      <p className="body-m-16 w-4/5 text-text-main">{bodyText}</p>
     </div>
   );
 };
 
 export default function SessionRadioModal() {
   const { messageMain, messageSub, change, conflictId } = useApplyStore();
-  const { data: currentSession } = useSession(conflictId);
+  const { data: currentSession } = useSession(Number(conflictId));
   const title = currentSession?.sessionName;
 
   const bodyText = change
-    ? `이미 같은 시간대에 [${title}] 세션이 신청되어있습니다. \n
-      신청된 세션을 취소하고 해당 세션을 신청하시고 싶으시다면 변경 신청 버튼을 눌러주세요!`
+    ? `이미 같은 시간대에 [${title}] 세션이 신청되어있습니다.
+     신청된 세션을 취소하고 해당 세션을 신청하시고 싶으시다면 변경 신청 버튼을 눌러주세요!`
     : messageSub;
   const router = useRouter();
 
@@ -45,13 +66,13 @@ export default function SessionRadioModal() {
     router.back();
   };
 
-  // apply 또는 change에서 신청을 위한 fetch 로직 구현 필요
-
   return (
     <ModalContainer>
       <ModalHeader headerText={messageMain} closeModal={closeModal} />
       <ModalBody bodyText={bodyText} />
-      {change && <ModalButton closeModal={closeModal} />}
+      {change && (
+        <ModalButton closeModal={closeModal} cancelId={Number(conflictId)} />
+      )}
     </ModalContainer>
   );
 }

@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 import useAuthStore from '@/store/common/auth/useAuthStore';
-import useTokenStore from '@/store/common/auth/useTokenStore';
+// import useTokenStore from '@/store/common/auth/useTokenStore';
 import { OblongButton } from '@/components';
 import LogoIcon from '../logo/LogoIcon';
 
@@ -17,12 +17,12 @@ export default function NavigationBar({
   $type = 'default',
 }: INavigationBarProps) {
   const router = useRouter();
-  const { accessToken } = useTokenStore();
+  // const { accessToken } = useTokenStore();
   const checkAuth = useAuthStore((state) => state.checkAuth);
 
   useEffect(() => {
     const authenticate = async () => {
-      if (accessToken) await checkAuth();
+      // if (accessToken) await checkAuth();
     };
 
     authenticate();

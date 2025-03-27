@@ -1,3 +1,4 @@
+'use client';
 import {
   InfiniteData,
   useInfiniteQuery,
@@ -10,7 +11,7 @@ interface IPageParam {
   pageParam: number | unknown;
 }
 
-export function getTopInsightQuery() {
+export function useGetTopInsightQuery() {
   return useQuery({
     queryKey: ['topInsights'],
     queryFn: async () => {

@@ -1,43 +1,23 @@
-import baseURL from '@/apis';
-import { ISessions } from '@/types/session/session';
-
-export async function getSession(id: string) {
-  const endpoint = `${baseURL}/api/v1/sessions/${id}`;
-
-  try {
-    const response = await fetch(endpoint, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
-      console.log(response.statusText);
-    }
-
-    return await response.json();
-  } catch (error) {
-    console.error(error);
-  }
-}
+import { ISessions, SessionId } from '@/types/session/session';
+import { fetchApi } from './api';
 
 export async function getSessions() {
-  const endpoint = `${baseURL}/api/v1/sessions/detailed`;
-  try {
-    const response = await fetch(endpoint, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+  const endpoint = '/api/v1/sessions/detailed';
+  return fetchApi<ISessions>(endpoint, {
+    method: 'GET',
+  });
+}
 
-    if (!response.ok) {
-      console.log(response.statusText);
-    }
+export async function getSession(id: number) {
+  const endpoint = `/api/v1/sessions/${id}`;
+  return fetchApi<SessionId>(endpoint, {
+    method: 'GET',
+  });
+}
 
-    return (await response.json()) as ISessions;
-  } catch (error) {
-    console.error(error);
-  }
+export async function SessionApply(id: number) {
+  const endpoint = `/api/v1/reservation/${id}`;
+  return fetchApi(endpoint, {
+    method: 'POST',
+  });
 }

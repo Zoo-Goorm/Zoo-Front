@@ -1,30 +1,46 @@
+'use client';
 import { NoteItem, ReplyList } from '@/components';
-import { notes } from '@/mock/NoteList';
-// import { getSessionInsights } from '@/services/insight';
-// import useInsightNoteTabStore from '@/store/common/insight/useInsightNoteTabStore';
-// import { useParams } from 'next/navigation';
-// import { useEffect } from 'react';
+import useObserver from '@/hooks/common/useObserver';
+import { useGetInsightNote } from '@/hooks/insights/useInsights';
+import useInsightNoteTabStore from '@/store/common/insight/useInsightNoteTabStore';
+import { useParams } from 'next/navigation';
+import { useMemo, useRef } from 'react';
 
 export default function NoteList() {
-  // const id = useParams().id as string;
-  // const { selectedTab } = useInsightNoteTabStore();
-  const noteList = notes;
+  const id = useParams().id;
+  const { selectedTab } = useInsightNoteTabStore();
+  const lastElementRef = useRef<HTMLDivElement | null>(null);
+  const sort = useMemo(
+    () => (selectedTab === '최신순' ? 'latest' : 'like'),
+    [selectedTab],
+  );
 
-  // useEffect(() => {
-  //   const sort = selectedTab == '최신순' ? 'latest' : 'like';
-  //   const data = getSessionInsights(id, 0, sort, 5);
+  const { data, fetchNextPage, hasNextPage } = useGetInsightNote(
+    Number(id),
+    sort,
+  );
 
-  //   console.log(data);
-  // }, [selectedTab]);
+  useObserver({
+    target: lastElementRef,
+    onIntersect: ([entry]) => {
+      if (entry.isIntersecting && hasNextPage) fetchNextPage();
+    },
+  });
 
   return (
     <>
-      {noteList.map((list, index) => (
-        <NoteItem key={index} note={list}>
-          <ReplyList />
-        </NoteItem>
-      ))}
-      <div>Loading...</div>
+      {data?.pages.map((page) => {
+        return page?.content.map((list, index) => (
+          <NoteItem key={index} note={list}>
+            <ReplyList id={list.id} />
+          </NoteItem>
+        ));
+      })}
+      {hasNextPage && (
+        <div className="text-text-main" ref={lastElementRef}>
+          🔄 로딩 중
+        </div>
+      )}
     </>
   );
 }

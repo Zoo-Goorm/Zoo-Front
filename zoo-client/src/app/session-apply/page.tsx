@@ -9,7 +9,7 @@ import {
   Tab,
 } from '@/components';
 import { SESSION_APPLY_MESSAGES } from '@/constants/messages';
-import { useSessions } from '@/hook/session/useSession';
+import { useSessions } from '@/hooks/session/useSession';
 
 const Title = () => {
   return (
@@ -22,9 +22,9 @@ const Title = () => {
 const RadioContainer = () => {
   return (
     <div className="flex size-full flex-col">
-      <span className="caption-r-12 py-8 text-right text-text-sub">
+      <p className="caption-r-12 py-8 text-right text-text-sub">
         {SESSION_APPLY_MESSAGES.radioBody}
-      </span>
+      </p>
       <RadioContent />
     </div>
   );
@@ -49,10 +49,6 @@ const AccordionContainer = () => {
 
 export default function SessionApply() {
   const { data: sessions } = useSessions();
-
-  // if (isLoading) return <div>로딩 중...</div>;
-  // if (isError) return <div>에러 발생: {error.message}</div>;
-  // console.log(sessions);
 
   return (
     <main className="flex flex-col items-center bg-bg-primary">

@@ -8,9 +8,9 @@ import {
   SessionList,
 } from '@/components';
 import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
-import useTitleAccess from '@/hook/acceess/useTitleAccess';
-import { useKeywords } from '@/hook/session/useKeywords';
-import { useSessions } from '@/hook/session/useSession';
+import useTitleAccess from '@/hooks/access/useTitleAccess';
+import { useKeywords } from '@/hooks/session/useKeywords';
+import { useSessions } from '@/hooks/session/useSession';
 
 const Title = () => {
   const { hide, handler } = useTitleAccess();
@@ -47,10 +47,6 @@ const SessionAccordion = () => {
 
 export default function SessionSchedulePage() {
   const { data: sessions } = useSessions();
-
-  // if (isLoading) return <div>로딩 중...</div>;
-  // if (isError) return <div>에러 발생: {error.message}</div>;
-  // console.log(sessions);
 
   return (
     <main className="flex flex-col items-center bg-bg-primary">

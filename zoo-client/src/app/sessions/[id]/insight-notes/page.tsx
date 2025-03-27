@@ -10,23 +10,32 @@ import {
   AnotherInsightCard,
   InsightSideNavigationBar,
 } from '@/components';
-import { useSession } from '@/hook/session/useSession';
+import { useGetTopInsightQuery } from '@/hooks/insights/insight';
+import { useGetInsightNote } from '@/hooks/insights/useInsights';
+import { useSession } from '@/hooks/session/useSession';
 import { ISessionId } from '@/types/session/session';
 import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 
 function AnotherInsightSection() {
   const router = useRouter();
+  const { data: topInsights, isLoading } = useGetTopInsightQuery();
 
   return (
     <section className="flex gap-3">
-      <div className="flex max-w-[35.8125rem] flex-col">
-        <h3 className="title-sb-20 px-16 text-text-main">
-          타 세션 인사이트 노트
-        </h3>
+      <div className="flex w-[263px] max-w-[35.8125rem] flex-col">
+        <h3 className="title-sb-20 text-text-main">타 세션 인사이트 노트</h3>
         <div className="flex flex-col items-center justify-center gap-16">
-          <AnotherInsightCard />
-          <AnotherInsightCard />
+          {topInsights &&
+            topInsights?.map(
+              (topInsight, index) =>
+                index !== 2 && (
+                  <AnotherInsightCard key={index} content={topInsight} />
+                ),
+            )}
+          {isLoading && (
+            <div className="h-[500px] w-[263px] bg-bg-primary"></div>
+          )}
         </div>
         <button
           onClick={() => router.push('/insight-notes')}
@@ -39,14 +48,14 @@ function AnotherInsightSection() {
   );
 }
 
-function InsightSection() {
+function InsightSection({ id, count }: { id: number; count: number }) {
   return (
     <section className="flex w-[100%] flex-col items-center justify-center gap-40 p-0">
       <div className="flex w-[100%] items-center justify-between bg-bg-secondary px-20 py-16">
-        <h3 className="title-sb-20 text-text-main">인사이트 노트 NN개</h3>
+        <h3 className="title-sb-20 text-text-main">인사이트 노트 {count}개</h3>
         <InsightNoteTab />
       </div>
-      <InsightForm type="insight" />
+      <InsightForm type="insight" id={id} />
       <NoteList />
     </section>
   );
@@ -75,8 +84,10 @@ const SessionInsightInfo = ({ currentSession }: ISessionId) => {
 };
 
 export default function SessionInsightNotes() {
-  const id = useParams().id as string;
-  const { data: currentSession } = useSession(id);
+  const { id } = useParams();
+  const { data: currentSession } = useSession(Number(id));
+  const { data } = useGetInsightNote(Number(id), 'latest');
+  const count = data?.pages[0].totalElements;
 
   return (
     <main>
@@ -88,7 +99,7 @@ export default function SessionInsightNotes() {
           {currentSession && (
             <SessionInsightInfo currentSession={currentSession} />
           )}
-          <InsightSection />
+          <InsightSection id={Number(id)} count={Number(count)} />
         </div>
         <AnotherInsightSection />
       </div>

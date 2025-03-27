@@ -19,7 +19,7 @@ export default function SelectSessionButton({
   };
 
   return (
-    <div className="flex size-full items-end justify-end">
+    <div className="flex justify-end">
       <button
         onClick={changeSelectedSession}
         className={`body-m-14 text-white ${isDisabled ? 'cursor-not-allowed bg-fill-primary-disabled' : 'bg-fill-primary'} rounded-md bg-fill-primary px-16 py-8`}

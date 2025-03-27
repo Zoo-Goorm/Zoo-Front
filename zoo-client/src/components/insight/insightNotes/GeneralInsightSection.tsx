@@ -4,9 +4,9 @@ import { useRef } from 'react';
 import {
   useInsightListInfiniteQuery,
   useHorizontalInsightsQuery,
-} from '@/hook/insights/insight';
-import useObserver from '@/hook/common/useObserver';
-import { useSessions } from '@/hook/session/useSession';
+} from '@/hooks/insights/insight';
+import useObserver from '@/hooks/common/useObserver';
+import { useSessions } from '@/hooks/session/useSession';
 import { useSessionStore } from '@/store/common/useSessionStore';
 import useInsightNoteTabStore from '@/store/common/insight/useInsightNoteTabStore';
 import { selectedInsightDate, selectedInsightSort } from '@/constants/insights';
@@ -75,6 +75,8 @@ export default function GeneralInsightSection() {
             {horizontalInsights &&
               horizontalInsights.map((insight, index) => (
                 <InsightCard
+                  id={insight.id}
+                  isLiked={insight.isLiked}
                   $size="l"
                   key={index}
                   content={insight}
@@ -86,6 +88,8 @@ export default function GeneralInsightSection() {
             {verticalInsights?.pages.map((page) =>
               page.content.map((insight, index) => (
                 <InsightCard
+                  id={insight.id}
+                  isLiked={insight.isLiked}
                   key={index}
                   content={insight}
                   time={getTime(insight.updatedAt)}

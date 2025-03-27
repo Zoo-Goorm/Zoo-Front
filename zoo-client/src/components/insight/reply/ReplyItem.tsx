@@ -1,13 +1,12 @@
 'use client';
 
-import { IReplyItemProps } from '@/types/insight/reply';
 import Image from 'next/image';
 import { useRef, useState, useEffect } from 'react';
 import ProfileHeader from '../profileHeader';
+import { IReplyItemProps } from '@/types/insight/insightReply';
 
 export default function ReplyItem({
   name,
-  time,
   edited,
   role,
   content,
@@ -24,7 +23,7 @@ export default function ReplyItem({
 
   return (
     <div className="flex flex-col gap-2 pb-5 pl-32">
-      <ProfileHeader name={name} time={time} edited={edited} role={role} />
+      <ProfileHeader name={name} time={''} edited={edited} job={role} />
       <div className="flex flex-col gap-1">
         <p
           ref={textRef}

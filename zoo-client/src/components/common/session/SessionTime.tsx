@@ -24,7 +24,7 @@ export default function SessionTime({
 
   return (
     <div
-      className={`${sessions.length < 1 && 'hidden'} flex gap-20 px-8 ${isSchedulePage ? 'flex-row' : 'flex-col'}`}
+      className={`${sessions.length < 1 && 'hidden'} flex gap-20 px-8 ${isSchedulePage ? 'flex-row' : 'flex-col pb-14'}`}
     >
       <div className="title-sb-24 flex flex-col justify-center text-bg-black">
         <span className="w-[190px]">{time}</span>

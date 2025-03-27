@@ -1,13 +1,13 @@
 export interface NoteListProps {
   id: number;
-  sessionId: number;
   memo: string;
-  name: string;
-  time: string;
-  edited: boolean;
-  role: string;
+  displayName: string;
+  job: string;
+  isLiked: boolean;
   likeCount: number;
+  commentCount: number;
   isPublic: boolean;
+  isAnonymous: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -22,15 +22,16 @@ export interface INote {
 
 export interface InsightNoteProps {
   id: number;
-  displayName: string;
   memo: string;
   isPublic: boolean;
-  isAnonymous: false;
-  job: string;
+  isAnonymous: boolean;
   createdAt: string;
   updatedAt: string;
   likeCount: number;
   commentCount: number;
+  displayName: string;
+  job: string;
+  isLiked: boolean;
 }
 
 export interface InsightNoteListProps {

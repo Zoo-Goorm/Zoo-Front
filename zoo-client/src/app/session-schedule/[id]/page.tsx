@@ -5,14 +5,15 @@ import { useApplyStore } from '@/store/common/useApplyStore';
 import { SessionId } from '@/types/session/session';
 import { useParams, useRouter } from 'next/navigation';
 import SessionSchedulePage from '../page';
-import { useSession } from '@/hook/session/useSession';
+import { useSession } from '@/hooks/session/useSession';
 
 export default function SessionDetailPage() {
   const router = useRouter();
   const { modalType } = useApplyStore();
   const sessionId = useParams().id as string;
-  const { data: currentSession = {} as SessionId, isLoading } =
-    useSession(sessionId);
+  const { data: currentSession = {} as SessionId, isLoading } = useSession(
+    Number(sessionId),
+  );
 
   const handleClose = () => {
     router.back();

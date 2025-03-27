@@ -6,14 +6,18 @@ import {
 import { IProfileType } from '../profile/CardProfile';
 
 interface IInsightCard {
-  time?: string;
+  id: number;
+  time: string;
   isEdited?: boolean;
   $size?: 'xl' | 'l' | 'm';
   content: IInsightContent | IOnboardingInsights;
   type?: IProfileType['type'];
+  isLiked?: boolean;
 }
 
 export default function InsightCard({
+  id,
+  isLiked,
   content,
   isEdited = false,
   $size = 'xl',
@@ -45,7 +49,12 @@ export default function InsightCard({
       </div>
       <div className="flex w-[100%] items-center justify-between">
         <div className="flex items-center gap-20">
-          <LikeToggle size="l" count={content.likeCount} />
+          <LikeToggle
+            id={id}
+            size="l"
+            likeCount={content.likeCount}
+            isLiked={isLiked}
+          />
           <CommentCount count={content.commentCount} />
         </div>
         {time && (

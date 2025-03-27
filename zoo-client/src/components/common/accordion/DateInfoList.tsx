@@ -1,15 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { SelectSession } from '@/types/session/session';
+import { useSessionStore } from '@/store/common/useSessionStore';
 
 interface DateInfoProps {
   title: string;
   items: SelectSession[];
 }
 export default function DateInfoList({ title, items }: DateInfoProps) {
+  const { selectedSessionsByDate } = useSessionStore();
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen && Object.values(selectedSessionsByDate).length > 0) {
+      setIsOpen(true);
+    }
+  }, [selectedSessionsByDate]);
 
   return (
     <>
