@@ -1,6 +1,7 @@
 import baseURL from '@/apis';
+import { fetchApi } from './api';
 
-async function fetchAuthToken() {
+export async function fetchAuthToken() {
   const endpoint = `${baseURL}/api/v1/user/auth/token`;
 
   const response = await fetch(endpoint, {
@@ -20,4 +21,11 @@ async function fetchAuthToken() {
   return null;
 }
 
-export default fetchAuthToken;
+export async function fetchEmailVerification(email: string) {
+  const endpoint = '/api/v1/user/email-auth';
+
+  return await fetchApi(endpoint, {
+    method: 'POST',
+    body: JSON.stringify({ email }),
+  });
+}
