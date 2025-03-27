@@ -14,7 +14,7 @@ export default function Badge({ text, type, $size = 'm' }: IBadgeProps) {
 
   return (
     <div
-      className={`inline-flex cursor-pointer items-center justify-center gap-0 rounded-sm px-8 py-4 text-text-main ${badgeSizeClasses[$size]} ${badgeTypeClasses[type]}`}
+      className={`inline-flex select-none items-center justify-center gap-0 rounded-sm px-8 py-4 text-text-main ${badgeSizeClasses[$size]} ${badgeTypeClasses[type]}`}
     >
       {text}
     </div>

@@ -37,6 +37,7 @@ export default function FourthSection() {
           {onboardingInsights.map((content) => (
             <div key={content.id}>
               <InsightCard
+                isLiked={false}
                 id={content.id}
                 type="onboarding"
                 $size="l"

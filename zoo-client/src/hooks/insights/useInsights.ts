@@ -8,9 +8,8 @@ import {
 } from '@tanstack/react-query';
 
 export const insightsQueryKey = (id: number, sort: string) => [
-  'session',
-  id,
   'insights',
+  id,
   sort,
 ];
 
@@ -46,7 +45,7 @@ export function useInsightsDetailed(id: number) {
 
 export function useGetAnotherInsight() {
   return useQuery({
-    queryKey: ['insight', 'another'],
+    queryKey: ['insights', 'another'],
     queryFn: async () => {
       const res = await getInsightNote(1, 1, 'like', 2);
       return res.data;

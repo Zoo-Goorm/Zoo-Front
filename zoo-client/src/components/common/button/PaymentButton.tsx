@@ -1,8 +1,14 @@
+'use client';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function PaymentButton() {
+  const router = useRouter();
   return (
-    <button className="mt-4 flex w-full items-center justify-between rounded-md bg-fill-primary px-16 py-8">
+    <button
+      onClick={() => router.push('/conference/register')}
+      className="mt-4 flex w-full items-center justify-between rounded-md bg-fill-primary px-16 py-8"
+    >
       <span className="body-m-14">선택 완료</span>
       <Image
         alt="arrow-icon"

@@ -7,8 +7,8 @@ import {
   SessionInfo,
   NoteList,
   InsightNoteTab,
-  AnotherInsightCard,
   InsightSideNavigationBar,
+  AnotherInsightCard,
 } from '@/components';
 import { useGetTopInsightQuery } from '@/hooks/insights/insight';
 import { useGetInsightNote } from '@/hooks/insights/useInsights';

@@ -5,9 +5,7 @@ interface SessionDateItem<T extends { keywords: string[] }> {
   sessions: T[];
 }
 
-export default function useFilteredSessionData<
-  T extends { keywords: string[] },
->(
+export default function useFilterKeyword<T extends { keywords: string[] }>(
   sessionDateData: SessionDateItem<T>[] | undefined,
   selectedChips: Set<string>,
 ) {

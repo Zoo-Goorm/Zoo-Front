@@ -1,23 +1,9 @@
-export interface NoteListProps {
-  id: number;
-  memo: string;
-  displayName: string;
-  job: string;
-  isLiked: boolean;
-  likeCount: number;
-  commentCount: number;
-  isPublic: boolean;
-  isAnonymous: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
-
 export interface INoteList {
-  noteList: NoteListProps[];
+  noteList: InsightNoteProps[];
 }
 
 export interface INote {
-  note: NoteListProps;
+  note: InsightNoteProps;
 }
 
 export interface InsightNoteProps {
@@ -32,6 +18,7 @@ export interface InsightNoteProps {
   displayName: string;
   job: string;
   isLiked: boolean;
+  hasSpeakerComment: boolean;
 }
 
 export interface InsightNoteListProps {

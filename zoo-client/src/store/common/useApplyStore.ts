@@ -5,9 +5,9 @@ interface SessionState {
   messageMain: string;
   messageSub: string;
   change: boolean;
-  conflictId: string;
+  conflictId: number;
   modalType: 'primary' | 'thirary';
-  setConflictId: (id: string) => void;
+  setConflictId: (id: number) => void;
   setModalType: (modalType: 'primary' | 'thirary') => void;
   setApplyState: (
     apply: boolean,
@@ -22,7 +22,7 @@ export const useApplyStore = create<SessionState>((set) => ({
   apply: false,
   messageMain: '',
   messageSub: '',
-  conflictId: '',
+  conflictId: 0,
   change: false,
   modalType: 'primary',
   setModalType: (modalType: 'primary' | 'thirary') => set({ modalType }),

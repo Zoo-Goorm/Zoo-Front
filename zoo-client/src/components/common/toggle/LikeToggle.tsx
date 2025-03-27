@@ -24,7 +24,7 @@ export default function LikeToggle({
   likeCount,
   isLiked,
 }: LikeToggleProps) {
-  const { mutate } = useMutationIsLike(id);
+  const { mutate } = useMutationIsLike();
 
   const sizeMap: SizeMap = {
     l: 36,

@@ -1,15 +1,14 @@
 import { updateIsLike } from '@/services/like';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-export function useMutationIsLike(id: number) {
+export function useMutationIsLike() {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: ({ id }: { id: number }) => updateIsLike(id),
     onSuccess: () => {
-      console.log('성공');
       queryClient.invalidateQueries({
-        queryKey: ['insights', id],
+        queryKey: ['insights'],
       });
     },
     onError: (error) => {

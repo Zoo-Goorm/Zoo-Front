@@ -30,7 +30,6 @@ export { default as Session } from './common/session/Session';
 export { default as SessionContainer } from './common/session/SessionContainer';
 export { default as SessionContent } from './common/session/SessionContent';
 export { default as SessionCard } from './common/session/card/SessionCard';
-export { default as SessionCardItem } from './common/session/card/SessionCardItem';
 export { default as SessionCarousel } from './common/session/card/SessionCarousel';
 export { default as SessionInfo } from './common/session/SessionInfo';
 
@@ -63,7 +62,7 @@ export { default as CardProfile } from './common/profile/CardProfile';
 /* card */
 export { default as CardContent } from './common/card/CardContent';
 export { default as InsightCard } from './common/card/InsightCard';
-export { default as AnotherInsightCard } from './common/card/InsightCard.another';
+export { default as AnotherInsightCard } from './common/card/AnotherInsightCard';
 
 /* form */
 export { default as TextField } from './common/textField/TextField';

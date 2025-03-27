@@ -12,7 +12,7 @@ const ModalBody = ({ currentSession }: ISessionId) => {
   const { setModalType } = useApplyStore();
 
   return (
-    <div>
+    <div className="size-full">
       <SessionInfo currentSession={currentSession} />
       <hr className="text-divider-secondary" />
       <div className="my-40 flex gap-16">

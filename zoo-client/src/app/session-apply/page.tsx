@@ -10,6 +10,7 @@ import {
 } from '@/components';
 import { SESSION_APPLY_MESSAGES } from '@/constants/messages';
 import { useSessions } from '@/hooks/session/useSession';
+import useModalStore from '@/store/common/useModalStore';
 
 const Title = () => {
   return (
@@ -49,21 +50,25 @@ const AccordionContainer = () => {
 
 export default function SessionApply() {
   const { data: sessions } = useSessions();
+  const { isOpen, contents } = useModalStore();
 
   return (
-    <main className="flex flex-col items-center bg-bg-primary">
-      <NavigationBar />
-      <div className="m-[100px] flex size-full max-w-[1240px] flex-col gap-80">
-        <div className="flex flex-col gap-52">
-          <Title />
-          <RadioContainer />
+    <>
+      {isOpen && <div className="absolute inset-0 z-50">{contents}</div>}
+      <main className="flex flex-col items-center bg-bg-primary">
+        <NavigationBar />
+        <div className="m-[100px] flex size-full max-w-[1240px] flex-col gap-80">
+          <div className="flex flex-col gap-52">
+            <Title />
+            <RadioContainer />
+          </div>
+          <div className="flex flex-col gap-60">
+            <Tab sessionList={sessions} />
+            <AccordionContainer />
+          </div>
         </div>
-        <div className="flex flex-col gap-60">
-          <Tab sessionList={sessions} />
-          <AccordionContainer />
-        </div>
-      </div>
-      <Footer />
-    </main>
+        <Footer />
+      </main>
+    </>
   );
 }

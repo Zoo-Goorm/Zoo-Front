@@ -11,7 +11,7 @@ export default function NoteList() {
   const { selectedTab } = useInsightNoteTabStore();
   const lastElementRef = useRef<HTMLDivElement | null>(null);
   const sort = useMemo(
-    () => (selectedTab === '최신순' ? 'latest' : 'like'),
+    () => (selectedTab === '최신순' ? 'latest' : 'likes'),
     [selectedTab],
   );
 

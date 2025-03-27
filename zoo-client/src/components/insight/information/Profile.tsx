@@ -23,7 +23,9 @@ export default function Profile({
   const { name, email, interestCategory, linkUrls } = profile;
 
   return (
-    <div className="flex justify-between gap-2">
+    <div
+      className={`flex justify-between gap-2 ${name === '알 수 업음' && 'hidden'} `}
+    >
       <div className="flex gap-3">
         <Image
           src={'/mock/profile.svg'}

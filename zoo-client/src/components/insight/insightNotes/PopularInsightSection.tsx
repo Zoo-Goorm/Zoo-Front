@@ -15,6 +15,7 @@ export default function PopularInsightSection() {
               key={index}
               $size="m"
               id={topInsight.id}
+              isLiked={topInsight.isLiked}
               content={topInsight}
               time={getTime(topInsight.updatedAt)}
               isEdited={topInsight.createdAt !== topInsight.updatedAt}
