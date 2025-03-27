@@ -5,9 +5,15 @@ import { InsightNoteListProps } from '@/types/insight/insightNote';
 
 export async function fetchTopInsights() {
   const endpoint = '/api/v1/insights/top';
+  const token =
+    localStorage.getItem('noneMemberAccessToken') ||
+    localStorage.getItem('accessToken');
 
   return fetchApi<IInsightContent[]>(endpoint, {
     method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
 }
 
@@ -22,6 +28,9 @@ export async function fetchInsights(
   sessionId?: number,
 ): Promise<TInsights> {
   let endpoint = `/api/v1/insights/list?&sort=${sort}&page=${page}`;
+  const token =
+    localStorage.getItem('noneMemberAccessToken') ||
+    localStorage.getItem('accessToken');
 
   if (eventDay && sessionId) {
     endpoint = `/api/v1/insights/list?&sort=${sort}&page=${page}&eventDay=${eventDay}&sessionId=${sessionId}`;
@@ -33,6 +42,9 @@ export async function fetchInsights(
 
   const response: ApiResponse<TInsights> = await fetchApi(endpoint, {
     method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
 
   return response.data;
@@ -45,8 +57,15 @@ export async function getInsightNote(
   size: number,
 ) {
   const endpoint = `/api/v1/sessions/${id}/insight-notes?sort=${sort}&page=${page}&size=${size}`;
+  const token =
+    localStorage.getItem('noneMemberAccessToken') ||
+    localStorage.getItem('accessToken');
+
   return fetchApi<InsightNoteListProps>(endpoint, {
     method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
 }
 

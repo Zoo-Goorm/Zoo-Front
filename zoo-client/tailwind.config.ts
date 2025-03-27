@@ -18,6 +18,8 @@ export default {
       spacing,
       backgroundImage: {
         'custom-gradient': 'linear-gradient(145deg, #000127 0%, #000235 100%)',
+        'insights-overlay':
+          'linear-gradient(180deg, rgba(255, 255, 255, 0.40) 0%, rgba(246, 246, 246, 0.90) 19%, #FFF 100%)',
       },
     },
   },

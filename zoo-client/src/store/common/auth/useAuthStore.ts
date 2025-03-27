@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import fetchAuthToken from '@/services/auth';
+import { fetchAuthToken } from '@/services/auth';
 
 interface AuthState {
   checkAuth: () => Promise<void>;
@@ -9,10 +9,12 @@ interface AuthState {
 interface AuthStore {
   isAuthenticated: boolean;
   userToken: string | null;
+  userType: 'noneMember' | 'member' | 'none';
 }
 
 const useAuthStore = create<AuthState & AuthStore>((set) => ({
-  userToken: '',
+  userType: 'none',
+  userToken: null,
   isAuthenticated: false,
   checkAuth: async () => {
     try {
@@ -23,10 +25,23 @@ const useAuthStore = create<AuthState & AuthStore>((set) => ({
   },
   getAccessToken: () => {
     const accessToken = localStorage.getItem('accessToken') || null;
+    const noneMemberAccessToken =
+      localStorage.getItem('noneMemberAccessToken') || null;
 
     if (accessToken) {
-      set({ isAuthenticated: true });
-      set({ userToken: accessToken });
+      set({
+        isAuthenticated: true,
+        userToken: accessToken,
+        userType: 'member',
+      });
+    } else if (noneMemberAccessToken) {
+      set({
+        isAuthenticated: true,
+        userToken: noneMemberAccessToken,
+        userType: 'noneMember',
+      });
+    } else {
+      set({ isAuthenticated: false, userToken: null, userType: 'none' });
     }
   },
 }));
