@@ -5,48 +5,74 @@ import { useRouter } from 'next/navigation';
 import { AlertModal, OblongButton, TextField } from '@/components';
 import { useState } from 'react';
 import useModalStore from '@/store/common/useModalStore';
-
-interface FormData {
-  name: string;
-  email: string;
-  authenticationCode: string;
-}
+import {
+  fetchEmailVerification,
+  fetchNoneMemberLogin,
+  IUserInfo,
+} from '@/services/auth';
+import useTimer from '@/hooks/common/useTimer';
 
 export default function NoneMemberForm() {
   const router = useRouter();
   const [isAuthenticationClicked, setIsAuthenticationClicked] = useState(false);
   const { isOpen, contents, openModal, closeModal } = useModalStore();
+  const { timeRemaining, isTimerActive, startTimer, formatTime } =
+    useTimer(300);
 
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors, isSubmitSuccessful },
-  } = useForm<FormData>({
+  } = useForm<IUserInfo>({
     defaultValues: {
       name: '',
       email: '',
-      authenticationCode: '',
+      code: '',
     },
   });
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
-    if (isSubmitSuccessful) router.push('/session-schedule');
+  const onSubmit: SubmitHandler<IUserInfo> = async (data) => {
+    try {
+      await fetchNoneMemberLogin(data);
+      if (isSubmitSuccessful) router.push('/session-schedule');
+    } catch (error) {
+      throw Error(`비회원 로그인에 실패했습니다. ${error}`);
+    }
   };
 
-  const handleAuthenticationButton = () => {
+  const handleAuthenticationButton = async () => {
+    const email = getValues('email');
+
     openModal({
       contents: (
         <AlertModal
           headerText="비회원 이메일 인증"
           buttonText="확인"
           onButtonClick={closeModal}
-          bodyText={`서비스를 이용하려면 이메일 인증이 필요합니다.\n등록하신 [이메일]로 인증 메일을 발송했으니, 확인 후 인증을 완료해주세요.`}
+          bodyText={`서비스를 이용하려면 이메일 인증이 필요합니다.\n등록하신 [${email}]로 인증 메일을 발송했습니다.\n확인 후 인증을 완료해주세요.`}
         />
       ),
     });
 
-    setIsAuthenticationClicked(true);
+    try {
+      setIsAuthenticationClicked(true);
+
+      await fetchEmailVerification(email);
+      startTimer();
+    } catch (error) {
+      console.error(error);
+      openModal({
+        contents: (
+          <AlertModal
+            headerText="오류"
+            buttonText="확인"
+            onButtonClick={closeModal}
+            bodyText="이메일 인증 요청에 실패했습니다. 다시 시도해주세요."
+          />
+        ),
+      });
+    }
   };
 
   const openCancelModal = () => {
@@ -98,14 +124,15 @@ export default function NoneMemberForm() {
         <TextField
           readOnly={!isAuthenticationClicked}
           $isRequired
-          name="authenticationCode"
+          name="code"
           type={isAuthenticationClicked ? 'time' : 'default'}
           applyItem="인증 번호"
           placeholder="인증 번호"
           register={register}
-          state={errors.authenticationCode ? 'error' : 'default'}
+          timer={isTimerActive ? formatTime(timeRemaining) : '00:00'}
+          state={errors.code ? 'error' : 'default'}
           rules={{ required: '인증 번호은 필수 입력 항목입니다.' }}
-          errorMessage={errors.authenticationCode?.message}
+          errorMessage={errors.code?.message}
         />
         <span className="body-m-16 w-[100%] text-text-sub">
           본인 확인 절차이며, 다른 용도로 사용되지 않습니다.

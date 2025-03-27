@@ -14,6 +14,7 @@ interface ITextField {
 
   name: string;
   rules?: RegisterOptions;
+  timer?: string;
 
   onButtonClick?: () => void;
   register: UseFormRegister<any>;
@@ -21,6 +22,7 @@ interface ITextField {
 
 export default function TextField({
   type,
+  timer,
   state = 'default',
   applyItem,
   buttonText,
@@ -67,7 +69,7 @@ export default function TextField({
         )}
       </div>
       {type === 'time' && (
-        <span className="figure-m-16 text-text-primary">05:00</span>
+        <span className="figure-m-16 text-text-primary">{timer}</span>
       )}
       {buttonText && onButtonClick && (
         <div className="w-[6.25rem]">
