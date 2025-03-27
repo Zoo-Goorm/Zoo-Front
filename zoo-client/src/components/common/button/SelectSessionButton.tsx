@@ -21,7 +21,7 @@ export default function SelectSessionButton({
   const { closeModal, openModal } = useModalStore();
   const { setApplyState, setConflictId } = useApplyStore();
 
-  const openeModal = () => {
+  const openApplyModal = () => {
     openModal({
       contents: <SessionApplyModal closeModal={closeModal} />,
     });
@@ -42,7 +42,7 @@ export default function SelectSessionButton({
       if (session) {
         setConflictId(session.sessionId);
       }
-      openeModal();
+      openApplyModal();
     } else {
       addSelectedSession({ currentDate, ...selectedSessionDate });
     }
