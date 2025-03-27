@@ -30,7 +30,6 @@ export { default as Session } from './common/session/Session';
 export { default as SessionContainer } from './common/session/SessionContainer';
 export { default as SessionContent } from './common/session/SessionContent';
 export { default as SessionCard } from './common/session/card/SessionCard';
-export { default as SessionCardItem } from './common/session/card/SessionCardItem';
 export { default as SessionCarousel } from './common/session/card/SessionCarousel';
 export { default as SessionInfo } from './common/session/SessionInfo';
 

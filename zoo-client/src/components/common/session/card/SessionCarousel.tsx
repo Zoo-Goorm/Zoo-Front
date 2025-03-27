@@ -24,18 +24,13 @@ export default function SessionCarousel({
     setCurrentPage(0);
   }, [time]);
 
-  const paginatedSessions = sessions.slice(
-    currentPage * itemsPerPage,
-    (currentPage + 1) * itemsPerPage,
-  );
-
   const activeColor = '#6B6B6B';
   const inactiveColor = '#d1d1d1';
 
   return (
     <div className="relative w-full">
       {sessions.length > itemsPerPage && (
-        <div className="absolute top-[-40px] mb-4 flex w-full justify-end gap-2 px-4">
+        <div className="absolute top-[-40px] mb-4 flex w-full justify-end gap-2 pr-[25px]">
           <button
             onClick={() => setCurrentPage((prev) => Math.max(0, prev - 1))}
             disabled={currentPage === 0}
@@ -59,17 +54,21 @@ export default function SessionCarousel({
           </button>
         </div>
       )}
-
-      <div className="grid grid-cols-3 gap-24">
-        {paginatedSessions.map((session, index) => (
-          <div key={`session-item-${index}`}>
-            <SessionCard
-              session={session}
-              currentDate={currentDate}
-              time={time}
-            />
-          </div>
-        ))}
+      <div className="w-[1000px] overflow-hidden">
+        <div
+          style={{ transform: `translateX(-${currentPage * 100}%)` }}
+          className={`flex gap-6 transition-transform duration-500 ease-in-out`}
+        >
+          {sessions.map((session, index) => (
+            <div className="w-[320px]" key={`session-item-${index}`}>
+              <SessionCard
+                session={session}
+                currentDate={currentDate}
+                time={time}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
