@@ -5,9 +5,10 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 import useAuthStore from '@/store/common/auth/useAuthStore';
-// import useTokenStore from '@/store/common/auth/useTokenStore';
+import useTokenStore from '@/store/common/auth/useTokenStore';
 import { OblongButton } from '@/components';
 import LogoIcon from '../logo/LogoIcon';
+import { deleteCookie } from 'cookies-next';
 
 interface INavigationBarProps {
   $type?: 'default' | 'main';
@@ -17,16 +18,29 @@ export default function NavigationBar({
   $type = 'default',
 }: INavigationBarProps) {
   const router = useRouter();
-  // const { accessToken } = useTokenStore();
+  const { accessToken } = useTokenStore();
+  const { isAuthenticated, getAccessToken } = useAuthStore();
   const checkAuth = useAuthStore((state) => state.checkAuth);
 
   useEffect(() => {
     const authenticate = async () => {
-      // if (accessToken) await checkAuth();
+      if (accessToken) await checkAuth();
     };
 
     authenticate();
+    getAccessToken();
   }, [checkAuth]);
+
+  const handleLogoutButton = () => {
+    localStorage.clear();
+    deleteCookie('Authorization');
+
+    useAuthStore.setState({
+      isAuthenticated: false,
+      userToken: null,
+      userType: 'none',
+    });
+  };
 
   const logoColorClasses = { default: '#4824FF', main: '#fff' };
   const labelColorClasses = {
@@ -52,12 +66,21 @@ export default function NavigationBar({
           <li className={`body-sb-16 ${labelColorClasses[$type]}`}>MY</li>
         </Link>
         <div className="w-[5.25rem]">
-          <OblongButton
-            text="Login"
-            size="xs"
-            $buttonStyle="primary"
-            onClick={() => router.push('/login')}
-          />
+          {isAuthenticated ? (
+            <OblongButton
+              text="Logout"
+              size="xs"
+              $buttonStyle="thirary"
+              onClick={handleLogoutButton}
+            />
+          ) : (
+            <OblongButton
+              text="Login"
+              size="xs"
+              $buttonStyle="primary"
+              onClick={() => router.push('/login')}
+            />
+          )}
         </div>
       </ul>
     </header>

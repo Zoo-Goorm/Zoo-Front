@@ -12,9 +12,11 @@ import useInsightNoteTabStore from '@/store/common/insight/useInsightNoteTabStor
 import { selectedInsightDate, selectedInsightSort } from '@/constants/insights';
 import { InsightNoteTab, InsightCard, Tab } from '@/components';
 import { getTime } from '@/utils/insightDate';
+import useAuthStore from '@/store/common/auth/useAuthStore';
 
 export default function GeneralInsightSection() {
   const { data: sessions } = useSessions();
+  const { userType } = useAuthStore();
   const { currentDate } = useSessionStore();
   const { selectedTab } = useInsightNoteTabStore();
 
@@ -99,7 +101,7 @@ export default function GeneralInsightSection() {
           </section>
         </div>
       </div>
-      <div ref={lastElementRef} />
+      {userType === 'member' && <div ref={lastElementRef} />}
     </div>
   );
 }
