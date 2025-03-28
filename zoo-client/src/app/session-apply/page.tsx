@@ -9,7 +9,6 @@ import {
   Tab,
 } from '@/components';
 import { SESSION_APPLY_MESSAGES } from '@/constants/messages';
-import { useSessions } from '@/hooks/session/useSession';
 import useModalStore from '@/store/common/useModalStore';
 
 const Title = () => {
@@ -49,7 +48,6 @@ const AccordionContainer = () => {
 };
 
 export default function SessionApply() {
-  const { data: sessions } = useSessions();
   const { isOpen, contents } = useModalStore();
 
   return (
@@ -63,7 +61,7 @@ export default function SessionApply() {
             <RadioContainer />
           </div>
           <div className="flex flex-col gap-60">
-            <Tab sessionList={sessions} />
+            <Tab />
             <AccordionContainer />
           </div>
         </div>

@@ -60,9 +60,7 @@ function HasTicketList({ registeredSessions }: IRegisteredSessions) {
                         <div className="flex justify-end">
                           <button
                             onClick={() =>
-                              router.push(
-                                `/sessions/${sessionId}/insight-notes`,
-                              )
+                              router.push(`/mypage/sessions/${sessionId}`)
                             }
                             className="bg-bg-secondary px-16 py-3 text-text-primary"
                           >

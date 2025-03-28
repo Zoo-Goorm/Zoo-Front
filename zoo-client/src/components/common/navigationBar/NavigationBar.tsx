@@ -9,6 +9,8 @@ import useTokenStore from '@/store/common/auth/useTokenStore';
 import { OblongButton } from '@/components';
 import LogoIcon from '../logo/LogoIcon';
 import { deleteCookie } from 'cookies-next';
+import { useGetTicket } from '@/hooks/session/useReservation';
+import { UserTicket } from '@/types/ticket/ticket';
 
 interface INavigationBarProps {
   $type?: 'default' | 'main';
@@ -21,6 +23,12 @@ export default function NavigationBar({
   const { accessToken } = useTokenStore();
   const { isAuthenticated, getAccessToken } = useAuthStore();
   const checkAuth = useAuthStore((state) => state.checkAuth);
+  const { data: tickets = {} as UserTicket } = useGetTicket();
+
+  const sessionId =
+    tickets &&
+    tickets.registeredSessions &&
+    Object.values(tickets.registeredSessions)[0][0]?.sessionId;
 
   useEffect(() => {
     const authenticate = async () => {
@@ -57,7 +65,7 @@ export default function NavigationBar({
         <Link href="/session-schedule">
           <li className={`body-sb-16 ${labelColorClasses[$type]}`}>세션</li>
         </Link>
-        <Link href="/insight-notes">
+        <Link href={`/sessions/${sessionId}/insight-notes`}>
           <li className={`body-sb-16 ${labelColorClasses[$type]}`}>
             인사이트 노트
           </li>

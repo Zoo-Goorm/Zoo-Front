@@ -1,5 +1,6 @@
 'use client';
-import { useSessions } from '@/hooks/session/useSession';
+import { useGetTicket } from '@/hooks/session/useReservation';
+import { UserTicket } from '@/types/ticket/ticket';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -27,11 +28,17 @@ const SessionListItems = ({ name, id }: SessionSNBProps) => {
 
 export default function InsightSideNavigationBar() {
   const [onList, setOnList] = useState(false);
-  const { data = [] } = useSessions();
-  const sessions = Object.values(data).flatMap((date) =>
-    date.flatMap((timeList) => timeList.sessions),
+  const { data: tickets = {} as UserTicket } = useGetTicket();
+  const registeredSessions = tickets.registeredSessions;
+  const sessions = Object.values(registeredSessions).flatMap(
+    (registeredSessions) =>
+      registeredSessions.map(({ sessionName, sessionId }) => ({
+        name: sessionName,
+        id: sessionId,
+      })),
   );
 
+  console.log('sessions', sessions);
   return (
     <>
       {!onList ? (

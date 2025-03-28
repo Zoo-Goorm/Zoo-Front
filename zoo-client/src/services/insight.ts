@@ -1,7 +1,10 @@
 import { fetchApi } from './api';
 import { IInsightContent, TInsights } from '@/types/insight/insightCard';
 import { InsightDetailedProps } from '@/types/insight/insight';
-import { InsightNoteListProps } from '@/types/insight/insightNote';
+import {
+  InsightNoteListProps,
+  MyInsightNoteListProps,
+} from '@/types/insight/insightNote';
 
 export async function fetchTopInsights() {
   const endpoint = '/api/v1/insights/top';
@@ -72,6 +75,25 @@ export async function getInsightNote(
 export async function getInsightDetailed(id: number) {
   const endpoint = `/api/v1/insights/${id}`;
   return fetchApi<InsightDetailedProps>(endpoint, {
+    method: 'GET',
+  });
+}
+
+export async function getMyInsights({
+  eventDay,
+  page,
+  size,
+}: {
+  eventDay?: string;
+  page: number;
+  size: number;
+}) {
+  const endpoint = eventDay
+    ? `/api/v1/my/insights?eventDay=${eventDay}&page=${page}&size=${size}`
+    : `/api/v1/my/insights?page=${page}&size=${size}`;
+
+  console.log(endpoint);
+  return fetchApi<MyInsightNoteListProps>(endpoint, {
     method: 'GET',
   });
 }
