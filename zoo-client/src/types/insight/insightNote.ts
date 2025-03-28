@@ -29,3 +29,25 @@ export interface InsightNoteListProps {
   pageSize: number;
   content: InsightNoteProps[];
 }
+
+export interface MyInsightNoteProps {
+  insightId: number;
+  memo: string;
+  isPublic: boolean;
+  isAnonymous: boolean;
+  updatedAt: string;
+  sessionName: string;
+  isDraft: boolean;
+}
+
+export interface IMyNote {
+  note: MyInsightNoteProps;
+}
+export interface MyInsightNoteListProps {
+  hasNext: boolean;
+  totalElements: number;
+  totalPages: number;
+  pageNumber: number;
+  pageSize: number;
+  content: MyInsightNoteProps[];
+}

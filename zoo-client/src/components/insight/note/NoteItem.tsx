@@ -55,7 +55,7 @@ export default function NoteItem({ children, note }: IChildren & INote) {
               onClick={() => setDetailedReply(!detailedReply)}
               className="body-r-14 flex cursor-pointer items-center gap-1 text-text-sub"
             >
-              <span>{detailedReply ? '닫기' : '자세히보기'}</span>
+              <span>{detailedReply ? '닫기' : '자세히 보기'}</span>
               <Image
                 height={24}
                 width={24}

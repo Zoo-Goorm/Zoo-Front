@@ -24,7 +24,6 @@ interface IProfileProps {
 
 function DetailButton({ contentId }: IDetailButtonProps) {
   const router = useRouter();
-
   return (
     <button
       onClick={() =>

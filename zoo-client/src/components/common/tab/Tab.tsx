@@ -5,15 +5,17 @@ import { useEffect } from 'react';
 import { useSessionStore } from '@/store/common/useSessionStore';
 import ToggleButton from './ToggleButton';
 import { usePathname } from 'next/navigation';
-export default function Tab({ sessionList = {} }) {
+import { useSessions } from '@/hooks/session/useSession';
+export default function Tab() {
   const { sessionDates, addSessionDate } = useSessionStore();
   const isSchedulePath = usePathname().includes('session-apply');
+  const { data: sessions } = useSessions();
 
   useEffect(() => {
-    if (sessionList && typeof sessionList === 'object') {
-      Object.keys(sessionList).forEach((date) => addSessionDate(`${date}`));
+    if (sessions && typeof sessions === 'object') {
+      Object.keys(sessions).forEach((date) => addSessionDate(`${date}`));
     }
-  }, [addSessionDate, sessionList]);
+  }, [addSessionDate, sessions]);
 
   return (
     <div className="flex w-full items-center justify-between bg-bg-secondary px-20 py-16">

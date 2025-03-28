@@ -6,7 +6,6 @@ import {
   useHorizontalInsightsQuery,
 } from '@/hooks/insights/insight';
 import useObserver from '@/hooks/common/useObserver';
-import { useSessions } from '@/hooks/session/useSession';
 import { useSessionStore } from '@/store/common/useSessionStore';
 import useInsightNoteTabStore from '@/store/common/insight/useInsightNoteTabStore';
 import { selectedInsightDate, selectedInsightSort } from '@/constants/insights';
@@ -15,7 +14,6 @@ import { getTime } from '@/utils/insightDate';
 import useAuthStore from '@/store/common/auth/useAuthStore';
 
 export default function GeneralInsightSection() {
-  const { data: sessions } = useSessions();
   const { userType } = useAuthStore();
   const { currentDate } = useSessionStore();
   const { selectedTab } = useInsightNoteTabStore();
@@ -57,7 +55,7 @@ export default function GeneralInsightSection() {
 
   return (
     <div className="flex w-[100%] flex-col items-center gap-40">
-      <Tab sessionList={sessions} />
+      <Tab />
       <div className="flex w-[100%] flex-col items-center justify-center gap-40">
         <div className="flex w-[100%] flex-col content-center items-center gap-8">
           <div className="flex w-[100%] items-center justify-between px-0 py-12">
