@@ -10,7 +10,6 @@ import {
 import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
 import useButtonAccess from '@/hooks/access/useButtonAccess';
 import { useKeywords } from '@/hooks/session/useKeywords';
-import { useSessions } from '@/hooks/session/useSession';
 
 const Title = () => {
   const { hide, handler } = useButtonAccess();
@@ -46,15 +45,13 @@ const SessionAccordion = () => {
 };
 
 export default function SessionSchedulePage() {
-  const { data: sessions } = useSessions();
-
   return (
     <main className="flex flex-col items-center bg-bg-primary">
       <NavigationBar />
       <div className="m-[100px] flex w-full max-w-[1240px] flex-col gap-40">
         <Title />
         <SessionAccordion />
-        <Tab sessionList={sessions} />
+        <Tab />
         <SessionList />
       </div>
     </main>
