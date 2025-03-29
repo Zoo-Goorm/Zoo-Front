@@ -65,6 +65,7 @@ export { default as InsightCard } from './common/card/InsightCard';
 export { default as AnotherInsightCard } from './common/card/AnotherInsightCard';
 
 /* form */
+export { default as UserLabel } from './common/textField/UserLabel';
 export { default as TextField } from './common/textField/TextField';
 export { default as RegisterForm } from './register/RegisterForm';
 export { default as NoneMemberForm } from './noneMember/NoneMemberForm';
@@ -82,3 +83,6 @@ export { default as SaveInsightModal } from './common/modal/SaveInsightModal';
 /* tab */
 export { default as Tab } from './common/tab/Tab';
 export { default as InsightNoteTab } from './common/tab/insight/InsightNoteTab';
+
+/* content agree */
+export { default as ContentAgree } from './common/contentAgree/ContentAgree';

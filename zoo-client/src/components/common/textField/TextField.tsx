@@ -72,7 +72,7 @@ export default function TextField({
         <span className="figure-m-16 text-text-primary">{timer}</span>
       )}
       {buttonText && onButtonClick && (
-        <div className="w-[6.25rem]">
+        <div>
           <OblongButton
             $disabled={$isDisabled}
             onClick={onButtonClick}
