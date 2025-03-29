@@ -1,5 +1,5 @@
+import InterestBadge from '@/components/common/badge/InterestBadge';
 import { IInsightContent } from '@/types/insight/insightCard';
-import InterestBadge from '../badge/InterestBadge';
 import Image from 'next/image';
 
 export default function AnotherInsightCard({

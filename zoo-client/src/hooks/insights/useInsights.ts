@@ -1,5 +1,9 @@
 import { createNote } from '@/actions/insight-form';
-import { getInsightDetailed, getInsightNote } from '@/services/insight';
+import {
+  getInsightDetailed,
+  getInsightNote,
+  getMyInsights,
+} from '@/services/insight';
 import {
   useMutation,
   useQuery,
@@ -8,9 +12,8 @@ import {
 } from '@tanstack/react-query';
 
 export const insightsQueryKey = (id: number, sort: string) => [
-  'session',
-  id,
   'insights',
+  id,
   sort,
 ];
 
@@ -21,6 +24,27 @@ export const useGetInsightNote = (id: number, sort: string, size?: number) => {
     queryKey: insightsQueryKey(id, sort),
     queryFn: async ({ pageParam }) => {
       const res = await getInsightNote(id, pageParam, sort, size ? size : 4);
+      return res.data;
+    },
+    initialPageParam: 0,
+    getNextPageParam: (last) => {
+      if (last && last.pageNumber + 1 < last.totalPages) {
+        return last.pageNumber + 1;
+      }
+      return undefined;
+    },
+  });
+};
+
+export const useGetInfiniteMyInsightNote = (eventDay: string) => {
+  return useInfiniteQuery({
+    queryKey: ['insights', eventDay],
+    queryFn: async ({ pageParam }) => {
+      const res = await getMyInsights({
+        eventDay: eventDay,
+        page: pageParam,
+        size: 5,
+      });
       return res.data;
     },
     initialPageParam: 0,
@@ -46,7 +70,7 @@ export function useInsightsDetailed(id: number) {
 
 export function useGetAnotherInsight() {
   return useQuery({
-    queryKey: ['insight', 'another'],
+    queryKey: ['insights', 'another'],
     queryFn: async () => {
       const res = await getInsightNote(1, 1, 'like', 2);
       return res.data;

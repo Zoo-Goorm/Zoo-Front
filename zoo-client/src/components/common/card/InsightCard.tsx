@@ -12,7 +12,7 @@ interface IInsightCard {
   $size?: 'xl' | 'l' | 'm';
   content: IInsightContent | IOnboardingInsights;
   type?: IProfileType['type'];
-  isLiked?: boolean;
+  isLiked: boolean;
 }
 
 export default function InsightCard({

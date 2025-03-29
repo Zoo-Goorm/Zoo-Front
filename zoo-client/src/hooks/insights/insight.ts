@@ -13,7 +13,7 @@ interface IPageParam {
 
 export function useGetTopInsightQuery() {
   return useQuery({
-    queryKey: ['topInsights'],
+    queryKey: ['insights', 'topInsights'],
     queryFn: async () => {
       const response = await fetchTopInsights();
       return response.data;
@@ -27,7 +27,7 @@ export function useHorizontalInsightsQuery(
   sessionId?: number,
 ) {
   return useQuery({
-    queryKey: ['horizontalInsights', sort, eventDay, sessionId],
+    queryKey: ['insights', 'horizontalInsights', sort, eventDay, sessionId],
     queryFn: async () => {
       const { content } = await fetchInsights(sort, 0, eventDay, sessionId);
       return content;

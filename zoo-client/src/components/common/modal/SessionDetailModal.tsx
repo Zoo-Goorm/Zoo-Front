@@ -3,16 +3,17 @@ import { PurchaseButton, SessionInfo } from '@/components';
 import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
 import { useApplyStore } from '@/store/common/useApplyStore';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { ISessionId } from '@/types/session/session';
 import ModalContainer from './Layout/ModalContainer';
 import ModalHeader from './Layout/ModalHeader';
 
 const ModalBody = ({ currentSession }: ISessionId) => {
   const { setModalType } = useApplyStore();
+  const pathname = usePathname();
 
   return (
-    <div>
+    <div className="size-full">
       <SessionInfo currentSession={currentSession} />
       <hr className="text-divider-secondary" />
       <div className="my-40 flex gap-16">
@@ -38,18 +39,19 @@ const ModalBody = ({ currentSession }: ISessionId) => {
         <span className="body-sb-20">세션 이력</span>
         <span className="body-m-16-150">없으면 표기 안 함</span>
       </div>
-      <PurchaseButton
-        func={() => setModalType('primary')}
-        size={48}
-        text={SESSION_SCHEDULE_MESSAGES.buttonModalText}
-      />
+      <div className={pathname.startsWith('/mypage') ? 'hidden' : 'block'}>
+        <PurchaseButton
+          func={() => setModalType('primary')}
+          size={48}
+          text={SESSION_SCHEDULE_MESSAGES.buttonModalText}
+        />
+      </div>
     </div>
   );
 };
 
 export default function SessionDetailModal({ currentSession }: ISessionId) {
   const router = useRouter();
-
   const closeModal = () => {
     router.back();
   };

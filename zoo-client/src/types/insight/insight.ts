@@ -21,4 +21,5 @@ export interface InsightDetailedProps {
 }
 export interface IInsightDetailed {
   InsightDetailed: InsightDetailedProps;
+  closeModal: () => void;
 }

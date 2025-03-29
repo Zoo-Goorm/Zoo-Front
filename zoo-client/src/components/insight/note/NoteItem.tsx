@@ -21,10 +21,7 @@ export default function NoteItem({ children, note }: IChildren & INote) {
     updatedAt,
     likeCount,
     isLiked,
-    // isAnonymous,
-    // isPublic,
-    // commentCount,
-    job,
+    hasSpeakerComment,
     memo,
   } = note;
 
@@ -43,7 +40,6 @@ export default function NoteItem({ children, note }: IChildren & INote) {
           name={displayName}
           time={time}
           edited={createdAt == updatedAt ? false : true}
-          job={job}
         />
         <div className="flex flex-col gap-1">
           <p
@@ -59,7 +55,7 @@ export default function NoteItem({ children, note }: IChildren & INote) {
               onClick={() => setDetailedReply(!detailedReply)}
               className="body-r-14 flex cursor-pointer items-center gap-1 text-text-sub"
             >
-              <span>{detailedReply ? '닫기' : '자세히보기'}</span>
+              <span>{detailedReply ? '닫기' : '자세히 보기'}</span>
               <Image
                 height={24}
                 width={24}
@@ -88,6 +84,11 @@ export default function NoteItem({ children, note }: IChildren & INote) {
               alt="reply-icon"
             />
             <span className="body-r-14 text-text-sub">답글</span>
+            {hasSpeakerComment && (
+              <span className="body-m-16-150 rounded-md bg-bg-secondary px-2 py-1 text-text-main">
+                강연자 답글
+              </span>
+            )}
           </div>
         </div>
         {replyOn && <InsightForm type="reply" id={id} />}

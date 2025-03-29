@@ -13,7 +13,7 @@ import Image from 'next/image';
 import { IInsightDetailed } from '@/types/insight/insight';
 import { useInsightsDetailed } from '@/hooks/insights/useInsights';
 
-const ModalBody = ({ InsightDetailed }: IInsightDetailed) => {
+const ModalBody = ({ InsightDetailed, closeModal }: IInsightDetailed) => {
   const {
     id,
     name,
@@ -51,6 +51,12 @@ const ModalBody = ({ InsightDetailed }: IInsightDetailed) => {
       </div>
       <InsightForm type="reply" id={id} />
       <ReplyList id={id} />
+      <button
+        onClick={closeModal}
+        className="body-sb-16 rounded-md bg-fill-primary px-16 py-3 text-text-white"
+      >
+        확인
+      </button>
     </div>
   );
 };
@@ -72,7 +78,12 @@ export default function InsightInfoModal() {
           headerText={`[${InsightDetailed?.profile.name}]님 인사이트 노트`}
           closeModal={closeModal}
         />
-        {InsightDetailed && <ModalBody InsightDetailed={InsightDetailed} />}
+        {InsightDetailed && (
+          <ModalBody
+            closeModal={closeModal}
+            InsightDetailed={InsightDetailed}
+          />
+        )}
       </div>
     </div>
   );
