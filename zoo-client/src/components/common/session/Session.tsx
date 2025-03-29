@@ -35,7 +35,7 @@ export default function Session({ currentDate }: SessionProps) {
       : [];
 
   const filteredData = useFilterKeyword(sessionDateData, selectedChips);
-
+  const sessionList = isSchedulePath ? filteredData : sessionDateData;
   const toggleAccordion = () => setIsOpen((prev) => !prev);
 
   const getDateText = () => {
@@ -71,7 +71,7 @@ export default function Session({ currentDate }: SessionProps) {
 
       <div className={`w-full ${!isOpen && !isSchedulePath ? 'hidden' : ''}`}>
         <div className="flex flex-col">
-          {filteredData.map((time, index) => (
+          {sessionList.map((time, index) => (
             <div key={index}>
               {isSchedulePath && time.sessions.length > 0 && (
                 <hr className="text-divider-primary" />
