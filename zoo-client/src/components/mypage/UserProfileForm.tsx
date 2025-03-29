@@ -28,7 +28,7 @@ interface IUserProfileFornProps {
 export default function UserProfileForm({
   onSaveButtonClick,
 }: IUserProfileFornProps) {
-  const { mutate } = useUpdateProfile();
+  const { mutate, isSuccess } = useUpdateProfile();
   const { isOpen, contents, openModal, closeModal } = useModalStore();
   const {
     register,
@@ -63,7 +63,7 @@ export default function UserProfileForm({
       };
 
       mutate(profileData);
-      onSaveButtonClick(true);
+      if (isSuccess) onSaveButtonClick(true);
     } catch (error) {
       onSaveButtonClick(false);
       console.error('업데이트 중 에러 발생:', error);
