@@ -82,3 +82,6 @@ export { default as SaveInsightModal } from './common/modal/SaveInsightModal';
 /* tab */
 export { default as Tab } from './common/tab/Tab';
 export { default as InsightNoteTab } from './common/tab/insight/InsightNoteTab';
+
+/* content agree */
+export { default as ContentAgree } from './common/contentAgree/ContentAgree';
