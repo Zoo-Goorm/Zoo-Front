@@ -43,3 +43,13 @@ export async function fetchUpdateProfile({
     }),
   });
 }
+
+export async function fetchUserProfile() {
+  const endpoint = '/api/v1/user/me';
+
+  const response = await fetchApi<IUserProfile>(endpoint, {
+    method: 'GET',
+  });
+
+  return response.data;
+}
