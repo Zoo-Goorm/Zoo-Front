@@ -33,7 +33,7 @@ export default function ContentAgree({
           <div className="flex items-center gap-12">
             <label className="body-r-16 text-text-main">비동의</label>
             <input
-              checked
+              defaultChecked
               name="agreement"
               type="radio"
               className="checked:border-5 h-[1.5rem] w-[1.5rem]"
