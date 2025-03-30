@@ -12,6 +12,14 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  if (pathname.startsWith('/sessions')) {
+    const token = request.cookies.get('Authorization');
+
+    if (!token) {
+      return NextResponse.redirect(new URL('/none-member', request.url));
+    }
+  }
+
   if (pathname.startsWith('/mypage')) {
     const token = request.cookies.get('Authorization');
 

@@ -5,7 +5,6 @@ import { Session } from '@/types/session/session';
 import { useApplyStore } from '@/store/common/useApplyStore';
 import { useRouter } from 'next/navigation';
 import useApplyValidation from '@/hooks/access/useApplyValidation';
-import useAuthStore from '@/store/common/auth/useAuthStore';
 
 interface IListButtonProps {
   time: string;
@@ -23,7 +22,7 @@ export default function ListButton({
   text,
 }: IListButtonProps) {
   const { sessionValidation } = useApplyValidation();
-  const { isAuthenticated } = useAuthStore();
+  const token = localStorage.getItem('accessToken');
 
   const buttonTypeClasses = {
     primary: 'bg-fill-primary-list text-text-white',
@@ -41,10 +40,6 @@ export default function ListButton({
   const listButtonHandler = () => {
     setModalType(type);
 
-    if (!isAuthenticated) {
-      return router.push('/login');
-    }
-
     if (session.maxCapacity == session.participantCount) {
       setApplyState(
         false,
@@ -52,10 +47,24 @@ export default function ListButton({
         `${session.name} 세션이 이미 신청 마감되어 실패했습니다.`,
         false,
       );
-      router.push(`/session-schedule/${session.id}`, { scroll: false });
-    } else {
-      sessionValidation(currentDate, time, session.id);
     }
+
+    if (type === 'primary') {
+      if (!token) {
+        router.push('/login', { scroll: false });
+      } else {
+        sessionValidation(currentDate, time, session.id);
+      }
+      return;
+    }
+
+    if (type === 'thirary') {
+      router.push(`/session-schedule/${session.id}`, { scroll: false });
+      if (token) {
+        sessionValidation(currentDate, time, session.id);
+      }
+    }
+    return;
   };
 
   return (
