@@ -4,13 +4,16 @@ import { create } from 'zustand';
 interface SessionState {
   currentDate: string;
   currentSessionId: number;
-  currentTime: string;
+  currentSessionDate: string;
+  currentSessionTime: string;
   sessionDates: string[];
   selectedSessionsByDate: Record<string, SelectSession[]>;
 
-  setCurrentSessionId: (newId: number) => void;
   setCurrentDate: (newDate: string) => void;
-  setCurrentTime: (currentTime: string) => void;
+
+  setCurrentSessionId: (newId: number) => void;
+  setCurrentSessionDate: (newDate: string) => void;
+  setCurrentSessionTime: (newtTime: string) => void;
   resetDateState: () => void;
   addSessionDate: (newDate: string) => void;
   addSelectedSession: (
@@ -21,13 +24,18 @@ interface SessionState {
 export const useSessionStore = create<SessionState>((set) => ({
   currentDate: '전체',
   sessionDates: ['전체'],
-  currentTime: '',
+
+  currentSessionDate: '',
+  currentSessionTime: '',
+
   currentSessionId: 0,
   selectedSessionsByDate: {},
 
   setCurrentSessionId: (newId) => set({ currentSessionId: newId }),
   setCurrentDate: (newDate) => set({ currentDate: newDate }),
-  setCurrentTime: (newTime) => set({ currentTime: newTime }),
+
+  setCurrentSessionDate: (newDate) => set({ currentSessionDate: newDate }),
+  setCurrentSessionTime: (newTime) => set({ currentSessionTime: newTime }),
   addSessionDate: (newDate) =>
     set((state) => ({
       sessionDates: state.sessionDates.includes(newDate)

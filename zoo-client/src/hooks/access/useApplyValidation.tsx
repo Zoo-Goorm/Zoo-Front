@@ -23,7 +23,6 @@ export default function useApplyValidation() {
 
   function buttonHandler(sessionId: number) {
     if (modalType === 'primary') {
-      // resetDateState();
       router.push(`/session-schedule/${sessionId}`, { scroll: false });
     } else if (modalType === 'thirary') {
       setModalType('primary');
@@ -49,10 +48,10 @@ export default function useApplyValidation() {
     sessionTimeRange: string,
     sessionId: number,
   ) {
-    if (!token) {
-      router.push('/login');
-      return;
-    }
+    // if (!token) {
+    //   router.push('/login');
+    //   return;
+    // }
 
     if (!hasAnyTicket()) {
       router.push('/session-apply');

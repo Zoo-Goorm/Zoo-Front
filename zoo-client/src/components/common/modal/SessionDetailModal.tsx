@@ -15,10 +15,14 @@ const ModalBody = ({ currentSession }: ISessionId) => {
   const { sessionValidation } = useApplyValidation();
   const pathname = usePathname();
   const sessionId = useParams()?.id;
-  const { currentDate, currentTime } = useSessionStore();
+  const { currentSessionDate, currentSessionTime } = useSessionStore();
 
   const handlePurchase = () => {
-    sessionValidation(currentDate, currentTime, Number(sessionId));
+    sessionValidation(
+      currentSessionDate,
+      currentSessionTime,
+      Number(sessionId),
+    );
   };
 
   return (

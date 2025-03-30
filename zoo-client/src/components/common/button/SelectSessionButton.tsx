@@ -52,7 +52,7 @@ export default function SelectSessionButton({
     <div className="flex justify-end">
       <button
         onClick={changeSelectedSession}
-        className={`body-m-14 text-white ${isDisabled ? 'cursor-not-allowed bg-fill-primary-disabled' : 'bg-fill-primary'} rounded-md bg-fill-primary px-16 py-8`}
+        className={`body-m-14 text-white ${isDisabled ? 'cursor-not-allowed bg-fill-primary-disabled' : 'bg-fill-primary hover:bg-fill-thirary hover:text-text-primary'} rounded-md px-16 py-8`}
       >
         {isDisabled ? '세션 마감' : '세션 선택'}
       </button>

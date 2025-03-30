@@ -22,8 +22,6 @@ export default function ListButton({
   type,
   text,
 }: IListButtonProps) {
-  const { sessionValidation } = useApplyValidation();
-
   const buttonTypeClasses = {
     primary: 'bg-fill-primary-list text-text-white',
     thirary: 'bg-fill-thirary-list text-text-headline',
@@ -32,15 +30,17 @@ export default function ListButton({
   const { setModalType } = useApplyStore();
   const router = useRouter();
 
-  const { setCurrentDate, setCurrentTime } = useSessionStore();
+  const { sessionValidation } = useApplyValidation();
+  const { setCurrentSessionDate, setCurrentSessionTime } = useSessionStore();
+
   const buttonIconColorClasses = {
     primary: '#eee',
     thirary: '#2D2D2D',
   };
 
   const listButtonHandler = () => {
-    setCurrentDate(currentDate);
-    setCurrentTime(time);
+    setCurrentSessionDate(currentDate);
+    setCurrentSessionTime(time);
     setModalType(type);
 
     if (session.maxCapacity == session.participantCount) {
