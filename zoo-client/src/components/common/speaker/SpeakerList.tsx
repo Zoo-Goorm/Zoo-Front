@@ -5,11 +5,7 @@ export default function SpeakerList({ speakerList }: ISpeakerList) {
   return (
     <div className="flex flex-col items-center justify-center">
       {speakerList.map((speaker, index) => (
-        <Speaker
-          key={index}
-          speakerName={speaker.name}
-          speakerInfo={speaker.info}
-        />
+        <Speaker key={index} speakerName={speaker} />
       ))}
     </div>
   );
