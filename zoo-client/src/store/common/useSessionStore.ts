@@ -11,6 +11,7 @@ interface SessionState {
   setCurrentSessionId: (newId: number) => void;
   setCurrentDate: (newDate: string) => void;
   setCurrentTime: (currentTime: string) => void;
+  resetDateState: () => void;
   addSessionDate: (newDate: string) => void;
   addSelectedSession: (
     newSession: { currentDate: string } & SelectSession,
@@ -33,7 +34,7 @@ export const useSessionStore = create<SessionState>((set) => ({
         ? state.sessionDates
         : [...state.sessionDates, newDate],
     })),
-
+  resetDateState: () => set({ currentDate: '전체' }),
   addSelectedSession: (newSession) =>
     set((state) => {
       const { currentDate, ...sessionData } = newSession;

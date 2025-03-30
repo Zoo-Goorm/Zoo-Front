@@ -10,6 +10,8 @@ import {
 } from '@/components';
 import { SESSION_APPLY_MESSAGES } from '@/constants/messages';
 import useModalStore from '@/store/common/useModalStore';
+import { useSessionStore } from '@/store/common/useSessionStore';
+import { useEffect } from 'react';
 
 const Title = () => {
   return (
@@ -49,6 +51,11 @@ const AccordionContainer = () => {
 
 export default function SessionApply() {
   const { isOpen, contents } = useModalStore();
+  const { resetDateState } = useSessionStore();
+
+  useEffect(() => {
+    resetDateState();
+  }, []);
 
   return (
     <>
