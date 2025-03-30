@@ -24,6 +24,7 @@ export default function NoteItem({ children, note }: IChildren & INote) {
     hasSpeakerComment,
     memo,
   } = note;
+  console.log(note);
 
   const time = getTime(createdAt);
 

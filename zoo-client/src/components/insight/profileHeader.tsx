@@ -16,6 +16,7 @@ export default function ProfileHeader({
   return (
     <div className="flex content-center gap-8">
       <Image
+        onClick={() => {}}
         src="/mock/profile.svg"
         width={24}
         height={24}

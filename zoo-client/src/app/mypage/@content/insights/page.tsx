@@ -8,17 +8,20 @@ import { selectedInsightDate } from '@/constants/insights';
 import useObserver from '@/hooks/common/useObserver';
 import { useGetInfiniteMyInsightNote } from '@/hooks/insights/useInsights';
 import { IMyNote } from '@/types/insight/insightNote';
+import useModalStore from '@/store/common/useModalStore';
+import { useFilterStore } from '@/store/common/useFilterStore';
 
 function InsightItems({ note }: IMyNote) {
   const textRef = useRef<HTMLParagraphElement>(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
   const [isDetailed, setIsDetailed] = useState(false);
-  const { memo, isPublic, sessionName } = note;
+  const { sessionId, memo, isPublic, sessionName } = note;
 
   useEffect(() => {
     if (textRef.current) {
       setIsOverflowing(textRef.current.scrollHeight > 120);
     }
+    console.log(sessionId);
   }, []);
 
   return (
@@ -60,6 +63,11 @@ function InsightItems({ note }: IMyNote) {
 function InsightList() {
   const lastRef = useRef<HTMLDivElement | null>(null);
   const { currentDate } = useSessionStore();
+  const { selectedInsights } = useFilterStore();
+
+  useEffect(() => {
+    console.log(selectedInsights);
+  }, [selectedInsights]);
 
   const {
     data: myInsights,
@@ -67,16 +75,29 @@ function InsightList() {
     hasNextPage,
   } = useGetInfiniteMyInsightNote(selectedInsightDate[currentDate]);
 
-  console.log(myInsights);
   useObserver({
     target: lastRef,
     onIntersect: ([entry]) => {
       if (entry.isIntersecting && hasNextPage) fetchNextPage();
     },
   });
+
+  const filteredInsights =
+    selectedInsights.size === 0
+      ? myInsights
+      : {
+          ...myInsights,
+          pages: myInsights?.pages.map((page) => ({
+            ...page,
+            content: page?.content.filter((insight) =>
+              selectedInsights.has(insight.sessionId),
+            ),
+          })),
+        };
+
   return (
     <div className="flex w-full flex-col shadow-lg">
-      {myInsights?.pages.map((page) => {
+      {filteredInsights?.pages?.map((page) => {
         return page?.content.map((list, index) => (
           <InsightItems key={index} note={list} />
         ));
@@ -88,37 +109,44 @@ function InsightList() {
 
 export default function MyInsights() {
   const router = useRouter();
+  const { isOpen, contents } = useModalStore();
+
   return (
-    <div className="flex flex-col gap-10">
-      <div>
-        <h1 className="headline-sb-36 leading-normal text-text-main">
-          내 인사이트 노트
-        </h1>
-        <p className="body-m-16 text-text-sub">
-          필요할 때 꺼내 보며, 아이디어 정리하고 새로운 관점을 더해 보세요
-        </p>
-      </div>
-      <div className="flex flex-col gap-36">
-        <Tab />
-        <div className="flex w-full flex-col items-end">
-          <div
-            onClick={() => router.push('/insight-notes')}
-            className="flex items-center"
-          >
-            <label className="text-text-sub">인사이트 노트 작성하러 가기</label>
-            <button>
-              <Image
-                src={'/button/right-arrow-side-in.svg'}
-                alt="자세히 보기"
-                width={24}
-                height={24}
-                className="cursor-pointer"
-              />
-            </button>
+    <>
+      {isOpen && <div className="absolute inset-0 z-50">{contents}</div>}
+      <div className="flex flex-col gap-10">
+        <div>
+          <h1 className="headline-sb-36 leading-normal text-text-main">
+            내 인사이트 노트
+          </h1>
+          <p className="body-m-16 text-text-sub">
+            필요할 때 꺼내 보며, 아이디어 정리하고 새로운 관점을 더해 보세요
+          </p>
+        </div>
+        <div className="flex flex-col gap-36">
+          <Tab />
+          <div className="flex w-full flex-col items-end">
+            <div
+              onClick={() => router.push('/insight-notes')}
+              className="flex items-center"
+            >
+              <label className="text-text-sub">
+                인사이트 노트 작성하러 가기
+              </label>
+              <button>
+                <Image
+                  src={'/button/right-arrow-side-in.svg'}
+                  alt="자세히 보기"
+                  width={24}
+                  height={24}
+                  className="cursor-pointer"
+                />
+              </button>
+            </div>
+            <InsightList />
           </div>
-          <InsightList />
         </div>
       </div>
-    </div>
+    </>
   );
 }

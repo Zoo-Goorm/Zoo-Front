@@ -38,6 +38,7 @@ export interface MyInsightNoteProps {
   updatedAt: string;
   sessionName: string;
   isDraft: boolean;
+  sessionId: number;
 }
 
 export interface IMyNote {

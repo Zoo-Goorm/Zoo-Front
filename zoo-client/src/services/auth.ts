@@ -57,3 +57,11 @@ export async function fetchNoneMemberLogin({ name, email, code }: IUserInfo) {
 
   return null;
 }
+
+export async function fetchWithdraw() {
+  const endpoint = '/api/v1/user/me';
+
+  return fetchApi(endpoint, {
+    method: 'DELETE',
+  });
+}

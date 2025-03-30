@@ -38,7 +38,6 @@ export default function InsightSideNavigationBar() {
       })),
   );
 
-  console.log('sessions', sessions);
   return (
     <>
       {!onList ? (
