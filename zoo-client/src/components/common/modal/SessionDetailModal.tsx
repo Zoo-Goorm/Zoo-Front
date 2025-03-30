@@ -3,23 +3,24 @@ import { PurchaseButton, SessionInfo } from '@/components';
 import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
 import { useApplyStore } from '@/store/common/useApplyStore';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import { ISessionId } from '@/types/session/session';
 import ModalContainer from './Layout/ModalContainer';
 import ModalHeader from './Layout/ModalHeader';
+import { useEffect } from 'react';
+import useApplyValidation from '@/hooks/access/useApplyValidation';
+import { useSessionStore } from '@/store/common/useSessionStore';
 
 const ModalBody = ({ currentSession }: ISessionId) => {
-  const token = localStorage.getItem('accessToken');
-  const { setModalType } = useApplyStore();
+  const { sessionValidation } = useApplyValidation();
   const pathname = usePathname();
-  const router = useRouter();
+  const sessionId = useParams()?.id;
+  const { currentDate, currentTime } = useSessionStore();
 
   const handlePurchase = () => {
-    if (!token) {
-      router.push('/login', { scroll: false });
-    }
-    setModalType('thirary');
+    sessionValidation(currentDate, currentTime, Number(sessionId));
   };
+
   return (
     <div className="size-full">
       <SessionInfo currentSession={currentSession} />
@@ -60,9 +61,12 @@ const ModalBody = ({ currentSession }: ISessionId) => {
 
 export default function SessionDetailModal({ currentSession }: ISessionId) {
   const router = useRouter();
+  const { modalType } = useApplyStore();
   const closeModal = () => {
     router.back();
   };
+
+  useEffect(() => {}, [modalType]);
 
   return (
     <ModalContainer>

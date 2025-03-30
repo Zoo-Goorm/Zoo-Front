@@ -60,7 +60,9 @@ function HasTicketList({ registeredSessions }: IRegisteredSessions) {
                         <div className="flex justify-end">
                           <button
                             onClick={() =>
-                              router.push(`/mypage/sessions/${sessionId}`)
+                              router.push(`/mypage/sessions/${sessionId}`, {
+                                scroll: false,
+                              })
                             }
                             className="bg-bg-secondary px-16 py-3 text-text-primary"
                           >

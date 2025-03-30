@@ -66,6 +66,7 @@ export default function SessionRadioModal({
     : messageSub;
 
   useEffect(() => {
+    console.log(messageMain);
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {

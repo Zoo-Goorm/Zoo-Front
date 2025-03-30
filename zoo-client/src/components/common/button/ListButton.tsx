@@ -5,6 +5,7 @@ import { Session } from '@/types/session/session';
 import { useApplyStore } from '@/store/common/useApplyStore';
 import { useRouter } from 'next/navigation';
 import useApplyValidation from '@/hooks/access/useApplyValidation';
+import { useSessionStore } from '@/store/common/useSessionStore';
 
 interface IListButtonProps {
   time: string;
@@ -22,7 +23,6 @@ export default function ListButton({
   text,
 }: IListButtonProps) {
   const { sessionValidation } = useApplyValidation();
-  const token = localStorage.getItem('accessToken');
 
   const buttonTypeClasses = {
     primary: 'bg-fill-primary-list text-text-white',
@@ -32,12 +32,15 @@ export default function ListButton({
   const { setModalType } = useApplyStore();
   const router = useRouter();
 
+  const { setCurrentDate, setCurrentTime } = useSessionStore();
   const buttonIconColorClasses = {
     primary: '#eee',
     thirary: '#2D2D2D',
   };
 
   const listButtonHandler = () => {
+    setCurrentDate(currentDate);
+    setCurrentTime(time);
     setModalType(type);
 
     if (session.maxCapacity == session.participantCount) {
@@ -50,21 +53,11 @@ export default function ListButton({
     }
 
     if (type === 'primary') {
-      if (!token) {
-        router.push('/login', { scroll: false });
-      } else {
-        sessionValidation(currentDate, time, session.id);
-      }
-      return;
+      sessionValidation(currentDate, time, session.id);
     }
-
     if (type === 'thirary') {
       router.push(`/session-schedule/${session.id}`, { scroll: false });
-      if (token) {
-        sessionValidation(currentDate, time, session.id);
-      }
     }
-    return;
   };
 
   return (
