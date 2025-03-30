@@ -9,9 +9,17 @@ import ModalContainer from './Layout/ModalContainer';
 import ModalHeader from './Layout/ModalHeader';
 
 const ModalBody = ({ currentSession }: ISessionId) => {
+  const token = localStorage.getItem('accessToken');
   const { setModalType } = useApplyStore();
   const pathname = usePathname();
+  const router = useRouter();
 
+  const handlePurchase = () => {
+    if (!token) {
+      router.push('/login', { scroll: false });
+    }
+    setModalType('thirary');
+  };
   return (
     <div className="size-full">
       <SessionInfo currentSession={currentSession} />
@@ -41,7 +49,7 @@ const ModalBody = ({ currentSession }: ISessionId) => {
       </div>
       <div className={pathname.startsWith('/mypage') ? 'hidden' : 'block'}>
         <PurchaseButton
-          func={() => setModalType('primary')}
+          func={handlePurchase}
           size={48}
           text={SESSION_SCHEDULE_MESSAGES.buttonModalText}
         />
