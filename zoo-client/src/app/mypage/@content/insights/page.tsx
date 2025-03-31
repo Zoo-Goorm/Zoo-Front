@@ -36,7 +36,7 @@ function InsightItems({ note }: IMyNote) {
         <p
           ref={textRef}
           className="body-r-16-150 overflow-hidden text-text-sub"
-          style={{ maxHeight: isDetailed ? '1000px' : '120px' }}
+          style={{ maxHeight: isDetailed ? '' : '120px' }}
         >
           {memo}
         </p>

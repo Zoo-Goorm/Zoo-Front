@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useApplyStore } from '@/store/common/useApplyStore';
 import { UserTicket } from '@/types/ticket/ticket';
 import { useGetTicket, useMutationApply } from '../session/useReservation';
+import useAuthStore from '@/store/common/auth/useAuthStore';
 
 export default function useApplyValidation() {
   const router = useRouter();
@@ -11,10 +12,7 @@ export default function useApplyValidation() {
   const { mutate: applySession } = useMutationApply();
   const { setApplyState, setConflictId, modalType, setModalType } =
     useApplyStore();
-
-  const token =
-    localStorage.getItem('noneMemberAccessToken') ||
-    localStorage.getItem('accessToken');
+  const { isAuthenticated } = useAuthStore();
 
   const userTicket: UserTicket = data ?? {
     tickets: {},
@@ -52,10 +50,10 @@ export default function useApplyValidation() {
     sessionTimeRange: string,
     sessionId: number,
   ) {
-    // if (!token) {
-    //   router.push('/login');
-    //   return;
-    // }
+    if (!isAuthenticated) {
+      router.push('/login');
+      return;
+    }
 
     if (!hasAnyTicket()) {
       router.push('/session-apply');
