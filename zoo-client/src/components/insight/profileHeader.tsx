@@ -13,7 +13,6 @@ interface ProfileHeaderProps {
 }
 
 export default function ProfileHeader({
-  isAnonymous,
   profile,
   name,
   time,
@@ -24,15 +23,16 @@ export default function ProfileHeader({
 
   const openProfileModal = () => {
     openModal({
-      contents: !isAnonymous && profile && <ProfileModal profile={profile} />,
+      contents: profile && <ProfileModal profile={profile} />,
     });
   };
 
   return (
     <div className="flex content-center gap-8">
       <Image
-        onClick={() => !isAnonymous && profile && openProfileModal}
+        onClick={openProfileModal}
         src="/mock/profile.svg"
+        className="cursor-pointer"
         width={24}
         height={24}
         alt="reply-profile"

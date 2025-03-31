@@ -33,7 +33,7 @@ export default function Profile({
 
   return (
     <div
-      className={`flex justify-between gap-2 ${name === '알 수 업음' && 'hidden'} `}
+      className={`flex w-full justify-between gap-2 ${name === '알 수 업음' && 'hidden'} `}
     >
       <div className="flex gap-3">
         <Image
