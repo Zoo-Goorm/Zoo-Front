@@ -34,11 +34,11 @@ export default function NoteInput({ text, id }: { text: string; id: number }) {
       ),
     });
   };
-
   const handleResizeHeight = () => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
       const newHeight = `${textareaRef.current.scrollHeight}px`;
+      newHeight > '120px' ? '120px' : newHeight;
       textareaRef.current.style.height = newHeight;
       setTextHeight(newHeight);
     }
