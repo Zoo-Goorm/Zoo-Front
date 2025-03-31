@@ -13,9 +13,10 @@ export default function NoteInput({ text, id }: { text: string; id: number }) {
 
   useEffect(() => {
     if (textareaRef.current) {
+      textareaRef.current.style.overflowY = 'scroll';
       textareaRef.current.style.height = textHeight;
     }
-  }, [textHeight]);
+  }, []);
 
   const openSettingModal = () => {
     openModal({
@@ -37,8 +38,13 @@ export default function NoteInput({ text, id }: { text: string; id: number }) {
   const handleResizeHeight = () => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
-      const newHeight = `${textareaRef.current.scrollHeight > 120 ? '120px' : textareaRef.current.scrollHeight}px`;
-      setTextHeight(newHeight);
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+
+      if (textareaRef.current.scrollHeight > 120) {
+        setTextHeight(`120px`);
+      } else {
+        setTextHeight(`${textareaRef.current.scrollHeight}px`);
+      }
     }
   };
 
@@ -52,7 +58,7 @@ export default function NoteInput({ text, id }: { text: string; id: number }) {
         name="memo"
         rows={1}
         onChange={(e) => setMemo(e.target.value)}
-        className="max-h-[290px] w-full resize-none text-text-thirary scrollbar-hidden focus:outline-none"
+        className="max-h-[120px] w-full resize-none text-text-thirary scrollbar-hidden focus:outline-none"
         placeholder={text}
         defaultValue={content}
       />
