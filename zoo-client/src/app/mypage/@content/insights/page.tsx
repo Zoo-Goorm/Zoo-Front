@@ -10,6 +10,7 @@ import { useGetInfiniteMyInsightNote } from '@/hooks/insights/useInsights';
 import { IMyNote } from '@/types/insight/insightNote';
 import useModalStore from '@/store/common/useModalStore';
 import { useFilterStore } from '@/store/common/useFilterStore';
+import { useGetTicket } from '@/hooks/session/useReservation';
 
 function InsightItems({ note }: IMyNote) {
   const textRef = useRef<HTMLParagraphElement>(null);
@@ -110,6 +111,14 @@ function InsightList() {
 export default function MyInsights() {
   const router = useRouter();
   const { isOpen, contents } = useModalStore();
+  const { data: tickets } = useGetTicket();
+
+  const sessionId =
+    tickets &&
+    tickets.registeredSessions &&
+    Array.isArray(Object.values(tickets.registeredSessions)) &&
+    Object.values(tickets.registeredSessions)[0] &&
+    Object.values(tickets.registeredSessions)[0][0]?.sessionId;
 
   return (
     <>
@@ -127,7 +136,11 @@ export default function MyInsights() {
           <Tab />
           <div className="flex w-full flex-col items-end">
             <div
-              onClick={() => router.push('/insight-notes')}
+              onClick={() =>
+                sessionId
+                  ? router.push(`/sessions/${sessionId}/insight-notes`)
+                  : router.push(`/session-apply`)
+              }
               className="flex items-center"
             >
               <label className="text-text-sub">

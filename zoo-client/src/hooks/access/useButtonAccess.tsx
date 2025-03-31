@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { UserTicket } from '@/types/ticket/ticket';
 import { useGetTicket } from '../session/useReservation';
-import useAuthStore from '@/store/common/auth/useAuthStore';
 
 export default function useButtonAccess() {
-  const { isAuthenticated } = useAuthStore();
+  const token =
+    localStorage.getItem('noneMemberAccessToken') ||
+    localStorage.getItem('accessToken');
   const router = useRouter();
   const { data } = useGetTicket();
 
@@ -21,15 +22,15 @@ export default function useButtonAccess() {
   const [hide, setHide] = useState(false);
 
   useEffect(() => {
-    if (!isAuthenticated || !hasTicket) {
+    if (!token || !hasTicket) {
       setHide(false);
     } else {
       setHide(true);
     }
-  }, [isAuthenticated, hasTicket]);
+  }, [token, hasTicket]);
 
   const handler = () => {
-    if (!isAuthenticated) {
+    if (!token) {
       router.push('/login');
     } else {
       if (!hasTicket) {
