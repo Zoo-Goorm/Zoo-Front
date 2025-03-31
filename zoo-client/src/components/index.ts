@@ -45,6 +45,7 @@ export { default as LoginButton } from './common/button/LoginButton';
 export { default as PurchaseButton } from './common/button/PurchaseButton';
 export { default as PaymentButton } from './common/button/PaymentButton';
 export { default as RegisterPaymentButton } from './common/button/RegisterPaymentButton';
+export { default as FilterButton } from './common/button/FilterButton';
 
 /* header & footer */
 export { default as NavigationBar } from './common/navigationBar/NavigationBar';
@@ -79,6 +80,7 @@ export { default as SessionApplyModal } from './common/modal/SessionApplyModal';
 export { default as SessionDetailModal } from './common/modal/SessionDetailModal';
 export { default as InsightInfoModal } from './common/modal/InsightInfoModal';
 export { default as SaveInsightModal } from './common/modal/SaveInsightModal';
+export { default as ProfileModal } from './common/modal/ProfileModal';
 
 /* tab */
 export { default as Tab } from './common/tab/Tab';

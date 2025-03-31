@@ -27,7 +27,7 @@ const SessionListItems = ({ name, id }: SessionSNBProps) => {
 };
 
 export default function InsightSideNavigationBar() {
-  const [onList, setOnList] = useState(false);
+  const [onList, setOnList] = useState(true);
   const { data: tickets = {} as UserTicket } = useGetTicket();
   const registeredSessions = tickets.registeredSessions;
   const sessions = Object.values(registeredSessions).flatMap(
@@ -38,7 +38,6 @@ export default function InsightSideNavigationBar() {
       })),
   );
 
-  console.log('sessions', sessions);
   return (
     <>
       {!onList ? (

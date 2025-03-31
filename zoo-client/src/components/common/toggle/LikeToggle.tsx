@@ -12,9 +12,9 @@ interface SpanClassMap {
 }
 
 interface LikeToggleProps {
-  id: number;
+  id?: number;
   size: keyof SizeMap;
-  likeCount: number;
+  likeCount?: number;
   isLiked?: boolean;
 }
 
@@ -37,7 +37,7 @@ export default function LikeToggle({
   };
 
   const isLikeHandler = () => {
-    mutate({ id: id });
+    id && mutate({ id: id });
   };
   return (
     <div className="flex items-center gap-4">

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import SocialList from './SocialList';
-import { InfoListProps, IProfile } from '@/types/insight/insightProfile';
+import { InfoListProps, ProfileProps } from '@/types/insight/insightProfile';
 import CardBadge from '@/components/common/badge/CardBadge';
 import { ILike } from '@/types/insight/insight';
 import LikeToggle from '@/components/common/toggle/LikeToggle';
@@ -14,17 +14,26 @@ const InfoList = ({ name, email }: InfoListProps) => {
   );
 };
 
+interface IProfileProps {
+  id?: number;
+  type: 'detailed' | 'profile';
+  likeCount?: ILike['likeCount'];
+  isLiked?: ILike['isLiked'];
+  profile: ProfileProps;
+}
+
 export default function Profile({
   id,
   profile,
   likeCount,
   isLiked,
-}: { id: number } & IProfile & ILike) {
+  type,
+}: IProfileProps) {
   const { name, email, interestCategory, linkUrls } = profile;
 
   return (
     <div
-      className={`flex justify-between gap-2 ${name === '알 수 업음' && 'hidden'} `}
+      className={`flex w-full justify-between gap-2 ${name === '알 수 업음' && 'hidden'} `}
     >
       <div className="flex gap-3">
         <Image
@@ -43,7 +52,14 @@ export default function Profile({
       </div>
 
       <div className="flex flex-col justify-end">
-        <LikeToggle id={id} size="l" likeCount={likeCount} isLiked={isLiked} />
+        {type == 'detailed' && (
+          <LikeToggle
+            id={id}
+            size="l"
+            likeCount={likeCount}
+            isLiked={isLiked}
+          />
+        )}
       </div>
     </div>
   );

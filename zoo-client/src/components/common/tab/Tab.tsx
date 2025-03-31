@@ -6,9 +6,11 @@ import { useSessionStore } from '@/store/common/useSessionStore';
 import ToggleButton from './ToggleButton';
 import { usePathname } from 'next/navigation';
 import { useSessions } from '@/hooks/session/useSession';
+import { FilterButton } from '@/components';
 export default function Tab() {
   const { sessionDates, addSessionDate } = useSessionStore();
   const isSchedulePath = usePathname().includes('session-apply');
+  const isMyInsightPath = usePathname().includes('mypage/insights');
   const { data: sessions } = useSessions();
 
   useEffect(() => {
@@ -35,6 +37,7 @@ export default function Tab() {
       </div>
 
       {isSchedulePath && <ToggleButton />}
+      {isMyInsightPath && <FilterButton />}
     </div>
   );
 }

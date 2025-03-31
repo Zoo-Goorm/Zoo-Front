@@ -3,14 +3,27 @@ import { PurchaseButton, SessionInfo } from '@/components';
 import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
 import { useApplyStore } from '@/store/common/useApplyStore';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import { ISessionId } from '@/types/session/session';
 import ModalContainer from './Layout/ModalContainer';
 import ModalHeader from './Layout/ModalHeader';
+import { useEffect } from 'react';
+import useApplyValidation from '@/hooks/access/useApplyValidation';
+import { useSessionStore } from '@/store/common/useSessionStore';
 
 const ModalBody = ({ currentSession }: ISessionId) => {
-  const { setModalType } = useApplyStore();
+  const { sessionValidation } = useApplyValidation();
   const pathname = usePathname();
+  const sessionId = useParams()?.id;
+  const { currentSessionDate, currentSessionTime } = useSessionStore();
+
+  const handlePurchase = () => {
+    sessionValidation(
+      currentSessionDate,
+      currentSessionTime,
+      Number(sessionId),
+    );
+  };
 
   return (
     <div className="size-full">
@@ -41,7 +54,7 @@ const ModalBody = ({ currentSession }: ISessionId) => {
       </div>
       <div className={pathname.startsWith('/mypage') ? 'hidden' : 'block'}>
         <PurchaseButton
-          func={() => setModalType('primary')}
+          func={handlePurchase}
           size={48}
           text={SESSION_SCHEDULE_MESSAGES.buttonModalText}
         />
@@ -52,9 +65,17 @@ const ModalBody = ({ currentSession }: ISessionId) => {
 
 export default function SessionDetailModal({ currentSession }: ISessionId) {
   const router = useRouter();
+  const { modalType } = useApplyStore();
+
   const closeModal = () => {
     router.back();
   };
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+  }, []);
+
+  useEffect(() => {}, [modalType]);
 
   return (
     <ModalContainer>

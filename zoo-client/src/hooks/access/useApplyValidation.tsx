@@ -4,12 +4,15 @@ import { useRouter } from 'next/navigation';
 import { useApplyStore } from '@/store/common/useApplyStore';
 import { UserTicket } from '@/types/ticket/ticket';
 import { useGetTicket, useMutationApply } from '../session/useReservation';
+import useAuthStore from '@/store/common/auth/useAuthStore';
 
 export default function useApplyValidation() {
   const router = useRouter();
   const { data } = useGetTicket();
   const { mutate: applySession } = useMutationApply();
-  const { setApplyState, setConflictId } = useApplyStore();
+  const { setApplyState, setConflictId, modalType, setModalType } =
+    useApplyStore();
+  const { isAuthenticated } = useAuthStore();
 
   const userTicket: UserTicket = data ?? {
     tickets: {},
@@ -20,8 +23,12 @@ export default function useApplyValidation() {
     return Object.values(userTicket.tickets).some(Boolean);
   }
 
-  function hasAllTickets(): boolean {
-    return Object.values(userTicket.tickets).every(Boolean);
+  function buttonHandler(sessionId: number) {
+    if (modalType === 'primary') {
+      router.push(`/session-schedule/${sessionId}`, { scroll: false });
+    } else if (modalType === 'thirary') {
+      setModalType('primary');
+    }
   }
 
   function findConflictingSession(date: string, timeRange: string) {
@@ -43,8 +50,14 @@ export default function useApplyValidation() {
     sessionTimeRange: string,
     sessionId: number,
   ) {
+    if (!isAuthenticated) {
+      router.push('/login');
+      return;
+    }
+
     if (!hasAnyTicket()) {
-      return router.push('/session-apply');
+      router.push('/session-apply');
+      return;
     }
 
     const availableDates = Object.keys(userTicket.tickets).filter(
@@ -52,9 +65,9 @@ export default function useApplyValidation() {
     );
 
     if (!availableDates.includes(sessionDate)) {
-      return router.push('/session-apply');
+      router.push('/session-apply');
+      return;
     }
-
     if (hasSessionConflict(sessionDate, sessionId)) {
       setApplyState(
         false,
@@ -62,7 +75,8 @@ export default function useApplyValidation() {
         '[중복 신청] 이미 신청한 세션입니다',
         false,
       );
-      return router.push(`/session-schedule/${sessionId}`, { scroll: false });
+      buttonHandler(sessionId);
+      return;
     }
 
     const conflictingSession = findConflictingSession(
@@ -78,17 +92,21 @@ export default function useApplyValidation() {
         true,
       );
       setConflictId(conflictingSession.sessionId);
-      return router.push(`/session-schedule/${sessionId}`, { scroll: false });
+      buttonHandler(sessionId);
+      return;
     }
 
     applySession({ id: sessionId });
     setApplyState(true, '신청 완료', '세션이 신청 완료되었습니다.', false);
-    router.push(`/session-schedule/${sessionId}`, { scroll: false });
+
+    if (modalType === 'primary') {
+      router.push(`/session-schedule/${sessionId}`, { scroll: false });
+    } else {
+      setModalType('primary');
+    }
   }
 
   return {
-    hasAnyTicket,
-    hasAllTickets,
     findConflictingSession,
     sessionValidation,
   };

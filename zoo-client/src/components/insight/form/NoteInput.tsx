@@ -2,14 +2,21 @@
 import useModalStore from '@/store/common/useModalStore';
 import SettingNoteModal from '@/components/common/modal/SettingNoteModal';
 import SaveInsightModal from '@/components/common/modal/SaveInsightModal';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSaveInsight } from '@/store/common/insight/useSaveInsight';
 
 export default function NoteInput({ text, id }: { text: string; id: number }) {
   const { openModal } = useModalStore();
   const [memo, setMemo] = useState('');
-  const { content } = useSaveInsight();
+  const { content, setTextHeight, textHeight } = useSaveInsight();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.overflowY = 'scroll';
+      textareaRef.current.style.height = textHeight;
+    }
+  }, []);
 
   const openSettingModal = () => {
     openModal({
@@ -32,6 +39,12 @@ export default function NoteInput({ text, id }: { text: string; id: number }) {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+
+      if (textareaRef.current.scrollHeight > 120) {
+        setTextHeight(`120px`);
+      } else {
+        setTextHeight(`${textareaRef.current.scrollHeight}px`);
+      }
     }
   };
 
@@ -45,7 +58,7 @@ export default function NoteInput({ text, id }: { text: string; id: number }) {
         name="memo"
         rows={1}
         onChange={(e) => setMemo(e.target.value)}
-        className="max-h-[290px] w-full resize-none text-text-thirary scrollbar-hidden focus:outline-none"
+        className="max-h-[120px] w-full resize-none text-text-thirary scrollbar-hidden focus:outline-none"
         placeholder={text}
         defaultValue={content}
       />

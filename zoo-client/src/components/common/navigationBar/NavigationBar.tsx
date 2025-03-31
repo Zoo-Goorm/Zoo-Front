@@ -66,7 +66,13 @@ export default function NavigationBar({
         <Link href="/session-schedule">
           <li className={`body-sb-16 ${labelColorClasses[$type]}`}>세션</li>
         </Link>
-        <Link href={`/sessions/${sessionId}/insight-notes`}>
+        <Link
+          href={
+            sessionId
+              ? `/sessions/${sessionId}/insight-notes`
+              : '/session-apply'
+          }
+        >
           <li className={`body-sb-16 ${labelColorClasses[$type]}`}>
             인사이트 노트
           </li>
