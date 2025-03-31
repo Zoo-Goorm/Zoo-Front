@@ -6,8 +6,6 @@ import ModalContainer from './Layout/ModalContainer';
 import { IModalBodyProps } from '@/types/modal/modal';
 import { useSession } from '@/hooks/session/useSession';
 import { useMutationReApply } from '@/hooks/session/useReservation';
-import { useEffect } from 'react';
-import useModalStore from '@/store/common/useModalStore';
 
 const ModalButton = ({
   closeModal,
@@ -59,24 +57,10 @@ export default function SessionRadioModal({
   const { messageMain, messageSub, change, conflictId } = useApplyStore();
   const { data: currentSession } = useSession(Number(conflictId));
   const title = currentSession?.sessionName;
-  const { isOpen } = useModalStore();
   const bodyText = change
     ? `이미 같은 시간대에 [${title}] 세션이 신청되어있습니다.
      신청된 세션을 취소하고 해당 세션을 신청하시고 싶으시다면 변경 신청 버튼을 눌러주세요!`
     : messageSub;
-
-  useEffect(() => {
-    console.log(messageMain);
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isOpen]);
 
   return (
     <ModalContainer>

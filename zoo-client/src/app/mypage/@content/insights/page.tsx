@@ -16,13 +16,12 @@ function InsightItems({ note }: IMyNote) {
   const textRef = useRef<HTMLParagraphElement>(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
   const [isDetailed, setIsDetailed] = useState(false);
-  const { sessionId, memo, isPublic, sessionName } = note;
+  const { memo, isPublic, sessionName } = note;
 
   useEffect(() => {
     if (textRef.current) {
       setIsOverflowing(textRef.current.scrollHeight > 120);
     }
-    console.log(sessionId);
   }, []);
 
   return (

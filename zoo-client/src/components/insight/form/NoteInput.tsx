@@ -2,14 +2,20 @@
 import useModalStore from '@/store/common/useModalStore';
 import SettingNoteModal from '@/components/common/modal/SettingNoteModal';
 import SaveInsightModal from '@/components/common/modal/SaveInsightModal';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSaveInsight } from '@/store/common/insight/useSaveInsight';
 
 export default function NoteInput({ text, id }: { text: string; id: number }) {
   const { openModal } = useModalStore();
   const [memo, setMemo] = useState('');
-  const { content } = useSaveInsight();
+  const { content, setTextHeight, textHeight } = useSaveInsight();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = textHeight;
+    }
+  }, [textHeight]);
 
   const openSettingModal = () => {
     openModal({
@@ -28,10 +34,13 @@ export default function NoteInput({ text, id }: { text: string; id: number }) {
       ),
     });
   };
+
   const handleResizeHeight = () => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+      const newHeight = `${textareaRef.current.scrollHeight}px`;
+      textareaRef.current.style.height = newHeight;
+      setTextHeight(newHeight);
     }
   };
 

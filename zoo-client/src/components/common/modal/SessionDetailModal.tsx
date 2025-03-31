@@ -66,9 +66,14 @@ const ModalBody = ({ currentSession }: ISessionId) => {
 export default function SessionDetailModal({ currentSession }: ISessionId) {
   const router = useRouter();
   const { modalType } = useApplyStore();
+
   const closeModal = () => {
     router.back();
   };
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+  }, []);
 
   useEffect(() => {}, [modalType]);
 

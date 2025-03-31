@@ -24,7 +24,6 @@ export default function NoteItem({ children, note }: IChildren & INote) {
     hasSpeakerComment,
     memo,
   } = note;
-  console.log(note);
 
   const time = getTime(createdAt);
 
@@ -45,8 +44,8 @@ export default function NoteItem({ children, note }: IChildren & INote) {
         <div className="flex flex-col gap-1">
           <p
             ref={textRef}
-            className="body-r-16-150 overflow-hidden text-text-sub"
-            style={{ maxHeight: detailedReply ? '1000px' : '120px' }}
+            className="body-r-16-150 text-text-sub"
+            style={{ maxHeight: detailedReply ? '' : '120px' }}
           >
             {memo}
           </p>

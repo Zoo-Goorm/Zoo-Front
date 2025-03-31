@@ -46,7 +46,6 @@ function ModalBody() {
         id: sessionId,
       })),
   );
-  console.log(sessions);
 
   return (
     <div className="flex w-[100%] flex-col items-start justify-center gap-16">

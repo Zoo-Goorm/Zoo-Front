@@ -11,9 +11,11 @@ export default function useApplyValidation() {
   const { mutate: applySession } = useMutationApply();
   const { setApplyState, setConflictId, modalType, setModalType } =
     useApplyStore();
+
   const token =
     localStorage.getItem('noneMemberAccessToken') ||
     localStorage.getItem('accessToken');
+
   const userTicket: UserTicket = data ?? {
     tickets: {},
     registeredSessions: {},
@@ -50,10 +52,10 @@ export default function useApplyValidation() {
     sessionTimeRange: string,
     sessionId: number,
   ) {
-    if (!token) {
-      router.push('/login');
-      return;
-    }
+    // if (!token) {
+    //   router.push('/login');
+    //   return;
+    // }
 
     if (!hasAnyTicket()) {
       router.push('/session-apply');
