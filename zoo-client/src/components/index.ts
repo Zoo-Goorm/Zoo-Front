@@ -80,6 +80,7 @@ export { default as SessionApplyModal } from './common/modal/SessionApplyModal';
 export { default as SessionDetailModal } from './common/modal/SessionDetailModal';
 export { default as InsightInfoModal } from './common/modal/InsightInfoModal';
 export { default as SaveInsightModal } from './common/modal/SaveInsightModal';
+export { default as ProfileModal } from './common/modal/ProfileModal';
 
 /* tab */
 export { default as Tab } from './common/tab/Tab';

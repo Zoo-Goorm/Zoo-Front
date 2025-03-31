@@ -1,3 +1,5 @@
+import { ProfileProps } from './insightProfile';
+
 export interface INoteList {
   noteList: InsightNoteProps[];
 }
@@ -19,6 +21,7 @@ export interface InsightNoteProps {
   job: string;
   isLiked: boolean;
   hasSpeakerComment: boolean;
+  profile: ProfileProps;
 }
 
 export interface InsightNoteListProps {

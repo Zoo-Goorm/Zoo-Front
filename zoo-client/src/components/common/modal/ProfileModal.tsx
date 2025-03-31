@@ -1,13 +1,19 @@
-// import Profile from '@/components/insight/information/Profile';
+import { IProfile } from '@/types/insight/insightProfile';
+import ModalContainer from './Layout/ModalContainer';
+import useModalStore from '@/store/common/useModalStore';
+import ModalHeader from './Layout/ModalHeader';
+import Profile from '@/components/insight/information/Profile';
 
-export default function ProfileModal() {
+const ModalBody = ({ profile }: IProfile) => {
+  return <Profile profile={profile} type="profile" />;
+};
+
+export default function ProfileModal({ profile }: IProfile) {
+  const { closeModal } = useModalStore();
   return (
-    <div>dd</div>
-    // <Profile
-    //     id={id}
-    //     profile={profile}
-    //     likeCount={likeCount}
-    //     isLiked={isLiked}
-    //   />
+    <ModalContainer>
+      <ModalHeader closeModal={closeModal} />
+      <ModalBody profile={profile} />
+    </ModalContainer>
   );
 }

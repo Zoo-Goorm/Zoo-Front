@@ -1,22 +1,37 @@
 import Image from 'next/image';
+import ProfileModal from '../common/modal/ProfileModal';
+import useModalStore from '@/store/common/useModalStore';
+import { ProfileProps } from '@/types/insight/insightProfile';
 
 interface ProfileHeaderProps {
   name: string;
+  isAnonymous?: boolean;
   time?: string;
   edited: boolean;
   speaker?: boolean;
+  profile?: ProfileProps;
 }
 
 export default function ProfileHeader({
+  isAnonymous,
+  profile,
   name,
   time,
   edited,
   speaker,
 }: ProfileHeaderProps) {
+  const { openModal } = useModalStore();
+
+  const openProfileModal = () => {
+    openModal({
+      contents: !isAnonymous && profile && <ProfileModal profile={profile} />,
+    });
+  };
+
   return (
     <div className="flex content-center gap-8">
       <Image
-        onClick={() => {}}
+        onClick={() => !isAnonymous && profile && openProfileModal}
         src="/mock/profile.svg"
         width={24}
         height={24}
