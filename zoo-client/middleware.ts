@@ -16,7 +16,7 @@ export function middleware(request: NextRequest) {
     const token = request.cookies.get('Authorization');
 
     if (!token) {
-      return NextResponse.redirect(new URL('/none-member', request.url));
+      return NextResponse.redirect(new URL('/login', request.url));
     }
   }
 

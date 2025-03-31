@@ -49,7 +49,7 @@ function ModalBody() {
 
   return (
     <div className="flex w-[100%] flex-col items-start justify-center gap-16">
-      <div className="flex h-[13.875rem] flex-1 flex-col items-start gap-16">
+      <div className="flex max-h-[350px] flex-1 flex-col items-start gap-16 overflow-hidden">
         <Badge text="Sessions" type="default" />
         <ul className="body-sb-16 w-full text-text-main scrollbar-hidden">
           {sessions.map((session, index) => (
