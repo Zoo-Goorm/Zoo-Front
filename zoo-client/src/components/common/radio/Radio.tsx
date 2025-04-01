@@ -11,7 +11,7 @@ export default function Radio({ status }: RadioProps) {
   const { activeState, setActiveState } = useRadioStore();
   const bgTypeClass = {
     active: 'border-[1.5px] border-stroke-primary box-border',
-    inactive: 'brightness-50',
+    inactive: 'border-[1.5px] border-stroke-primary box-border',
   };
   const textTypeClass = {
     active: 'text-text-primary',
@@ -20,17 +20,17 @@ export default function Radio({ status }: RadioProps) {
 
   return (
     <div className="flex cursor-pointer flex-col gap-20 text-center">
-      <Image
-        onClick={() => setActiveState(status)}
-        alt="Thumbnail"
-        src="/radio/thumbnail.svg"
-        width={610}
-        height={343}
-        priority
-        className={`rounded ${
-          activeState == status && bgTypeClass[activeState]
-        }`}
-      />
+      <div className="relative h-[343px] w-[610px]">
+        <Image
+          onClick={() => setActiveState(status)}
+          alt="Thumbnail"
+          src={status === 'active' ? '/radio/online.png' : '/radio/offline.png'}
+          priority
+          fill
+          style={{ objectFit: 'cover' }}
+          className={`rounded ${activeState === status ? (bgTypeClass[activeState] ?? '') : ''}`}
+        />
+      </div>
       <span
         className={`title-sb-24 text-text-main ${activeState == status && textTypeClass[activeState]}`}
       >

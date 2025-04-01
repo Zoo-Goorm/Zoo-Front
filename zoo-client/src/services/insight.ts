@@ -92,7 +92,6 @@ export async function getMyInsights({
     ? `/api/v1/my/insights?eventDay=${eventDay}&page=${page}&size=${size}`
     : `/api/v1/my/insights?page=${page}&size=${size}`;
 
-  console.log(endpoint);
   return fetchApi<MyInsightNoteListProps>(endpoint, {
     method: 'GET',
   });

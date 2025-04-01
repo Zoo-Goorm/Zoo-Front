@@ -5,7 +5,7 @@ import { Session } from '@/types/session/session';
 import { useApplyStore } from '@/store/common/useApplyStore';
 import { useRouter } from 'next/navigation';
 import useApplyValidation from '@/hooks/access/useApplyValidation';
-import useAuthStore from '@/store/common/auth/useAuthStore';
+import { useSessionStore } from '@/store/common/useSessionStore';
 
 interface IListButtonProps {
   time: string;
@@ -22,9 +22,6 @@ export default function ListButton({
   type,
   text,
 }: IListButtonProps) {
-  const { sessionValidation } = useApplyValidation();
-  const { isAuthenticated } = useAuthStore();
-
   const buttonTypeClasses = {
     primary: 'bg-fill-primary-list text-text-white',
     thirary: 'bg-fill-thirary-list text-text-headline',
@@ -33,17 +30,18 @@ export default function ListButton({
   const { setModalType } = useApplyStore();
   const router = useRouter();
 
+  const { sessionValidation } = useApplyValidation();
+  const { setCurrentSessionDate, setCurrentSessionTime } = useSessionStore();
+
   const buttonIconColorClasses = {
     primary: '#eee',
     thirary: '#2D2D2D',
   };
 
   const listButtonHandler = () => {
+    setCurrentSessionDate(currentDate);
+    setCurrentSessionTime(time);
     setModalType(type);
-
-    if (!isAuthenticated) {
-      return router.push('/login');
-    }
 
     if (session.maxCapacity == session.participantCount) {
       setApplyState(
@@ -52,9 +50,13 @@ export default function ListButton({
         `${session.name} 세션이 이미 신청 마감되어 실패했습니다.`,
         false,
       );
-      router.push(`/session-schedule/${session.id}`, { scroll: false });
-    } else {
+    }
+
+    if (type === 'primary') {
       sessionValidation(currentDate, time, session.id);
+    }
+    if (type === 'thirary') {
+      router.push(`/session-schedule/${session.id}`, { scroll: false });
     }
   };
 

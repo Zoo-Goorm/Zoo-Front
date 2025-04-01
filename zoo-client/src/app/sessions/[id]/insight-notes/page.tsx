@@ -13,6 +13,7 @@ import {
 import { useGetTopInsightQuery } from '@/hooks/insights/insight';
 import { useGetInsightNote } from '@/hooks/insights/useInsights';
 import { useSession } from '@/hooks/session/useSession';
+import useModalStore from '@/store/common/useModalStore';
 import { ISessionId } from '@/types/session/session';
 import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
@@ -89,21 +90,27 @@ export default function SessionInsightNotes() {
   const { data } = useGetInsightNote(Number(id), 'latest');
   const count = data?.pages[0].totalElements;
 
+  const { isOpen, contents } = useModalStore();
+
   return (
-    <main>
-      <NavigationBar />
-      <InsightSideNavigationBar />
-      <div className="my-14 flex w-full justify-center gap-20">
-        <div className="flex max-w-[924px] flex-col items-start justify-center">
-          <Video />
-          {currentSession && (
-            <SessionInsightInfo currentSession={currentSession} />
-          )}
-          <InsightSection id={Number(id)} count={Number(count)} />
+    <>
+      {isOpen && <div className="absolute inset-0 z-50">{contents}</div>}
+
+      <main>
+        <NavigationBar />
+        <InsightSideNavigationBar />
+        <div className="my-14 flex w-full justify-center gap-20">
+          <div className="flex max-w-[924px] flex-col items-start justify-center">
+            <Video />
+            {currentSession && (
+              <SessionInsightInfo currentSession={currentSession} />
+            )}
+            <InsightSection id={Number(id)} count={Number(count)} />
+          </div>
+          <AnotherInsightSection />
         </div>
-        <AnotherInsightSection />
-      </div>
-      <Footer />
-    </main>
+        <Footer />
+      </main>
+    </>
   );
 }

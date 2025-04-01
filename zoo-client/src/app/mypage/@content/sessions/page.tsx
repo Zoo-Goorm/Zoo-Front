@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 function AccessTicketSection({ tickets }: ITicket) {
   return (
     <section>
-      <h1 className="headline-sb-36">내 세션 리스트</h1>
+      <h1 className="headline-sb-36 py-12">내 세션 리스트</h1>
       <div className="body-sb-20 flex items-center justify-between border-t-[1px] border-divider-primary/30 py-6">
         <h2 className="w-1/6">참가권 종류</h2>
         <div className="flex w-5/6 flex-col gap-3">
@@ -60,7 +60,9 @@ function HasTicketList({ registeredSessions }: IRegisteredSessions) {
                         <div className="flex justify-end">
                           <button
                             onClick={() =>
-                              router.push(`/mypage/sessions/${sessionId}`)
+                              router.push(`/mypage/sessions/${sessionId}`, {
+                                scroll: false,
+                              })
                             }
                             className="bg-bg-secondary px-16 py-3 text-text-primary"
                           >

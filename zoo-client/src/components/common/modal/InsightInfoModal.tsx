@@ -38,6 +38,7 @@ const ModalBody = ({ InsightDetailed, closeModal }: IInsightDetailed) => {
         profile={profile}
         likeCount={likeCount}
         isLiked={isLiked}
+        type="detailed"
       />
       <InsightContent memo={memo} />
       <div className="flex items-center gap-1">

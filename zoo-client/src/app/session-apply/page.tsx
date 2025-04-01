@@ -7,10 +7,12 @@ import {
   RadioContent,
   SessionList,
   Tab,
+  TopButton,
 } from '@/components';
 import { SESSION_APPLY_MESSAGES } from '@/constants/messages';
 import useModalStore from '@/store/common/useModalStore';
-
+import { useSessionStore } from '@/store/common/useSessionStore';
+import { useEffect } from 'react';
 const Title = () => {
   return (
     <p className="display-b-48 text-center leading-normal text-text-main">
@@ -49,6 +51,11 @@ const AccordionContainer = () => {
 
 export default function SessionApply() {
   const { isOpen, contents } = useModalStore();
+  const { resetDateState } = useSessionStore();
+
+  useEffect(() => {
+    resetDateState();
+  }, []);
 
   return (
     <>
@@ -64,6 +71,9 @@ export default function SessionApply() {
             <Tab />
             <AccordionContainer />
           </div>
+        </div>
+        <div className="flex w-[100%] justify-end p-80">
+          <TopButton />
         </div>
         <Footer />
       </main>

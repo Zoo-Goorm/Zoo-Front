@@ -20,9 +20,11 @@ export default function NoteItem({ children, note }: IChildren & INote) {
     createdAt,
     updatedAt,
     likeCount,
+    isAnonymous,
     isLiked,
     hasSpeakerComment,
     memo,
+    profile,
   } = note;
 
   const time = getTime(createdAt);
@@ -34,9 +36,11 @@ export default function NoteItem({ children, note }: IChildren & INote) {
   }, []);
 
   return (
-    <div className="flex w-full flex-col gap-6">
+    <div className={`flex w-full flex-col gap-6 ${isAnonymous && 'hidden'}`}>
       <div className="flex flex-col gap-2 text-text-sub">
         <ProfileHeader
+          isAnonymous={isAnonymous}
+          profile={profile}
           name={displayName}
           time={time}
           edited={createdAt == updatedAt ? false : true}
@@ -45,7 +49,7 @@ export default function NoteItem({ children, note }: IChildren & INote) {
           <p
             ref={textRef}
             className="body-r-16-150 overflow-hidden text-text-sub"
-            style={{ maxHeight: detailedReply ? '1000px' : '120px' }}
+            style={{ maxHeight: detailedReply ? '' : '120px' }}
           >
             {memo}
           </p>
