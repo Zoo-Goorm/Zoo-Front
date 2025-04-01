@@ -15,6 +15,7 @@ interface ITextField {
   name: string;
   rules?: RegisterOptions;
   timer?: string;
+  defaultValue?: string;
 
   onButtonClick?: () => void;
   register: UseFormRegister<any>;
@@ -33,6 +34,7 @@ export default function TextField({
   $isRequired,
   name,
   rules,
+  defaultValue,
   register,
   onButtonClick,
 }: ITextField) {
@@ -56,6 +58,7 @@ export default function TextField({
           className={`flex items-center self-stretch bg-bg-transparent px-4 py-12 outline-none ${textFieldStateClasses[state]}`}
           readOnly={readOnly}
           placeholder={placeholder}
+          defaultValue={defaultValue}
         />
         {type === 'badgeField' && (
           <div className="flex gap-4 self-stretch">
