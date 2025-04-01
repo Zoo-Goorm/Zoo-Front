@@ -5,7 +5,7 @@ import { IChildren } from '@/types/children';
 import { Anta } from 'next/font/google';
 
 export const metadata: Metadata = {
-  title: 'Zoo',
+  title: 'Synapse X',
   description: 'Zoo client',
 };
 
