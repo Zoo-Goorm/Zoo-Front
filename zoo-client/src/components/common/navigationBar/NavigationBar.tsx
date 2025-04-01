@@ -49,6 +49,8 @@ export default function NavigationBar({
       userToken: null,
       userType: 'none',
     });
+
+    router.push('/');
   };
 
   const logoColorClasses = { default: '#4824FF', main: '#fff' };
