@@ -9,6 +9,7 @@ import {
   Tab,
   TopButton,
 } from '@/components';
+import PrivatedRouter from '@/components/common/privatedRouter';
 import { SESSION_APPLY_MESSAGES } from '@/constants/messages';
 import useModalStore from '@/store/common/useModalStore';
 import { useSessionStore } from '@/store/common/useSessionStore';
@@ -58,7 +59,7 @@ export default function SessionApply() {
   }, []);
 
   return (
-    <>
+    <PrivatedRouter>
       {isOpen && <div className="absolute inset-0 z-50">{contents}</div>}
       <main className="flex flex-col items-center bg-bg-primary">
         <NavigationBar />
@@ -77,6 +78,6 @@ export default function SessionApply() {
         </div>
         <Footer />
       </main>
-    </>
+    </PrivatedRouter>
   );
 }

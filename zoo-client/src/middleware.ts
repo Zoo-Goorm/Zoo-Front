@@ -6,18 +6,18 @@ export function middleware(request: NextRequest) {
 
   const token = request.cookies.get('Authorization');
 
-  if (
-    pathname.startsWith('/insight-notes') ||
-    pathname.startsWith('/session-apply') ||
-    pathname.startsWith('/sessions') ||
-    pathname.startsWith('/mypage')
-  ) {
-    if (!token) {
-      return NextResponse.redirect(new URL('/login', request.url));
-    }
-  }
+  // if (
+  //   pathname.startsWith('/insight-notes') ||
+  //   pathname.startsWith('/session-apply') ||
+  //   pathname.startsWith('/sessions') ||
+  //   pathname.startsWith('/mypage')
+  // ) {
+  //   if (!token) {
+  //     return NextResponse.redirect(new URL('/login', request.url));
+  //   }
+  // }
 
-  return NextResponse.next();
+  // return NextResponse.next();
 }
 
 export const config = {
