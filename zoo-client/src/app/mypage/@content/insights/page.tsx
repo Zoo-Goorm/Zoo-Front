@@ -65,9 +65,7 @@ function InsightList() {
   const { currentDate } = useSessionStore();
   const { selectedInsights } = useFilterStore();
 
-  useEffect(() => {
-    console.log(selectedInsights);
-  }, [selectedInsights]);
+  useEffect(() => {}, [selectedInsights]);
 
   const {
     data: myInsights,

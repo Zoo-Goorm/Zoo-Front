@@ -4,6 +4,9 @@ export async function createReply(formData: FormData) {
   const content = formData.get('content');
   const id = formData.get('id');
   const endpoint = `${baseURL}/api/v1/insights/${id}/comments`;
+  const token =
+    localStorage.getItem('noneMemberAccessToken') ||
+    localStorage.getItem('accessToken');
 
   try {
     const response = await fetch(endpoint, {
@@ -13,6 +16,7 @@ export async function createReply(formData: FormData) {
       },
       body: JSON.stringify({
         content: content,
+        Authorization: `Bearer ${token}`,
       }),
 
       credentials: 'include',
@@ -34,7 +38,9 @@ export async function createNote(formData: FormData) {
   const isPublic = formData.get('isPublic') === '공개';
   const isDraft = false;
   const endpoint = `${baseURL}/api/v1/insights`;
-
+  const token =
+    localStorage.getItem('noneMemberAccessToken') ||
+    localStorage.getItem('accessToken');
   const payload = {
     sessionId: sessionId,
     memo: memo,
@@ -42,12 +48,15 @@ export async function createNote(formData: FormData) {
     isAnonymous: isAnonymous,
     isDraft: isDraft,
   };
+  console.log(endpoint);
+  console.log('요청 전송');
 
   try {
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(payload),
 

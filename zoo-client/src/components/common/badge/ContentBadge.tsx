@@ -12,7 +12,7 @@ export default function ContentBadge({
   location,
 }: ContentBadgeProps) {
   return (
-    <div className="flex w-[100%] flex-wrap items-center gap-x-12 gap-y-[0.75rem]">
+    <div className="flex w-[100%] flex-wrap items-center justify-start gap-x-12 gap-y-[0.75rem]">
       {maxApply == 0 && <Badge type={'fullBooking'} text={'마감 세션'} />}
       {(keywords ?? []).map((badge, index) => (
         <Badge key={index} type={'subject'} text={badge} />

@@ -9,6 +9,7 @@ export interface IUserProfile {
   job: string;
   interestCategory: string;
   snsUrl: string;
+  username: string;
 }
 
 export async function fetchUpdateProfile({
@@ -20,7 +21,7 @@ export async function fetchUpdateProfile({
   job,
   interestCategory,
   snsUrl,
-}: IUserProfile) {
+}: Omit<IUserProfile, 'username'>) {
   const endpoint = `/api/v1/user/me`;
   const token =
     localStorage.getItem('noneMemberAccessToken') ||
@@ -46,9 +47,15 @@ export async function fetchUpdateProfile({
 
 export async function fetchUserProfile() {
   const endpoint = '/api/v1/user/me';
+  const token =
+    localStorage.getItem('noneMemberAccessToken') ||
+    localStorage.getItem('accessToken');
 
   const response = await fetchApi<IUserProfile>(endpoint, {
     method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
 
   return response.data;

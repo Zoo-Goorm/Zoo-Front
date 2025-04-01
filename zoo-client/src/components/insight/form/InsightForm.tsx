@@ -20,6 +20,8 @@ export default function InsightForm({
   const { mutate: mutateReply } = useMutationReplyForm(id);
 
   async function submitNoteForm(formData: FormData) {
+    console.log('노트 작성');
+    console.log(formData);
     mutateNote(formData);
   }
   async function submitReplyForm(formData: FormData) {
