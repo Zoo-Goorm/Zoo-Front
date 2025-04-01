@@ -10,6 +10,8 @@ import { USER_TERMS } from '@/constants/messages';
 import { fetchWithdraw } from '@/services/auth';
 import UserProfile from '@/components/mypage/UserProfile';
 import { useProfile } from '@/hooks/profile/useProfile';
+import { deleteCookie } from 'cookies-next';
+import useAuthStore from '@/store/common/auth/useAuthStore';
 
 function UserProfileSection() {
   const [isEditing, setIsEditing] = useState(true);
@@ -96,6 +98,15 @@ function WithdrawSection() {
   const handleWithdraw = async () => {
     try {
       await fetchWithdraw();
+      localStorage.clear();
+      deleteCookie('Authorization');
+
+      useAuthStore.setState({
+        isAuthenticated: false,
+        userToken: null,
+        userType: 'none',
+      });
+
       router.push('/');
     } catch (error) {
       console.error(`회원 탈퇴에 실패했습니다. ${error}`);
