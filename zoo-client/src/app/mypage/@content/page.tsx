@@ -21,6 +21,12 @@ function UserProfileSection() {
     setIsEditing((prev) => !prev);
   };
 
+  const account = userProfile?.username.includes('@')
+    ? '비회원'
+    : userProfile?.username.split(' ')[0] === 'kakako'
+      ? '카카오'
+      : '구글';
+
   return (
     <section className="flex flex-col items-start justify-center gap-48">
       <div className="flex flex-col items-start gap-8">
@@ -31,7 +37,7 @@ function UserProfileSection() {
       </div>
       <div className="flex h-[5rem] w-[100%] items-center justify-center border-t-2 border-solid bg-bg-secondary stroke-stroke-quaternary">
         <span className="title-sb-20 flex-1 text-center text-text-main">
-          카카오톡 계정으로 로그인되었습니다.
+          {account} 계정으로 로그인되었습니다.
         </span>
       </div>
       <div className="flex flex-col justify-center gap-[0.375rem] self-stretch">
