@@ -1,5 +1,6 @@
 import { createNote } from '@/actions/insight-form';
 import {
+  deleteInsight,
   getInsightDetailed,
   getInsightNote,
   getMyInsights,
@@ -90,6 +91,22 @@ export function useMutationNoteForm(id: number) {
     },
     onError: (error) => {
       console.error('메모 저장 실패:', error);
+    },
+  });
+}
+
+export function useMutationDeleteNote() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id: number) => deleteInsight(id),
+    onSuccess: (_, id) => {
+      queryClient.invalidateQueries({
+        queryKey: ['insights', id],
+      });
+    },
+    onError: (error) => {
+      console.error('메모 삭제 실패:', error);
     },
   });
 }
