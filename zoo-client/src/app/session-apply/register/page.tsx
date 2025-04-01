@@ -30,22 +30,19 @@ export default function ConferenceRegister() {
                 컨퍼런스에서 영감을 얻고 네트워크를 확장할 준비가 되셨나요?
               </p>
             </div>
-            <Tab />
+            <Tab isToggleVisible={false} />
           </div>
           <div className="flex items-center gap-12 self-stretch overflow-x-auto whitespace-nowrap p-0 scrollbar-hidden">
             <CardContent />
-            <CardContent />
-            <CardContent />
-            <CardContent />
-            <CardContent />
-            <CardContent />
           </div>
-          <OblongButton
-            size="l"
-            text="세션 수정"
-            $buttonStyle="primary"
-            onClick={() => router.push('/session-apply')}
-          />
+          <div>
+            <OblongButton
+              size="l"
+              text="세션 수정"
+              $buttonStyle="primary"
+              onClick={() => router.push('/session-apply')}
+            />
+          </div>
         </div>
         <RegisterForm />
       </div>

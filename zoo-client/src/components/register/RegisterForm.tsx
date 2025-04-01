@@ -7,13 +7,17 @@ import { SESSION_TERMS } from '@/constants/messages';
 
 import {
   InterestModal,
-  AlertModal,
   TextField,
   CheckBox,
   JobModal,
   RegisterPaymentButton,
 } from '@/components';
 import RegisterButton from './RegisterButton';
+import { usePaymentProfile, useProfile } from '@/hooks/profile/useProfile';
+import useAuthStore from '@/store/common/auth/useAuthStore';
+import { fetchSessionPayment } from '@/services/session';
+import { PaymentRequest } from '@/types/register/register';
+import { useSessionStore } from '@/store/common/useSessionStore';
 
 interface FormData {
   name: string;
@@ -22,11 +26,19 @@ interface FormData {
   job: string;
   interest: string;
   'on-offline': string;
-  termsAccepted: boolean;
 }
 
 export default function RegisterForm() {
+  const { userType } = useAuthStore();
+  const { data: paymentProfile } = usePaymentProfile();
+  const { selectedSessionsByDate } = useSessionStore();
+  const { data: userProfile, isSuccess: profileSuccess } = useProfile();
   const { isOpen, contents, openModal, closeModal } = useModalStore();
+
+  const allSessionIds = Object.entries(selectedSessionsByDate).flatMap(
+    ([_, sessions]) => sessions.map((session) => session.id),
+  );
+
   const {
     register,
     handleSubmit,
@@ -34,35 +46,46 @@ export default function RegisterForm() {
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
-      name: '',
-      phone: '',
-      email: '',
+      name: paymentProfile?.name,
+      phone:
+        profileSuccess && userType === 'member' ? userProfile?.phoneNumber : '',
+      email: paymentProfile?.email,
       job: '',
       interest: '',
-      'on-offline': '',
-      termsAccepted: false,
+      'on-offline': '온라인',
     },
   });
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
-  };
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    const [occupation, job] = data.job.split('/');
 
-  const handleCheckBoxChange = (checked: boolean) => {
-    setValue('termsAccepted', checked);
-  };
+    try {
+      const paymentData: PaymentRequest = {
+        itemName: '1일차 티켓, 2일차 티켓',
+        totalAmount: 1,
+        quantity: 2,
+        sessionIds: allSessionIds,
+        userInfo: {
+          name: data.name,
+          email: data.email,
+          phoneNumber: data.phone,
+          occupation: occupation.trim(),
+          job: job.trim(),
+          interestCategory: data.interest,
+          online: data['on-offline'] === '온라인',
+        },
+      };
 
-  const openEmailModal = () => {
-    openModal({
-      contents: (
-        <AlertModal
-          headerText="알림"
-          buttonText="확인"
-          onButtonClick={closeModal}
-          bodyText={`서비스를 이용하려면 이메일 인증이 필요합니다.\n등록하신 [이메일]로 인증 메일을 발송했으니, 확인 후 인증을 완료해주세요.`}
-        />
-      ),
-    });
+      const response = await fetchSessionPayment(paymentData);
+
+      if (response.next_redirect_pc_url) {
+        window.location.href = response.next_redirect_pc_url;
+      } else {
+        console.error('리디렉션 URL이 없습니다:', response);
+      }
+    } catch (error) {
+      console.error(`결제 요청에 실패했습니다. ${error}`);
+    }
   };
 
   const openInterestModal = () => {
@@ -111,11 +134,13 @@ export default function RegisterForm() {
           <div className="flex items-center justify-center self-stretch bg-bg-secondary p-24">
             <div className="flex flex-1 flex-col justify-center gap-32">
               <TextField
+                readOnly
                 $isRequired
                 name="name"
                 type="default"
                 applyItem="이름"
                 placeholder="이름"
+                value={paymentProfile?.name}
                 register={register}
                 state={errors.name ? 'error' : 'default'}
                 rules={{ required: '이름은 필수 입력 항목입니다.' }}
@@ -133,14 +158,14 @@ export default function RegisterForm() {
                 errorMessage={errors.phone?.message}
               />
               <TextField
+                readOnly
                 $isRequired
                 name="email"
                 type="default"
                 applyItem="이메일 주소"
-                buttonText="이메일 인증"
-                placeholder="이메일 (zoo@naver.com)"
+                placeholder="이메일 주소"
+                value={paymentProfile?.email}
                 register={register}
-                onButtonClick={openEmailModal}
                 state={errors.email ? 'error' : 'default'}
                 rules={{ required: '이메일은 필수 입력 항목입니다.' }}
                 errorMessage={errors.email?.message}
@@ -175,7 +200,7 @@ export default function RegisterForm() {
               />
               <TextField
                 readOnly
-                placeholder="온/오프라인"
+                placeholder="온라인"
                 type="default"
                 name="on-offline"
                 applyItem="온/오프라인"
@@ -205,10 +230,7 @@ export default function RegisterForm() {
             {SESSION_TERMS.terms}
           </p>
         </div>
-        <CheckBox
-          label="약관을 확인하고 동의합니다."
-          onChange={handleCheckBoxChange}
-        />
+        <CheckBox label="약관을 확인하고 동의합니다." />
       </section>
       <section className="itmes-start flex w-full justify-between gap-5 self-stretch pt-[3rem]">
         <div className="flex w-1/2 flex-col gap-12 self-stretch">
@@ -222,16 +244,16 @@ export default function RegisterForm() {
             <div className="flex flex-col items-start gap-5 self-stretch">
               <div className="flex items-center justify-between self-stretch">
                 <label className="title-sb-20 text-text-sub">1일차</label>
-                <span className="figure-m-16 text-text-main">NN,NNN원</span>
+                <span className="figure-m-16 text-text-main">1원</span>
               </div>
               <div className="flex items-center justify-between self-stretch">
                 <label className="title-sb-20 text-text-sub">2일차</label>
-                <span className="figure-m-16 text-text-main">NN,NNN원</span>
+                <span className="figure-m-16 text-text-main">1원</span>
               </div>
             </div>
             <div className="flex items-center justify-between self-stretch border-t border-solid border-divider-primary px-0 py-16">
               <label className="title-sb-24 text-text-main">Total</label>
-              <span className="figure-m-20 text-text-primary">NN,NNN원</span>
+              <span className="figure-m-20 text-text-primary">2원</span>
             </div>
           </div>
           <RegisterPaymentButton />

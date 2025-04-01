@@ -7,7 +7,12 @@ import ToggleButton from './ToggleButton';
 import { usePathname } from 'next/navigation';
 import { useSessions } from '@/hooks/session/useSession';
 import { FilterButton } from '@/components';
-export default function Tab() {
+
+export default function Tab({
+  isToggleVisible = true,
+}: {
+  isToggleVisible?: boolean;
+}) {
   const { sessionDates, addSessionDate } = useSessionStore();
   const isSchedulePath = usePathname().includes('session-apply');
   const isMyInsightPath = usePathname().includes('mypage/insights');
@@ -35,8 +40,7 @@ export default function Tab() {
           </div>
         ))}
       </div>
-
-      {isSchedulePath && <ToggleButton />}
+      {isToggleVisible && isSchedulePath && <ToggleButton />}
       {isMyInsightPath && <FilterButton />}
     </div>
   );
