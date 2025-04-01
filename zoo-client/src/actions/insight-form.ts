@@ -48,8 +48,6 @@ export async function createNote(formData: FormData) {
     isAnonymous: isAnonymous,
     isDraft: isDraft,
   };
-  console.log(endpoint);
-  console.log('요청 전송');
 
   try {
     const response = await fetch(endpoint, {
