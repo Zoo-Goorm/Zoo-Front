@@ -1,8 +1,12 @@
-export interface Session {
+export interface SessionBase {
   id: number;
   name: string;
-  keywords: string[];
   shortDescription: string;
+  speakerName: string;
+}
+
+export interface Session extends SessionBase {
+  keywords: string[];
   speakerImageUrl?: string | null;
   maxCapacity: number;
   participantCount: number;
@@ -12,7 +16,6 @@ export interface Session {
   location: string;
   status: string;
   speakerImage?: string;
-  speakerName: string;
   speaker?: {
     name: string;
     info: string;
@@ -28,12 +31,8 @@ export interface ISessions {
   [date: string]: TimeSlot[];
 }
 
-export interface SelectSession {
-  id: number;
+export interface SelectSession extends SessionBase {
   time: string;
-  name: string;
-  shortDescription: string;
-  speakerName: string;
 }
 
 export interface SessionId {

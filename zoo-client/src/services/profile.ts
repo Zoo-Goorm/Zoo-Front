@@ -12,6 +12,12 @@ export interface IUserProfile {
   username: string;
 }
 
+export interface IPaymentProfile {
+  userId: number;
+  name: string;
+  email: string;
+}
+
 export async function fetchUpdateProfile({
   name,
   nickname,
@@ -52,6 +58,22 @@ export async function fetchUserProfile() {
     localStorage.getItem('accessToken');
 
   const response = await fetchApi<IUserProfile>(endpoint, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+export async function fetchUserPaymentProfile() {
+  const endpoint = '/api/v1/user/userInfo';
+  const token =
+    localStorage.getItem('noneMemberAccessToken') ||
+    localStorage.getItem('accessToken');
+
+  const response = await fetchApi<IPaymentProfile>(endpoint, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,

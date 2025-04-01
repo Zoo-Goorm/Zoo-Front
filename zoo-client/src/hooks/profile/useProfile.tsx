@@ -1,10 +1,21 @@
-import { fetchUpdateProfile, fetchUserProfile } from '@/services/profile';
+import {
+  fetchUpdateProfile,
+  fetchUserPaymentProfile,
+  fetchUserProfile,
+} from '@/services/profile';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 export function useProfile() {
   return useQuery({
     queryKey: ['profile'],
     queryFn: fetchUserProfile,
+  });
+}
+
+export function usePaymentProfile() {
+  return useQuery({
+    queryKey: ['paymentProfile'],
+    queryFn: fetchUserPaymentProfile,
   });
 }
 

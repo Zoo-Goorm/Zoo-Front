@@ -5,19 +5,14 @@ import CheckIcon from './CheckIcon';
 
 interface ICheckBoxProps {
   label: string;
-  onChange: (checked: boolean) => void;
+  onChange?: (checked: boolean) => void;
 }
 
-export default function CheckBox({ label, onChange }: ICheckBoxProps) {
+export default function CheckBox({ label }: ICheckBoxProps) {
   const [isSelected, setIsSelected] = useState(false);
 
   const handleToggleCheckBox = () => {
-    setIsSelected((prev) => {
-      const newState = !prev;
-      onChange(newState);
-
-      return newState;
-    });
+    setIsSelected((prev) => !prev);
   };
 
   return (

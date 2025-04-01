@@ -1,15 +1,11 @@
 interface ISpeaker {
   speakerName: string;
-  speakerInfo?: string;
 }
 
-export default function Speaker({ speakerName, speakerInfo }: ISpeaker) {
+export default function Speaker({ speakerName }: ISpeaker) {
   return (
     <div className="flex flex-col flex-wrap justify-center gap-x-8 gap-y-2 px-0 py-8">
       <span className="title-sb-20 text-text-main">{speakerName}</span>
-      {speakerInfo && (
-        <span className="body-m-16-150 text-text-sub">{speakerInfo}</span>
-      )}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Session } from '@/types/session/session';
+import { Session, SelectSession } from '@/types/session/session';
 import ContentBadge from '../badge/ContentBadge';
 import Speaker from '../speaker/Speaker';
 
@@ -7,17 +7,13 @@ export default function SessionContent({
   session,
 }: {
   type: 'list' | 'register';
-  session: Session;
+  session: SelectSession | Session;
 }) {
-  const {
-    name,
-    keywords,
-    shortDescription,
-    maxCapacity,
-    participantCount,
-    location,
-    speakerName,
-  } = session;
+  const { name, shortDescription, speakerName } = session;
+
+  const isSession = (session: SelectSession | Session): session is Session => {
+    return (session as Session).maxCapacity !== undefined;
+  };
 
   const sessionContainerTypeClasses = {
     list: 'size-full justify-center items-center',
@@ -28,18 +24,23 @@ export default function SessionContent({
     list: 'w-2/3 gap-[0.625rem]',
     register: 'gap-16 flex-1',
   };
-  const maxApply = maxCapacity - participantCount;
+
+  const maxApply = isSession(session)
+    ? session.maxCapacity - session.participantCount
+    : 0;
 
   return (
     <div className={`flex gap-20 ${sessionContainerTypeClasses[type]}`}>
       <div
-        className={`flex h-[129px] flex-col items-start justify-center ${sessionContentTypeClasses[type]}`}
+        className={`flex flex-col items-start justify-center ${sessionContentTypeClasses[type]}`}
       >
-        <ContentBadge
-          keywords={keywords}
-          maxApply={maxApply}
-          location={location}
-        />
+        {isSession(session) && session.keywords ? (
+          <ContentBadge
+            keywords={session.keywords}
+            maxApply={maxApply}
+            location={session.location}
+          />
+        ) : null}
         <h3 className="website:title-sb-24 mobile:title-sb-20 self-stretch text-text-main">
           {name}
         </h3>
@@ -47,7 +48,7 @@ export default function SessionContent({
           {shortDescription}
         </span>
       </div>
-      {type === 'list' && (
+      {type === 'list' && isSession(session) && (
         <div className="h-full w-1/3">
           {speakerName && <Speaker speakerName={speakerName} />}
         </div>
