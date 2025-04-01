@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import LogoIcon from '../logo/LogoIcon';
 
 export default function Footer() {
@@ -16,11 +17,17 @@ export default function Footer() {
       </div>
       <div className="flex items-center justify-between">
         <ul className="flex items-center gap-20">
-          <li className="body-r-14 text-text-white">개인정보처리방침</li>
-          <li className="body-r-14 text-text-white">이용약관</li>
-          <li className="body-r-14 text-text-white">
-            인사이트 노트 가이드라인(법적 및 정책관련 정보)
-          </li>
+          <Link href="https://www.notion.so/1c1060b5096580f083d4fe1d05ee0e11?v=1c1060b50965814d9d06000c68644944&p=1c0060b5096580b19e2ce3574b753dbf&pm=s">
+            <li className="body-r-14 text-text-white">개인정보처리방침</li>
+          </Link>
+          <Link href="https://www.notion.so/1c1060b5096580f083d4fe1d05ee0e11?v=1c1060b50965814d9d06000c68644944&p=1c0060b50965807199c8f59157d46b95&pm=s">
+            <li className="body-r-14 text-text-white">이용약관</li>
+          </Link>
+          <Link href="https://www.notion.so/1c1060b5096580f083d4fe1d05ee0e11?v=1c1060b50965814d9d06000c68644944&p=1c0060b50965806d94fdef9b97abbf3f&pm=s">
+            <li className="body-r-14 text-text-white">
+              인사이트 노트 가이드라인(법적 및 정책관련 정보)
+            </li>
+          </Link>
         </ul>
         <span className="caption-r-12 text-text-sub">
           2025 All rights reserved
