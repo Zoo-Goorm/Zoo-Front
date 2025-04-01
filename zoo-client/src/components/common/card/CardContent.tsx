@@ -10,8 +10,6 @@ export default function CardContent() {
     ([date, sessions]) => sessions.map((session) => ({ ...session, date })),
   );
 
-  console.log(currentDate);
-
   const filteredSessions =
     currentDate !== '전체'
       ? allSessions.filter((session) => session.date === currentDate)
