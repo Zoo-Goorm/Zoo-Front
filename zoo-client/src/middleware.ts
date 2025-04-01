@@ -6,8 +6,6 @@ export function middleware(request: NextRequest) {
 
   const token = request.cookies.get('Authorization');
 
-  console.log('Token:', token);
-
   if (
     pathname.startsWith('/insight-notes') ||
     pathname.startsWith('/session-apply') ||

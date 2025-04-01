@@ -14,7 +14,6 @@ export default function NoteItem({ children, note }: IChildren & INote) {
   const [isOverflowing, setIsOverflowing] = useState(false);
   const textRef = useRef<HTMLParagraphElement>(null);
 
-  console.log(note);
   const {
     id,
     displayName,
