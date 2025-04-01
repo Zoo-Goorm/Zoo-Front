@@ -5,6 +5,7 @@ import {
   getInsightNote,
   getMyInsights,
 } from '@/services/insight';
+import useModalStore from '@/store/common/useModalStore';
 import {
   useMutation,
   useQuery,
@@ -97,6 +98,7 @@ export function useMutationNoteForm(id: number) {
 
 export function useMutationDeleteNote() {
   const queryClient = useQueryClient();
+  const { closeModal } = useModalStore();
 
   return useMutation({
     mutationFn: (id: number) => deleteInsight(id),
@@ -104,6 +106,7 @@ export function useMutationDeleteNote() {
       queryClient.invalidateQueries({
         queryKey: ['insights', id],
       });
+      closeModal();
     },
     onError: (error) => {
       console.error('메모 삭제 실패:', error);
