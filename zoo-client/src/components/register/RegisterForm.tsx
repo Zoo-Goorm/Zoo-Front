@@ -142,9 +142,6 @@ export default function RegisterForm() {
                 placeholder="이름"
                 value={paymentProfile?.name}
                 register={register}
-                state={errors.name ? 'error' : 'default'}
-                rules={{ required: '이름은 필수 입력 항목입니다.' }}
-                errorMessage={errors.name?.message}
               />
               <TextField
                 $isRequired
@@ -166,9 +163,6 @@ export default function RegisterForm() {
                 placeholder="이메일 주소"
                 value={paymentProfile?.email}
                 register={register}
-                state={errors.email ? 'error' : 'default'}
-                rules={{ required: '이메일은 필수 입력 항목입니다.' }}
-                errorMessage={errors.email?.message}
               />
               <TextField
                 $isRequired
