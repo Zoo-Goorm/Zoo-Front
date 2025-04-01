@@ -7,6 +7,7 @@ import {
   RadioContent,
   SessionList,
   Tab,
+  TopButton,
 } from '@/components';
 import { SESSION_APPLY_MESSAGES } from '@/constants/messages';
 import useModalStore from '@/store/common/useModalStore';
@@ -70,6 +71,9 @@ export default function SessionApply() {
             <Tab />
             <AccordionContainer />
           </div>
+        </div>
+        <div className="flex w-[100%] justify-end p-80">
+          <TopButton />
         </div>
         <Footer />
       </main>

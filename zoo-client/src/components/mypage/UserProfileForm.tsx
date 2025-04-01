@@ -121,8 +121,7 @@ export default function UserProfileForm({
           name="name"
           type="default"
           applyItem="이름"
-          defaultValue={userProfile?.name || ''}
-          placeholder="이름"
+          placeholder={userProfile?.name || '이름'}
           register={register}
           state={errors.name ? 'error' : 'default'}
           rules={{ required: '이름은 필수 입력 항목입니다.' }}
@@ -133,8 +132,7 @@ export default function UserProfileForm({
           type="default"
           name="nickname"
           applyItem="닉네임"
-          defaultValue={userProfile?.nickname || ''}
-          placeholder="닉네임"
+          placeholder={userProfile?.nickname || '닉네임'}
           register={register}
           state={errors.nickname ? 'error' : 'default'}
           rules={{ required: '닉네임은 필수 입력 항목입니다.' }}
@@ -146,8 +144,7 @@ export default function UserProfileForm({
           type="default"
           applyItem="이메일 주소"
           buttonText="이메일 인증"
-          defaultValue={userProfile?.email || ''}
-          placeholder="이메일 (zoo@naver.com)"
+          placeholder={userProfile?.email || '이메일 (zoo@naver.com)'}
           register={register}
           state={errors.email ? 'error' : 'default'}
           rules={{ required: '이메일은 필수 입력 항목입니다.' }}
@@ -158,8 +155,9 @@ export default function UserProfileForm({
           type="default"
           name="phoneNumber"
           applyItem="휴대폰 번호"
-          defaultValue={userProfile?.phoneNumber || ''}
-          placeholder="휴대폰 번호 (010-1234-5678)"
+          placeholder={
+            userProfile?.phoneNumber || '휴대폰 번호 (010-1234-5678)'
+          }
           register={register}
           state={errors.phoneNumber ? 'error' : 'default'}
           rules={{ required: '휴대폰 번호는 필수 입력 항목입니다.' }}
@@ -172,8 +170,9 @@ export default function UserProfileForm({
           type="badgeField"
           applyItem="직군/직업"
           buttonText="직군/직업 선택"
-          placeholder="직군/직업"
-          defaultValue={`${userProfile?.occupation}/${userProfile?.job}` || ''}
+          placeholder={
+            `${userProfile?.occupation}/${userProfile?.job}` || '직군/직업'
+          }
           register={register}
           onButtonClick={openJobModal}
           state={errors.job ? 'error' : 'default'}
@@ -187,8 +186,7 @@ export default function UserProfileForm({
           type="badgeField"
           applyItem="관심있는 IT 분야"
           buttonText="분야 선택"
-          defaultValue={userProfile?.interestCategory || ''}
-          placeholder="관심 IT 분야"
+          placeholder={userProfile?.interestCategory || '관심 IT 분야'}
           register={register}
           onButtonClick={openInterestModal}
           state={errors.interestCategory ? 'error' : 'default'}
@@ -201,8 +199,9 @@ export default function UserProfileForm({
           name="snsUrl"
           applyItem="네트워킹 연동"
           buttonText="저장하기"
-          defaultValue={userProfile?.snsUrl || ''}
-          placeholder="네트워킹 주소 입력 (e.g. instagram, github)"
+          placeholder={
+            userProfile?.snsUrl || '네트워킹 주소 입력 (e.g. instagram, github)'
+          }
           register={register}
           onButtonClick={openNetworkingModal}
         />

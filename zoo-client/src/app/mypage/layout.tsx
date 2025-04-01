@@ -1,5 +1,5 @@
-import { Footer, NavigationBar } from '@/components';
 import { ReactNode } from 'react';
+import { Footer, NavigationBar } from '@/components';
 
 export default function Layout({
   content,

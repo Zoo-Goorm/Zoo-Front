@@ -6,6 +6,8 @@ import {
   ChipList,
   Tab,
   SessionList,
+  Footer,
+  TopButton,
 } from '@/components';
 import { SESSION_SCHEDULE_MESSAGES } from '@/constants/messages';
 import useButtonAccess from '@/hooks/access/useButtonAccess';
@@ -54,6 +56,10 @@ export default function SessionSchedulePage() {
         <Tab />
         <SessionList />
       </div>
+      <div className="flex w-[100%] justify-end p-80">
+        <TopButton />
+      </div>
+      <Footer />
     </main>
   );
 }
